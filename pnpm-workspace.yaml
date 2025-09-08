@@ -1,0 +1,8 @@
+ignoredBuiltDependencies:
+  - '@heroui/shared-utils'
+  - esbuild
+
+onlyBuiltDependencies:
+  - '@tailwindcss/oxide'
+  - sharp
+  - unrs-resolver

@@ -1,0 +1,20 @@
+{
+  "HomePage": {
+    "title": "Olá mundo!"
+  },
+  "Theme": {
+    "dark": "escuro",
+    "light": "claro",
+    "tooltip": {
+      "description": "Clique aqui para mudar para o modo {theme}"
+    }
+  },
+  "Locale": {
+    "label": "Idioma",
+    "tooltip": {
+      "description": "Clique aqui para mudar o idioma"
+    },
+    "pt-BR": "Português",
+    "en-US": "Inglês"
+  }
+}

@@ -1,0 +1,20 @@
+{
+  "HomePage": {
+    "title": "Hello world!"
+  },
+  "Theme": {
+    "dark": "dark",
+    "light": "light",
+    "tooltip": {
+      "description": "Switch to the {theme} theme"
+    }
+  },
+  "Locale": {
+    "label": "Language",
+    "tooltip": {
+      "description": "Click here to change the language"
+    },
+    "pt-BR": "Portuguese",
+    "en-US": "English"
+  }
+}

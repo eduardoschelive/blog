@@ -3,8 +3,10 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "next dev --turbopack",
-    "build": "next build --turbopack",
+    "dev": "pnpm generate:pathnames && next dev --turbopack",
+    "build": "pnpm generate:pathnames && next build --turbopack",
+    "generate:pathnames": "node scripts/generatePathnames.js",
+    "clean:generated": "rm -rf generated/*.ts generated/*.js",
     "start": "next start",
     "lint": "eslint"
   },

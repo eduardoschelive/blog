@@ -9,6 +9,7 @@ export const categorySchema = z.object({
   icon: z.string(),
   tags: z.array(z.string()),
   publishedAt: z.string(),
+  slug: z.string(),
 })
 
 export type CategoryFrontmatter = z.infer<typeof categorySchema>

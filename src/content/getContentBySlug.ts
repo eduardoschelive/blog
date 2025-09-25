@@ -1,6 +1,6 @@
 'use server'
 
-import { CONTENT_DIR } from '@/constants/content'
+import { ARTICLES_DIR } from '@/constants/content'
 import type { Locale } from 'next-intl'
 import path from 'node:path'
 import type z from 'zod'
@@ -15,10 +15,10 @@ async function getContentBySlug<T>(
   schema: z.ZodType<T>
 ) {
   const filePath = path.join(
-    CONTENT_DIR,
-    locale,
+    ARTICLES_DIR,
     categorySlug,
-    `${articleSlug}.mdx`
+    articleSlug,
+    `${locale}.mdx`
   )
 
   const fileContent = readFileContent(filePath)

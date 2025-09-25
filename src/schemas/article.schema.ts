@@ -9,6 +9,7 @@ export const articleSchema = z.object({
   publishedAt: z.string().optional(),
   author: z.string().optional(),
   tags: z.array(z.string()).optional(),
+  slug: z.string(),
 })
 
 export type Article = z.infer<typeof articleSchema>

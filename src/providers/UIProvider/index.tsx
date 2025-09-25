@@ -1,7 +1,7 @@
 'use client'
 
-import { useRouter } from '@/i18n/navigation'
 import { HeroUIProvider } from '@heroui/react'
+import { useRouter } from 'next/navigation'
 import type { ReactNode } from 'react'
 
 interface UIProviderProps {

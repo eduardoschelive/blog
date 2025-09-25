@@ -29,6 +29,13 @@ const eslintConfig = [
       '@typescript-eslint/consistent-type-imports': 'error',
     },
   },
+  {
+    files: ['scripts/**/*.js', 'scripts/**/*.ts'],
+    rules: {
+      '@typescript-eslint/no-require-imports': 'off',
+      '@typescript-eslint/no-var-requires': 'off',
+    },
+  },
 ]
 
 export default eslintConfig

@@ -9,7 +9,13 @@ interface ProvidersProps {
 }
 
 function Providers({ children }: ProvidersProps) {
-  return <MultiProvider providers={[ThemeProvider, NextIntlClientProvider, UIProvider]}>{children}</MultiProvider>
+  return (
+    <MultiProvider
+      providers={[ThemeProvider, NextIntlClientProvider, UIProvider]}
+    >
+      {children}
+    </MultiProvider>
+  )
 }
 
 export { Providers }

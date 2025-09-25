@@ -2,15 +2,10 @@
 
 import { HEADER_ID } from '@/constants/elements'
 import { Navbar, NavbarBrand, NavbarContent, NavbarItem } from '@heroui/react'
-import type { Locale } from 'next-intl'
 import { LanguageSelect } from '../LanguageSelect'
 import { ThemeSwitch } from '../ThemeSwitch'
 
-interface HeaderProps {
-  paths?: Record<Locale, string>
-}
-
-function Header({ paths }: HeaderProps) {
+function Header() {
   return (
     <Navbar isBordered id={HEADER_ID}>
       <NavbarContent justify="start">
@@ -23,7 +18,7 @@ function Header({ paths }: HeaderProps) {
           <ThemeSwitch />
         </NavbarItem>
         <NavbarItem>
-          <LanguageSelect paths={paths} />
+          <LanguageSelect />
         </NavbarItem>
       </NavbarContent>
     </Navbar>

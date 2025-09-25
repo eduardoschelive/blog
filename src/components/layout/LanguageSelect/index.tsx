@@ -14,16 +14,12 @@ import { useTranslations } from 'next-intl'
 import { IoEarth } from 'react-icons/io5'
 import { IconTooltip } from '../../ui/IconTooltip'
 
-interface LanguageSelectProps {
-  paths?: Record<Locale, string>
-}
-
-function LanguageSelect({ paths }: LanguageSelectProps) {
+function LanguageSelect() {
   const t = useTranslations('Locale')
   const { navigateToLocale } = useTranslatedNavigation()
 
   const handleLocaleChange = (locale: Locale) => {
-    navigateToLocale(locale, paths)
+    navigateToLocale(locale)
   }
 
   return (

@@ -13,6 +13,7 @@ export const components: MDXComponents = {
 
     if (href?.startsWith('/')) {
       return (
+        // @ts-expect-error - Dynamic routes are valid but TypeScript can't infer them
         <Link href={href} {...props} className={className}>
           {children}
         </Link>
@@ -21,6 +22,7 @@ export const components: MDXComponents = {
 
     if (href?.startsWith('#')) {
       return (
+        // @ts-expect-error - Fragment links are valid but TypeScript can't infer them
         <Link href={href} {...props} className={className} scroll={true}>
           {children}
         </Link>

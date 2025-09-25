@@ -9,11 +9,17 @@ import { parseFrontmatter } from './parseFrontmatter'
 import { readFileContent } from './readFile'
 
 async function getContentBySlug<T>(
-  slug: string,
+  categorySlug: string,
+  articleSlug: string,
   locale: Locale,
   schema: z.ZodType<T>
 ) {
-  const filePath = path.join(CONTENT_DIR, slug, `${locale}.mdx`)
+  const filePath = path.join(
+    CONTENT_DIR,
+    locale,
+    categorySlug,
+    `${articleSlug}.mdx`
+  )
 
   const fileContent = readFileContent(filePath)
   const { content, frontmatter } = await compileContent(fileContent, filePath)
@@ -23,7 +29,8 @@ async function getContentBySlug<T>(
   return {
     content,
     ...parsedData,
-    slug,
+    slug: articleSlug,
+    categorySlug,
   }
 }
 

@@ -1,6 +1,7 @@
+import { Link } from '@/i18n/navigation'
 import type { MDXComponents } from 'mdx/types'
 import type { ComponentPropsWithoutRef } from 'react'
-import { Link } from '../i18n/navigation'
+import { Code } from './Code'
 
 export const components: MDXComponents = {
   h1: (props) => <h1 className="text-4xl font-bold my-4" {...props} />,
@@ -20,7 +21,7 @@ export const components: MDXComponents = {
 
     if (href?.startsWith('#')) {
       return (
-        <Link href={href} {...props} className={className}>
+        <Link href={href} {...props} className={className} scroll={true}>
           {children}
         </Link>
       )
@@ -37,7 +38,6 @@ export const components: MDXComponents = {
       </a>
     )
   },
-  HeadingPorra: (props: { teste: string }) => (
-    <h2 className="text-3xl font-bold my-4 text-red-500" {...props} />
-  ),
+  code: (props) => <Code {...props} />,
+  Code: Code,
 }

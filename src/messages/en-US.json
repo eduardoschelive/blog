@@ -16,5 +16,15 @@
     },
     "pt-BR": "Portuguese",
     "en-US": "English"
+  },
+  "TableOfContents": {
+    "title": "Table of Contents"
+  },
+  "Footer": {
+    "social": {
+      "github": "Visit my GitHub profile",
+      "linkedin": "Connect with me on LinkedIn"
+    },
+    "copyright": "All rights reserved."
   }
 }

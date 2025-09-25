@@ -1,4 +1,3 @@
-import { Header } from '@/components/layout/Header'
 import { routing } from '@/i18n/routing'
 import { Providers } from '@/providers/Providers'
 import type { Metadata } from 'next'
@@ -41,10 +40,7 @@ export default async function RootLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
-        <Providers>
-          <Header />
-          {children}
-        </Providers>
+        <Providers>{children}</Providers>
       </body>
     </html>
   )

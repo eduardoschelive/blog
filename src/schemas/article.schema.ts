@@ -1,7 +1,14 @@
 import { z } from 'zod'
 
 export const articleSchema = z.object({
+  id: z.number(),
   title: z.string({
     error: 'Article title must be a string',
   }),
+  description: z.string().optional(),
+  publishedAt: z.string().optional(),
+  author: z.string().optional(),
+  tags: z.array(z.string()).optional(),
 })
+
+export type Article = z.infer<typeof articleSchema>

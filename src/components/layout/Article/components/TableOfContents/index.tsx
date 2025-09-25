@@ -1,16 +1,29 @@
 'use client'
 
-import { useHeadings } from '@/app/hooks/useHeadingTree'
-import { Link } from '@/i18n/navigation'
+import { useActiveHeading } from '@/hooks/useActiveHeading'
+import { useHeadings } from '@/hooks/useHeadingTree'
+import { useScrollToHeading } from '@/hooks/useScrollToHeading'
 import { cn } from '@heroui/react'
-import type { HTMLAttributes, ReactNode } from 'react'
+import { useTranslations } from 'next-intl'
+import type { HTMLAttributes } from 'react'
 
-interface TableOfContentsProps extends HTMLAttributes<HTMLDivElement> {
-  children: ReactNode
-}
+type TableOfContentsProps = HTMLAttributes<HTMLDivElement>
 
 export const TableOfContents = ({ className }: TableOfContentsProps) => {
+  const t = useTranslations('TableOfContents')
   const { headingTree } = useHeadings()
+  const { scrollToHeading } = useScrollToHeading()
+
+  const headingIds = headingTree ? Object.keys(headingTree.nodes) : []
+  const activeId = useActiveHeading(headingIds)
+
+  const handleHeadingClick = (
+    event: React.MouseEvent<HTMLAnchorElement>,
+    headingId: string
+  ) => {
+    event.preventDefault()
+    scrollToHeading(headingId)
+  }
 
   const renderHeadings = (id?: string, depth = 1) => {
     if (!headingTree || !id) return null
@@ -21,11 +34,16 @@ export const TableOfContents = ({ className }: TableOfContentsProps) => {
       <ol>
         {node.childIds.map((childId) => {
           const child = headingTree.nodes[childId]
+          const isActive = child.id === activeId
           return (
             <li key={child.id} style={{ paddingLeft: 10 }}>
-              <Link href={`#${child.id}`} scroll>
+              <a
+                href={`#${child.id}`}
+                onClick={(event) => handleHeadingClick(event, child.id)}
+                className={cn(isActive ? 'text-primary font-bold' : '')}
+              >
                 {child.text}
-              </Link>
+              </a>
               {renderHeadings(child.id, depth + 1)}
             </li>
           )
@@ -39,18 +57,28 @@ export const TableOfContents = ({ className }: TableOfContentsProps) => {
   return (
     <div
       className={cn(
-        'sticky top-20 max-h-[80vh] overflow-y-aut col-span-1 hidden md:block',
+        'sticky top-20 max-h-[80vh] overflow-y-auto col-span-1 hidden md:block',
         className
       )}
     >
-      {headingTree.rootIds.map((rootId) => (
-        <div key={rootId} style={{ marginLeft: 0 }}>
-          <Link href={`#${rootId}`} scroll>
-            {headingTree.nodes[rootId].text}
-          </Link>
-          {renderHeadings(rootId, 1)}
-        </div>
-      ))}
+      <h3 className="mb-4 text-lg font-semibold text-foreground">
+        {t('title')}
+      </h3>
+      {headingTree.rootIds.map((rootId) => {
+        const isActive = rootId === activeId
+        return (
+          <div key={rootId} style={{ marginLeft: 0 }}>
+            <a
+              href={`#${rootId}`}
+              onClick={(event) => handleHeadingClick(event, rootId)}
+              className={cn(isActive ? 'text-primary font-bold' : '')}
+            >
+              {headingTree.nodes[rootId].text}
+            </a>
+            {renderHeadings(rootId, 1)}
+          </div>
+        )
+      })}
     </div>
   )
 }

@@ -1,4 +1,5 @@
 import type { HeadingNode, HeadingTree } from '@/types/heading.type'
+import { slugfy } from '@/utils/slugfy'
 import { useEffect, useState } from 'react'
 
 function useHeadingTree() {
@@ -6,7 +7,7 @@ function useHeadingTree() {
 
   useEffect(() => {
     const elements = Array.from(
-      document.querySelectorAll('h1, h2, h3, h4, h5, h6')
+      document.querySelectorAll('h2, h3, h4')
     ) as HTMLElement[]
 
     if (elements.length === 0) return
@@ -18,18 +19,14 @@ function useHeadingTree() {
 
     elements.forEach((element) => {
       const baseText = element.innerText
-      const baseId = baseText
-        .toLowerCase()
-        .replace(/[^a-z0-9]+/g, '-')
-        .replace(/(^-|-$)+/g, '')
+      const slug = slugfy(baseText)
 
-      // Ensure unique ID
-      let id = baseId
-      if (idCount[baseId]) {
-        id = `${baseId}-${idCount[baseId] + 1}`
-        idCount[baseId] += 1
+      let id = slug
+      if (idCount[slug]) {
+        id = `${slug}-${idCount[slug] + 1}`
+        idCount[slug] += 1
       } else {
-        idCount[baseId] = 1
+        idCount[slug] = 1
       }
 
       element.id = id
@@ -37,7 +34,6 @@ function useHeadingTree() {
       const level = parseInt(element.tagName.substring(1))
       nodes[id] = { id, text: baseText, childIds: [], depth: level }
 
-      // Find parent in stack
       while (stack.length > 0 && stack[stack.length - 1].level >= level) {
         stack.pop()
       }

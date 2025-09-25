@@ -16,5 +16,15 @@
     },
     "pt-BR": "Português",
     "en-US": "Inglês"
+  },
+  "TableOfContents": {
+    "title": "Índice"
+  },
+  "Footer": {
+    "social": {
+      "github": "Visite meu perfil no GitHub",
+      "linkedin": "Conecte-se comigo no LinkedIn"
+    },
+    "copyright": "Todos os direitos reservados."
   }
 }

@@ -1,7 +1,7 @@
 'use client'
 
 import { LOCALES } from '@/constants/locale'
-import { usePathname } from '@/i18n/navigation'
+import { useTranslatedNavigation } from '@/hooks/useTranslatedNavigation'
 import {
   Button,
   Dropdown,
@@ -9,13 +9,22 @@ import {
   DropdownMenu,
   DropdownTrigger,
 } from '@heroui/react'
+import type { Locale } from 'next-intl'
 import { useTranslations } from 'next-intl'
 import { IoEarth } from 'react-icons/io5'
 import { IconTooltip } from '../../ui/IconTooltip'
 
-function LanguageSelect() {
+interface LanguageSelectProps {
+  paths?: Record<Locale, string>
+}
+
+function LanguageSelect({ paths }: LanguageSelectProps) {
   const t = useTranslations('Locale')
-  const pathname = usePathname()
+  const { navigateToLocale } = useTranslatedNavigation()
+
+  const handleLocaleChange = (locale: Locale) => {
+    navigateToLocale(locale, paths)
+  }
 
   return (
     <Dropdown>
@@ -36,12 +45,9 @@ function LanguageSelect() {
         {LOCALES.map((locale) => (
           <DropdownItem
             key={locale}
-            href={pathname}
+            onPress={() => handleLocaleChange(locale)}
             lang={locale}
             hrefLang={locale}
-            routerOptions={{
-              locale,
-            }}
           >
             {t(locale)}
           </DropdownItem>

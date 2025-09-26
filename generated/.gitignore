@@ -1,0 +1,4 @@
+# Ignora todos os arquivos gerados, mas mantém o README
+*
+!.gitignore
+!README.md

@@ -5,6 +5,8 @@ import { useTranslations } from 'next-intl'
 import { IoLogoGithub, IoLogoLinkedin } from 'react-icons/io5'
 import { IconTooltip } from '../../ui/IconTooltip'
 import { LanguageSelect } from '../LanguageSelect'
+import { RSSButton } from '../RSSButton'
+import { SearchButton } from '../SearchButton'
 import { ThemeSwitch } from '../ThemeSwitch'
 
 function Footer() {
@@ -52,12 +54,14 @@ function Footer() {
             })}
           </div>
 
-          <div className="text-center text-sm text-default-500">
-            <p>
+          <div className="flex-1 flex flex-col items-center justify-center">
+            <p className="text-center text-sm text-default-500">
               © {new Date().getFullYear()} Eduardo Schelive. {t('copyright')}
             </p>
           </div>
           <div className="flex items-center gap-2">
+            <SearchButton />
+            <RSSButton />
             <LanguageSelect />
             <ThemeSwitch />
           </div>

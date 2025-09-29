@@ -1,6 +1,31 @@
 {
   "HomePage": {
-    "title": "Hello world!"
+    "title": "Hello world!",
+    "hero": {
+      "title": "Welcome to My Blog",
+      "subtitle": "Discover insights, tutorials, and thoughts on modern web development, technology, and more.",
+      "exploreButton": "Explore Articles",
+      "aboutButton": "About Me"
+    },
+    "featured": {
+      "title": "Featured Article",
+      "readMore": "Read more",
+      "article": "Featured"
+    },
+    "latest": {
+      "title": "Latest Articles",
+      "viewAll": "View all articles"
+    },
+    "categories": {
+      "title": "Explore Categories",
+      "subtitle": "Browse through different topics and find articles that interest you the most.",
+      "viewAll": "View all categories"
+    },
+    "cta": {
+      "title": "Want to Learn More?",
+      "subtitle": "Get to know more about me, my experience, and what drives my passion for technology.",
+      "button": "About Me"
+    }
   },
   "Theme": {
     "dark": "dark",
@@ -26,5 +51,88 @@
       "linkedin": "Connect with me on LinkedIn"
     },
     "copyright": "All rights reserved."
+  },
+  "NotFound": {
+    "title": "Page Not Found",
+    "description": "Sorry, the page you are looking for doesn't exist or has been moved.",
+    "goHome": "Go Home",
+    "browseCategories": "Browse Categories",
+    "suggestion": "Try checking the URL or go back to the homepage"
+  },
+  "Navbar": {
+    "home": "Home",
+    "categories": "Categories",
+    "about": "About"
+  },
+  "Navigation": {
+    "search": {
+      "button": "Search",
+      "tooltip": "Search articles",
+      "placeholder": "Search articles...",
+      "instructionsText": "Press",
+      "instructionsMiddle": "to search or",
+      "instructionsEnd": "to close",
+      "enter": "Enter",
+      "esc": "Esc"
+    },
+    "rss": {
+      "button": "RSS Feed",
+      "tooltip": "Subscribe to RSS Feed"
+    }
+  },
+  "About": {
+    "title": "Eduardo Schelive",
+    "subtitle": "Full-stack developer passionate about modern technologies and scalable solutions",
+    "whoAmI": {
+      "title": "Who Am I",
+      "description1": "I'm a full-stack developer with over 8 years of experience building web applications and distributed systems. I specialize in JavaScript/TypeScript ecosystems and modern development practices.",
+      "description2": "Throughout my career, I've worked with startups and enterprise companies, helping them build scalable solutions that solve real-world problems. I'm passionate about clean code, performance optimization, and developer experience.",
+      "description3": "When I'm not coding, you can find me writing technical articles, contributing to open source projects, or exploring new technologies that can improve the way we build software."
+    },
+    "expertise": {
+      "title": "Areas of Expertise",
+      "frontend": "Frontend Development (React, Next.js, TypeScript)",
+      "backend": "Backend Development (Node.js, Python, Go)",
+      "devops": "DevOps & Infrastructure (Docker, Kubernetes, AWS)",
+      "mobile": "Mobile Development (React Native, Flutter)"
+    },
+    "experience": {
+      "title": "Professional Experience",
+      "job1": {
+        "title": "Senior Full-Stack Developer",
+        "company": "TechCorp Solutions",
+        "period": "2021 - Present",
+        "description": "Leading development of microservices architecture serving 1M+ users. Built scalable APIs and modern web applications using React, Node.js, and AWS."
+      },
+      "job2": {
+        "title": "Full-Stack Developer",
+        "company": "StartupXYZ",
+        "period": "2019 - 2021",
+        "description": "Developed and maintained e-commerce platform from scratch. Implemented payment systems, inventory management, and real-time analytics dashboard."
+      },
+      "job3": {
+        "title": "Frontend Developer",
+        "company": "WebAgency Pro",
+        "period": "2016 - 2019",
+        "description": "Created responsive web applications for various clients. Specialized in performance optimization and modern JavaScript frameworks."
+      }
+    },
+    "techStack": {
+      "title": "Technologies I Work With"
+    },
+    "contact": {
+      "title": "Let's Work Together",
+      "subtitle": "Interested in collaborating? I'm always open to discussing new opportunities and interesting projects.",
+      "email": "Send Email"
+    }
+  },
+  "Categories": {
+    "title": "Categories",
+    "description": "Explore all available article categories.",
+    "article": "article",
+    "articles": "articles",
+    "viewMore": "View articles",
+    "more": "more",
+    "noCategories": "No categories found."
   }
 }

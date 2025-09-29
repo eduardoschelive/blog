@@ -10,13 +10,11 @@ import { readFileContent } from './readFile'
 export async function getAllCategories() {
   const categories = []
 
-  // Busca todas as pastas de categoria
   const categoryFolders = readdirSync(CATEGORIES_DIR).filter((item) => {
     const itemPath = path.join(CATEGORIES_DIR, item)
     return statSync(itemPath).isDirectory()
   })
 
-  // Para cada categoria, carrega todas as versões de idioma
   for (const categoryFolder of categoryFolders) {
     const categoryPath = path.join(CATEGORIES_DIR, categoryFolder)
     const files = readdirSync(categoryPath).filter((file) =>

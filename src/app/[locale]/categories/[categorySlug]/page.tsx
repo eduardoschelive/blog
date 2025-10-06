@@ -80,14 +80,18 @@ export default async function Category({ params }: CategoryProps) {
                     </p>
                     <div className="flex items-center justify-between text-sm text-muted-foreground">
                       <time>
-                        {new Date(article.publishedAt || '').toLocaleDateString(
-                          locale,
-                          {
-                            year: 'numeric',
-                            month: 'long',
-                            day: 'numeric',
-                          }
-                        )}
+                        {article.createdAt
+                          ? new Date(article.createdAt).toLocaleDateString(
+                              locale,
+                              {
+                                year: 'numeric',
+                                month: 'long',
+                                day: 'numeric',
+                              }
+                            )
+                          : locale === 'pt-BR'
+                            ? 'Data não disponível'
+                            : 'Date not available'}
                       </time>
                       <span className="text-primary group-hover:underline">
                         {locale === 'pt-BR' ? 'Ler artigo' : 'Read article'} →

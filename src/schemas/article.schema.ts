@@ -6,7 +6,6 @@ export const articleSchema = z.object({
     error: 'Article title must be a string',
   }),
   description: z.string().optional(),
-  publishedAt: z.string().optional(),
   author: z.string().optional(),
   tags: z.array(z.string()).optional(),
   slug: z.string(),

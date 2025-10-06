@@ -80,13 +80,15 @@ export default async function HomePage({ params }: HomePageProps) {
                     </p>
                     <div className="flex items-center text-sm text-muted-foreground">
                       <time>
-                        {new Date(
-                          featuredArticle.publishedAt || ''
-                        ).toLocaleDateString(locale, {
-                          year: 'numeric',
-                          month: 'long',
-                          day: 'numeric',
-                        })}
+                        {featuredArticle.createdAt
+                          ? new Date(
+                              featuredArticle.createdAt
+                            ).toLocaleDateString(locale, {
+                              year: 'numeric',
+                              month: 'long',
+                              day: 'numeric',
+                            })
+                          : 'Data não disponível'}
                       </time>
                       <span className="ml-auto text-primary group-hover:translate-x-2 transition-transform">
                         {t('featured.readMore')} →
@@ -146,14 +148,16 @@ export default async function HomePage({ params }: HomePageProps) {
                         {article.description}
                       </p>
                       <time className="text-xs text-muted-foreground">
-                        {new Date(article.publishedAt || '').toLocaleDateString(
-                          locale,
-                          {
-                            year: 'numeric',
-                            month: 'short',
-                            day: 'numeric',
-                          }
-                        )}
+                        {article.createdAt
+                          ? new Date(article.createdAt).toLocaleDateString(
+                              locale,
+                              {
+                                year: 'numeric',
+                                month: 'short',
+                                day: 'numeric',
+                              }
+                            )
+                          : 'Data não disponível'}
                       </time>
                     </div>
                   </article>

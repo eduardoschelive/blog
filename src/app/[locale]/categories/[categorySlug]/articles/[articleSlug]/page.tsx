@@ -18,9 +18,6 @@ interface ArticleProps {
 
 export default async function Article({ params }: ArticleProps) {
   const { categorySlug, articleSlug, locale } = await params
-  console.log('locale', locale)
-  console.log('categorySlug', categorySlug)
-  console.log('articleSlug', articleSlug)
 
   const article = await getArticleBySlug(categorySlug, articleSlug, locale)
 

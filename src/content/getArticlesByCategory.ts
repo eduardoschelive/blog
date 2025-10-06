@@ -1,5 +1,6 @@
 import { ARTICLES_DIR } from '@/constants/content'
 import { articleSchema } from '@/schemas/article.schema'
+import { getGitFileDates } from '@/utils/gitDates'
 import type { Locale } from 'next-intl'
 import { readdirSync, statSync } from 'node:fs'
 import path from 'node:path'
@@ -14,6 +15,8 @@ type Article = z.infer<typeof articleSchema> & {
   slug: string
   categorySlug: string
   locale: string
+  createdAt: Date | null
+  updatedAt: Date | null
 }
 
 export async function getArticlesByCategory(
@@ -23,13 +26,11 @@ export async function getArticlesByCategory(
   const articles: Article[] = []
   const categoryPath = path.join(ARTICLES_DIR, categorySlug)
 
-  // Check if category directory exists
   try {
     if (!statSync(categoryPath).isDirectory()) {
       return []
     }
   } catch {
-    // Directory doesn't exist
     return []
   }
 
@@ -53,26 +54,30 @@ export async function getArticlesByCategory(
         articleSchema,
         articleFile
       )
+      const gitDates = getGitFileDates(articleFile)
 
-      articles.push({
+      const article = {
         ...parsedData,
         content,
         slug: articleFolder,
         categorySlug,
         locale,
-      })
+        createdAt: gitDates?.createdAt || null,
+        updatedAt: gitDates?.updatedAt || null,
+      }
+
+      articles.push(article)
     } catch {
-      // Skip articles that don't exist for this locale
       continue
     }
   }
 
-  // Sort articles by publishedAt date (newest first)
-  return articles.sort(
-    (a, b) =>
-      new Date(b.publishedAt || '').getTime() -
-      new Date(a.publishedAt || '').getTime()
-  )
+  return articles.sort((a, b) => {
+    if (!a.createdAt && !b.createdAt) return 0
+    if (!a.createdAt) return 1
+    if (!b.createdAt) return -1
+    return b.createdAt.getTime() - a.createdAt.getTime()
+  })
 }
 
 export async function getAllArticlesGroupedByCategory(locale: Locale) {

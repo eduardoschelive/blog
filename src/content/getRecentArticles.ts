@@ -1,5 +1,6 @@
 import { ARTICLES_DIR } from '@/constants/content'
 import { articleSchema } from '@/schemas/article.schema'
+import { getGitFileDates } from '@/utils/gitDates'
 import type { Locale } from 'next-intl'
 import { readdirSync, statSync } from 'node:fs'
 import path from 'node:path'
@@ -14,6 +15,8 @@ type Article = z.infer<typeof articleSchema> & {
   slug: string
   categorySlug: string
   locale: string
+  createdAt: Date | null
+  updatedAt: Date | null
 }
 
 export async function getRecentArticles(locale: Locale, limit = 10) {
@@ -50,13 +53,20 @@ export async function getRecentArticles(locale: Locale, limit = 10) {
               articleFile
             )
 
-            articles.push({
+            // Get Git dates
+            const gitDates = getGitFileDates(articleFile)
+
+            const article = {
               ...parsedData,
               content,
               slug: articleFolder,
               categorySlug,
               locale,
-            })
+              createdAt: gitDates?.createdAt || null,
+              updatedAt: gitDates?.updatedAt || null,
+            }
+
+            articles.push(article)
           } catch {
             // Skip articles that don't exist for this locale
             continue
@@ -68,13 +78,14 @@ export async function getRecentArticles(locale: Locale, limit = 10) {
       }
     }
 
-    // Sort articles by publishedAt date (newest first) and limit
+    // Sort articles by creation date (newest first) and limit
     return articles
-      .sort(
-        (a, b) =>
-          new Date(b.publishedAt || '').getTime() -
-          new Date(a.publishedAt || '').getTime()
-      )
+      .sort((a, b) => {
+        if (!a.createdAt && !b.createdAt) return 0
+        if (!a.createdAt) return 1
+        if (!b.createdAt) return -1
+        return b.createdAt.getTime() - a.createdAt.getTime()
+      })
       .slice(0, limit)
   } catch {
     return []

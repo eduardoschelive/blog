@@ -2,6 +2,7 @@ import { Footer } from '@/components/layout/Footer'
 import { Header } from '@/components/layout/Header'
 import { getAllCategories } from '@/content/getAllCategories'
 import { Link } from '@/i18n/navigation'
+import type { Metadata } from 'next'
 import type { Locale } from 'next-intl'
 import { getTranslations } from 'next-intl/server'
 
@@ -67,7 +68,9 @@ export default async function CategoriesPage({ params }: CategoriesPageProps) {
   )
 }
 
-export async function generateMetadata({ params }: CategoriesPageProps) {
+export async function generateMetadata({
+  params,
+}: CategoriesPageProps): Promise<Metadata> {
   await params
   const t = await getTranslations('Categories')
 

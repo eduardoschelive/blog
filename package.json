@@ -8,7 +8,8 @@
     "generate:pathnames": "node scripts/generatePathnames.js",
     "clean:generated": "rm -rf generated/*.ts generated/*.js",
     "start": "next start",
-    "lint": "eslint"
+    "lint": "eslint",
+    "postinstall": "pnpm generate:pathnames"
   },
   "dependencies": {
     "@heroui/react": "^2.8.3",

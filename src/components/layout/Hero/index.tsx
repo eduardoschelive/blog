@@ -8,6 +8,8 @@ import {
   CardBody,
   CardFooter,
   CardHeader,
+  Chip,
+  Divider,
   Image,
 } from '@heroui/react'
 import { useTranslations } from 'next-intl'
@@ -89,72 +91,84 @@ function Hero({ latestArticle }: HeroProps) {
 
           {latestArticle && (
             <div className="w-full">
-              <div className="mb-2 flex items-center gap-2">
+              <div className="mb-4 flex items-center gap-2">
                 <div className="w-2 h-2 bg-primary rounded-full animate-pulse" />
                 <span className="text-sm font-bold text-primary uppercase tracking-widest">
                   {t('latestArticle')}
                 </span>
               </div>
-              <Card
-                as={Link}
-                // @ts-expect-error - Dynamic routes are valid
-                href={`/categories/${latestArticle.category.slug}/articles/${latestArticle.slug}`}
-                isPressable
-                className="w-full hover:scale-[1.02] transition-all duration-300 shadow-xl hover:shadow-2xl"
-              >
-                {latestArticle.coverImage ? (
-                  <Image
-                    src={latestArticle.coverImage}
-                    alt={latestArticle.title}
-                    className="w-full h-56 object-cover"
-                    classNames={{
-                      wrapper: 'w-full',
-                    }}
-                  />
-                ) : (
-                  <div className="w-full h-56 bg-gradient-to-br from-primary/30 via-secondary/20 to-primary/20 flex items-center justify-center relative overflow-hidden">
-                    <div
-                      className="absolute inset-0 opacity-10"
-                      style={{
-                        backgroundImage: `radial-gradient(circle at 2px 2px, currentColor 1px, transparent 0)`,
-                        backgroundSize: '32px 32px',
+
+              {/* Article Card */}
+              <div className="relative group">
+                <Card className="relative w-full shadow-[0_20px_50px_rgba(var(--primary),0.3)] hover:scale-[1.02] transition-all duration-300 drop-shadow-2xl hover:drop-shadow-[0_25px_25px_rgba(0,0,0,0.25)]">
+                  {latestArticle.coverImage ? (
+                    <Image
+                      src={latestArticle.coverImage}
+                      alt={latestArticle.title}
+                      className="w-full h-56 object-cover"
+                      classNames={{
+                        wrapper: 'w-full',
                       }}
                     />
-                    <div className="text-center relative z-10">
-                      <div className="text-6xl mb-3">📰</div>
-                      <div className="text-sm text-foreground/60 uppercase tracking-wider font-bold">
-                        {latestArticle.category.title}
+                  ) : (
+                    <div className="w-full h-56 bg-gradient-to-br from-primary/30 via-secondary/20 to-primary/20 flex items-center justify-center relative overflow-hidden">
+                      <div
+                        className="absolute inset-0 opacity-10"
+                        style={{
+                          backgroundImage: `radial-gradient(circle at 2px 2px, currentColor 1px, transparent 0)`,
+                          backgroundSize: '32px 32px',
+                        }}
+                      />
+                      <div className="text-center relative z-10">
+                        <div className="text-6xl mb-3">📰</div>
+                        <div className="text-sm text-foreground/60 uppercase tracking-wider font-bold">
+                          {latestArticle.category.title}
+                        </div>
                       </div>
                     </div>
-                  </div>
-                )}
-
-                <CardHeader className="pb-0 pt-6 px-6 flex-col items-start gap-3">
-                  <span className="text-xs font-bold text-primary uppercase tracking-widest bg-primary/10 px-3 py-1.5 rounded-full">
-                    {latestArticle.category.title}
-                  </span>
-                  <h3 className="text-2xl font-bold leading-tight line-clamp-2">
-                    {latestArticle.title}
-                  </h3>
-                </CardHeader>
-
-                {/* Description */}
-                <CardBody className="px-6 py-4">
-                  {latestArticle.description && (
-                    <p className="text-foreground/70 line-clamp-3 leading-relaxed">
-                      {latestArticle.description}
-                    </p>
                   )}
-                </CardBody>
-                <CardFooter className="px-6 pb-6">
-                  <div className="flex items-center gap-2 text-primary font-bold group-hover:gap-3 transition-all">
-                    <span>{t('readMore')}</span>
-                    <span className="transition-transform group-hover:translate-x-1">
-                      →
-                    </span>
-                  </div>
-                </CardFooter>
-              </Card>
+
+                  <Divider />
+
+                  <CardHeader className="pb-0 pt-6 px-6 flex-col items-start gap-3">
+                    <Chip
+                      as={Link}
+                      // @ts-expect-error - Dynamic routes are valid
+                      href={`/categories/${latestArticle.category.slug}`}
+                      color="primary"
+                      variant="flat"
+                      size="md"
+                      className="cursor-pointer hover:scale-105 transition-transform font-sans"
+                    >
+                      {latestArticle.category.title}
+                    </Chip>
+                    <h3 className="text-2xl font-bold leading-tight line-clamp-2">
+                      {latestArticle.title}
+                    </h3>
+                  </CardHeader>
+
+                  {/* Description */}
+                  <CardBody className="px-6 py-4">
+                    {latestArticle.description && (
+                      <p className="text-foreground/70 line-clamp-3 leading-relaxed">
+                        {latestArticle.description}
+                      </p>
+                    )}
+                  </CardBody>
+                  <CardFooter className="px-6 pb-6">
+                    <Link
+                      // @ts-expect-error - Dynamic routes are valid
+                      href={`/categories/${latestArticle.category.slug}/articles/${latestArticle.slug}`}
+                      className="inline-flex items-center gap-2 text-primary font-bold hover:gap-3 transition-all hover:underline hover-group"
+                    >
+                      <span>{t('readMore')}</span>
+                      <span className="transition-transform hover-group:translate-x-1">
+                        →
+                      </span>
+                    </Link>
+                  </CardFooter>
+                </Card>
+              </div>
             </div>
           )}
         </div>

@@ -2,13 +2,17 @@
 
 import { CATEGORIES_DIR } from '@/constants/content'
 import { categorySchema } from '@/schemas/category.schema'
+import type { Category } from '@/types/category'
 import type { Locale } from 'next-intl'
 import path from 'node:path'
 import { compileContent } from './compileContent'
 import { parseFrontmatter } from './parseFrontmatter'
 import { readFileContent } from './readFile'
 
-async function getCategoryBySlug(categorySlug: string, locale: Locale) {
+async function getCategoryBySlug(
+  categorySlug: string,
+  locale: Locale
+): Promise<Category> {
   const filePath = path.join(CATEGORIES_DIR, categorySlug, `${locale}.mdx`)
 
   const fileContent = readFileContent(filePath)
@@ -16,11 +20,13 @@ async function getCategoryBySlug(categorySlug: string, locale: Locale) {
 
   const parsedData = parseFrontmatter(frontmatter, categorySchema, filePath)
 
-  return {
-    content,
+  const category: Category = {
     ...parsedData,
-    currentSlug: categorySlug,
+    content,
+    locale,
   }
+
+  return category
 }
 
 export { getCategoryBySlug }

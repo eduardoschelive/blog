@@ -2,18 +2,72 @@ import { routing } from '@/i18n/routing'
 import { Providers } from '@/providers/Providers'
 import type { Metadata } from 'next'
 import { hasLocale } from 'next-intl'
-import { Geist, Geist_Mono } from 'next/font/google'
+import { Fira_Code } from 'next/font/google'
+import localFont from 'next/font/local'
 import { notFound } from 'next/navigation'
 import '../globals.css'
 
-const geistSans = Geist({
-  variable: '--font-geist-sans',
-  subsets: ['latin'],
+const satoshi = localFont({
+  src: [
+    {
+      path: '../../../public/fonts/Satoshi-Light.woff2',
+      weight: '300',
+      style: 'normal',
+    },
+    {
+      path: '../../../public/fonts/Satoshi-LightItalic.woff2',
+      weight: '300',
+      style: 'italic',
+    },
+    {
+      path: '../../../public/fonts/Satoshi-Regular.woff2',
+      weight: '400',
+      style: 'normal',
+    },
+    {
+      path: '../../../public/fonts/Satoshi-Italic.woff2',
+      weight: '400',
+      style: 'italic',
+    },
+    {
+      path: '../../../public/fonts/Satoshi-Medium.woff2',
+      weight: '500',
+      style: 'normal',
+    },
+    {
+      path: '../../../public/fonts/Satoshi-MediumItalic.woff2',
+      weight: '500',
+      style: 'italic',
+    },
+    {
+      path: '../../../public/fonts/Satoshi-Bold.woff2',
+      weight: '700',
+      style: 'normal',
+    },
+    {
+      path: '../../../public/fonts/Satoshi-BoldItalic.woff2',
+      weight: '700',
+      style: 'italic',
+    },
+    {
+      path: '../../../public/fonts/Satoshi-Black.woff2',
+      weight: '900',
+      style: 'normal',
+    },
+    {
+      path: '../../../public/fonts/Satoshi-BlackItalic.woff2',
+      weight: '900',
+      style: 'italic',
+    },
+  ],
+  variable: '--font-satoshi',
+  display: 'swap',
 })
 
-const geistMono = Geist_Mono({
-  variable: '--font-geist-mono',
+const firaCode = Fira_Code({
+  variable: '--font-fira-code',
   subsets: ['latin'],
+  display: 'swap',
 })
 
 export const metadata: Metadata = {
@@ -37,9 +91,7 @@ export default async function RootLayout({
 
   return (
     <html lang={locale} suppressHydrationWarning>
-      <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
-      >
+      <body className={`${satoshi.variable} ${firaCode.variable} antialiased`}>
         <Providers>{children}</Providers>
       </body>
     </html>

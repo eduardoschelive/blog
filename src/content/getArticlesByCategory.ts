@@ -1,30 +1,51 @@
-import { ARTICLES_DIR } from '@/constants/content'
+import { ARTICLES_DIR, CATEGORIES_DIR } from '@/constants/content'
 import { articleSchema } from '@/schemas/article.schema'
+import { categorySchema } from '@/schemas/category.schema'
+import type { Article } from '@/types/article'
+import type { CategoryBase } from '@/types/category'
 import { getGitFileDates } from '@/utils/gitDates'
 import type { Locale } from 'next-intl'
 import { readdirSync, statSync } from 'node:fs'
 import path from 'node:path'
-import type { JSXElementConstructor, ReactElement } from 'react'
-import type { z } from 'zod'
 import { compileContent } from './compileContent'
 import { parseFrontmatter } from './parseFrontmatter'
 import { readFileContent } from './readFile'
 
-type Article = z.infer<typeof articleSchema> & {
-  content: ReactElement<unknown, string | JSXElementConstructor<unknown>>
-  slug: string
-  categorySlug: string
-  locale: string
-  createdAt: Date | null
-  updatedAt: Date | null
-}
-
 export async function getArticlesByCategory(
   categorySlug: string,
   locale: Locale
-) {
+): Promise<Article[]> {
   const articles: Article[] = []
   const categoryPath = path.join(ARTICLES_DIR, categorySlug)
+
+  // Get category information
+  let categoryInfo: CategoryBase = {
+    slug: categorySlug,
+    title: categorySlug.replace('-', ' '),
+    description: '',
+  }
+
+  try {
+    const categoryFile = path.join(
+      CATEGORIES_DIR,
+      categorySlug,
+      `${locale}.mdx`
+    )
+    const categoryContent = readFileContent(categoryFile)
+    const { frontmatter } = await compileContent(categoryContent, categoryFile)
+    const categoryData = parseFrontmatter(
+      frontmatter,
+      categorySchema,
+      categoryFile
+    )
+
+    categoryInfo = {
+      ...categoryData,
+      slug: categorySlug,
+    }
+  } catch {
+    // If category file doesn't exist, use default values
+  }
 
   try {
     if (!statSync(categoryPath).isDirectory()) {
@@ -56,12 +77,12 @@ export async function getArticlesByCategory(
       )
       const gitDates = getGitFileDates(articleFile)
 
-      const article = {
+      const article: Article = {
         ...parsedData,
         content,
         slug: articleFolder,
-        categorySlug,
         locale,
+        category: categoryInfo,
         createdAt: gitDates?.createdAt || null,
         updatedAt: gitDates?.updatedAt || null,
       }

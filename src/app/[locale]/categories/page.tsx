@@ -31,9 +31,9 @@ export default async function CategoriesPage({ params }: CategoriesPageProps) {
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             {categories.map((category) => (
               <Link
-                key={category.currentSlug}
+                key={category.slug}
                 // @ts-expect-error - Dynamic routes are valid but TypeScript can't infer them
-                href={`/categories/${category.currentSlug}`}
+                href={`/categories/${category.slug}`}
                 className="block"
               >
                 <div className="bg-card hover:bg-accent/50 rounded-lg p-6 border transition-colors">

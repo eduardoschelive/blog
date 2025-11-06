@@ -1,5 +1,6 @@
 import { Footer } from '@/components/layout/Footer'
 import { Header } from '@/components/layout/Header'
+import { Hero } from '@/components/layout/Hero'
 import { getAllCategories } from '@/content/getAllCategories'
 import { getRecentArticles } from '@/content/getRecentArticles'
 import { Link } from '@/i18n/navigation'
@@ -28,89 +29,22 @@ export default async function HomePage({ params }: HomePageProps) {
   return (
     <>
       <Header />
-      <main className="font-sans bg-background min-h-screen">
+      <main className="font-sans bg-background">
         {/* Hero Section */}
-        <section className="relative bg-gradient-to-br from-primary/10 via-background to-secondary/10 py-20 px-4">
-          <div className="max-w-6xl mx-auto text-center">
-            <h1 className="text-5xl md:text-6xl font-bold mb-6 bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">
-              {t('hero.title')}
-            </h1>
-            <p className="text-xl md:text-2xl text-muted-foreground mb-8 max-w-3xl mx-auto leading-relaxed">
-              {t('hero.subtitle')}
-            </p>
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <Link
-                href="/categories"
-                className="bg-primary text-primary-foreground px-8 py-3 rounded-lg font-semibold hover:bg-primary/90 transition-colors"
-              >
-                {t('hero.exploreButton')}
-              </Link>
-              <Link
-                href="/about"
-                className="border border-primary text-primary px-8 py-3 rounded-lg font-semibold hover:bg-primary/10 transition-colors"
-              >
-                {t('hero.aboutButton')}
-              </Link>
-            </div>
-          </div>
-        </section>
-
-        {/* Featured Article */}
-        {featuredArticle && (
-          <section className="max-w-6xl mx-auto px-4 py-16">
-            <h2 className="text-3xl font-bold mb-8 text-center">
-              {t('featured.title')}
-            </h2>
-            <Link
-              // @ts-expect-error - Dynamic routes are valid but TypeScript can't infer them
-              href={`/categories/${featuredArticle.categorySlug}/articles/${featuredArticle.slug}`}
-              className="group block"
-            >
-              <div className="bg-card rounded-2xl overflow-hidden shadow-lg hover:shadow-xl transition-all duration-300 border">
-                <div className="flex flex-col lg:flex-row">
-                  <div className="lg:w-1/2 p-8 lg:p-12 flex flex-col justify-center">
-                    <div className="text-sm text-primary font-semibold mb-3 uppercase tracking-wide">
-                      {featuredArticle.categorySlug.replace('-', ' ')}
-                    </div>
-                    <h3 className="text-2xl lg:text-3xl font-bold mb-4 group-hover:text-primary transition-colors">
-                      {featuredArticle.title}
-                    </h3>
-                    <p className="text-muted-foreground text-lg mb-6 leading-relaxed">
-                      {featuredArticle.description}
-                    </p>
-                    <div className="flex items-center text-sm text-muted-foreground">
-                      <time>
-                        {featuredArticle.createdAt
-                          ? new Date(
-                              featuredArticle.createdAt
-                            ).toLocaleDateString(locale, {
-                              year: 'numeric',
-                              month: 'long',
-                              day: 'numeric',
-                            })
-                          : 'Data não disponível'}
-                      </time>
-                      <span className="ml-auto text-primary group-hover:translate-x-2 transition-transform">
-                        {t('featured.readMore')} →
-                      </span>
-                    </div>
-                  </div>
-                  <div className="lg:w-1/2 bg-gradient-to-br from-primary/20 to-secondary/20 flex items-center justify-center p-8">
-                    <div className="w-full h-64 lg:h-80 bg-gradient-to-br from-primary/30 to-secondary/30 rounded-lg flex items-center justify-center">
-                      <div className="text-center">
-                        <div className="text-4xl mb-2">📝</div>
-                        <div className="text-sm text-muted-foreground">
-                          {t('featured.article')}
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </Link>
-          </section>
-        )}
-
+        <Hero
+          latestArticle={
+            featuredArticle
+              ? {
+                  title: featuredArticle.title,
+                  slug: featuredArticle.slug,
+                  description: featuredArticle.description,
+                  coverImage: featuredArticle.coverImage,
+                  category: featuredArticle.category,
+                  createdAt: featuredArticle.createdAt,
+                }
+              : undefined
+          }
+        />
         {/* Latest Articles */}
         {latestArticles.length > 0 && (
           <section className="max-w-6xl mx-auto px-4 py-16">
@@ -128,7 +62,7 @@ export default async function HomePage({ params }: HomePageProps) {
                 <Link
                   key={article.slug}
                   // @ts-expect-error - Dynamic routes are valid but TypeScript can't infer them
-                  href={`/categories/${article.categorySlug}/articles/${article.slug}`}
+                  href={`/categories/${article.category.slug}/articles/${article.slug}`}
                   className="group block"
                 >
                   <article className="bg-card rounded-xl overflow-hidden shadow-md hover:shadow-lg transition-all duration-300 border h-full">
@@ -136,7 +70,7 @@ export default async function HomePage({ params }: HomePageProps) {
                       <div className="text-center">
                         <div className="text-3xl mb-2">📄</div>
                         <div className="text-xs text-muted-foreground uppercase tracking-wide">
-                          {article.categorySlug.replace('-', ' ')}
+                          {article.category.title}
                         </div>
                       </div>
                     </div>
@@ -182,9 +116,9 @@ export default async function HomePage({ params }: HomePageProps) {
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
                 {categories.map((category) => (
                   <Link
-                    key={category.currentSlug}
+                    key={category.slug}
                     // @ts-expect-error - Dynamic routes are valid but TypeScript can't infer them
-                    href={`/categories/${category.currentSlug}`}
+                    href={`/categories/${category.slug}`}
                     className="group block"
                   >
                     <div className="bg-card rounded-lg p-6 text-center hover:shadow-lg transition-all duration-300 border group-hover:border-primary/50">

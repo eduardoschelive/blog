@@ -1,5 +1,6 @@
 import { CATEGORIES_DIR } from '@/constants/content'
 import { categorySchema } from '@/schemas/category.schema'
+import type { Category } from '@/types/category'
 import type { Locale } from 'next-intl'
 import { readdirSync, statSync } from 'node:fs'
 import path from 'node:path'
@@ -7,8 +8,8 @@ import { compileContent } from './compileContent'
 import { parseFrontmatter } from './parseFrontmatter'
 import { readFileContent } from './readFile'
 
-export async function getAllCategories() {
-  const categories = []
+export async function getAllCategories(): Promise<Category[]> {
+  const categories: Category[] = []
 
   const categoryFolders = readdirSync(CATEGORIES_DIR).filter((item) => {
     const itemPath = path.join(CATEGORIES_DIR, item)
@@ -32,12 +33,13 @@ export async function getAllCategories() {
       )
       const parsedData = parseFrontmatter(frontmatter, categorySchema, filePath)
 
-      categories.push({
+      const category: Category = {
         ...parsedData,
         content,
-        currentSlug: categoryFolder,
         locale,
-      })
+      }
+
+      categories.push(category)
     }
   }
 

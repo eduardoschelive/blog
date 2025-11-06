@@ -1,4 +1,13 @@
 {
+  "Hero": {
+    "greeting": "Hello, my name is",
+    "subtitle": "Full-stack developer passionate about creating amazing digital experiences and sharing knowledge about technology.",
+    "aboutButton": "About Me",
+    "articlesButton": "View Articles",
+    "latestArticle": "Latest Article",
+    "readMore": "Read full article",
+    "scrollDown": "Scroll down"
+  },
   "HomePage": {
     "title": "Hello world!",
     "hero": {

@@ -4,6 +4,7 @@ import { Hero } from '@/components/layout/Hero'
 import { getAllCategories } from '@/content/getAllCategories'
 import { getRecentArticles } from '@/content/getRecentArticles'
 import { Link } from '@/i18n/navigation'
+import type { Metadata } from 'next'
 import type { Locale } from 'next-intl'
 import { getTranslations } from 'next-intl/server'
 
@@ -166,7 +167,9 @@ export default async function HomePage({ params }: HomePageProps) {
   )
 }
 
-export async function generateMetadata({ params }: HomePageProps) {
+export async function generateMetadata({
+  params,
+}: HomePageProps): Promise<Metadata> {
   const { locale } = await params
   const t = await getTranslations('HomePage')
 

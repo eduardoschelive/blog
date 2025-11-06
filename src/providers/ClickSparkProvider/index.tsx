@@ -1,6 +1,6 @@
 'use client'
 
-import { useEffect, useRef } from 'react'
+import { useCallback, useEffect, useRef } from 'react'
 
 interface Spark {
   x: number
@@ -33,18 +33,21 @@ export function ClickSparkProvider({
   const canvasRef = useRef<HTMLCanvasElement>(null)
   const sparksRef = useRef<Spark[]>([])
 
-  const easeFunc = (t: number) => {
-    switch (easing) {
-      case 'linear':
-        return t
-      case 'ease-in':
-        return t * t
-      case 'ease-in-out':
-        return t < 0.5 ? 2 * t * t : -1 + (4 - 2 * t) * t
-      default:
-        return t * (2 - t)
-    }
-  }
+  const easeFunc = useCallback(
+    (t: number) => {
+      switch (easing) {
+        case 'linear':
+          return t
+        case 'ease-in':
+          return t * t
+        case 'ease-in-out':
+          return t < 0.5 ? 2 * t * t : -1 + (4 - 2 * t) * t
+        default:
+          return t * (2 - t)
+      }
+    },
+    [easing]
+  )
 
   useEffect(() => {
     const canvas = canvasRef.current

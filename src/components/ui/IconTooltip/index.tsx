@@ -37,18 +37,20 @@ export function IconTooltip({
   const Icon = variantIcons[variant]
 
   return (
-    <Tooltip
-      content={
-        <div className="px-1 py-2">
-          <div className="flex items-center justify-around gap-2">
-            <Icon className={tooltipVariants({ variant })} />
-            <span className="text-tiny">{content}</span>
+    <div suppressHydrationWarning>
+      <Tooltip
+        content={
+          <div className="px-1 py-2">
+            <div className="flex items-center justify-around gap-2">
+              <Icon className={tooltipVariants({ variant })} />
+              <span className="text-tiny">{content}</span>
+            </div>
           </div>
-        </div>
-      }
-      {...props}
-    >
-      {children}
-    </Tooltip>
+        }
+        {...props}
+      >
+        {children}
+      </Tooltip>
+    </div>
   )
 }

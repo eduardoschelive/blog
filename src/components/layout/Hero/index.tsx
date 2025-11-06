@@ -102,7 +102,7 @@ function Hero({ latestArticle }: HeroProps) {
                 text={t('latestArticle')}
                 className="mb-4 text-sm font-bold text-primary uppercase tracking-widest"
                 direction="bottom"
-                delay={30}
+                delay={40}
                 animateBy="letters"
               />
 
@@ -113,12 +113,12 @@ function Hero({ latestArticle }: HeroProps) {
                   initial={{ opacity: 0, x: 100 }}
                   animate={{ opacity: 1, x: 0 }}
                   transition={{
-                    duration: 0.5,
-                    delay: 0.8,
+                    duration: 0.8,
+                    delay: 1.5,
                     ease: [0.25, 0.46, 0.45, 0.94],
                   }}
                 >
-                  <Card className="relative w-full shadow-[0_20px_50px_rgba(var(--primary),0.3)] transition-all duration-300 drop-shadow-2xl hover:drop-shadow-[0_25px_25px_rgba(0,0,0,0.25)] hover:scale-105">
+                  <Card className="relative w-full transition-all duration-300 shadow-lg drop-shadow hover:scale-105">
                     {latestArticle.coverImage ? (
                       <Image
                         src={latestArticle.coverImage}
@@ -199,6 +199,8 @@ function Hero({ latestArticle }: HeroProps) {
         aria-label={t('scrollDown')}
         variant="light"
         isIconOnly
+        radius="none"
+        data-hover="false"
       >
         <FiArrowDown className="w-8 h-8 text-primary animate-bounce" />
       </Button>

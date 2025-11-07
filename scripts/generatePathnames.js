@@ -1,5 +1,9 @@
-const fs = require('node:fs')
-const path = require('node:path')
+import fs from 'node:fs'
+import path from 'node:path'
+import { fileURLToPath } from 'node:url'
+
+const __filename = fileURLToPath(import.meta.url)
+const __dirname = path.dirname(__filename)
 
 const PRIMARY_LANGUAGE = 'en-US'
 const LANGUAGES = ['en-US', 'pt-BR']
@@ -185,6 +189,4 @@ export const generatedPathnames = ${pathnamesString} as const
   console.log('📊 Total routes: ' + Object.keys(generatedPathNames).length)
 }
 
-if (require.main === module) {
-  main()
-}
+main()

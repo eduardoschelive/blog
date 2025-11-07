@@ -1,8 +1,8 @@
 import { Footer } from '@/components/layout/Footer'
 import { Header } from '@/components/layout/Header'
 import { Hero } from '@/components/layout/Hero'
-import { getAllCategories } from '@/content/getAllCategories'
-import { getRecentArticles } from '@/content/getRecentArticles'
+import { getArticles } from '@/content/articles'
+import { getCategories } from '@/content/categories'
 import { Link } from '@/i18n/navigation'
 import type { Metadata } from 'next'
 import type { Locale } from 'next-intl'
@@ -18,11 +18,8 @@ export default async function HomePage({ params }: HomePageProps) {
   const { locale } = await params
   const t = await getTranslations('HomePage')
 
-  const recentArticles = await getRecentArticles(locale, 6)
-  const allCategories = await getAllCategories()
-  const categories = allCategories
-    .filter((category) => category.locale === locale)
-    .slice(0, 4) // Show only first 4 categories
+  const recentArticles = await getArticles(locale, { limit: 6 })
+  const categories = await getCategories(locale, { limit: 4 })
 
   const featuredArticle = recentArticles[0]
   const latestArticles = recentArticles.slice(1, 4)

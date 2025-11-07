@@ -1,8 +1,9 @@
 import { Footer } from '@/components/layout/Footer'
 import { Header } from '@/components/layout/Header'
-import { getArticlesByCategory } from '@/content/getArticlesByCategory'
-import { getCategoryBySlug } from '@/content/getCategoryBySlug'
+import { getArticles } from '@/content/articles'
+import { getCategories } from '@/content/categories'
 import { Link } from '@/i18n/navigation'
+import type { Metadata } from 'next'
 import type { Locale } from 'next-intl'
 import { getTranslations } from 'next-intl/server'
 
@@ -16,8 +17,21 @@ interface CategoryProps {
 export default async function Category({ params }: CategoryProps) {
   const { categorySlug, locale } = await params
   const t = await getTranslations('Categories')
-  const category = await getCategoryBySlug(categorySlug, locale)
-  const articles = await getArticlesByCategory(categorySlug, locale)
+
+  const categories = await getCategories(locale, {
+    filter: { slug: categorySlug },
+    limit: 1,
+  })
+
+  const category = categories[0]
+
+  if (!category) {
+    throw new Error(`Category not found: ${categorySlug} (${locale})`)
+  }
+
+  const articles = await getArticles(locale, {
+    filter: { categorySlug },
+  })
 
   return (
     <>
@@ -126,11 +140,25 @@ export default async function Category({ params }: CategoryProps) {
   )
 }
 
-export async function generateMetadata({ params }: CategoryProps) {
+export async function generateMetadata({
+  params,
+}: CategoryProps): Promise<Metadata> {
   const { categorySlug, locale } = await params
 
   try {
-    const category = await getCategoryBySlug(categorySlug, locale)
+    const categories = await getCategories(locale, {
+      filter: { slug: categorySlug },
+      limit: 1,
+    })
+
+    const category = categories[0]
+
+    if (!category) {
+      return {
+        title: 'Category Not Found',
+        description: 'The requested category could not be found.',
+      }
+    }
 
     return {
       title: category.title,

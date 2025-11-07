@@ -1,7 +1,7 @@
 'use client'
 
 import { Link } from '@/i18n/navigation'
-import type { CategoryBase } from '@/types/category'
+import type { CategoryBase } from '@/types/category.type'
 import { BlurText } from '@/components/ui/BlurText'
 
 import { LazyMotion, domAnimation, m } from 'framer-motion'
@@ -114,7 +114,7 @@ function Hero({ latestArticle }: HeroProps) {
                   animate={{ opacity: 1, x: 0 }}
                   transition={{
                     duration: 0.8,
-                    delay: 1.5,
+                    delay: 0.5,
                     ease: [0.25, 0.46, 0.45, 0.94],
                   }}
                 >

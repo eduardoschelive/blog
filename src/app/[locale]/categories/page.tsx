@@ -1,6 +1,6 @@
 import { Footer } from '@/components/layout/Footer'
 import { Header } from '@/components/layout/Header'
-import { getAllCategories } from '@/content/getAllCategories'
+import { getCategories } from '@/content/categories'
 import { Link } from '@/i18n/navigation'
 import type { Metadata } from 'next'
 import type { Locale } from 'next-intl'
@@ -16,10 +16,7 @@ export default async function CategoriesPage({ params }: CategoriesPageProps) {
   const { locale } = await params
   const t = await getTranslations('Categories')
 
-  const allCategories = await getAllCategories()
-  const categories = allCategories.filter(
-    (category) => category.locale === locale
-  )
+  const categories = await getCategories(locale)
 
   return (
     <>

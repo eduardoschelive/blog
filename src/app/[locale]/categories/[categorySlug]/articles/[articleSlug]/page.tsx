@@ -5,7 +5,7 @@ import {
 } from '@/components/layout/Article'
 import { Footer } from '@/components/layout/Footer'
 import { Header } from '@/components/layout/Header'
-import { getArticleBySlug } from '@/content/getArticleBySlug'
+import { getArticles } from '@/content/articles'
 import type { Locale } from 'next-intl'
 
 interface ArticleProps {
@@ -19,7 +19,18 @@ interface ArticleProps {
 export default async function Article({ params }: ArticleProps) {
   const { categorySlug, articleSlug, locale } = await params
 
-  const article = await getArticleBySlug(categorySlug, articleSlug, locale)
+  const articles = await getArticles(locale, {
+    filter: { categorySlug, slug: articleSlug },
+    limit: 1,
+  })
+
+  const article = articles[0]
+
+  if (!article) {
+    throw new Error(
+      `Article not found: ${categorySlug}/${articleSlug} (${locale})`
+    )
+  }
 
   return (
     <>

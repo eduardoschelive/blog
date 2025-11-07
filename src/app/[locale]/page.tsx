@@ -64,7 +64,7 @@ export default async function HomePage({ params }: HomePageProps) {
                   className="group block"
                 >
                   <article className="bg-card rounded-xl overflow-hidden shadow-md hover:shadow-lg transition-all duration-300 border h-full">
-                    <div className="h-48 bg-gradient-to-br from-primary/20 to-secondary/20 flex items-center justify-center">
+                    <div className="h-48 bg-linear-to-br from-primary/20 to-secondary/20 flex items-center justify-center">
                       <div className="text-center">
                         <div className="text-3xl mb-2">📄</div>
                         <div className="text-xs text-muted-foreground uppercase tracking-wide">

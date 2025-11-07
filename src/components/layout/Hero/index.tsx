@@ -59,7 +59,7 @@ function Hero({ latestArticle }: HeroProps) {
                 />
                 <BlurText
                   text="Eduardo Guiraldelli Schelive"
-                  className="block bg-gradient-to-r from-primary via-secondary to-primary bg-clip-text text-transparent animate-gradient bg-[length:200%_auto]"
+                  className="block bg-linear-to-r from-primary via-secondary to-primary bg-clip-text text-transparent animate-gradient bg-size:200%_auto"
                   direction="bottom"
                   delay={50}
                   animateBy="words"
@@ -129,7 +129,7 @@ function Hero({ latestArticle }: HeroProps) {
                         }}
                       />
                     ) : (
-                      <div className="w-full h-56 bg-gradient-to-br from-primary/30 via-secondary/20 to-primary/20 flex items-center justify-center relative overflow-hidden">
+                      <div className="w-full h-56 bg-linear-to-br from-primary/30 via-secondary/20 to-primary/20 flex items-center justify-center relative overflow-hidden">
                         <div
                           className="absolute inset-0 opacity-10"
                           style={{

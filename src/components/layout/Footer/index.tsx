@@ -30,7 +30,7 @@ function Footer() {
   return (
     <footer
       id={FOOTER_ID}
-      className="border-t border-default bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60"
+      className="border-t border-default bg-background/95 backdrop-blur supports-backdrop-filter:bg-background/60"
     >
       <div className="container mx-auto px-4 py-8">
         <div className="flex flex-col items-center justify-between gap-4 md:flex-row">

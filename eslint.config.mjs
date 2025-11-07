@@ -12,15 +12,20 @@ const compat = new FlatCompat({
 
 /** @type {import('eslint').Linter.Config} */
 const eslintConfig = [
-  ...compat.extends('next/core-web-vitals', 'next/typescript', 'prettier'),
   {
     ignores: [
       'node_modules/**',
       '.next/**',
       'out/**',
       'build/**',
+      'generated/**',
       'next-env.d.ts',
+      '**/*.js.map',
+      '**/*.d.ts.map',
     ],
+  },
+  ...compat.extends('next/core-web-vitals', 'next/typescript', 'prettier'),
+  {
     plugins: {
       prettier: eslintPluginPrettier,
     },

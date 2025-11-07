@@ -8,6 +8,9 @@
     "readMore": "Read full article",
     "scrollDown": "Scroll down"
   },
+  "Article": {
+    "dateNotAvailable": "Date not available"
+  },
   "HomePage": {
     "title": "Hello world!",
     "hero": {

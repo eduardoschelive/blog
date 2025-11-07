@@ -8,6 +8,9 @@
     "readMore": "Ler artigo completo",
     "scrollDown": "Role para baixo"
   },
+  "Article": {
+    "dateNotAvailable": "Data não disponível"
+  },
   "HomePage": {
     "title": "Olá mundo!",
     "hero": {

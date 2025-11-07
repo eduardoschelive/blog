@@ -1,8 +1,16 @@
 'use client'
 
 import { Link } from '@/i18n/navigation'
-import type { CategoryBase } from '@/types/category.type'
 import { BlurText } from '@/components/ui/BlurText'
+import {
+  ArticleRoot,
+  ArticleImage,
+  ArticleCategory,
+  ArticleTitle,
+  ArticleDescription,
+  ArticleLink,
+} from '@/components/layout/ArticleCard'
+import type { Article } from '@/types/article.type'
 
 import { LazyMotion, domAnimation, m } from 'framer-motion'
 import {
@@ -11,24 +19,13 @@ import {
   CardBody,
   CardFooter,
   CardHeader,
-  Chip,
   Divider,
-  Image,
 } from '@heroui/react'
 import { useTranslations } from 'next-intl'
 import { FiArrowDown } from 'react-icons/fi'
 
-interface ArticleCard {
-  title: string
-  description?: string
-  slug: string
-  coverImage?: string
-  category: CategoryBase
-  createdAt: Date | null
-}
-
 interface HeroProps {
-  latestArticle?: ArticleCard
+  latestArticle?: Article
 }
 
 function Hero({ latestArticle }: HeroProps) {
@@ -80,7 +77,7 @@ function Hero({ latestArticle }: HeroProps) {
                 href="/about"
                 color="primary"
                 size="lg"
-                className="font-semibold shadow-lg  hover:scale-105 transition-transform"
+                className="font-semibold shadow-lg hover:scale-105 transition-transform"
               >
                 {t('aboutButton')}
               </Button>
@@ -96,7 +93,7 @@ function Hero({ latestArticle }: HeroProps) {
             </div>
           </div>
 
-          {latestArticle && (
+          <ArticleRoot article={latestArticle}>
             <div className="w-full">
               <BlurText
                 text={t('latestArticle')}
@@ -106,7 +103,6 @@ function Hero({ latestArticle }: HeroProps) {
                 animateBy="letters"
               />
 
-              {/* Article Card */}
               <LazyMotion features={domAnimation} strict>
                 <m.div
                   className="relative"
@@ -119,77 +115,32 @@ function Hero({ latestArticle }: HeroProps) {
                   }}
                 >
                   <Card className="relative w-full transition-all duration-300 shadow-lg drop-shadow hover:scale-105">
-                    {latestArticle.coverImage ? (
-                      <Image
-                        src={latestArticle.coverImage}
-                        alt={latestArticle.title}
-                        className="w-full h-56 object-cover"
-                        classNames={{
-                          wrapper: 'w-full',
-                        }}
-                      />
-                    ) : (
-                      <div className="w-full h-56 bg-linear-to-br from-primary/30 via-secondary/20 to-primary/20 flex items-center justify-center relative overflow-hidden">
-                        <div
-                          className="absolute inset-0 opacity-10"
-                          style={{
-                            backgroundImage: `radial-gradient(circle at 2px 2px, currentColor 1px, transparent 0)`,
-                            backgroundSize: '32px 32px',
-                          }}
-                        />
-                        <div className="text-center relative z-10">
-                          <div className="text-6xl mb-3">📰</div>
-                          <div className="text-sm text-foreground/60 uppercase tracking-wider font-bold">
-                            {latestArticle.category.title}
-                          </div>
-                        </div>
-                      </div>
-                    )}
+                    <ArticleImage showPattern />
 
                     <Divider />
 
                     <CardHeader className="pb-0 pt-6 px-6 flex-col items-start gap-3">
-                      <Chip
-                        as={Link}
-                        // @ts-expect-error - Dynamic routes are valid
-                        href={`/categories/${latestArticle.category.slug}`}
-                        color="primary"
-                        variant="flat"
-                        size="md"
-                        className="cursor-pointer hover:scale-105 transition-transform font-sans"
-                      >
-                        {latestArticle.category.title}
-                      </Chip>
-                      <h3 className="text-2xl font-bold leading-tight line-clamp-2">
-                        {latestArticle.title}
-                      </h3>
+                      <ArticleCategory asChip asLink />
+                      <ArticleTitle className="text-2xl font-bold leading-tight line-clamp-2" />
                     </CardHeader>
 
-                    {/* Description */}
                     <CardBody className="px-6 py-4">
-                      {latestArticle.description && (
-                        <p className="text-foreground/70 line-clamp-3 leading-relaxed">
-                          {latestArticle.description}
-                        </p>
-                      )}
+                      <ArticleDescription className="text-foreground/70 line-clamp-3 leading-relaxed" />
                     </CardBody>
+
                     <CardFooter className="px-6 pb-6">
-                      <Link
-                        // @ts-expect-error - Dynamic routes are valid
-                        href={`/categories/${latestArticle.category.slug}/articles/${latestArticle.slug}`}
-                        className="inline-flex items-center gap-2 text-primary font-bold hover:gap-3 transition-all hover:underline hover-group"
+                      <ArticleLink
+                        className="text-primary font-bold"
+                        target="_blank"
                       >
-                        <span>{t('readMore')}</span>
-                        <span className="transition-transform hover-group:translate-x-1">
-                          →
-                        </span>
-                      </Link>
+                        {t('readMore')}
+                      </ArticleLink>
                     </CardFooter>
                   </Card>
                 </m.div>
               </LazyMotion>
             </div>
-          )}
+          </ArticleRoot>
         </div>
       </div>
 

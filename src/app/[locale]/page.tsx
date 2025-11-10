@@ -21,15 +21,14 @@ export default async function HomePage({ params }: HomePageProps) {
   const recentArticles = await getArticles(locale, { limit: 6 })
   const categories = await getCategories(locale, { limit: 4 })
 
-  const featuredArticle = recentArticles[0]
-  const latestArticles = recentArticles.slice(1, 4)
+  const latestArticles = recentArticles.slice(0, 3)
 
   return (
     <>
       <Header />
       <main className="font-sans bg-background">
         {/* Hero Section */}
-        <Hero latestArticle={featuredArticle} />
+        <Hero />
         {/* Latest Articles */}
         {latestArticles.length > 0 && (
           <section className="max-w-6xl mx-auto px-4 py-16">

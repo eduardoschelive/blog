@@ -29,20 +29,7 @@ export default async function HomePage({ params }: HomePageProps) {
       <Header />
       <main className="font-sans bg-background">
         {/* Hero Section */}
-        <Hero
-          latestArticle={
-            featuredArticle
-              ? {
-                  title: featuredArticle.title,
-                  slug: featuredArticle.slug,
-                  description: featuredArticle.description,
-                  coverImage: featuredArticle.coverImage,
-                  category: featuredArticle.category,
-                  createdAt: featuredArticle.createdAt,
-                }
-              : undefined
-          }
-        />
+        <Hero latestArticle={featuredArticle} />
         {/* Latest Articles */}
         {latestArticles.length > 0 && (
           <section className="max-w-6xl mx-auto px-4 py-16">

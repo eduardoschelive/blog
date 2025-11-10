@@ -2,7 +2,7 @@
 
 import { useActiveHeading } from '@/hooks/useActiveHeading'
 import { useHeadings } from '@/hooks/useHeadingTree'
-import { useScrollToHeading } from '@/hooks/useScrollToHeading'
+import { useScroll } from '@/hooks/useScroll'
 import { cn } from '@heroui/react'
 import { useTranslations } from 'next-intl'
 import type { HTMLAttributes } from 'react'
@@ -12,7 +12,7 @@ type TableOfContentsProps = HTMLAttributes<HTMLDivElement>
 export const TableOfContents = ({ className }: TableOfContentsProps) => {
   const t = useTranslations('TableOfContents')
   const { headingTree } = useHeadings()
-  const { scrollToHeading } = useScrollToHeading()
+  const { scrollToHeading } = useScroll()
 
   const headingIds = headingTree ? Object.keys(headingTree.nodes) : []
   const activeId = useActiveHeading(headingIds)

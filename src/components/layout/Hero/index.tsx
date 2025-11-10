@@ -1,15 +1,14 @@
 import { getArticles } from '@/content/articles'
-import type { Locale } from 'next-intl'
 import { getLocale } from 'next-intl/server'
 import { HeroClient } from './components/HeroClient'
 
 async function Hero() {
-  const locale = (await getLocale()) as Locale
+  const locale = await getLocale()
 
   const articles = await getArticles(locale, { limit: 1 })
-  const featuredArticle = articles[0]
+  const latestArticle = articles[0]
 
-  return <HeroClient article={featuredArticle} />
+  return <HeroClient article={latestArticle} />
 }
 
 export { Hero }

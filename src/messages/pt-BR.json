@@ -65,11 +65,18 @@
     "copyright": "Todos os direitos reservados."
   },
   "NotFound": {
-    "title": "Página Não Encontrada",
-    "description": "Desculpe, a página que você está procurando não existe ou foi movida.",
-    "goHome": "Ir para o Início",
-    "browseCategories": "Explorar Categorias",
-    "suggestion": "Tente verificar a URL ou volte para a página inicial"
+    "title": "Página não encontrada",
+    "description": "A página que você está procurando não existe, foi movida ou nunca existiu. Mas não se preocupe, podemos te ajudar a encontrar o caminho de volta!",
+    "goHome": "Voltar ao Início",
+    "browseArticles": "Explorar Artigos",
+    "errorCode": "404"
+  },
+  "Error": {
+    "title": "Algo deu errado",
+    "description": "Desculpe, algo não funcionou como esperado. Nossa equipe foi notificada e estamos trabalhando para resolver o problema.",
+    "tryAgain": "Tentar Novamente",
+    "goHome": "Voltar ao Início",
+    "errorCode": "Erro"
   },
   "Navbar": {
     "home": "Início",

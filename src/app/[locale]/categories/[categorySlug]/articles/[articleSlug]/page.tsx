@@ -3,8 +3,6 @@ import {
   ArticleContent,
   TableOfContents,
 } from '@/components/layout/Article'
-import { Footer } from '@/components/layout/Footer'
-import { Header } from '@/components/layout/Header'
 import { getArticles } from '@/content/articles'
 import type { Locale } from 'next-intl'
 
@@ -33,13 +31,9 @@ export default async function Article({ params }: ArticleProps) {
   }
 
   return (
-    <>
-      <Header />
-      <ArticleContainer>
-        <ArticleContent>{article.content}</ArticleContent>
-        <TableOfContents />
-      </ArticleContainer>
-      <Footer />
-    </>
+    <ArticleContainer>
+      <ArticleContent>{article.content}</ArticleContent>
+      <TableOfContents />
+    </ArticleContainer>
   )
 }

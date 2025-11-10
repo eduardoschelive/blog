@@ -1,5 +1,7 @@
 import { routing } from '@/i18n/routing'
 import { Providers } from '@/providers/Providers'
+import { Header } from '@/components/layout/Header'
+import { Footer } from '@/components/layout/Footer'
 import type { Metadata } from 'next'
 import { hasLocale } from 'next-intl'
 import { Fira_Code } from 'next/font/google'
@@ -91,8 +93,14 @@ export default async function RootLayout({
 
   return (
     <html lang={locale} suppressHydrationWarning>
-      <body className={`${satoshi.variable} ${firaCode.variable} antialiased`}>
-        <Providers>{children}</Providers>
+      <body
+        className={`${satoshi.variable} ${firaCode.variable} antialiase font-sans`}
+      >
+        <Providers>
+          <Header />
+          {children}
+          <Footer />
+        </Providers>
       </body>
     </html>
   )

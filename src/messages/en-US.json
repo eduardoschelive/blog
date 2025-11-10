@@ -65,11 +65,18 @@
     "copyright": "All rights reserved."
   },
   "NotFound": {
-    "title": "Page Not Found",
-    "description": "Sorry, the page you are looking for doesn't exist or has been moved.",
-    "goHome": "Go Home",
-    "browseCategories": "Browse Categories",
-    "suggestion": "Try checking the URL or go back to the homepage"
+    "title": "Page not found",
+    "description": "The page you're looking for doesn't exist, has been moved, or never existed. But don't worry, we can help you find your way back!",
+    "goHome": "Back to Home",
+    "browseArticles": "Explore Articles",
+    "errorCode": "404"
+  },
+  "Error": {
+    "title": "Something went wrong",
+    "description": "Sorry, something didn't work as expected. Our team has been notified and we're working to fix the issue.",
+    "tryAgain": "Try Again",
+    "goHome": "Back to Home",
+    "errorCode": "Error"
   },
   "Navbar": {
     "home": "Home",

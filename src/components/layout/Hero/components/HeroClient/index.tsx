@@ -49,7 +49,7 @@ function HeroClient({ article }: HeroClientProps) {
                 />
                 <BlurText
                   text="Eduardo Guiraldelli Schelive"
-                  className="block bg-linear-to-r from-primary via-secondary to-primary bg-clip-text text-transparent animate-gradient bg-size:200%_auto"
+                  className="block bg-linear-to-r from-primary via-secondary to-primary bg-clip-text text-transparent animate-gradient bg-size-[200%_auto]"
                   direction="bottom"
                   delay={50}
                   animateBy="words"
@@ -64,26 +64,37 @@ function HeroClient({ article }: HeroClientProps) {
               />
             </div>
 
-            <div className="flex flex-wrap gap-4">
-              <Button
-                as={Link}
-                href="/about"
-                color="primary"
-                size="lg"
-                className="font-semibold shadow-lg hover:scale-105 transition-transform"
+            <LazyMotion features={domAnimation} strict>
+              <m.div
+                className="flex flex-wrap gap-4"
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{
+                  duration: 0.6,
+                  delay: 0.8,
+                  ease: [0.25, 0.46, 0.45, 0.94],
+                }}
               >
-                {t('aboutButton')}
-              </Button>
-              <Button
-                as={Link}
-                href="/categories"
-                variant="bordered"
-                size="lg"
-                className="font-semibold border-2 hover:scale-105 transition-transform"
-              >
-                {t('articlesButton')}
-              </Button>
-            </div>
+                <Button
+                  as={Link}
+                  href="/about"
+                  color="primary"
+                  size="lg"
+                  className="font-semibold shadow-lg hover:scale-105 transition-transform"
+                >
+                  {t('aboutButton')}
+                </Button>
+                <Button
+                  as={Link}
+                  href="/categories"
+                  variant="bordered"
+                  size="lg"
+                  className="font-semibold border-2 hover:scale-105 transition-transform"
+                >
+                  {t('articlesButton')}
+                </Button>
+              </m.div>
+            </LazyMotion>
           </div>
 
           <ArticleRoot article={article}>

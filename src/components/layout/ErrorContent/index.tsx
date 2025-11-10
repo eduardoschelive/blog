@@ -4,33 +4,50 @@ import { Link } from '@/i18n/navigation'
 import { useTranslations } from 'next-intl'
 import { LazyMotion, domAnimation, m } from 'framer-motion'
 import { Button } from '@heroui/react'
-import { FiHome, FiBookOpen, FiAlertCircle } from 'react-icons/fi'
+import { FiHome, FiRefreshCw, FiAlertTriangle } from 'react-icons/fi'
+import { useEffect } from 'react'
 import { GradientText } from '@/components/ui/GradientText'
 
-export default function NotFound() {
-  const t = useTranslations('NotFound')
+interface ErrorProps {
+  error: Error & { digest?: string }
+  reset: () => void
+}
+
+export default function ErrorContent({ error, reset }: ErrorProps) {
+  const t = useTranslations('Error')
+
+  useEffect(() => {
+    console.error('Error:', error)
+  }, [error])
 
   return (
     <main className="min-h-[calc(100vh-128px)] flex items-center justify-center px-4 relative overflow-hidden">
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
-        <div className="absolute -top-40 -right-40 w-80 h-80 bg-primary/10 rounded-full blur-3xl" />
-        <div className="absolute -bottom-40 -left-40 w-80 h-80 bg-secondary/10 rounded-full blur-3xl" />
+        <div className="absolute top-1/4 right-1/4 w-96 h-96 bg-danger/10 rounded-full blur-3xl" />
+        <div className="absolute bottom-1/4 left-1/4 w-96 h-96 bg-warning/10 rounded-full blur-3xl" />
       </div>
 
       <div className="w-full max-w-lg mx-auto text-center relative z-10">
         <LazyMotion features={domAnimation} strict>
           <m.div
-            initial={{ scale: 0, rotate: -180 }}
-            animate={{ scale: 1, rotate: 0 }}
+            initial={{ scale: 0, rotate: 0 }}
+            animate={{ scale: 1, rotate: [0, -10, 10, -10, 0] }}
             transition={{
-              duration: 0.6,
-              ease: [0.25, 0.46, 0.45, 0.94],
+              scale: {
+                duration: 0.6,
+                ease: [0.25, 0.46, 0.45, 0.94],
+              },
+              rotate: {
+                duration: 0.8,
+                delay: 0.6,
+                ease: 'easeInOut',
+              },
             }}
             className="flex justify-center mb-4"
           >
             <m.div className="relative">
               <m.div
-                className="absolute inset-0 bg-linear-to-r from-primary to-secondary rounded-full blur-2xl opacity-30"
+                className="absolute inset-0 bg-linear-to-r from-danger to-warning rounded-full blur-2xl opacity-30"
                 animate={{
                   opacity: [0.2, 0.4, 0.2],
                 }}
@@ -40,7 +57,7 @@ export default function NotFound() {
                   ease: 'easeInOut',
                 }}
               />
-              <FiAlertCircle className="w-12 h-12 md:w-16 md:h-16 text-primary relative z-10" />
+              <FiAlertTriangle className="w-12 h-12 md:w-16 md:h-16 text-danger relative z-10" />
             </m.div>
           </m.div>
 
@@ -54,7 +71,7 @@ export default function NotFound() {
             }}
             className="mb-3"
           >
-            <GradientText as="h1" size="7xl" weight="black" gradient="primary">
+            <GradientText as="h1" size="5xl" weight="black" gradient="danger">
               {t('errorCode')}
             </GradientText>
           </m.div>
@@ -98,60 +115,62 @@ export default function NotFound() {
             className="flex flex-col sm:flex-row gap-2 justify-center items-center mb-6"
           >
             <Button
-              as={Link}
-              href="/"
-              color="primary"
+              onPress={reset}
+              color="danger"
               size="md"
-              startContent={<FiHome className="w-4 h-4" />}
+              startContent={<FiRefreshCw className="w-4 h-4" />}
               className="font-semibold shadow-lg hover:scale-105 transition-transform w-full sm:w-auto sm:min-w-40"
             >
-              {t('goHome')}
+              {t('tryAgain')}
             </Button>
 
             <Button
               as={Link}
-              href="/categories"
+              href="/"
               variant="bordered"
               size="md"
-              startContent={<FiBookOpen className="w-4 h-4" />}
+              startContent={<FiHome className="w-4 h-4" />}
               className="font-semibold border-2 hover:scale-105 transition-transform w-full sm:w-auto sm:min-w-40"
             >
-              {t('browseArticles')}
+              {t('goHome')}
             </Button>
           </m.div>
 
           <div className="flex justify-center gap-4">
             <m.div
-              className="w-1.5 h-1.5 bg-primary rounded-full opacity-60"
+              className="w-1.5 h-1.5 bg-danger rounded-full"
               animate={{
-                y: [0, -10, 0],
+                scale: [1, 1.2, 1],
+                opacity: [0.5, 0.8, 0.5],
               }}
               transition={{
-                duration: 3,
+                duration: 2,
                 repeat: Infinity,
                 ease: 'easeInOut',
               }}
             />
             <m.div
-              className="w-1.5 h-1.5 bg-secondary rounded-full opacity-60"
+              className="w-1.5 h-1.5 bg-warning rounded-full"
               animate={{
-                y: [0, -10, 0],
+                scale: [1, 1.2, 1],
+                opacity: [0.5, 0.8, 0.5],
               }}
               transition={{
-                duration: 3,
-                delay: 0.5,
+                duration: 2,
+                delay: 0.3,
                 repeat: Infinity,
                 ease: 'easeInOut',
               }}
             />
             <m.div
-              className="w-1.5 h-1.5 bg-primary rounded-full opacity-60"
+              className="w-1.5 h-1.5 bg-danger rounded-full"
               animate={{
-                y: [0, -10, 0],
+                scale: [1, 1.2, 1],
+                opacity: [0.5, 0.8, 0.5],
               }}
               transition={{
-                duration: 3,
-                delay: 1,
+                duration: 2,
+                delay: 0.6,
                 repeat: Infinity,
                 ease: 'easeInOut',
               }}

@@ -1,9 +1,8 @@
 'use client'
 
+import { HEADER_ID } from '@/constants/elements'
 import { useRouter } from '@/i18n/navigation'
 import type { Pathname } from '@/i18n/pathnames'
-
-const HEADER_ID = 'header'
 
 function useScroll() {
   const { replace } = useRouter()

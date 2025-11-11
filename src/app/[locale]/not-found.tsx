@@ -5,8 +5,6 @@ import { useTranslations } from 'next-intl'
 import { LazyMotion, domAnimation, m } from 'framer-motion'
 import { Button } from '@heroui/react'
 import { FiHome, FiBookOpen, FiAlertCircle } from 'react-icons/fi'
-import { GradientText } from '@/components/ui/GradientText'
-
 export default function NotFound() {
   const t = useTranslations('NotFound')
 
@@ -54,9 +52,9 @@ export default function NotFound() {
             }}
             className="mb-3"
           >
-            <GradientText as="h1" size="7xl" weight="black" gradient="primary">
+            <h1 className="text-7xl font-black text-primary">
               {t('errorCode')}
-            </GradientText>
+            </h1>
           </m.div>
 
           <m.div

@@ -6,8 +6,6 @@ import { LazyMotion, domAnimation, m } from 'framer-motion'
 import { Button } from '@heroui/react'
 import { FiHome, FiRefreshCw, FiAlertTriangle } from 'react-icons/fi'
 import { useEffect } from 'react'
-import { GradientText } from '@/components/ui/GradientText'
-
 interface ErrorProps {
   error: Error & { digest?: string }
   reset: () => void
@@ -71,9 +69,9 @@ export default function ErrorContent({ error, reset }: ErrorProps) {
             }}
             className="mb-3"
           >
-            <GradientText as="h1" size="5xl" weight="black" gradient="danger">
+            <h1 className="text-5xl font-black text-danger">
               {t('errorCode')}
-            </GradientText>
+            </h1>
           </m.div>
 
           <m.div

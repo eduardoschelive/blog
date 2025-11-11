@@ -47,13 +47,15 @@ function HeroClient({ article }: HeroClientProps) {
                   delay={30}
                   animateBy="letters"
                 />
-                <BlurText
-                  text="Eduardo Guiraldelli Schelive"
-                  className="block text-primary bg-gradient-to-r from-primary via-secondary to-primary bg-clip-text [-webkit-text-fill-color:transparent] [text-fill-color:transparent] animate-gradient bg-size-[200%_auto]"
-                  direction="bottom"
-                  delay={50}
-                  animateBy="words"
-                />
+                <span className="block bg-gradient-to-r from-primary via-secondary to-primary bg-clip-text text-transparent supports-[background-clip:text]:[-webkit-text-fill-color:transparent] animate-gradient bg-size-[200%_auto]">
+                  <BlurText
+                    text="Eduardo Guiraldelli Schelive"
+                    className="inline"
+                    direction="bottom"
+                    delay={50}
+                    animateBy="words"
+                  />
+                </span>
               </h1>
               <BlurText
                 text={t('subtitle')}

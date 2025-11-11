@@ -2,9 +2,9 @@
   "Hero": {
     "greeting": "Hello, my name is",
     "subtitle": "Full-stack developer passionate about creating amazing digital experiences and sharing knowledge about technology.",
-    "aboutButton": "About Me",
-    "articlesButton": "View Articles",
-    "latestArticle": "Latest Article",
+    "aboutButton": "About me",
+    "articlesButton": "View articles",
+    "latestArticle": "Latest article",
     "readMore": "Read full article",
     "scrollDown": "Scroll down"
   },
@@ -14,31 +14,31 @@
   "HomePage": {
     "title": "Hello world!",
     "hero": {
-      "title": "Welcome to My Blog",
+      "title": "Welcome to my blog",
       "subtitle": "Discover insights, tutorials, and thoughts on modern web development, technology, and more.",
-      "exploreButton": "Explore Articles",
-      "aboutButton": "About Me"
+      "exploreButton": "Explore articles",
+      "aboutButton": "About me"
     },
     "featured": {
-      "title": "Featured Article",
+      "title": "Featured article",
       "readMore": "Read more",
       "article": "Featured"
     },
     "latest": {
-      "title": "Latest Articles",
+      "title": "Latest articles",
       "subtitle": "Discover the most recent articles and insights from our blog",
       "viewAll": "View all articles",
       "readMore": "Read more"
     },
     "categories": {
-      "title": "Explore Categories",
+      "title": "Explore categories",
       "subtitle": "Browse through different topics and find articles that interest you the most.",
       "viewAll": "View all categories"
     },
     "cta": {
-      "title": "Want to Learn More?",
+      "title": "Want to learn more?",
       "subtitle": "Get to know more about me, my experience, and what drives my passion for technology.",
-      "button": "About Me"
+      "button": "About me"
     }
   },
   "Theme": {

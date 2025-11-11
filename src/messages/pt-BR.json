@@ -2,9 +2,9 @@
   "Hero": {
     "greeting": "Olá, meu nome é",
     "subtitle": "Desenvolvedor full-stack apaixonado por criar experiências digitais incríveis e compartilhar conhecimento sobre tecnologia.",
-    "aboutButton": "Sobre Mim",
-    "articlesButton": "Ver Artigos",
-    "latestArticle": "Artigo Mais Recente",
+    "aboutButton": "Sobre mim",
+    "articlesButton": "Ver artigos",
+    "latestArticle": "Artigo mais recente",
     "readMore": "Ler artigo completo",
     "scrollDown": "Role para baixo"
   },
@@ -14,31 +14,31 @@
   "HomePage": {
     "title": "Olá mundo!",
     "hero": {
-      "title": "Bem-vindo ao Meu Blog",
+      "title": "Bem-vindo ao meu blog",
       "subtitle": "Descubra insights, tutoriais e reflexões sobre desenvolvimento web moderno, tecnologia e muito mais.",
-      "exploreButton": "Explorar Artigos",
-      "aboutButton": "Sobre Mim"
+      "exploreButton": "Explorar artigos",
+      "aboutButton": "Sobre mim"
     },
     "featured": {
-      "title": "Artigo em Destaque",
+      "title": "Artigo em destaque",
       "readMore": "Ler mais",
       "article": "Destaque"
     },
     "latest": {
-      "title": "Últimos Artigos",
+      "title": "Últimos artigos",
       "subtitle": "Descubra os artigos e insights mais recentes do nosso blog",
       "viewAll": "Ver todos os artigos",
       "readMore": "Ler mais"
     },
     "categories": {
-      "title": "Explorar Categorias",
+      "title": "Explorar categorias",
       "subtitle": "Navegue por diferentes tópicos e encontre artigos que mais lhe interessam.",
       "viewAll": "Ver todas as categorias"
     },
     "cta": {
-      "title": "Quer Saber Mais?",
+      "title": "Quer saber mais?",
       "subtitle": "Conheça mais sobre mim, minha experiência e o que move minha paixão pela tecnologia.",
-      "button": "Sobre Mim"
+      "button": "Sobre mim"
     }
   },
   "Theme": {

@@ -1,0 +1,151 @@
+---
+title: OpenLiteSpeed - High-Performance Open Source Web Server
+description: Learn about OpenLiteSpeed, the lightweight and high-performance web server. Discover its built-in cache, event-driven architecture, and WordPress optimization.
+publishedAt: 2024-10-20
+author: Eduardo Schelive
+tags: [openlitespeed, web-server, performance, cache, wordpress]
+slug: openlitespeed
+coverImage: https://openlitespeed.org/wp-content/uploads/2021/03/openlitespeed-logo.svg
+---
+
+# OpenLiteSpeed - High-Performance Open Source Web Server
+
+OpenLiteSpeed is a high-performance, lightweight, open-source HTTP server developed by LiteSpeed Technologies. It's designed to handle thousands of concurrent connections with minimal resource usage.
+
+## What is OpenLiteSpeed?
+
+OpenLiteSpeed is the open-source edition of LiteSpeed Web Server Enterprise. It provides most of the features of the commercial version while remaining completely free. It's particularly popular for WordPress hosting due to its excellent caching capabilities.
+
+## Key Features
+
+- **Event-Driven Architecture**: Handles massive concurrent connections efficiently
+- **Built-in Cache**: LSCache for incredible performance gains
+- **Apache Compatible**: Reads .htaccess files and mod_rewrite rules
+- **HTTP/3 Support**: QUIC and HTTP/3 protocol support
+- **WebAdmin GUI**: Web-based administration interface
+- **Anti-DDoS**: Built-in protection against attacks
+- **Low Memory**: Minimal memory footprint
+
+## Installation
+
+Installing OpenLiteSpeed:
+
+```bash
+# Ubuntu/Debian
+wget -O - https://repo.litespeed.sh | sudo bash
+sudo apt update
+sudo apt install openlitespeed
+
+# Start the service
+sudo systemctl start lsws
+sudo systemctl enable lsws
+
+# Set admin password
+sudo /usr/local/lsws/admin/misc/admpass.sh
+```
+
+Access WebAdmin at: `https://your-server:7080`
+
+## Basic Configuration
+
+OpenLiteSpeed can be configured via:
+
+1. **WebAdmin GUI** (port 7080)
+2. **Configuration files** in `/usr/local/lsws/conf/`
+
+### Virtual Host Setup
+
+Through WebAdmin:
+- Navigate to Virtual Hosts → Add
+- Set document root, domain, and other settings
+- Apply changes and graceful restart
+
+## WordPress Optimization
+
+OpenLiteSpeed is excellent for WordPress:
+
+```bash
+# Install LSCache plugin
+# In WordPress admin, install "LiteSpeed Cache" plugin
+
+# Install PHP LSAPI
+sudo apt install lsphp80 lsphp80-common lsphp80-mysql
+```
+
+Configure virtual host to use LSAPI:
+
+```
+External App → Add → Type: LiteSpeed SAPI App
+Name: lsphp80
+Address: uds://tmp/lshttpd/lsphp.sock
+```
+
+## Performance Tuning
+
+Optimize OpenLiteSpeed for high traffic:
+
+```
+Server Configuration → Tuning:
+- Max Connections: 10000
+- Max Keep-Alive Requests: 1000
+- Connection Timeout: 60
+- Max Cached Small File Size: 4096
+
+Enable HTTP/3:
+Listeners → SSL → QUIC: Enabled
+```
+
+## LSCache Configuration
+
+Enable and configure LSCache for maximum performance:
+
+```
+Virtual Hosts → [Your VHost] → Rewrite:
+Enable Rewrite: Yes
+Rewrite Rules: WordPress default
+
+Cache Configuration:
+Enable Cache: Yes
+Cache Storage Path: /usr/local/lsws/cachedata
+```
+
+## SSL/TLS Setup
+
+Configure HTTPS with Let's Encrypt:
+
+```bash
+# Install certbot
+sudo apt install certbot
+
+# Get certificate
+sudo certbot certonly --webroot \
+  -w /usr/local/lsws/Example/html \
+  -d example.com -d www.example.com
+
+# Configure in WebAdmin:
+# Listeners → SSL → SSL Private Key & Certificate
+```
+
+## Rewrite Rules
+
+OpenLiteSpeed supports Apache-style rewrite rules:
+
+```apache
+RewriteEngine On
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^(.*)$ index.php/$1 [L]
+```
+
+## Performance Comparison
+
+OpenLiteSpeed typically outperforms Apache:
+
+- **Static Content**: 84x faster than Apache
+- **PHP Processing**: 50% faster than Apache + mod_php
+- **WordPress**: 3x faster with LSCache enabled
+- **Concurrent Connections**: Handles 5x more connections
+
+## Conclusion
+
+OpenLiteSpeed is an excellent choice for high-performance web hosting, especially for WordPress sites. Its built-in caching, efficient architecture, and free licensing make it compelling for any web project.

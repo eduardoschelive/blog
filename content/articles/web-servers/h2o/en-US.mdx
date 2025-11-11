@@ -1,0 +1,185 @@
+---
+title: H2O - The Optimized HTTP/2 Web Server
+description: Explore H2O, the next-generation HTTP server optimized for HTTP/2. Learn about its superior performance, modern features, and cutting-edge protocol support.
+publishedAt: 2024-11-08
+author: Eduardo Schelive
+tags: [h2o, web-server, http2, performance, modern]
+slug: h2o
+coverImage: https://h2o.examp1e.net/assets/logo.svg
+---
+
+# H2O - The Optimized HTTP/2 Web Server
+
+H2O is a new generation HTTP server that provides faster response times and lower latency. Built from the ground up with HTTP/2 in mind, it offers cutting-edge performance and modern protocol support.
+
+## What is H2O?
+
+H2O is an optimized HTTP server with support for HTTP/1.x, HTTP/2, and HTTP/3. Developed by Kazuho Oku and DeNA Co., Ltd., it's designed to provide the best possible performance for modern web applications. The name "H2O" represents the HTTP/2 protocol in a simple, memorable form.
+
+## Key Features
+
+- **HTTP/2 Optimized**: Built specifically for HTTP/2 from the ground up
+- **HTTP/3/QUIC Support**: Experimental support for the latest protocols
+- **Server Push**: Automatic HTTP/2 server push capabilities
+- **Fast**: Optimized C implementation for maximum speed
+- **TLS Acceleration**: Hardware acceleration for SSL/TLS
+- **Mruby Integration**: Programmable with mruby scripts
+- **Access Logging**: Flexible and efficient logging system
+
+## Installation
+
+Installing H2O on Linux:
+
+```bash
+# Ubuntu/Debian
+sudo apt update
+sudo apt install h2o
+
+# From source
+git clone https://github.com/h2o/h2o.git
+cd h2o
+cmake -DWITH_MRUBY=on .
+make
+sudo make install
+```
+
+## Basic Configuration
+
+H2O uses YAML for configuration (`/etc/h2o/h2o.conf`):
+
+```yaml
+hosts:
+  "example.com:80":
+    paths:
+      /:
+        file.dir: /var/www/html
+    access-log: /var/log/h2o/access.log
+```
+
+## HTTP/2 Configuration
+
+Enable HTTP/2 with HTTPS:
+
+```yaml
+hosts:
+  "example.com:443":
+    listen:
+      port: 443
+      ssl:
+        certificate-file: /path/to/cert.pem
+        key-file: /path/to/key.pem
+    paths:
+      /:
+        file.dir: /var/www/html
+    
+    # HTTP/2 is automatically enabled with SSL
+```
+
+## Server Push
+
+Configure HTTP/2 server push:
+
+```yaml
+hosts:
+  "example.com:443":
+    paths:
+      /:
+        file.dir: /var/www/html
+        header.add: "Link: </style.css>; rel=preload; as=style"
+        header.add: "Link: </script.js>; rel=preload; as=script"
+```
+
+## Reverse Proxy
+
+Use H2O as a reverse proxy:
+
+```yaml
+hosts:
+  "example.com:80":
+    paths:
+      /:
+        proxy.reverse.url: http://localhost:8080
+        proxy.preserve-host: ON
+        proxy.timeout.io: 60000
+```
+
+## Mruby Handler
+
+Extend H2O with mruby scripts:
+
+```yaml
+hosts:
+  "example.com:80":
+    paths:
+      /api:
+        mruby.handler: |
+          Proc.new do |env|
+            [200, {"content-type" => "application/json"}, ['{"status":"ok"}']]
+          end
+```
+
+## Performance Tuning
+
+Optimize H2O for high performance:
+
+```yaml
+# Global settings
+num-threads: 4
+max-connections: 10000
+http2-max-concurrent-requests-per-connection: 100
+
+# Per-host settings
+hosts:
+  "example.com:443":
+    listen:
+      port: 443
+      ssl:
+        cipher-suite: "ECDHE-RSA-AES128-GCM-SHA256:ECDHE-RSA-AES256-GCM-SHA384"
+        cipher-preference: server
+```
+
+## Access Control
+
+Implement access control:
+
+```yaml
+hosts:
+  "example.com:80":
+    paths:
+      /admin:
+        file.dir: /var/www/admin
+        mruby.handler: |
+          Proc.new do |env|
+            if env["REMOTE_ADDR"] != "192.168.1.100"
+              [403, {}, ["Forbidden"]]
+            else
+              nil  # Continue to next handler
+            end
+          end
+```
+
+## WebSocket Support
+
+H2O supports WebSocket connections:
+
+```yaml
+hosts:
+  "example.com:80":
+    paths:
+      /ws:
+        proxy.reverse.url: http://localhost:8080
+        proxy.websocket: ON
+```
+
+## Performance Benchmarks
+
+H2O consistently shows excellent performance:
+
+- Superior HTTP/2 multiplexing efficiency
+- Lower latency than Nginx and Apache
+- Better resource utilization
+- Faster TLS handshakes with hardware acceleration
+
+## Conclusion
+
+H2O represents the next generation of web servers, built for modern protocols like HTTP/2 and HTTP/3. Its performance characteristics and modern feature set make it an excellent choice for high-performance web applications.

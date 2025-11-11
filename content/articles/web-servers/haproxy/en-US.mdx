@@ -1,0 +1,118 @@
+---
+title: HAProxy - The Reliable High Availability Load Balancer
+description: Master HAProxy, the world's fastest and most widely used software load balancer. Learn about TCP/HTTP load balancing, health checks, and high availability setups.
+publishedAt: 2024-08-12
+author: Eduardo Schelive
+tags: [haproxy, load-balancer, high-availability, tcp, performance]
+slug: haproxy
+coverImage: https://www.haproxy.org/img/HAProxyCommunityEdition_60px.png
+---
+
+# HAProxy - The Reliable High Availability Load Balancer
+
+HAProxy (High Availability Proxy) is a free, fast, and reliable solution offering load balancing and proxying for TCP and HTTP-based applications. It's the de facto standard for software load balancing.
+
+## What is HAProxy?
+
+HAProxy is an open-source software that provides a high availability load balancer and proxy server for TCP and HTTP-based applications. Created by Willy Tarreau in 2000, it powers many of the world's most visited websites including GitHub, Reddit, and Stack Overflow.
+
+## Key Features
+
+- **High Performance**: Handles millions of requests per second
+- **Layer 4 & Layer 7**: TCP and HTTP load balancing
+- **Health Checks**: Active and passive health monitoring
+- **SSL/TLS Termination**: Offload SSL processing from backends
+- **Stick Tables**: Session persistence and rate limiting
+- **ACLs**: Powerful access control lists for routing decisions
+- **Statistics Dashboard**: Real-time monitoring and statistics
+
+## Installation
+
+Installing HAProxy on Linux:
+
+```bash
+# Ubuntu/Debian
+sudo apt update
+sudo apt install haproxy
+
+# CentOS/RHEL
+sudo yum install haproxy
+
+# Start the service
+sudo systemctl start haproxy
+sudo systemctl enable haproxy
+```
+
+## Basic Configuration
+
+HAProxy configuration is in `/etc/haproxy/haproxy.cfg`:
+
+```haproxy
+global
+    maxconn 4096
+    log /dev/log local0
+
+defaults
+    mode http
+    timeout connect 5000ms
+    timeout client 50000ms
+    timeout server 50000ms
+
+frontend http_front
+    bind *:80
+    default_backend http_back
+
+backend http_back
+    balance roundrobin
+    server server1 192.168.1.10:80 check
+    server server2 192.168.1.11:80 check
+    server server3 192.168.1.12:80 check
+```
+
+## Load Balancing Algorithms
+
+HAProxy supports multiple balancing algorithms:
+
+- **roundrobin**: Each server in turn
+- **leastconn**: Server with least connections
+- **source**: Based on client IP hash
+- **uri**: Based on URI hash
+- **random**: Random server selection
+
+## Health Checks
+
+Configure health checks to ensure traffic only goes to healthy servers:
+
+```haproxy
+backend http_back
+    option httpchk GET /health
+    http-check expect status 200
+    server server1 192.168.1.10:80 check inter 2000 rise 2 fall 3
+```
+
+## SSL/TLS Configuration
+
+Enable HTTPS with SSL termination:
+
+```haproxy
+frontend https_front
+    bind *:443 ssl crt /etc/haproxy/certs/example.pem
+    default_backend http_back
+```
+
+## Statistics Dashboard
+
+Enable the statistics page:
+
+```haproxy
+listen stats
+    bind *:8404
+    stats enable
+    stats uri /stats
+    stats refresh 30s
+    stats admin if TRUE
+```
+
+## Conclusion
+
+HAProxy is the gold standard for load balancing. Its reliability, performance, and extensive feature set make it the top choice for high-availability deployments.

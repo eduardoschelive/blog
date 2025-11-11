@@ -26,7 +26,9 @@
     },
     "latest": {
       "title": "Latest Articles",
-      "viewAll": "View all articles"
+      "subtitle": "Discover the most recent articles and insights from our blog",
+      "viewAll": "View all articles",
+      "readMore": "Read more"
     },
     "categories": {
       "title": "Explore Categories",

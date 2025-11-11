@@ -1,0 +1,74 @@
+---
+title: Apache HTTP Server - A Potência Tradicional
+description: Explore o Apache HTTP Server, o servidor web mais utilizado. Aprenda sobre módulos, hosts virtuais, .htaccess e melhores práticas.
+publishedAt: 2024-05-22
+author: Eduardo Schelive
+tags: [apache, servidor-web, devops, modulos, htaccess]
+slug: apache
+coverImage: https://httpd.apache.org/images/httpd_logo_wide_new.png
+---
+
+# Apache HTTP Server - A Potência Tradicional
+
+O Apache HTTP Server tem sido a espinha dorsal da web por décadas. Apesar de alternativas mais recentes, permanece incrivelmente popular graças à sua flexibilidade, documentação extensa e poderoso sistema de módulos.
+
+## O que é Apache?
+
+Apache HTTP Server, comumente chamado de Apache, é um servidor web livre e de código aberto desenvolvido e mantido pela Apache Software Foundation. Lançado pela primeira vez em 1995, alimentou milhões de sites em todo o mundo.
+
+## Recursos Principais
+
+- **Arquitetura Modular**: Estenda funcionalidades com centenas de módulos
+- **Hosts Virtuais**: Hospede múltiplos sites em um único servidor
+- **Arquivos .htaccess**: Configuração por diretório sem reiniciar
+- **Multiplataforma**: Roda em Unix, Linux, Windows e muito mais
+- **Ecossistema Maduro**: Décadas de documentação e suporte da comunidade
+- **Conteúdo Dinâmico**: Suporte integrado para PHP, Python, Perl e mais
+
+## Instalação
+
+Instalar o Apache é simples em diferentes plataformas:
+
+```bash
+# Ubuntu/Debian
+sudo apt update
+sudo apt install apache2
+
+# CentOS/RHEL
+sudo yum install httpd
+
+# Iniciar o serviço
+sudo systemctl start apache2
+sudo systemctl enable apache2
+```
+
+## Configuração Básica
+
+A configuração principal do Apache geralmente está em `/etc/apache2/apache2.conf` ou `/etc/httpd/conf/httpd.conf`:
+
+```apache
+<VirtualHost *:80>
+    ServerName exemplo.com
+    DocumentRoot /var/www/html
+    
+    <Directory /var/www/html>
+        Options Indexes FollowSymLinks
+        AllowOverride All
+        Require all granted
+    </Directory>
+</VirtualHost>
+```
+
+## Módulos Populares
+
+A força do Apache está em seu sistema modular:
+
+- **mod_rewrite**: Reescrita de URLs e redirecionamento
+- **mod_ssl**: Suporte HTTPS
+- **mod_proxy**: Funcionalidade de proxy reverso
+- **mod_security**: Firewall de aplicação web
+- **mod_cache**: Cache para melhor performance
+
+## Conclusão
+
+O Apache continua sendo uma escolha sólida para hospedagem web. Sua flexibilidade e conjunto extenso de recursos o tornam adequado para praticamente qualquer projeto web.

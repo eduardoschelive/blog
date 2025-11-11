@@ -1,0 +1,86 @@
+---
+title: Lighttpd - Lightweight and Lightning Fast
+description: Discover Lighttpd, the lightweight web server optimized for speed and low memory usage. Perfect for embedded systems and high-performance scenarios.
+publishedAt: 2024-06-18
+author: Eduardo Schelive
+tags: [lighttpd, web-server, performance, lightweight, embedded]
+slug: lighttpd
+coverImage: https://www.lighttpd.net/assets/images/light_logo.png
+---
+
+# Lighttpd - Lightweight and Lightning Fast
+
+Lighttpd (pronounced "lighty") is a web server designed for speed and efficiency. With a small memory footprint and optimized for high-performance environments, it's an excellent choice for resource-constrained scenarios.
+
+## What is Lighttpd?
+
+Lighttpd is an open-source web server optimized for speed-critical environments while remaining standards-compliant, secure, and flexible. It was created by Jan Kneschke in 2003 and has been used by high-traffic websites like YouTube and Wikipedia.
+
+## Key Features
+
+- **Low Memory Footprint**: Uses significantly less memory than Apache or Nginx
+- **Event-Driven Architecture**: Handles many concurrent connections efficiently
+- **FastCGI Support**: Excellent support for dynamic content
+- **URL Rewriting**: Powerful rewrite engine similar to mod_rewrite
+- **Load Balancing**: Built-in load balancing capabilities
+- **Small Codebase**: Easy to audit and secure
+
+## Installation
+
+Getting started with Lighttpd is straightforward:
+
+```bash
+# Ubuntu/Debian
+sudo apt update
+sudo apt install lighttpd
+
+# CentOS/RHEL
+sudo yum install lighttpd
+
+# Start the service
+sudo systemctl start lighttpd
+sudo systemctl enable lighttpd
+```
+
+## Basic Configuration
+
+The main configuration file is located at `/etc/lighttpd/lighttpd.conf`:
+
+```lighttpd
+server.document-root = "/var/www/html"
+server.port = 80
+
+mimetype.assign = (
+    ".html" => "text/html",
+    ".txt" => "text/plain",
+    ".jpg" => "image/jpeg",
+    ".png" => "image/png"
+)
+```
+
+## Use Cases
+
+Lighttpd excels in specific scenarios:
+
+- Embedded systems with limited resources
+- Serving static content at high speed
+- FastCGI application servers
+- Development environments
+- IoT devices
+
+## Performance Optimization
+
+Lighttpd is already fast, but you can optimize it further:
+
+```lighttpd
+server.max-connections = 1024
+server.max-worker = 4
+server.max-fds = 2048
+
+# Enable compression
+compress.filetype = ("text/html", "text/css", "text/javascript")
+```
+
+## Conclusion
+
+If you need a lightweight, fast web server with low resource consumption, Lighttpd is an excellent choice. It's particularly well-suited for embedded systems and high-performance static content serving.

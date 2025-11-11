@@ -1,0 +1,140 @@
+---
+title: Envoy Proxy - Proxy Moderno para Service Mesh
+description: Explore o Envoy, o proxy de alta performance projetado para aplicações cloud-native. Aprenda sobre service mesh, observabilidade e gerenciamento avançado de tráfego.
+publishedAt: 2024-09-03
+author: Eduardo Schelive
+tags: [envoy, service-mesh, cloud-native, proxy, observabilidade]
+slug: envoy
+coverImage: https://www.envoyproxy.io/img/envoy-logo.svg
+---
+
+# Envoy Proxy - Proxy Moderno para Service Mesh
+
+Envoy é um proxy moderno de alta performance para edge e serviços, projetado para aplicações cloud-native. Originalmente construído na Lyft, é agora a fundação para soluções de service mesh como Istio e AWS App Mesh.
+
+## O que é Envoy?
+
+Envoy é um proxy de código aberto para edge e serviços, projetado para aplicações cloud-native. Fornece recursos avançados de balanceamento de carga, observabilidade, segurança e automação de rede. A Cloud Native Computing Foundation (CNCF) graduou o Envoy como projeto de nível superior.
+
+## Recursos Principais
+
+- **Balanceamento de Carga Avançado**: Suporte para múltiplos algoritmos e tentativas automáticas
+- **Descoberta de Serviços**: Descoberta dinâmica de serviços e verificação de saúde
+- **Observabilidade**: Métricas, logging e rastreamento distribuído integrados
+- **Suporte gRPC**: Suporte de primeira classe para HTTP/2 e gRPC
+- **Arquitetura de Filtros**: Extensível com filtros customizados
+- **Hot Restart**: Atualiza configuração sem derrubar conexões
+- **TLS/mTLS**: Autenticação TLS mútua entre serviços
+
+## Arquitetura
+
+Envoy usa uma arquitetura modular com filtros:
+
+```
+Listener → Filter Chain → Cluster → Endpoints
+```
+
+Cada componente é responsável por uma parte específica do processamento de requisições.
+
+## Configuração Básica
+
+Envoy usa YAML para configuração:
+
+```yaml
+static_resources:
+  listeners:
+  - name: listener_0
+    address:
+      socket_address:
+        address: 0.0.0.0
+        port_value: 10000
+    filter_chains:
+    - filters:
+      - name: envoy.filters.network.http_connection_manager
+        typed_config:
+          "@type": type.googleapis.com/envoy.extensions.filters.network.http_connection_manager.v3.HttpConnectionManager
+          stat_prefix: ingress_http
+          route_config:
+            name: local_route
+            virtual_hosts:
+            - name: backend
+              domains: ["*"]
+              routes:
+              - match:
+                  prefix: "/"
+                route:
+                  cluster: service_backend
+          http_filters:
+          - name: envoy.filters.http.router
+  
+  clusters:
+  - name: service_backend
+    type: STRICT_DNS
+    lb_policy: ROUND_ROBIN
+    load_assignment:
+      cluster_name: service_backend
+      endpoints:
+      - lb_endpoints:
+        - endpoint:
+            address:
+              socket_address:
+                address: backend.exemplo.com
+                port_value: 80
+```
+
+## Executando com Docker
+
+Início rápido com Docker:
+
+```bash
+docker run -d \
+  --name envoy \
+  -p 10000:10000 \
+  -v $(pwd)/envoy.yaml:/etc/envoy/envoy.yaml \
+  envoyproxy/envoy:v1.27-latest
+```
+
+## Integração com Service Mesh
+
+Envoy é o data plane para service meshes populares:
+
+- **Istio**: Usa Envoy como proxy sidecar
+- **AWS App Mesh**: Construído sobre Envoy
+- **Consul Connect**: Integração opcional com Envoy
+- **Kuma**: Service mesh baseado em Envoy
+
+## Observabilidade
+
+Envoy fornece observabilidade abrangente:
+
+```yaml
+admin:
+  address:
+    socket_address:
+      address: 0.0.0.0
+      port_value: 9901
+
+stats_sinks:
+- name: envoy.stat_sinks.statsd
+  typed_config:
+    "@type": type.googleapis.com/envoy.config.metrics.v3.StatsdSink
+    address:
+      socket_address:
+        address: statsd.exemplo.com
+        port_value: 8125
+```
+
+## Gerenciamento Avançado de Tráfego
+
+Envoy suporta roteamento sofisticado:
+
+- Circuit breaking
+- Limitação de taxa
+- Injeção de falhas
+- Traffic shadowing
+- Manipulação de headers
+- Roteamento ponderado
+
+## Conclusão
+
+Envoy se tornou o proxy padrão para arquiteturas modernas de microsserviços. Seu rico conjunto de recursos e forte observabilidade o tornam ideal para sistemas distribuídos complexos.

@@ -1,0 +1,63 @@
+---
+title: Guia Completo do Nginx - Servidor Web de Alta Performance
+description: Domine o Nginx da instalação às configurações avançadas. Aprenda balanceamento de carga, proxy reverso, cache e técnicas de otimização.
+publishedAt: 2024-04-10
+author: Eduardo Schelive
+tags: [nginx, servidor-web, devops, performance, balanceamento-carga]
+slug: nginx
+coverImage: https://nginx.org/nginx.png
+---
+
+# Guia Completo do Nginx - Servidor Web de Alta Performance
+
+O Nginx é um dos servidores web mais populares do mundo, conhecido por sua alta performance, estabilidade e baixo consumo de recursos. Neste guia completo, você aprenderá tudo o que precisa saber sobre o Nginx.
+
+## O que é Nginx?
+
+Nginx (pronuncia-se "engine-x") é um poderoso servidor web que também pode ser usado como proxy reverso, balanceador de carga e cache HTTP. Criado por Igor Sysoev em 2004, tornou-se a escolha preferida para sites de alto tráfego.
+
+## Recursos Principais
+
+- **Alta Performance**: Gerencia milhares de conexões simultâneas eficientemente
+- **Baixo Uso de Memória**: Arquitetura otimizada com consumo mínimo de recursos
+- **Proxy Reverso**: Atua como intermediário para servidores backend
+- **Balanceamento de Carga**: Distribui o tráfego entre múltiplos servidores
+- **Conteúdo Estático**: Serve arquivos estáticos extremamente rápido
+- **Suporte SSL/TLS**: Suporte HTTPS integrado com protocolos modernos
+
+## Instalação
+
+Instalar o Nginx é simples na maioria das distribuições Linux:
+
+```bash
+# Ubuntu/Debian
+sudo apt update
+sudo apt install nginx
+
+# CentOS/RHEL
+sudo yum install nginx
+
+# Iniciar o serviço
+sudo systemctl start nginx
+sudo systemctl enable nginx
+```
+
+## Configuração Básica
+
+O arquivo de configuração principal geralmente está localizado em `/etc/nginx/nginx.conf`. Aqui está um exemplo de configuração simples:
+
+```nginx
+server {
+    listen 80;
+    server_name exemplo.com;
+    
+    location / {
+        root /var/www/html;
+        index index.html;
+    }
+}
+```
+
+## Conclusão
+
+O Nginx é uma ferramenta essencial para infraestrutura web moderna. Sua performance e versatilidade o tornam ideal para qualquer escala de implantação.

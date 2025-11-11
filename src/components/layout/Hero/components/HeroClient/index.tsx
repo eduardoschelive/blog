@@ -36,20 +36,20 @@ function HeroClient({ article }: HeroClientProps) {
   return (
     <section className="relative min-h-[calc(100vh-64px)] flex items-center justify-center px-4 py-12 overflow-hidden">
       <div className="max-w-7xl mx-auto w-full relative z-10">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
-          <div className="space-y-8">
-            <div className="space-y-4">
-              <h1 className="text-5xl lg:text-6xl font-bold leading-tight">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-16 items-center">
+          <div className="space-y-6 lg:space-y-8">
+            <div className="space-y-3 lg:space-y-4">
+              <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold leading-tight">
                 <BlurText
                   text={t('greeting')}
-                  className="block text-foreground/80 text-2xl lg:text-3xl font-normal mb-2"
+                  className="block text-foreground/80 text-xl sm:text-2xl lg:text-3xl font-normal mb-2"
                   direction="top"
                   delay={30}
                   animateBy="letters"
                 />
                 <BlurText
                   text="Eduardo Guiraldelli Schelive"
-                  className="block bg-linear-to-r from-primary via-secondary to-primary bg-clip-text text-transparent animate-gradient bg-size-[200%_auto]"
+                  className="block text-primary bg-gradient-to-r from-primary via-secondary to-primary bg-clip-text [-webkit-text-fill-color:transparent] [text-fill-color:transparent] animate-gradient bg-size-[200%_auto]"
                   direction="bottom"
                   delay={50}
                   animateBy="words"
@@ -57,7 +57,7 @@ function HeroClient({ article }: HeroClientProps) {
               </h1>
               <BlurText
                 text={t('subtitle')}
-                className="text-xl lg:text-2xl text-foreground/70 leading-relaxed max-w-xl"
+                className="text-base sm:text-lg lg:text-xl xl:text-2xl text-foreground/70 leading-relaxed max-w-xl"
                 direction="bottom"
                 delay={25}
                 animateBy="words"
@@ -66,7 +66,7 @@ function HeroClient({ article }: HeroClientProps) {
 
             <LazyMotion features={domAnimation} strict>
               <m.div
-                className="flex flex-wrap gap-4"
+                className="flex flex-col sm:flex-row gap-3 sm:gap-4"
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{
@@ -80,7 +80,7 @@ function HeroClient({ article }: HeroClientProps) {
                   href="/about"
                   color="primary"
                   size="lg"
-                  className="font-semibold shadow-lg hover:scale-105 transition-transform"
+                  className="font-semibold shadow-lg hover:scale-105 transition-transform w-full sm:w-auto"
                 >
                   {t('aboutButton')}
                 </Button>
@@ -89,7 +89,7 @@ function HeroClient({ article }: HeroClientProps) {
                   href="/categories"
                   variant="bordered"
                   size="lg"
-                  className="font-semibold border-2 hover:scale-105 transition-transform"
+                  className="font-semibold border-2 hover:scale-105 transition-transform w-full sm:w-auto"
                 >
                   {t('articlesButton')}
                 </Button>
@@ -98,10 +98,10 @@ function HeroClient({ article }: HeroClientProps) {
           </div>
 
           <ArticleRoot article={article}>
-            <div className="w-full">
+            <div className="w-full mt-8 lg:mt-0">
               <BlurText
                 text={t('latestArticle')}
-                className="mb-4 text-sm font-bold text-primary uppercase tracking-widest"
+                className="mb-4 text-xs sm:text-sm font-bold text-primary uppercase tracking-widest"
                 direction="bottom"
                 delay={40}
                 animateBy="letters"
@@ -118,22 +118,22 @@ function HeroClient({ article }: HeroClientProps) {
                     ease: [0.25, 0.46, 0.45, 0.94],
                   }}
                 >
-                  <Card className="relative w-full transition-all duration-300 shadow-lg drop-shadow hover:scale-105">
+                  <Card className="relative w-full transition-all duration-300 shadow-lg drop-shadow hover:scale-[1.02] lg:hover:scale-105">
                     <ArticleImage showPattern />
 
                     <Divider />
 
-                    <CardHeader className="pb-0 pt-6 px-6 flex-col items-start gap-3">
+                    <CardHeader className="pb-0 pt-4 sm:pt-6 px-4 sm:px-6 flex-col items-start gap-2 sm:gap-3">
                       <ArticleCategory asChip asLink />
-                      <ArticleTitle className="text-2xl font-bold leading-tight line-clamp-2" />
+                      <ArticleTitle className="text-xl sm:text-2xl font-bold leading-tight line-clamp-2" />
                     </CardHeader>
 
-                    <CardBody className="px-6 py-4">
-                      <ArticleDescription className="text-foreground/70 line-clamp-3 leading-relaxed" />
+                    <CardBody className="px-4 sm:px-6 py-3 sm:py-4">
+                      <ArticleDescription className="text-sm sm:text-base text-foreground/70 line-clamp-3 leading-relaxed" />
                     </CardBody>
 
-                    <CardFooter className="px-6 pb-6">
-                      <ArticleLink className="text-primary font-bold">
+                    <CardFooter className="px-4 sm:px-6 pb-4 sm:pb-6">
+                      <ArticleLink className="text-sm sm:text-base text-primary font-bold">
                         {t('readMore')}
                       </ArticleLink>
                     </CardFooter>

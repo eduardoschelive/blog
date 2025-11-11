@@ -59,13 +59,13 @@ export function CategoriesSidebarClient({
               <Link
                 // @ts-expect-error - Dynamic routes are valid but TypeScript can't infer them
                 href={`/categories/${category.slug}`}
-                className="group block border-l-2 border-secondary/40 hover:border-primary pl-4 py-2 ml-0 hover:pl-6 transition-all duration-300"
+                className="group block border-l-2 border-secondary/40 hover:border-primary pl-4 py-2 transition-all duration-300"
               >
-                <div className="flex items-baseline justify-between gap-2 mb-1">
-                  <h3 className="text-foreground group-hover:text-primary transition-colors duration-200 font-semibold">
+                <div className="flex items-baseline justify-between gap-2 mb-1 min-w-0">
+                  <h3 className="text-foreground group-hover:text-primary transition-colors duration-200 font-semibold truncate flex-1 min-w-0">
                     {category.title}
                   </h3>
-                  <span className="text-xs text-foreground/40 group-hover:text-secondary transition-colors duration-200 tabular-nums">
+                  <span className="text-xs text-foreground/40 group-hover:text-secondary transition-colors duration-200 tabular-nums shrink-0">
                     {category.articles.length}
                   </span>
                 </div>

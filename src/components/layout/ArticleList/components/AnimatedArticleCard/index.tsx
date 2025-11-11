@@ -12,23 +12,57 @@ import {
 } from '@/components/layout/ArticleCard'
 import { LazyMotion, domAnimation, m, useInView } from 'framer-motion'
 import { useTranslations } from 'next-intl'
-import { useRef } from 'react'
+import { useEffect, useRef, useState } from 'react'
 
 interface AnimatedArticleCardProps {
   article: Article
 }
 
 function AnimatedArticleCard({ article }: AnimatedArticleCardProps) {
-  const ref = useRef(null)
-  const isInView = useInView(ref, { amount: 0.3, margin: '0px 0px -100px 0px' })
+  const ref = useRef<HTMLDivElement>(null)
   const t = useTranslations('HomePage.latest')
+
+  const [isLockedVisible, setIsLockedVisible] = useState(false)
+
+  const isInView = useInView(ref, {
+    amount: 0.2,
+    margin: '0px 0px -50px 0px',
+  })
+
+  useEffect(() => {
+    if (!ref.current) return
+
+    const handleScroll = () => {
+      if (!ref.current) return
+
+      const rect = ref.current.getBoundingClientRect()
+      const viewportHeight = window.innerHeight
+
+      if (rect.bottom < 0) {
+        setIsLockedVisible(true)
+      }
+
+      if (rect.top > viewportHeight) {
+        setIsLockedVisible(false)
+      }
+    }
+
+    window.addEventListener('scroll', handleScroll, { passive: true })
+    handleScroll()
+
+    return () => window.removeEventListener('scroll', handleScroll)
+  }, [])
+
+  const shouldBeVisible = isLockedVisible || isInView
 
   return (
     <LazyMotion features={domAnimation} strict>
       <m.div
         ref={ref}
         initial={{ opacity: 0, x: -100 }}
-        animate={isInView ? { opacity: 1, x: 0 } : { opacity: 0, x: -100 }}
+        animate={
+          shouldBeVisible ? { opacity: 1, x: 0 } : { opacity: 0, x: -100 }
+        }
         transition={{
           duration: 0.5,
           ease: [0.25, 0.4, 0.25, 1],

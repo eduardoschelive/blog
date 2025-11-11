@@ -1,6 +1,6 @@
 'use client'
 
-import { Link } from '@heroui/react'
+import { Link, cn } from '@heroui/react'
 import { m } from 'framer-motion'
 import type { LinkProps } from '@heroui/react'
 import type { ReactNode } from 'react'
@@ -26,7 +26,7 @@ function AnimatedLink({
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
       showAnchorIcon
-      className={className}
+      className={cn('inline-block w-fit', className)}
       anchorIcon={
         <m.span
           animate={

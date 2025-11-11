@@ -4,18 +4,17 @@ import { AnimatedLink } from '@/components/ui/AnimatedLink'
 import { Link } from '@/i18n/navigation'
 import type { CategoryWithArticles } from '@/types/category.type'
 import { LazyMotion, domAnimation, m, useInView } from 'framer-motion'
+import { useTranslations } from 'next-intl'
 import { useRef } from 'react'
 
 interface CategoriesSidebarClientProps {
   categories: CategoryWithArticles[]
-  title: string
-  viewAllText: string
 }
 
 export function CategoriesSidebarClient({
   categories,
-  title,
 }: CategoriesSidebarClientProps) {
+  const t = useTranslations('HomePage.categories')
   const ref = useRef(null)
   const isInView = useInView(ref, {
     once: false,
@@ -41,13 +40,13 @@ export function CategoriesSidebarClient({
             href="/categories"
             className="text-2xl font-semibold hover:text-primary transition-colors duration-200"
           >
-            {title}
+            {t('title')}
           </AnimatedLink>
         </div>
 
-        <ul>
+        <div className="space-y-3">
           {categories.map((category, index) => (
-            <m.li
+            <m.div
               key={category.slug}
               initial={{ opacity: 0, x: 20 }}
               animate={isInView ? { opacity: 1, x: 0 } : { opacity: 0, x: 20 }}
@@ -60,20 +59,23 @@ export function CategoriesSidebarClient({
               <Link
                 // @ts-expect-error - Dynamic routes are valid but TypeScript can't infer them
                 href={`/categories/${category.slug}`}
-                className="group flex items-start gap-2 py-2 hover:text-primary transition-colors duration-200"
+                className="group block border-l-2 border-secondary/40 hover:border-primary pl-4 py-2 ml-0 hover:pl-6 transition-all duration-300"
               >
-                <div className="flex-1 min-w-0">
-                  <span className="text-foreground group-hover:text-primary transition-colors duration-200 line-clamp-2">
-                    → {category.title}
-                  </span>
-                  <span className="text-xs text-foreground/40 ml-2">
-                    ({category.articles.length})
+                <div className="flex items-baseline justify-between gap-2 mb-1">
+                  <h3 className="text-foreground group-hover:text-primary transition-colors duration-200 font-semibold">
+                    {category.title}
+                  </h3>
+                  <span className="text-xs text-foreground/40 group-hover:text-secondary transition-colors duration-200 tabular-nums">
+                    {category.articles.length}
                   </span>
                 </div>
+                <p className="text-xs text-foreground/60 group-hover:text-foreground/80 transition-colors duration-200 line-clamp-2">
+                  {category.description}
+                </p>
               </Link>
-            </m.li>
+            </m.div>
           ))}
-        </ul>
+        </div>
       </m.aside>
     </LazyMotion>
   )

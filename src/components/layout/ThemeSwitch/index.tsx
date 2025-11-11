@@ -1,14 +1,14 @@
 'use client'
 
-import { Button, Skeleton } from '@heroui/react'
+import { Skeleton } from '@heroui/react'
 import { useTranslations } from 'next-intl'
 import { useTheme } from 'next-themes'
-import { useEffect, useRef, useState } from 'react'
+import { useEffect, useState } from 'react'
 import { IoMoon, IoSunny } from 'react-icons/io5'
 import { IconTooltip } from '../../ui/IconTooltip'
+import { IconButton } from '../../ui/IconButton'
 
 export function ThemeSwitch() {
-  const buttonRef = useRef<HTMLButtonElement>(null)
   const { resolvedTheme, setTheme } = useTheme()
   const [isMounted, setIsMounted] = useState(false)
   const t = useTranslations('Theme')
@@ -34,15 +34,14 @@ export function ThemeSwitch() {
         theme: isDarkTheme ? t('light') : t('dark'),
       })}
     >
-      <Button
-        isIconOnly
-        onPress={handleThemeChange}
-        radius="full"
-        variant="light"
-        ref={buttonRef}
+      <IconButton
+        onClick={handleThemeChange}
+        aria-label={t('tooltip.description', {
+          theme: isDarkTheme ? t('light') : t('dark'),
+        })}
       >
-        {isDarkTheme ? <IoMoon size={24} /> : <IoSunny size={24} />}
-      </Button>
+        {isDarkTheme ? <IoMoon size={22} /> : <IoSunny size={22} />}
+      </IconButton>
     </IconTooltip>
   )
 }

@@ -100,7 +100,7 @@ function HeroClient({ article }: HeroClientProps) {
           <ArticleRoot article={article}>
             <div className="w-full mt-8 lg:mt-0">
               <BlurText
-                text={t('latestArticle')}
+                text={t('featuredArticle')}
                 className="mb-4 text-xs sm:text-sm font-bold text-primary uppercase tracking-widest"
                 direction="bottom"
                 delay={40}

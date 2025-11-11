@@ -4,7 +4,7 @@
     "subtitle": "Desenvolvedor full-stack apaixonado por criar experiências digitais incríveis e compartilhar conhecimento sobre tecnologia.",
     "aboutButton": "Sobre mim",
     "articlesButton": "Ver artigos",
-    "latestArticle": "Artigo mais recente",
+    "featuredArticle": "Artigo em destaque",
     "readMore": "Ler artigo completo",
     "scrollDown": "Role para baixo"
   },
@@ -12,18 +12,6 @@
     "dateNotAvailable": "Data não disponível"
   },
   "HomePage": {
-    "title": "Olá mundo!",
-    "hero": {
-      "title": "Bem-vindo ao meu blog",
-      "subtitle": "Descubra insights, tutoriais e reflexões sobre desenvolvimento web moderno, tecnologia e muito mais.",
-      "exploreButton": "Explorar artigos",
-      "aboutButton": "Sobre mim"
-    },
-    "featured": {
-      "title": "Artigo em destaque",
-      "readMore": "Ler mais",
-      "article": "Destaque"
-    },
     "latest": {
       "title": "Últimos artigos",
       "subtitle": "Descubra os artigos e insights mais recentes do nosso blog",
@@ -34,11 +22,6 @@
       "title": "Explorar categorias",
       "subtitle": "Navegue por diferentes tópicos e encontre artigos que mais lhe interessam.",
       "viewAll": "Ver todas as categorias"
-    },
-    "cta": {
-      "title": "Quer saber mais?",
-      "subtitle": "Conheça mais sobre mim, minha experiência e o que move minha paixão pela tecnologia.",
-      "button": "Sobre mim"
     }
   },
   "Theme": {
@@ -101,52 +84,7 @@
       "tooltip": "Assinar Feed RSS"
     }
   },
-  "About": {
-    "title": "Eduardo Schelive",
-    "subtitle": "Desenvolvedor full-stack apaixonado por tecnologias modernas e soluções escaláveis",
-    "whoAmI": {
-      "title": "Quem Sou Eu",
-      "description1": "Sou um desenvolvedor full-stack com mais de 8 anos de experiência construindo aplicações web e sistemas distribuídos. Me especializo em ecossistemas JavaScript/TypeScript e práticas modernas de desenvolvimento.",
-      "description2": "Durante minha carreira, trabalhei com startups e empresas corporativas, ajudando-as a construir soluções escaláveis que resolvem problemas do mundo real. Sou apaixonado por código limpo, otimização de performance e experiência do desenvolvedor.",
-      "description3": "Quando não estou programando, você pode me encontrar escrevendo artigos técnicos, contribuindo para projetos open source, ou explorando novas tecnologias que podem melhorar a forma como construímos software."
-    },
-    "expertise": {
-      "title": "Áreas de Especialização",
-      "frontend": "Desenvolvimento Frontend (React, Next.js, TypeScript)",
-      "backend": "Desenvolvimento Backend (Node.js, Python, Go)",
-      "devops": "DevOps e Infraestrutura (Docker, Kubernetes, AWS)",
-      "mobile": "Desenvolvimento Mobile (React Native, Flutter)"
-    },
-    "experience": {
-      "title": "Experiência Profissional",
-      "job1": {
-        "title": "Desenvolvedor Full-Stack Sênior",
-        "company": "TechCorp Solutions",
-        "period": "2021 - Presente",
-        "description": "Liderando desenvolvimento de arquitetura de microsserviços atendendo 1M+ usuários. Construí APIs escaláveis e aplicações web modernas usando React, Node.js e AWS."
-      },
-      "job2": {
-        "title": "Desenvolvedor Full-Stack",
-        "company": "StartupXYZ",
-        "period": "2019 - 2021",
-        "description": "Desenvolvi e mantive plataforma de e-commerce do zero. Implementei sistemas de pagamento, gerenciamento de estoque e dashboard de analytics em tempo real."
-      },
-      "job3": {
-        "title": "Desenvolvedor Frontend",
-        "company": "WebAgency Pro",
-        "period": "2016 - 2019",
-        "description": "Criei aplicações web responsivas para diversos clientes. Me especializei em otimização de performance e frameworks JavaScript modernos."
-      }
-    },
-    "techStack": {
-      "title": "Tecnologias que Trabalho"
-    },
-    "contact": {
-      "title": "Vamos Trabalhar Juntos",
-      "subtitle": "Interessado em colaborar? Estou sempre aberto a discutir novas oportunidades e projetos interessantes.",
-      "email": "Enviar Email"
-    }
-  },
+
   "Categories": {
     "title": "Categorias",
     "description": "Explore todas as categorias de artigos disponíveis.",

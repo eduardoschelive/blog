@@ -3,7 +3,6 @@
 import { LOCALES } from '@/constants/locale'
 import { useTranslatedNavigation } from '@/hooks/useTranslatedNavigation'
 import {
-  Button,
   Dropdown,
   DropdownItem,
   DropdownMenu,
@@ -13,6 +12,7 @@ import type { Locale } from 'next-intl'
 import { useTranslations } from 'next-intl'
 import { IoEarth } from 'react-icons/io5'
 import { IconTooltip } from '../../ui/IconTooltip'
+import { IconButton } from '../../ui/IconButton'
 
 function LanguageSelect() {
   const t = useTranslations('Locale')
@@ -31,9 +31,9 @@ function LanguageSelect() {
       >
         <div>
           <DropdownTrigger>
-            <Button variant="light" isIconOnly radius="full">
-              <IoEarth size={24} />
-            </Button>
+            <IconButton>
+              <IoEarth size={22} />
+            </IconButton>
           </DropdownTrigger>
         </div>
       </IconTooltip>

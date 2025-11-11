@@ -2,6 +2,7 @@
 
 import { useTranslations } from 'next-intl'
 import { IconTooltip } from '../../ui/IconTooltip'
+import { IconButton } from '../../ui/IconButton'
 
 interface RSSButtonProps {
   className?: string
@@ -12,9 +13,10 @@ function RSSButton({ className = '' }: RSSButtonProps) {
 
   return (
     <IconTooltip delay={1000} closeDelay={200} content={t('rss.tooltip')}>
-      <a
+      <IconButton
+        as="a"
         href="/rss.xml"
-        className={`flex items-center justify-center w-10 h-10 rounded-lg hover:bg-accent/50 transition-colors ${className}`}
+        className={className}
         aria-label={t('rss.button')}
       >
         <svg
@@ -48,7 +50,7 @@ function RSSButton({ className = '' }: RSSButtonProps) {
             fill="currentColor"
           />
         </svg>
-      </a>
+      </IconButton>
     </IconTooltip>
   )
 }

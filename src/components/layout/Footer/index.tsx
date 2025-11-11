@@ -4,6 +4,7 @@ import { FOOTER_ID } from '@/constants/elements'
 import { useTranslations } from 'next-intl'
 import { IoLogoGithub, IoLogoLinkedin } from 'react-icons/io5'
 import { IconTooltip } from '../../ui/IconTooltip'
+import { IconButton } from '../../ui/IconButton'
 import { LanguageSelect } from '../LanguageSelect'
 import { RSSButton } from '../RSSButton'
 import { SearchButton } from '../SearchButton'
@@ -35,20 +36,20 @@ function Footer() {
       <div className="container mx-auto px-4 py-8">
         <div className="flex flex-col items-center justify-between gap-4 md:flex-row">
           {/* Social Links */}
-          <div className="flex items-center gap-4">
+          <div className="flex items-center gap-3">
             {socialLinks.map((link) => {
               const Icon = link.icon
               return (
                 <IconTooltip key={link.name} content={link.tooltip}>
-                  <a
+                  <IconButton
+                    as="a"
                     href={link.href}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="flex h-10 w-10 items-center justify-center rounded-full transition-colors hover:bg-default-100"
                     aria-label={link.name}
                   >
-                    <Icon size={20} />
-                  </a>
+                    <Icon size={22} />
+                  </IconButton>
                 </IconTooltip>
               )
             })}

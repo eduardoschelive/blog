@@ -1,10 +1,11 @@
 import { Hero } from '@/components/layout/Hero'
 import { ArticleList } from '@/components/layout/ArticleList'
 import { CategoriesSidebar } from '@/components/layout/CategoriesSidebar'
+import { HomePageClient } from './components/HomePageClient'
 
 export default async function HomePage() {
   return (
-    <>
+    <HomePageClient>
       <Hero />
       <div className="w-full px-4 py-20">
         <div className="max-w-7xl mx-auto">
@@ -16,6 +17,6 @@ export default async function HomePage() {
           </div>
         </div>
       </div>
-    </>
+    </HomePageClient>
   )
 }

@@ -19,11 +19,7 @@ function ArticleLink({ children, ...props }: ArticleLinkProps) {
   const href = buildArticleUrl(article.category.slug, article.slug)
 
   return (
-    <AnimatedLink
-      // @ts-expect-error - Dynamic routes are valid but TypeScript can't infer them
-      href={href}
-      {...props}
-    >
+    <AnimatedLink href={href} {...props}>
       {children}
     </AnimatedLink>
   )

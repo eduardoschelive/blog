@@ -21,13 +21,12 @@ export function HomePageClient({ children }: HomePageClientProps) {
   >([])
 
   useEffect(() => {
-    // Generate random floating particles with varied sizes
     const newParticles = Array.from({ length: 60 }, (_, i) => ({
       id: i,
       x: Math.random() * 100,
       y: Math.random() * 100,
-      size: Math.random() * 6 + 1, // 1-7px for more variety
-      duration: Math.random() * 20 + 15, // 15-35s
+      size: Math.random() * 6 + 1,
+      duration: Math.random() * 20 + 15,
       delay: Math.random() * 15,
     }))
     setParticles(newParticles)
@@ -35,13 +34,10 @@ export function HomePageClient({ children }: HomePageClientProps) {
 
   return (
     <div className="relative">
-      {/* Background effects */}
       <div className="fixed inset-0 overflow-hidden pointer-events-none z-0">
-        {/* Gradient blurs - Light effects */}
         <LazyMotion features={domAnimation} strict>
-          {/* Main gradient orbs */}
           <m.div
-            className="absolute -top-40 -right-40 w-[600px] h-[600px] bg-gradient-to-br from-primary/20 via-primary/10 to-transparent rounded-full blur-3xl"
+            className="absolute -top-40 -right-40 w-[600px] h-[600px] bg-linear-to-br from-primary/20 via-primary/10 to-transparent rounded-full blur-3xl"
             animate={{
               scale: [1, 1.2, 1],
               opacity: [0.4, 0.6, 0.4],
@@ -54,7 +50,7 @@ export function HomePageClient({ children }: HomePageClientProps) {
             }}
           />
           <m.div
-            className="absolute top-1/2 -left-40 w-[600px] h-[600px] bg-gradient-to-br from-secondary/20 via-secondary/10 to-transparent rounded-full blur-3xl"
+            className="absolute top-1/2 -left-40 w-[600px] h-[600px] bg-linear-to-br from-secondary/20 via-secondary/10 to-transparent rounded-full blur-3xl"
             animate={{
               scale: [1, 1.3, 1],
               opacity: [0.4, 0.6, 0.4],
@@ -67,7 +63,7 @@ export function HomePageClient({ children }: HomePageClientProps) {
             }}
           />
           <m.div
-            className="absolute bottom-20 right-1/4 w-[500px] h-[500px] bg-gradient-to-br from-primary/15 via-secondary/10 to-transparent rounded-full blur-3xl"
+            className="absolute bottom-20 right-1/4 w-[500px] h-[500px] bg-linear-to-br from-primary/15 via-secondary/10 to-transparent rounded-full blur-3xl"
             animate={{
               scale: [1, 1.25, 1],
               opacity: [0.3, 0.5, 0.3],
@@ -82,7 +78,7 @@ export function HomePageClient({ children }: HomePageClientProps) {
 
           {/* Additional light beams */}
           <m.div
-            className="absolute top-1/4 left-1/3 w-[400px] h-[400px] bg-gradient-to-br from-primary/10 to-transparent rounded-full blur-2xl"
+            className="absolute top-1/4 left-1/3 w-[400px] h-[400px] bg-linear-to-br from-primary/10 to-transparent rounded-full blur-2xl"
             animate={{
               opacity: [0.2, 0.4, 0.2],
               scale: [0.8, 1.2, 0.8],
@@ -94,7 +90,7 @@ export function HomePageClient({ children }: HomePageClientProps) {
             }}
           />
           <m.div
-            className="absolute bottom-1/3 left-2/3 w-[350px] h-[350px] bg-gradient-to-br from-secondary/10 to-transparent rounded-full blur-2xl"
+            className="absolute bottom-1/3 left-2/3 w-[350px] h-[350px] bg-linear-to-br from-secondary/10 to-transparent rounded-full blur-2xl"
             animate={{
               opacity: [0.2, 0.4, 0.2],
               scale: [1, 1.3, 1],
@@ -117,7 +113,7 @@ export function HomePageClient({ children }: HomePageClientProps) {
                 key={particle.id}
                 className={`absolute rounded-full ${
                   isLarge
-                    ? 'bg-gradient-to-br from-primary/40 via-secondary/30 to-primary/20'
+                    ? 'bg-linear-to-br from-primary/40 via-secondary/30 to-primary/20'
                     : isPrimary
                       ? 'bg-primary/40'
                       : 'bg-secondary/40'
@@ -149,8 +145,6 @@ export function HomePageClient({ children }: HomePageClientProps) {
           })}
         </LazyMotion>
       </div>
-
-      {/* Content */}
       <div className="relative z-10">{children}</div>
     </div>
   )

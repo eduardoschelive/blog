@@ -1,8 +1,10 @@
 'use client'
 
 import type { Article } from '@/types/article.type'
+import { Button } from '@heroui/react'
 import { useTranslations } from 'next-intl'
 import { AnimatedArticleCard } from '../AnimatedArticleCard'
+import { Link } from '@/i18n/navigation'
 
 interface ArticleListClientProps {
   articles: Article[]
@@ -16,23 +18,30 @@ function ArticleListClient({ articles }: ArticleListClientProps) {
   }
 
   return (
-    <section className="w-full py-20 px-4">
-      <div className="max-w-7xl mx-auto">
-        <div className="mb-12 text-center">
-          <h2 className="text-4xl md:text-5xl font-bold mb-4">{t('title')}</h2>
-          <p className="text-lg text-foreground/60 max-w-2xl mx-auto">
-            {t('subtitle')}
-          </p>
-        </div>
+    <section className="w-full">
+      <div className="mb-12">
+        <h2 className="text-3xl md:text-4xl font-bold">{t('title')}</h2>
+      </div>
 
-        <div className="grid gap-8">
-          {articles.map((article) => (
-            <AnimatedArticleCard
-              key={`${article.slug}-${article.locale}`}
-              article={article}
-            />
-          ))}
-        </div>
+      <div className="grid gap-8">
+        {articles.map((article) => (
+          <AnimatedArticleCard
+            key={`${article.slug}-${article.locale}`}
+            article={article}
+          />
+        ))}
+      </div>
+
+      <div className="mt-12 text-center">
+        <Button
+          as={Link}
+          href="/articles"
+          color="primary"
+          size="lg"
+          className="font-semibold"
+        >
+          {t('viewAll')} →
+        </Button>
       </div>
     </section>
   )

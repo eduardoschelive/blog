@@ -62,12 +62,12 @@ const satoshi = localFont({
       style: 'italic',
     },
   ],
-  variable: '--font-satoshi',
+  variable: '--font-sans',
   display: 'swap',
 })
 
 const firaCode = Fira_Code({
-  variable: '--font-fira-code',
+  variable: '--font-mono',
   subsets: ['latin'],
   display: 'swap',
 })
@@ -94,7 +94,7 @@ export default async function RootLayout({
   return (
     <html lang={locale} suppressHydrationWarning>
       <body
-        className={`${satoshi.variable} ${firaCode.variable} antialiase font-sans`}
+        className={`${satoshi.variable} ${firaCode.variable} antialiased font-sans`}
       >
         <Providers>
           <Header />

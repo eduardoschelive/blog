@@ -1,51 +1,33 @@
 'use client'
 
-import { Link } from '@/i18n/navigation'
-import { cn } from '@heroui/react'
+import { Link } from '@heroui/react'
 import { m } from 'framer-motion'
-import type { ComponentProps, ReactNode } from 'react'
+import type { LinkProps } from '@heroui/react'
+import type { ReactNode } from 'react'
 import { useState } from 'react'
-import { IoArrowForward, IoOpenOutline } from 'react-icons/io5'
 
-interface AnimatedLinkProps extends ComponentProps<typeof Link> {
+interface AnimatedLinkProps extends Omit<LinkProps, 'children'> {
   children: ReactNode
-  endContent?: ReactNode
-  target?: '_blank' | '_self' | '_parent' | '_top'
 }
 
 function AnimatedLink({
   children,
-  endContent,
-  target,
+  isExternal,
   className,
   ...props
 }: AnimatedLinkProps) {
   const [isHovered, setIsHovered] = useState(false)
-  const isExternal = target === '_blank'
 
-  const DefaultIcon = isExternal ? IoOpenOutline : IoArrowForward
+  const iconSymbol = isExternal ? '↗' : '→'
 
   return (
     <Link
-      target={target}
-      className={cn('inline-flex items-center gap-2 relative group', className)}
+      isExternal={isExternal}
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
-      {...props}
-    >
-      <span className="relative">
-        {children}
-        <m.span
-          className="absolute left-1/2 bottom-0 h-0.5 bg-current -translate-x-1/2"
-          initial={{ width: '0%' }}
-          animate={{ width: isHovered ? '100%' : '0%' }}
-          transition={{ duration: 0.3, ease: 'easeInOut' }}
-        />
-      </span>
-
-      {endContent !== undefined ? (
-        endContent
-      ) : (
+      showAnchorIcon
+      className={className}
+      anchorIcon={
         <m.span
           animate={
             isHovered
@@ -70,9 +52,20 @@ function AnimatedLink({
               : { x: 0, y: 0 }
           }
         >
-          <DefaultIcon className="w-4 h-4" />
+          {iconSymbol}
         </m.span>
-      )}
+      }
+      {...props}
+    >
+      <span className="relative mr-2">
+        {children}
+        <m.span
+          className="absolute left-1/2 bottom-0 h-0.5 bg-current -translate-x-1/2"
+          initial={{ width: '0%' }}
+          animate={{ width: isHovered ? '100%' : '0%' }}
+          transition={{ duration: 0.3, ease: 'easeInOut' }}
+        />
+      </span>
     </Link>
   )
 }

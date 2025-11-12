@@ -1,9 +1,5 @@
-import { getArticles } from '@/content/articles'
-import { getCategories } from '@/content/categories'
-import { Link } from '@/i18n/navigation'
 import type { Metadata } from 'next'
 import type { Locale } from 'next-intl'
-import { getTranslations } from 'next-intl/server'
 
 interface CategoryProps {
   params: Promise<{
@@ -12,123 +8,28 @@ interface CategoryProps {
   }>
 }
 
-export default async function Category({ params }: CategoryProps) {
+export default async function CategoryPage({ params }: CategoryProps) {
   const { categorySlug, locale } = await params
-  const t = await getTranslations('Categories')
-
-  const categories = await getCategories(locale, {
-    filter: { slug: categorySlug },
-    limit: 1,
-  })
-
-  const category = categories[0]
-
-  if (!category) {
-    throw new Error(`Category not found: ${categorySlug} (${locale})`)
-  }
-
-  const articles = await getArticles(locale, {
-    filter: { categorySlug },
-  })
 
   return (
-    <div className="container mx-auto px-4 py-8">
-      <div className="max-w-4xl mx-auto">
-        {/* Breadcrumb */}
-        <nav className="mb-6">
-          <ol className="flex items-center space-x-2 text-sm text-muted-foreground">
-            <li>
-              <Link href="/categories" className="hover:text-primary">
-                {t('title')}
-              </Link>
-            </li>
-            <li>/</li>
-            <li className="text-foreground">{category.title}</li>
-          </ol>
-        </nav>
-
-        {/* Category Header */}
-        <div className="mb-8">
-          <h1 className="text-4xl font-bold mb-4">{category.title}</h1>
-          <p className="text-muted-foreground text-lg leading-relaxed mb-4">
-            {category.description}
-          </p>
-          <p className="text-sm text-muted-foreground">
-            {articles.length}{' '}
-            {articles.length === 1 ? t('article') : t('articles')}
-          </p>
+    <div className="min-h-screen flex items-center justify-center px-4">
+      <div className="text-center max-w-2xl">
+        <h1 className="text-4xl md:text-5xl font-bold mb-4">
+          {locale === 'pt-BR' ? 'Página de Categoria' : 'Category Page'}
+        </h1>
+        <p className="text-xl text-foreground/70 mb-6">
+          {locale === 'pt-BR'
+            ? `Esta é a página da categoria: ${categorySlug}`
+            : `This is the category page: ${categorySlug}`}
+        </p>
+        <div className="inline-flex items-center gap-2 px-4 py-2 rounded-lg bg-primary/10 border border-primary/20">
+          <span className="text-sm text-primary font-medium">
+            🚧{' '}
+            {locale === 'pt-BR'
+              ? 'Mock/Em desenvolvimento'
+              : 'Mock/Under development'}
+          </span>
         </div>
-
-        {/* Category Content */}
-        {category.content && (
-          <div className="prose prose-lg max-w-none mb-12">
-            {category.content}
-          </div>
-        )}
-
-        {/* Articles List */}
-        {articles.length > 0 ? (
-          <div className="space-y-6">
-            <h2 className="text-2xl font-bold mb-6">
-              {locale === 'pt-BR' ? 'Artigos' : 'Articles'}
-            </h2>
-            {articles.map((article) => (
-              <article
-                key={article.slug}
-                className="bg-card rounded-lg border p-6 hover:shadow-md transition-shadow"
-              >
-                <Link
-                  // @ts-expect-error - Dynamic routes are valid but TypeScript can't infer them
-                  href={`/categories/${categorySlug}/articles/${article.slug}`}
-                  className="group block"
-                >
-                  <h3 className="text-xl font-semibold mb-2 group-hover:text-primary transition-colors">
-                    {article.title}
-                  </h3>
-                  <p className="text-muted-foreground mb-3 line-clamp-2">
-                    {article.description}
-                  </p>
-                  <div className="flex items-center justify-between text-sm text-muted-foreground">
-                    <time>
-                      {article.createdAt
-                        ? new Date(article.createdAt).toLocaleDateString(
-                            locale,
-                            {
-                              year: 'numeric',
-                              month: 'long',
-                              day: 'numeric',
-                            }
-                          )
-                        : locale === 'pt-BR'
-                          ? 'Data não disponível'
-                          : 'Date not available'}
-                    </time>
-                    <span className="text-primary group-hover:underline">
-                      {locale === 'pt-BR' ? 'Ler artigo' : 'Read article'} →
-                    </span>
-                  </div>
-                </Link>
-              </article>
-            ))}
-          </div>
-        ) : (
-          <div className="text-center py-12">
-            <p className="text-muted-foreground">
-              {locale === 'pt-BR'
-                ? 'Nenhum artigo encontrado nesta categoria.'
-                : 'No articles found in this category.'}
-            </p>
-            <Link
-              href="/categories"
-              className="text-primary hover:underline text-sm mt-4 inline-block"
-            >
-              ←{' '}
-              {locale === 'pt-BR'
-                ? 'Voltar às categorias'
-                : 'Back to categories'}
-            </Link>
-          </div>
-        )}
       </div>
     </div>
   )
@@ -137,36 +38,10 @@ export default async function Category({ params }: CategoryProps) {
 export async function generateMetadata({
   params,
 }: CategoryProps): Promise<Metadata> {
-  const { categorySlug, locale } = await params
+  const { categorySlug } = await params
 
-  try {
-    const categories = await getCategories(locale, {
-      filter: { slug: categorySlug },
-      limit: 1,
-    })
-
-    const category = categories[0]
-
-    if (!category) {
-      return {
-        title: 'Category Not Found',
-        description: 'The requested category could not be found.',
-      }
-    }
-
-    return {
-      title: category.title,
-      description: category.description,
-      openGraph: {
-        title: category.title,
-        description: category.description,
-        type: 'website',
-      },
-    }
-  } catch {
-    return {
-      title: 'Category Not Found',
-      description: 'The requested category could not be found.',
-    }
+  return {
+    title: `Category: ${categorySlug}`,
+    description: `Category page for ${categorySlug}`,
   }
 }

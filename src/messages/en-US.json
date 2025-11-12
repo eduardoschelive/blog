@@ -87,11 +87,15 @@
 
   "Categories": {
     "title": "Categories",
-    "description": "Explore all available article categories.",
-    "article": "article",
-    "articles": "articles",
-    "viewMore": "View articles",
-    "more": "more",
-    "noCategories": "No categories found."
+    "subtitle": "All my articles organized by topic. Most follow a sequential order, so you can read them like a guided learning path.",
+    "articlesInTrail": "{count, plural, =0 {No articles} =1 {1 article} other {# articles}}",
+    "startHere": "Start here:",
+    "viewFullTrail": "View all articles",
+    "comingSoon": "Coming soon",
+    "emptyState": {
+      "title": "Content Coming Soon!",
+      "subtitle": "We're preparing amazing content for you",
+      "cta": "Check back soon!"
+    }
   }
 }

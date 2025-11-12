@@ -49,6 +49,10 @@ function getArticleDirectories(categorySlug) {
     .map((dirent) => dirent.name)
 }
 
+function removeSequencePrefix(slug) {
+  return slug.replace(/^\d+\./, '')
+}
+
 function getFrontmatter(filePath) {
   if (!fs.existsSync(filePath)) return null
 
@@ -121,9 +125,10 @@ function generatePathnames() {
 
         const frontmatter = getFrontmatter(articleFilePath)
         const articleRoutePrefix = ROUTE_MAPPING[locale].articles
-        const slug = frontmatter?.slug || articleSlug
+          =
+        const cleanSlug = removeSequencePrefix(frontmatter?.slug || articleSlug)
         articlePaths[locale] =
-          `${categoryPaths[locale]}/${articleRoutePrefix}/${slug}`
+          `${categoryPaths[locale]}/${articleRoutePrefix}/${cleanSlug}`
       }
 
       if (LANGUAGES.every((lang) => articlePaths[lang])) {

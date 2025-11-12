@@ -1,70 +1,48 @@
-import { getCategories } from '@/content/categories'
-import { Link } from '@/i18n/navigation'
+import { CategoriesGrid } from '@/components/layout/CategoriesGrid'
 import type { Metadata } from 'next'
-import type { Locale } from 'next-intl'
 import { getTranslations } from 'next-intl/server'
 
-interface CategoriesPageProps {
-  params: Promise<{
-    locale: Locale
-  }>
-}
-
-export default async function CategoriesPage({ params }: CategoriesPageProps) {
-  const { locale } = await params
+export default async function CategoriesPage() {
   const t = await getTranslations('Categories')
 
-  const categories = await getCategories(locale)
-
   return (
-    <main className="container mx-auto px-4 py-8">
-      <div className="max-w-4xl mx-auto">
-        <h1 className="text-4xl font-bold mb-8 text-center">{t('title')}</h1>
+    <div className="min-h-screen relative">
+      <div className="fixed top-0 right-0 w-[600px] h-[600px] bg-primary/5 rounded-full blur-3xl -translate-y-1/3 translate-x-1/3 pointer-events-none" />
+      <div className="fixed top-1/3 left-0 w-[500px] h-[500px] bg-secondary/5 rounded-full blur-3xl -translate-x-1/3 pointer-events-none" />
+      <div className="fixed bottom-0 right-1/4 w-[400px] h-[400px] bg-primary/5 rounded-full blur-3xl translate-y-1/3 pointer-events-none" />
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {categories.map((category) => (
-            <Link
-              key={category.slug}
-              // @ts-expect-error - Dynamic routes are valid but TypeScript can't infer them
-              href={`/categories/${category.slug}`}
-              className="block"
-            >
-              <div className="bg-card hover:bg-accent/50 rounded-lg p-6 border transition-colors">
-                <h2 className="text-xl font-semibold mb-2">{category.title}</h2>
-                <p className="text-muted-foreground text-sm mb-4">
-                  {category.description}
-                </p>
-                <div className="flex items-center justify-between">
-                  <span className="text-xs text-muted-foreground">
-                    {category.slug}
-                  </span>
-                  <span className="text-primary hover:underline text-sm">
-                    {t('viewMore')} →
-                  </span>
-                </div>
-              </div>
-            </Link>
-          ))}
-        </div>
+      <section className="w-full px-4 pt-20 pb-8 md:pt-28 md:pb-12 relative">
+        <div className="max-w-7xl mx-auto">
+          <div className="max-w-3xl">
+            <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6">
+              {t('title')}
+            </h1>
 
-        {categories.length === 0 && (
-          <div className="text-center py-12">
-            <p className="text-muted-foreground">{t('noCategories')}</p>
+            <p className="text-lg md:text-xl text-foreground/70 leading-relaxed">
+              {t('subtitle')}
+            </p>
+            <div className="mt-6 w-20 h-1 bg-linear-to-r from-primary to-secondary rounded-full" />
           </div>
-        )}
+        </div>
+      </section>
+
+
+      <div className="relative">
+        <div className="w-full px-4 py-12">
+          <div className="max-w-7xl mx-auto">
+            <CategoriesGrid />
+          </div>
+        </div>
       </div>
-    </main>
+    </div>
   )
 }
 
-export async function generateMetadata({
-  params,
-}: CategoriesPageProps): Promise<Metadata> {
-  await params
+export async function generateMetadata(): Promise<Metadata> {
   const t = await getTranslations('Categories')
 
   return {
     title: t('title'),
-    description: t('description'),
+    description: t('subtitle'),
   }
 }

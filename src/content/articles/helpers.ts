@@ -11,15 +11,44 @@ import { parseFrontmatter } from '../shared/parseFrontmatter'
 import { readFileContent } from '../shared/readFile'
 
 /**
- * Loads all articles from a specific category directory
- * @param categorySlug - The category slug
- * @param categoryInfo - The category information (must include slug)
- * @param locale - The locale
- * @returns Array of articles from this category
+ * Extracts the sequence number from an article slug
+ * @param slug - The article slug (e.g., "1.nodejs-apis")
+ * @returns The sequence number or null if not found
+ * @example
+ * getArticleSequence("1.nodejs-apis") // 1
+ * getArticleSequence("42.python-fastapi") // 42
+ * getArticleSequence("nodejs-apis") // null
+ */
+export function getArticleSequence(slug: string): number | null {
+  const match = slug.match(/^(\d+)\./)
+  return match ? Number.parseInt(match[1], 10) : null
+}
+
+/**
+ * Removes the sequence number prefix from an article slug
+ * @param slug - The article slug (e.g., "1.nodejs-apis")
+ * @returns The slug without the sequence prefix
+ * @example
+ * getArticleNameWithoutSequence("1.nodejs-apis") // "nodejs-apis"
+ * getArticleNameWithoutSequence("42.python-fastapi") // "python-fastapi"
+ * getArticleNameWithoutSequence("nodejs-apis") // "nodejs-apis"
+ */
+export function getArticleNameWithoutSequence(slug: string): string {
+  return slug.replace(/^\d+\./, '')
+}
+
+/**
+ * Loads all articles from a specific category directory and sorts them by sequence number
+ * @param categorySlug - The category slug (folder name)
+ * @param categoryInfo - The category metadata
+ * @param locale - The locale to load articles for
+ * @returns Promise resolving to sorted array of articles (by sequence, then alphabetically)
+ * @example
+ * const articles = await loadArticlesFromCategory('web-servers', categoryInfo, 'en-US')
  */
 export async function loadArticlesFromCategory(
   categorySlug: string,
-  categoryInfo: CategoryBase & { slug: string },
+  categoryInfo: CategoryBase,
   locale: Locale
 ): Promise<Article[]> {
   const articles: Article[] = []
@@ -50,14 +79,18 @@ export async function loadArticlesFromCategory(
         // Get Git dates
         const gitDates = getGitFileDates(articleFile)
 
-        const article: Article = {
+
+        const cleanSlug = getArticleNameWithoutSequence(articleFolder)
+
+        const article: Article & { _originalFolder?: string } = {
           ...parsedData,
           content,
-          slug: articleFolder,
+          slug: cleanSlug,
           locale,
           category: categoryInfo,
           createdAt: gitDates?.createdAt || null,
           updatedAt: gitDates?.updatedAt || null,
+          _originalFolder: articleFolder, 
         }
 
         articles.push(article)
@@ -71,5 +104,21 @@ export async function loadArticlesFromCategory(
     return []
   }
 
-  return articles
+
+  const sorted = articles.sort((a, b) => {
+    const folderA =
+      (a as Article & { _originalFolder?: string })._originalFolder || a.slug
+    const folderB =
+      (b as Article & { _originalFolder?: string })._originalFolder || b.slug
+    const seqA = getArticleSequence(folderA) ?? Number.POSITIVE_INFINITY
+    const seqB = getArticleSequence(folderB) ?? Number.POSITIVE_INFINITY
+    return seqA - seqB
+  })
+
+  return sorted.map((article) => {
+    const { _originalFolder, ...cleanArticle } = article as Article & {
+      _originalFolder?: string
+    }
+    return cleanArticle
+  })
 }

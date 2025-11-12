@@ -27,39 +27,10 @@ function AnimatedLink({
       isExternal={isExternal}
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
-      showAnchorIcon
-      className={cn('inline-block w-fit', className)}
-      anchorIcon={
-        <m.span
-          animate={
-            isHovered
-              ? isExternal
-                ? {
-                    x: [0, 3, 0],
-                    y: [0, -3, 0],
-                    transition: {
-                      duration: 0.8,
-                      repeat: Infinity,
-                      ease: 'easeInOut',
-                    },
-                  }
-                : {
-                    x: [0, 4, 0],
-                    transition: {
-                      duration: 0.8,
-                      repeat: Infinity,
-                      ease: 'easeInOut',
-                    },
-                  }
-              : { x: 0, y: 0 }
-          }
-        >
-          {iconSymbol}
-        </m.span>
-      }
+      className={cn('inline-flex items-center gap-1 w-fit', className)}
       {...props}
     >
-      <span className="relative mr-2">
+      <span className="relative">
         {children}
         <m.span
           className="absolute left-1/2 bottom-0 h-0.5 bg-current -translate-x-1/2"
@@ -68,6 +39,33 @@ function AnimatedLink({
           transition={{ duration: 0.3, ease: 'easeInOut' }}
         />
       </span>
+      <m.span
+        className="inline-block"
+        animate={
+          isHovered
+            ? isExternal
+              ? {
+                  x: [0, 3, 0],
+                  y: [0, -3, 0],
+                  transition: {
+                    duration: 0.8,
+                    repeat: Number.POSITIVE_INFINITY,
+                    ease: 'easeInOut',
+                  },
+                }
+              : {
+                  x: [0, 4, 0],
+                  transition: {
+                    duration: 0.8,
+                    repeat: Number.POSITIVE_INFINITY,
+                    ease: 'easeInOut',
+                  },
+                }
+            : { x: 0, y: 0 }
+        }
+      >
+        {iconSymbol}
+      </m.span>
     </Link>
   )
 }

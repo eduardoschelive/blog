@@ -1,7 +1,6 @@
 'use client'
 
 import type { CategoryWithArticles } from '@/types/category.type'
-import { LazyMotion, domAnimation, m } from 'framer-motion'
 import { createContext, useContext, type ReactNode } from 'react'
 
 interface CategoryCardContextValue {
@@ -33,9 +32,7 @@ export function CategoryCardRoot({
 }: CategoryCardRootProps) {
   return (
     <CategoryCardContext.Provider value={{ category }}>
-      <LazyMotion features={domAnimation} strict>
-        <m.article className={className}>{children}</m.article>
-      </LazyMotion>
+      <article className={className}>{children}</article>
     </CategoryCardContext.Provider>
   )
 }

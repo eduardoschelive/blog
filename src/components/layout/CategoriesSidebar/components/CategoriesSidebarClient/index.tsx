@@ -57,7 +57,6 @@ export function CategoriesSidebarClient({
               }}
             >
               <Link
-                // @ts-expect-error - Dynamic routes are valid but TypeScript can't infer them
                 href={`/categories/${category.slug}`}
                 className="group block border-l-2 border-secondary/40 hover:border-primary pl-4 py-2 transition-all duration-300"
               >

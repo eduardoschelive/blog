@@ -19,8 +19,6 @@ function useScroll() {
   }
 
   const scrollToHeading = (id: string) => {
-    // The casting is safe because we are only using hash navigation
-    // @ts-expect-error - Fragment links are valid but TypeScript can't infer them
     replace(`#${id}` as Pathname, { scroll: false })
 
     const el = document.getElementById(id)

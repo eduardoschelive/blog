@@ -10,7 +10,6 @@ export function useTranslatedNavigation(): NavigationWithPaths {
   const pathname = usePathname()
 
   const navigateToLocale = (targetLocale: Locale) => {
-    // @ts-expect-error - Fragment links are valid but TypeScript can't infer them
     router.push(pathname, { locale: targetLocale })
   }
 

@@ -10,6 +10,6 @@ const pathnames = {
   ...generatedPathnames,
 }
 
-type Pathname = keyof typeof pathnames
+type Pathname = keyof typeof pathnames | (string & {})
 
 export { pathnames, type Pathname }

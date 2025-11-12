@@ -79,8 +79,8 @@ export async function loadArticlesFromCategory(
         // Get Git dates
         const gitDates = getGitFileDates(articleFile)
 
-
         const cleanSlug = getArticleNameWithoutSequence(articleFolder)
+        const sequence = getArticleSequence(articleFolder)
 
         const article: Article & { _originalFolder?: string } = {
           ...parsedData,
@@ -90,7 +90,8 @@ export async function loadArticlesFromCategory(
           category: categoryInfo,
           createdAt: gitDates?.createdAt || null,
           updatedAt: gitDates?.updatedAt || null,
-          _originalFolder: articleFolder, 
+          sequence,
+          _originalFolder: articleFolder,
         }
 
         articles.push(article)
@@ -103,7 +104,6 @@ export async function loadArticlesFromCategory(
     // Category directory doesn't exist or can't be read
     return []
   }
-
 
   const sorted = articles.sort((a, b) => {
     const folderA =

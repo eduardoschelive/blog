@@ -12,4 +12,5 @@ export interface Article extends ArticleBase {
   category: CategoryBase
   createdAt: Date | null
   updatedAt: Date | null
+  sequence: number | null
 }

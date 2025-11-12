@@ -1,4 +1,4 @@
-import { CategoriesGrid } from '@/components/layout/CategoriesGrid'
+import { CategoriesList } from '@/components/layout/CategoriesList'
 import type { Metadata } from 'next'
 import { getTranslations } from 'next-intl/server'
 
@@ -26,11 +26,10 @@ export default async function CategoriesPage() {
         </div>
       </section>
 
-
       <div className="relative">
         <div className="w-full px-4 py-12">
           <div className="max-w-7xl mx-auto">
-            <CategoriesGrid />
+            <CategoriesList />
           </div>
         </div>
       </div>

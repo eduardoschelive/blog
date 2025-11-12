@@ -1,8 +1,8 @@
 import { getCategories } from '@/content/categories'
 import { getLocale, getTranslations } from 'next-intl/server'
-import { CategoriesGridClient } from './components/CategoriesGridClient'
+import { CategoriesListClient } from './components/CategoriesListClient'
 
-export async function CategoriesGrid() {
+export async function CategoriesList() {
   const locale = await getLocale()
   const categories = await getCategories(locale, { withArticles: true })
   const t = await getTranslations('Categories')
@@ -27,5 +27,5 @@ export async function CategoriesGrid() {
     )
   }
 
-  return <CategoriesGridClient categories={categories} locale={locale} />
+  return <CategoriesListClient categories={categories} />
 }

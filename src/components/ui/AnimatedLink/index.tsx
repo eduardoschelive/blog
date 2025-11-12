@@ -5,9 +5,11 @@ import { m } from 'framer-motion'
 import type { LinkProps } from '@heroui/react'
 import type { ReactNode } from 'react'
 import { useState } from 'react'
+import type { Pathname } from '@/i18n/pathnames'
 
-interface AnimatedLinkProps extends Omit<LinkProps, 'children'> {
+interface AnimatedLinkProps extends Omit<LinkProps, 'children' | 'href'> {
   children: ReactNode
+  href?: Pathname | (string & {})
 }
 
 function AnimatedLink({

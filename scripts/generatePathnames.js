@@ -125,7 +125,7 @@ function generatePathnames() {
 
         const frontmatter = getFrontmatter(articleFilePath)
         const articleRoutePrefix = ROUTE_MAPPING[locale].articles
-          =
+
         const cleanSlug = removeSequencePrefix(frontmatter?.slug || articleSlug)
         articlePaths[locale] =
           `${categoryPaths[locale]}/${articleRoutePrefix}/${cleanSlug}`

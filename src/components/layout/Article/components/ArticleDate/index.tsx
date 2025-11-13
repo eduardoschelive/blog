@@ -5,8 +5,9 @@ import { cn } from '@heroui/react'
 import { useLocale, useTranslations } from 'next-intl'
 import type { HTMLAttributes, ReactNode } from 'react'
 import { formatDate, DEFAULT_DATE_FORMAT } from '@/utils/date'
+import { HiOutlineCalendarDays } from 'react-icons/hi2'
 
-interface ArticleDateProps extends HTMLAttributes<HTMLTimeElement> {
+interface ArticleDateProps extends HTMLAttributes<HTMLSpanElement> {
   children?: ReactNode
   format?: Intl.DateTimeFormatOptions
 }
@@ -31,13 +32,16 @@ function ArticleDate({
     : undefined
 
   return (
-    <time
-      className={cn('text-xs text-muted-foreground', className)}
-      dateTime={dateTime}
+    <span
+      className={cn(
+        'inline-flex items-center gap-1 text-foreground/60',
+        className
+      )}
       {...props}
     >
-      {content}
-    </time>
+      <HiOutlineCalendarDays className="w-3.5 h-3.5" />
+      <time dateTime={dateTime}>{content}</time>
+    </span>
   )
 }
 

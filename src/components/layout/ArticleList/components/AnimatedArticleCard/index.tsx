@@ -9,6 +9,7 @@ import {
   ArticleLink,
   ArticleRoot,
   ArticleTitle,
+  ArticleReadingTime,
 } from '@/components/layout/Article'
 import { m, useInView } from 'framer-motion'
 import { useTranslations } from 'next-intl'
@@ -84,8 +85,9 @@ function AnimatedArticleCard({ article }: AnimatedArticleCardProps) {
 
               <ArticleDescription className="text-sm md:text-base mb-4 line-clamp-3" />
 
-              <div className="mb-6">
-                <ArticleDate className="text-xs text-foreground/50" />
+              <div className="mb-6 flex items-center gap-4">
+                <ArticleDate className="text-xs" />
+                <ArticleReadingTime className="text-xs" />
               </div>
             </div>
             <ArticleLink className="text-primary font-semibold">

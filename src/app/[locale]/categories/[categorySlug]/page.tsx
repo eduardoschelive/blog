@@ -15,6 +15,7 @@ import {
   ArticleDescription,
   ArticleDate,
   ArticleLink,
+  ArticleReadingTime,
 } from '@/components/layout/Article'
 import { GradientDivider } from '@/components/ui/GradientDivider'
 import { domAnimation, LazyMotion } from 'framer-motion'
@@ -61,7 +62,7 @@ export default async function CategoryPage({ params }: CategoryProps) {
                 >
                   <div className="grid md:grid-cols-[300px_1fr] gap-0">
                     <ArticleImage className="h-48 md:h-full group-hover:brightness-110 group-hover:scale-105 transition-all duration-300" />
-                    <div className="p-0 md:p-8 flex flex-col justify-between">
+                    <div className="p-6 md:p-8 flex flex-col justify-between">
                       <div className="flex-1">
                         <ArticleTitle
                           as="h3"
@@ -70,8 +71,9 @@ export default async function CategoryPage({ params }: CategoryProps) {
 
                         <ArticleDescription className="text-sm md:text-base mb-4 line-clamp-3" />
 
-                        <div className="mb-6">
-                          <ArticleDate className="text-xs text-foreground/50" />
+                        <div className="mb-6 flex items-center gap-4">
+                          <ArticleDate className="text-xs" />
+                          <ArticleReadingTime className="text-xs" />
                         </div>
                       </div>
                       <ArticleLink className="text-primary font-semibold">

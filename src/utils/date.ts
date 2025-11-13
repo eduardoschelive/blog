@@ -3,7 +3,7 @@
  */
 export const DEFAULT_DATE_FORMAT: Intl.DateTimeFormatOptions = {
   year: 'numeric',
-  month: 'short',
+  month: 'long',
   day: 'numeric',
 }
 

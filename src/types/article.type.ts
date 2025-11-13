@@ -13,4 +13,5 @@ export interface Article extends ArticleBase {
   createdAt: Date | null
   updatedAt: Date | null
   sequence: number | null
+  readingTime: number
 }

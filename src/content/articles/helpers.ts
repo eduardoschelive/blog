@@ -6,6 +6,7 @@ import { getGitFileDates } from '@/utils/gitDates'
 import type { Locale } from 'next-intl'
 import { readdirSync, statSync } from 'node:fs'
 import path from 'node:path'
+import readingTime from 'reading-time'
 import { compileContent } from '../shared/compileContent'
 import { parseFrontmatter } from '../shared/parseFrontmatter'
 import { readFileContent } from '../shared/readFile'
@@ -76,8 +77,9 @@ export async function loadArticlesFromCategory(
           articleFile
         )
 
-        // Get Git dates
         const gitDates = getGitFileDates(articleFile)
+        const stats = readingTime(fileContent)
+        const calculatedReadingTime = Math.max(1, Math.ceil(stats.minutes))
 
         const cleanSlug = getArticleNameWithoutSequence(articleFolder)
         const sequence = getArticleSequence(articleFolder)
@@ -91,6 +93,7 @@ export async function loadArticlesFromCategory(
           createdAt: gitDates?.createdAt || null,
           updatedAt: gitDates?.updatedAt || null,
           sequence,
+          readingTime: calculatedReadingTime,
           _originalFolder: articleFolder,
         }
 

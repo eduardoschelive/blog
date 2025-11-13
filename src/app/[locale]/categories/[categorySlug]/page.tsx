@@ -5,7 +5,6 @@ import { getCategories } from '@/content/categories'
 import {
   CategoryRoot,
   CategoryCover,
-  CategoryDescription,
   CategoryContent,
 } from '@/components/layout/Category'
 import {

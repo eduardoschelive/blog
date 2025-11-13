@@ -1,6 +1,6 @@
 'use client'
 
-import { useArticleCard } from '../ArticleRoot'
+import { useArticle } from '../../context'
 import { cn } from '@heroui/react'
 import type { HTMLAttributes, ReactNode } from 'react'
 
@@ -13,7 +13,7 @@ function ArticleDescription({
   children,
   ...props
 }: ArticleDescriptionProps) {
-  const { article } = useArticleCard()
+  const { article } = useArticle()
   const content = children ?? article.description
 
   if (!content) {

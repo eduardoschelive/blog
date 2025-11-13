@@ -1,21 +1,16 @@
 'use client'
 
-import { useArticleCard } from '../ArticleRoot'
-import type { ImageProps } from '@heroui/react'
+import { useArticle } from '../../context'
 import { cn, Image } from '@heroui/react'
 import type { HTMLAttributes } from 'react'
 
 interface ArticleImageProps extends HTMLAttributes<HTMLDivElement> {
   fallbackIcon?: string
-  imageClassName?: string
-  height?: string
   showPattern?: boolean
-  imageProps?: Omit<ImageProps, 'src' | 'alt'>
 }
 
 interface FallbackImageProps {
-  className: string
-  height: string
+  className?: string
   showPattern: boolean
   fallbackIcon: string
   categoryTitle: string
@@ -23,14 +18,12 @@ interface FallbackImageProps {
 
 const FallbackImage = ({
   className,
-  height,
   showPattern,
   fallbackIcon,
   categoryTitle,
 }: FallbackImageProps) => (
   <div
     className={cn(
-      height,
       'w-full bg-linear-to-br from-primary/30 via-secondary/20 to-primary/20 flex items-center justify-center relative overflow-hidden',
       className
     )}
@@ -53,39 +46,40 @@ const FallbackImage = ({
   </div>
 )
 
-function ArticleImage({
+export function ArticleImage({
   className,
-  imageClassName,
   fallbackIcon = '📰',
-  height = 'h-56',
   showPattern = true,
-  imageProps,
   ...props
 }: ArticleImageProps) {
-  const { article } = useArticleCard()
+  const { article } = useArticle()
 
   if (article.coverImage) {
     return (
-      <Image
-        src={article.coverImage}
-        alt={article.title}
-        className={cn('w-full object-cover', height, imageClassName)}
-        classNames={{ wrapper: 'w-full' }}
-        {...imageProps}
-      />
+      <div
+        className={cn('relative overflow-hidden w-full', className)}
+        {...props}
+      >
+        <Image
+          src={article.coverImage}
+          alt={article.title}
+          className="w-full h-full object-cover rounded-none"
+          classNames={{
+            wrapper: '!max-w-full h-full w-full rounded-none',
+            img: 'h-full w-full object-cover rounded-none',
+          }}
+          removeWrapper
+        />
+      </div>
     )
   }
 
   return (
     <FallbackImage
-      className={className!}
-      height={height}
+      className={className}
       showPattern={showPattern}
       fallbackIcon={fallbackIcon}
       categoryTitle={article.category.title}
-      {...props}
     />
   )
 }
-
-export { ArticleImage }

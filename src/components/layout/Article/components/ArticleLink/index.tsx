@@ -1,6 +1,6 @@
 'use client'
 
-import { useArticleCard } from '../ArticleRoot'
+import { useArticle } from '../../context'
 import { AnimatedLink } from '@/components/ui/AnimatedLink'
 import type { ComponentProps, ReactNode } from 'react'
 
@@ -14,7 +14,7 @@ const buildArticleUrl = (categorySlug: string, articleSlug: string): string => {
 }
 
 function ArticleLink({ children, ...props }: ArticleLinkProps) {
-  const { article } = useArticleCard()
+  const { article } = useArticle()
 
   const href = buildArticleUrl(article.category.slug, article.slug)
 

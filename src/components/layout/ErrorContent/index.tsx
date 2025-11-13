@@ -6,6 +6,8 @@ import { LazyMotion, domAnimation, m } from 'framer-motion'
 import { Button } from '@heroui/react'
 import { FiHome, FiRefreshCw, FiAlertTriangle } from 'react-icons/fi'
 import { useEffect } from 'react'
+import { BackgroundDecorations } from '@/components/layout/BackgroundDecorations'
+
 interface ErrorProps {
   error: Error & { digest?: string }
   reset: () => void
@@ -20,10 +22,7 @@ export default function ErrorContent({ error, reset }: ErrorProps) {
 
   return (
     <main className="min-h-[calc(100vh-128px)] flex items-center justify-center px-4 relative overflow-hidden">
-      <div className="absolute inset-0 overflow-hidden pointer-events-none">
-        <div className="absolute top-1/4 right-1/4 w-96 h-96 bg-danger/10 rounded-full blur-3xl" />
-        <div className="absolute bottom-1/4 left-1/4 w-96 h-96 bg-warning/10 rounded-full blur-3xl" />
-      </div>
+      <BackgroundDecorations />
 
       <div className="w-full max-w-lg mx-auto text-center relative z-10">
         <LazyMotion features={domAnimation} strict>

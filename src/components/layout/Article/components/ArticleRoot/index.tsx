@@ -1,21 +1,8 @@
 'use client'
 
 import type { Article } from '@/types/article.type'
-import { createContext, useContext, type ReactNode } from 'react'
-
-interface ArticleCardContextValue {
-  article: Article
-}
-
-const ArticleCardContext = createContext<ArticleCardContextValue | null>(null)
-
-export const useArticleCard = () => {
-  const context = useContext(ArticleCardContext)
-  if (!context) {
-    throw new Error('ArticleCard components must be used within ArticleRoot')
-  }
-  return context
-}
+import type { ReactNode } from 'react'
+import { ArticleContext } from '../../context'
 
 interface ArticleRootProps {
   article?: Article
@@ -24,7 +11,7 @@ interface ArticleRootProps {
   fallback?: ReactNode
 }
 
-const SkeletonFallback = ({ className }: { className: string }) => (
+const SkeletonFallback = ({ className }: { className?: string }) => (
   <div className={className}>
     <div className="w-full h-56 bg-linear-to-br from-primary/10 via-secondary/10 to-primary/10 flex items-center justify-center relative overflow-hidden animate-pulse">
       <div className="text-center relative z-10">
@@ -43,7 +30,7 @@ const SkeletonFallback = ({ className }: { className: string }) => (
   </div>
 )
 
-function ArticleRoot({
+export function ArticleRoot({
   article,
   children,
   className = '',
@@ -58,10 +45,8 @@ function ArticleRoot({
   }
 
   return (
-    <ArticleCardContext.Provider value={{ article }}>
+    <ArticleContext.Provider value={{ article }}>
       <div className={className}>{children}</div>
-    </ArticleCardContext.Provider>
+    </ArticleContext.Provider>
   )
 }
-
-export { ArticleRoot }

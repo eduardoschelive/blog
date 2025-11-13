@@ -1,6 +1,6 @@
 'use client'
 
-import { useArticleCard } from '../ArticleRoot'
+import { useArticle } from '../../context'
 import { cn } from '@heroui/react'
 import { useLocale, useTranslations } from 'next-intl'
 import type { HTMLAttributes, ReactNode } from 'react'
@@ -17,7 +17,7 @@ function ArticleDate({
   format = DEFAULT_DATE_FORMAT,
   ...props
 }: ArticleDateProps) {
-  const { article } = useArticleCard()
+  const { article } = useArticle()
   const locale = useLocale()
   const t = useTranslations('Article')
 

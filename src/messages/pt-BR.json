@@ -88,6 +88,8 @@
   "Categories": {
     "title": "Categorias",
     "subtitle": "Todos os meus artigos organizados por tema. A maioria segue uma ordem sequencial, então você pode ler como um guia de aprendizado.",
+    "articles": "Artigos",
+    "articlesCount": "{count, plural, =0 {Nenhum artigo} =1 {1 artigo} other {# artigos}}",
     "articlesInTrail": "{count, plural, =0 {Nenhum artigo} =1 {1 artigo} other {# artigos}}",
     "startHere": "Comece por aqui:",
     "viewFullTrail": "Ver todos os artigos",

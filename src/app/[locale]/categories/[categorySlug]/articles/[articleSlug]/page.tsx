@@ -2,7 +2,7 @@ import {
   ArticleContainer,
   ArticleContent,
   TableOfContents,
-} from '@/components/layout/Article'
+} from '@/components/layout/ArticleOld'
 import { getArticles } from '@/content/articles'
 import type { Locale } from 'next-intl'
 

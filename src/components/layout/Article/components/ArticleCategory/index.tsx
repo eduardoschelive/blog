@@ -1,6 +1,6 @@
 'use client'
 
-import { useArticleCard } from '../ArticleRoot'
+import { useArticle } from '../../context'
 import { Link } from '@/i18n/navigation'
 import type { ChipProps } from '@heroui/react'
 import { cn, Chip } from '@heroui/react'
@@ -21,7 +21,7 @@ function ArticleCategory({
   chipProps,
   ...props
 }: ArticleCategoryProps) {
-  const { article } = useArticleCard()
+  const { article } = useArticle()
   const content = children ?? article.category.title
 
   if (!asChip) {

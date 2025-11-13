@@ -5,15 +5,14 @@ import { useTranslations } from 'next-intl'
 import { LazyMotion, domAnimation, m } from 'framer-motion'
 import { Button } from '@heroui/react'
 import { FiHome, FiBookOpen, FiAlertCircle } from 'react-icons/fi'
+import { BackgroundDecorations } from '@/components/layout/BackgroundDecorations'
+
 export default function NotFound() {
   const t = useTranslations('NotFound')
 
   return (
     <main className="min-h-[calc(100vh-128px)] flex items-center justify-center px-4 relative overflow-hidden">
-      <div className="absolute inset-0 overflow-hidden pointer-events-none">
-        <div className="absolute -top-40 -right-40 w-80 h-80 bg-primary/10 rounded-full blur-3xl" />
-        <div className="absolute -bottom-40 -left-40 w-80 h-80 bg-secondary/10 rounded-full blur-3xl" />
-      </div>
+      <BackgroundDecorations />
 
       <div className="w-full max-w-lg mx-auto text-center relative z-10">
         <LazyMotion features={domAnimation} strict>

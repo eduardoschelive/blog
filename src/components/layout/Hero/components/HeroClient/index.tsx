@@ -9,7 +9,7 @@ import {
   ArticleTitle,
   ArticleDescription,
   ArticleLink,
-} from '@/components/layout/ArticleCard'
+} from '@/components/layout/Article'
 import type { Article } from '@/types/article.type'
 
 import { LazyMotion, domAnimation, m } from 'framer-motion'

@@ -1,6 +1,6 @@
 'use client'
 
-import { useArticleCard } from '../ArticleRoot'
+import { useArticle } from '../../context'
 import { cn } from '@heroui/react'
 import type { HTMLAttributes, ReactNode } from 'react'
 
@@ -15,7 +15,7 @@ function ArticleTitle({
   children,
   ...props
 }: ArticleTitleProps) {
-  const { article } = useArticleCard()
+  const { article } = useArticle()
 
   return (
     <Component className={cn('font-semibold', className)} {...props}>

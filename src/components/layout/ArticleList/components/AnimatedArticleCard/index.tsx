@@ -9,7 +9,7 @@ import {
   ArticleLink,
   ArticleRoot,
   ArticleTitle,
-} from '@/components/layout/ArticleCard'
+} from '@/components/layout/Article'
 import { m, useInView } from 'framer-motion'
 import { useTranslations } from 'next-intl'
 import { useEffect, useRef, useState } from 'react'
@@ -67,21 +67,10 @@ function AnimatedArticleCard({ article }: AnimatedArticleCardProps) {
     >
       <ArticleRoot
         article={article}
-        className="group bg-content1 rounded-xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300 border border-divider/20 hover:border-divider/40"
+        className="group bg-content1 rounded-xl overflow-hidden shadow-lg hover:shadow-2xl hover:scale-[1.02] transition-all duration-300 border border-divider/20 hover:border-divider/40"
       >
         <div className="grid md:grid-cols-[300px_1fr] gap-0">
-          <div className="relative overflow-hidden w-full h-48 md:h-full">
-            <ArticleImage
-              height="h-full w-full"
-              imageClassName="group-hover:brightness-110 group-hover:scale-105 transition-all duration-300"
-              imageProps={{
-                classNames: {
-                  wrapper: '!max-w-full h-full w-full',
-                  img: 'h-full w-full object-cover',
-                },
-              }}
-            />
-          </div>
+          <ArticleImage className="h-48 md:h-full group-hover:brightness-110 group-hover:scale-105 transition-all duration-300" />
           <div className="p-6 md:p-8 flex flex-col justify-between">
             <div className="flex-1">
               <div className="mb-3">

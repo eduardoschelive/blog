@@ -1,5 +1,6 @@
 import type { Metadata } from 'next'
 import type { Locale } from 'next-intl'
+import { getTranslations } from 'next-intl/server'
 import { getCategories } from '@/content/categories'
 import {
   CategoryRoot,
@@ -30,6 +31,7 @@ interface CategoryProps {
 
 export default async function CategoryPage({ params }: CategoryProps) {
   const { categorySlug, locale } = await params
+  const t = await getTranslations('Categories')
 
   const [category] = await getCategories(locale, {
     filter: { slug: categorySlug },
@@ -77,7 +79,7 @@ export default async function CategoryPage({ params }: CategoryProps) {
                         </div>
                       </div>
                       <ArticleLink className="text-primary font-semibold">
-                        Read article
+                        {t('readArticle')}
                       </ArticleLink>
                     </div>
                   </div>

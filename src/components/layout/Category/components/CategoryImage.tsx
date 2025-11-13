@@ -2,20 +2,15 @@
 
 import { useCategory } from '../context'
 import { cn, Image } from '@heroui/react'
+import { FallbackImage } from '@/components/ui/FallbackImage'
 import { HiBookOpen } from 'react-icons/hi2'
 
 interface CategoryImageProps {
   className?: string
   height?: string
-  iconSize?: 'sm' | 'md' | 'lg' | 'xl'
+  iconSize?: 'sm' | 'md' | 'lg'
   enableHover?: boolean
-}
-
-const iconSizes = {
-  sm: 'text-5xl',
-  md: 'text-7xl',
-  lg: 'text-8xl',
-  xl: 'text-9xl',
+  showPattern?: boolean
 }
 
 export function CategoryImage({
@@ -23,6 +18,7 @@ export function CategoryImage({
   height,
   iconSize = 'md',
   enableHover = false,
+  showPattern = true,
 }: CategoryImageProps) {
   const { category } = useCategory()
 
@@ -48,23 +44,12 @@ export function CategoryImage({
   }
 
   return (
-    <div
-      className={cn(
-        'relative w-full bg-linear-to-br from-primary/30 via-secondary/20 to-primary/20 flex items-center justify-center',
-        enableHover &&
-          'group-hover:from-primary/40 group-hover:via-secondary/30 group-hover:to-primary/30 transition-all duration-300',
-        height,
-        className
-      )}
-    >
-      <HiBookOpen
-        className={cn(
-          iconSizes[iconSize],
-          'opacity-50',
-          enableHover &&
-            'group-hover:opacity-70 transition-opacity duration-300'
-        )}
-      />
-    </div>
+    <FallbackImage
+      icon={<HiBookOpen />}
+      showPattern={showPattern}
+      gradient="medium"
+      iconSize={iconSize}
+      className={cn(height, className)}
+    />
   )
 }

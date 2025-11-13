@@ -5,7 +5,6 @@ import { getCategories } from '@/content/categories'
 import {
   CategoryRoot,
   CategoryCover,
-  CategoryTitle,
   CategoryDescription,
   CategoryContent,
 } from '@/components/layout/Category'
@@ -18,7 +17,7 @@ import {
   ArticleLink,
   ArticleReadingTime,
 } from '@/components/layout/Article'
-import { GradientDivider } from '@/components/ui/GradientDivider'
+import { PageHeader } from '@/components/ui/PageHeader'
 import { ScrollReveal } from '@/components/ui/ScrollReveal'
 import { BiSolidCategory } from 'react-icons/bi'
 
@@ -44,13 +43,15 @@ export default async function CategoryPage({ params }: CategoryProps) {
         <CategoryCover />
       </div>
 
-      <div className="max-w-7xl mx-auto px-4 py-8 space-y-12">
-        <header>
-          <CategoryTitle icon={<BiSolidCategory className="text-primary" />} />
-          <GradientDivider className="mb-6" />
-          <CategoryDescription />
-        </header>
+      <PageHeader
+        icon={
+          <BiSolidCategory className="text-primary text-4xl md:text-5xl lg:text-6xl" />
+        }
+        title={category.title}
+        subtitle={category.description}
+      />
 
+      <div className="max-w-7xl mx-auto px-4 py-8 space-y-12">
         <CategoryContent />
 
         {category.articles && category.articles.length > 0 && (

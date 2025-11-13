@@ -12,7 +12,7 @@ import {
 } from '@/components/layout/Article'
 import type { Article } from '@/types/article.type'
 
-import { LazyMotion, domAnimation, m } from 'framer-motion'
+import { m } from 'framer-motion'
 import {
   Button,
   Card,
@@ -64,37 +64,35 @@ function HeroClient({ article }: HeroClientProps) {
               />
             </div>
 
-            <LazyMotion features={domAnimation} strict>
-              <m.div
-                className="flex flex-col sm:flex-row gap-3 sm:gap-4"
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{
-                  duration: 0.6,
-                  delay: 0.8,
-                  ease: [0.25, 0.46, 0.45, 0.94],
-                }}
+            <m.div
+              className="flex flex-col sm:flex-row gap-3 sm:gap-4"
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{
+                duration: 0.6,
+                delay: 0.8,
+                ease: [0.25, 0.46, 0.45, 0.94],
+              }}
+            >
+              <Button
+                as={Link}
+                href="/about"
+                color="primary"
+                size="lg"
+                className="font-semibold shadow-lg hover:scale-105 transition-transform w-full sm:w-auto"
               >
-                <Button
-                  as={Link}
-                  href="/about"
-                  color="primary"
-                  size="lg"
-                  className="font-semibold shadow-lg hover:scale-105 transition-transform w-full sm:w-auto"
-                >
-                  {t('aboutButton')}
-                </Button>
-                <Button
-                  as={Link}
-                  href="/categories"
-                  variant="bordered"
-                  size="lg"
-                  className="font-semibold border-2 hover:scale-105 transition-transform w-full sm:w-auto"
-                >
-                  {t('articlesButton')}
-                </Button>
-              </m.div>
-            </LazyMotion>
+                {t('aboutButton')}
+              </Button>
+              <Button
+                as={Link}
+                href="/categories"
+                variant="bordered"
+                size="lg"
+                className="font-semibold border-2 hover:scale-105 transition-transform w-full sm:w-auto"
+              >
+                {t('articlesButton')}
+              </Button>
+            </m.div>
           </div>
 
           <ArticleRoot article={article}>
@@ -107,39 +105,37 @@ function HeroClient({ article }: HeroClientProps) {
                 animateBy="letters"
               />
 
-              <LazyMotion features={domAnimation} strict>
-                <m.div
-                  className="relative"
-                  initial={{ opacity: 0, x: 100 }}
-                  animate={{ opacity: 1, x: 0 }}
-                  transition={{
-                    duration: 0.8,
-                    delay: 0.5,
-                    ease: [0.25, 0.46, 0.45, 0.94],
-                  }}
-                >
-                  <Card className="relative w-full transition-all duration-300 shadow-lg drop-shadow hover:scale-[1.02] lg:hover:scale-105">
-                    <ArticleImage showPattern />
+              <m.div
+                className="relative"
+                initial={{ opacity: 0, x: 100 }}
+                animate={{ opacity: 1, x: 0 }}
+                transition={{
+                  duration: 0.8,
+                  delay: 0.5,
+                  ease: [0.25, 0.46, 0.45, 0.94],
+                }}
+              >
+                <Card className="relative w-full transition-all duration-300 shadow-lg drop-shadow hover:scale-[1.02] lg:hover:scale-105">
+                  <ArticleImage showPattern />
 
-                    <Divider />
+                  <Divider />
 
-                    <CardHeader className="pb-0 pt-4 sm:pt-6 px-4 sm:px-6 flex-col items-start gap-2 sm:gap-3">
-                      <ArticleCategory asChip asLink />
-                      <ArticleTitle className="text-xl sm:text-2xl font-bold leading-tight line-clamp-2" />
-                    </CardHeader>
+                  <CardHeader className="pb-0 pt-4 sm:pt-6 px-4 sm:px-6 flex-col items-start gap-2 sm:gap-3">
+                    <ArticleCategory asChip asLink />
+                    <ArticleTitle className="text-xl sm:text-2xl font-bold leading-tight line-clamp-2" />
+                  </CardHeader>
 
-                    <CardBody className="px-4 sm:px-6 py-3 sm:py-4">
-                      <ArticleDescription className="text-sm sm:text-base text-foreground/70 line-clamp-3 leading-relaxed" />
-                    </CardBody>
+                  <CardBody className="px-4 sm:px-6 py-3 sm:py-4">
+                    <ArticleDescription className="text-sm sm:text-base text-foreground/70 line-clamp-3 leading-relaxed" />
+                  </CardBody>
 
-                    <CardFooter className="px-4 sm:px-6 pb-4 sm:pb-6">
-                      <ArticleLink className="text-sm sm:text-base text-primary font-bold">
-                        {t('readMore')}
-                      </ArticleLink>
-                    </CardFooter>
-                  </Card>
-                </m.div>
-              </LazyMotion>
+                  <CardFooter className="px-4 sm:px-6 pb-4 sm:pb-6">
+                    <ArticleLink className="text-sm sm:text-base text-primary font-bold">
+                      {t('readMore')}
+                    </ArticleLink>
+                  </CardFooter>
+                </Card>
+              </m.div>
             </div>
           </ArticleRoot>
         </div>

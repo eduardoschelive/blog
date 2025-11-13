@@ -2,7 +2,7 @@
 
 import type { CategoryWithArticles } from '@/types/category.type'
 import { CategoryCard } from '@/components/layout/CategoryCard'
-import { domAnimation, LazyMotion } from 'framer-motion'
+import { ScrollReveal } from '@/components/ui/ScrollReveal'
 import { PREVIEW_ARTICLES_LIMIT } from '@/constants/content'
 
 interface CategoriesListClientProps {
@@ -14,15 +14,11 @@ export function CategoriesListClient({
 }: CategoriesListClientProps) {
   return (
     <div className="flex flex-col gap-8">
-      <LazyMotion features={domAnimation} strict>
-        {categories.map((category) => (
-          <CategoryCard
-            key={category.slug}
-            category={category}
-            limit={PREVIEW_ARTICLES_LIMIT}
-          />
-        ))}
-      </LazyMotion>
+      {categories.map((category) => (
+        <ScrollReveal key={category.slug}>
+          <CategoryCard category={category} limit={PREVIEW_ARTICLES_LIMIT} />
+        </ScrollReveal>
+      ))}
     </div>
   )
 }

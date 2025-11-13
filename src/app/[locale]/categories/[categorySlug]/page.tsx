@@ -19,7 +19,7 @@ import {
   ArticleReadingTime,
 } from '@/components/layout/Article'
 import { GradientDivider } from '@/components/ui/GradientDivider'
-import { domAnimation, LazyMotion } from 'framer-motion'
+import { ScrollReveal } from '@/components/ui/ScrollReveal'
 import { BiSolidCategory } from 'react-icons/bi'
 
 interface CategoryProps {
@@ -55,10 +55,9 @@ export default async function CategoryPage({ params }: CategoryProps) {
 
         {category.articles && category.articles.length > 0 && (
           <section className="space-y-8">
-            <LazyMotion features={domAnimation} strict>
-              {category.articles.map((article) => (
+            {category.articles.map((article) => (
+              <ScrollReveal key={article.slug}>
                 <ArticleRoot
-                  key={article.slug}
                   article={article}
                   className="group bg-content2 rounded-xl overflow-hidden shadow-lg hover:shadow-2xl hover:scale-[1.02] transition-all duration-300 border border-divider/20 hover:border-divider/40"
                 >
@@ -84,8 +83,8 @@ export default async function CategoryPage({ params }: CategoryProps) {
                     </div>
                   </div>
                 </ArticleRoot>
-              ))}
-            </LazyMotion>
+              </ScrollReveal>
+            ))}
           </section>
         )}
       </div>

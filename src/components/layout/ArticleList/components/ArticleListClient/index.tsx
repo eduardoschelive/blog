@@ -5,7 +5,6 @@ import { Button } from '@heroui/react'
 import { useTranslations } from 'next-intl'
 import { AnimatedArticleCard } from '../AnimatedArticleCard'
 import { Link } from '@/i18n/navigation'
-import { domAnimation, LazyMotion } from 'framer-motion'
 
 interface ArticleListClientProps {
   articles: Article[]
@@ -25,14 +24,12 @@ function ArticleListClient({ articles }: ArticleListClientProps) {
       </div>
 
       <div className="grid gap-8">
-        <LazyMotion features={domAnimation} strict>
-          {articles.map((article) => (
-            <AnimatedArticleCard
-              key={`${article.slug}-${article.locale}`}
-              article={article}
-            />
-          ))}
-        </LazyMotion>
+        {articles.map((article) => (
+          <AnimatedArticleCard
+            key={`${article.slug}-${article.locale}`}
+            article={article}
+          />
+        ))}
       </div>
 
       <div className="mt-12 text-center">

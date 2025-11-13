@@ -11,61 +11,18 @@ import {
   ArticleTitle,
   ArticleReadingTime,
 } from '@/components/layout/Article'
-import { m, useInView } from 'framer-motion'
+import { ScrollReveal } from '@/components/ui/ScrollReveal'
 import { useTranslations } from 'next-intl'
-import { useEffect, useRef, useState } from 'react'
 
 interface AnimatedArticleCardProps {
   article: Article
 }
 
 function AnimatedArticleCard({ article }: AnimatedArticleCardProps) {
-  const ref = useRef<HTMLDivElement>(null)
   const t = useTranslations('HomePage.latest')
 
-  const [isLockedVisible, setIsLockedVisible] = useState(false)
-
-  const isInView = useInView(ref, {
-    amount: 0.2,
-    margin: '0px 0px -50px 0px',
-  })
-
-  useEffect(() => {
-    if (!ref.current) return
-
-    const handleScroll = () => {
-      if (!ref.current) return
-
-      const rect = ref.current.getBoundingClientRect()
-      const viewportHeight = window.innerHeight
-
-      if (rect.bottom < 0) {
-        setIsLockedVisible(true)
-      }
-
-      if (rect.top > viewportHeight) {
-        setIsLockedVisible(false)
-      }
-    }
-
-    window.addEventListener('scroll', handleScroll, { passive: true })
-    handleScroll()
-
-    return () => window.removeEventListener('scroll', handleScroll)
-  }, [])
-
-  const shouldBeVisible = isLockedVisible || isInView
-
   return (
-    <m.div
-      ref={ref}
-      initial={{ opacity: 0, x: -100 }}
-      animate={shouldBeVisible ? { opacity: 1, x: 0 } : { opacity: 0, x: -100 }}
-      transition={{
-        duration: 0.5,
-        ease: [0.25, 0.4, 0.25, 1],
-      }}
-    >
+    <ScrollReveal>
       <ArticleRoot
         article={article}
         className="group bg-content1 rounded-xl overflow-hidden shadow-lg hover:shadow-2xl hover:scale-[1.02] transition-all duration-300 border border-divider/20 hover:border-divider/40"
@@ -96,7 +53,7 @@ function AnimatedArticleCard({ article }: AnimatedArticleCardProps) {
           </div>
         </div>
       </ArticleRoot>
-    </m.div>
+    </ScrollReveal>
   )
 }
 

@@ -26,12 +26,12 @@ function ArticleCategory({
 
   if (!asChip) {
     return (
-      <div
+      <span
         className={cn('text-sm font-medium text-primary', className)}
         {...props}
       >
         {content}
-      </div>
+      </span>
     )
   }
 

@@ -7,7 +7,7 @@ function useHeadingTree() {
 
   useEffect(() => {
     const elements = Array.from(
-      document.querySelectorAll('h2, h3, h4')
+      document.querySelectorAll('h1, h2, h3, h4')
     ) as HTMLElement[]
 
     if (elements.length === 0) return

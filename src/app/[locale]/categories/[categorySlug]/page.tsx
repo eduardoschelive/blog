@@ -16,9 +16,17 @@ import {
   ArticleLink,
   ArticleReadingTime,
 } from '@/components/layout/Article'
-import { PageHeader } from '@/components/ui/PageHeader'
+import {
+  PageHeaderRoot,
+  PageHeaderTitle,
+  PageHeaderDivider,
+  PageHeaderSubtitle,
+} from '@/components/ui/PageHeader'
+import { Breadcrumbs } from '@/components/ui/Breadcrumbs'
 import { ScrollReveal } from '@/components/ui/ScrollReveal'
 import { BiSolidCategory } from 'react-icons/bi'
+import { HiHome, HiFolder } from 'react-icons/hi2'
+import { BackgroundDecorations } from '@/components/layout/BackgroundDecorations'
 
 interface CategoryProps {
   params: Promise<{
@@ -29,7 +37,7 @@ interface CategoryProps {
 
 export default async function CategoryPage({ params }: CategoryProps) {
   const { categorySlug, locale } = await params
-  const t = await getTranslations('Categories')
+  const t = await getTranslations()
 
   const [category] = await getCategories(locale, {
     filter: { slug: categorySlug },
@@ -38,55 +46,87 @@ export default async function CategoryPage({ params }: CategoryProps) {
 
   return (
     <CategoryRoot category={category} className="min-h-screen">
+      <BackgroundDecorations />
+      <Breadcrumbs
+        items={[
+          {
+            label: t('Navbar.home'),
+            href: '/',
+            icon: <HiHome className="text-base shrink-0" />,
+          },
+          {
+            label: t('Navbar.categories'),
+            href: '/categories',
+            icon: <BiSolidCategory className="text-base shrink-0" />,
+          },
+          {
+            label: category.title,
+            icon: <HiFolder className="text-base shrink-0" />,
+          },
+        ]}
+      />
+
       <div className="w-full max-w-7xl mx-auto mb-8">
         <CategoryCover />
       </div>
 
-      <PageHeader
-        icon={
-          <BiSolidCategory className="text-primary text-4xl md:text-5xl lg:text-6xl" />
-        }
-        title={category.title}
-        subtitle={category.description}
-      />
+      <PageHeaderRoot>
+        <PageHeaderTitle
+          icon={
+            <BiSolidCategory className="text-primary text-4xl md:text-5xl lg:text-6xl" />
+          }
+        >
+          {category.title}
+        </PageHeaderTitle>
 
-      <div className="max-w-7xl mx-auto px-4 py-8 space-y-12">
-        <CategoryContent />
+        <PageHeaderDivider />
 
-        {category.articles && category.articles.length > 0 && (
-          <section className="space-y-8">
-            {category.articles.map((article) => (
-              <ScrollReveal key={article.slug}>
-                <ArticleRoot
-                  article={article}
-                  className="group bg-content2 rounded-xl overflow-hidden shadow-lg hover:shadow-2xl hover:scale-[1.02] transition-all duration-300 border border-divider/20 hover:border-divider/40"
-                >
-                  <div className="grid md:grid-cols-[300px_1fr] gap-0">
-                    <ArticleImage className="h-48 md:h-full group-hover:brightness-110 group-hover:scale-105 transition-all duration-300" />
-                    <div className="p-6 md:p-8 flex flex-col justify-between">
-                      <div className="flex-1">
-                        <ArticleTitle
-                          as="h3"
-                          className="text-2xl md:text-3xl font-bold mb-3 group-hover:text-primary transition-colors duration-300 line-clamp-2"
-                        />
-
-                        <ArticleDescription className="text-sm md:text-base mb-4 line-clamp-3" />
-
-                        <div className="mb-6 flex items-center gap-4">
-                          <ArticleDate className="text-xs" />
-                          <ArticleReadingTime className="text-xs" />
-                        </div>
-                      </div>
-                      <ArticleLink className="text-primary font-semibold">
-                        {t('readArticle')}
-                      </ArticleLink>
-                    </div>
-                  </div>
-                </ArticleRoot>
-              </ScrollReveal>
-            ))}
-          </section>
+        {category.description && (
+          <PageHeaderSubtitle>{category.description}</PageHeaderSubtitle>
         )}
+      </PageHeaderRoot>
+
+      <div className="w-full px-4 py-8">
+        <div className="max-w-7xl mx-auto space-y-12">
+          <ScrollReveal>
+            <CategoryContent />
+          </ScrollReveal>
+
+          {category.articles && category.articles.length > 0 && (
+            <section className="space-y-8">
+              {category.articles.map((article) => (
+                <ScrollReveal key={article.slug}>
+                  <ArticleRoot
+                    article={article}
+                    className="group bg-content2 rounded-xl overflow-hidden shadow-lg hover:shadow-2xl hover:scale-[1.02] transition-all duration-300 border border-divider/20 hover:border-divider/40"
+                  >
+                    <div className="grid md:grid-cols-[300px_1fr] gap-0">
+                      <ArticleImage className="h-48 md:h-full group-hover:brightness-110 group-hover:scale-105 transition-all duration-300" />
+                      <div className="p-6 md:p-8 flex flex-col justify-between">
+                        <div className="flex-1">
+                          <ArticleTitle
+                            as="h3"
+                            className="text-2xl md:text-3xl font-bold mb-3 group-hover:text-primary transition-colors duration-300 line-clamp-2"
+                          />
+
+                          <ArticleDescription className="text-sm md:text-base mb-4 line-clamp-3" />
+
+                          <div className="mb-6 flex items-center gap-4">
+                            <ArticleDate showIcon className="text-xs" />
+                            <ArticleReadingTime className="text-xs" />
+                          </div>
+                        </div>
+                        <ArticleLink className="text-primary font-semibold">
+                          {t('Categories.readArticle')}
+                        </ArticleLink>
+                      </div>
+                    </div>
+                  </ArticleRoot>
+                </ScrollReveal>
+              ))}
+            </section>
+          )}
+        </div>
       </div>
     </CategoryRoot>
   )

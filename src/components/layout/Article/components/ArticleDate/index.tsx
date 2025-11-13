@@ -10,12 +10,14 @@ import { HiOutlineCalendarDays } from 'react-icons/hi2'
 interface ArticleDateProps extends HTMLAttributes<HTMLSpanElement> {
   children?: ReactNode
   format?: Intl.DateTimeFormatOptions
+  showIcon?: boolean
 }
 
 function ArticleDate({
   className,
   children,
   format = DEFAULT_DATE_FORMAT,
+  showIcon,
   ...props
 }: ArticleDateProps) {
   const { article } = useArticle()
@@ -39,7 +41,7 @@ function ArticleDate({
       )}
       {...props}
     >
-      <HiOutlineCalendarDays className="w-3.5 h-3.5" />
+      {showIcon && <HiOutlineCalendarDays className="w-3.5 h-3.5" />}
       <time dateTime={dateTime}>{content}</time>
     </span>
   )

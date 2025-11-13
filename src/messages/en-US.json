@@ -10,7 +10,9 @@
   },
   "Article": {
     "dateNotAvailable": "Date not available",
-    "readingTime": "{minutes, plural, =1 {1 minute read} other {# minutes read}}"
+    "readingTime": "{minutes, plural, =1 {1 minute read} other {# minutes read}}",
+    "filedUnder": "Filed under",
+    "on": "on"
   },
   "HomePage": {
     "latest": {

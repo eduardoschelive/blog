@@ -4,7 +4,7 @@ import {
   ArticleTOC,
   ArticleHeader,
   ArticleCover,
-} from '@/components/layout/Article'
+} from '@/components/composables/Article'
 import { Breadcrumbs } from '@/components/ui/Breadcrumbs'
 import { BackgroundDecorations } from '@/components/ui/BackgroundDecorations'
 import { getArticles } from '@/content/articles'

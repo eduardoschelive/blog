@@ -7,7 +7,7 @@ import {
   PageHeaderTitle,
   PageHeaderDivider,
   PageHeaderSubtitle,
-} from '@/components/ui/PageHeader'
+} from '@/components/composables/PageHeader'
 import { BiSolidCategory } from 'react-icons/bi'
 
 export default async function CategoriesPage() {

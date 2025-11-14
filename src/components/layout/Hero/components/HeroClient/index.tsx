@@ -9,7 +9,7 @@ import {
   ArticleTitle,
   ArticleDescription,
   ArticleLink,
-} from '@/components/layout/Article'
+} from '@/components/composables/Article'
 import { HoverCard } from '@/components/ui/HoverCard'
 import type { Article } from '@/types/article.type'
 

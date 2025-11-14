@@ -5,7 +5,7 @@ import {
   PageHeaderTitle,
   PageHeaderDivider,
   PageHeaderSubtitle,
-} from '@/components/ui/PageHeader'
+} from '@/components/composables/PageHeader'
 import { ArticleMetadata } from '../ArticleMetadata'
 import { useArticle } from '../../context'
 import { HiDocumentText } from 'react-icons/hi2'

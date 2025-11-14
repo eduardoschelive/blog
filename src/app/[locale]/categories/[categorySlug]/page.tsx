@@ -6,14 +6,14 @@ import {
   CategoryRoot,
   CategoryCover,
   CategoryContent,
-} from '@/components/layout/Category'
+} from '@/components/composables/Category'
 import { ArticleCard } from '@/components/layout/ArticleCard'
 import {
   PageHeaderRoot,
   PageHeaderTitle,
   PageHeaderDivider,
   PageHeaderSubtitle,
-} from '@/components/ui/PageHeader'
+} from '@/components/composables/PageHeader'
 import { Breadcrumbs } from '@/components/ui/Breadcrumbs'
 import { ScrollReveal } from '@/components/ui/ScrollReveal'
 import { BiSolidCategory } from 'react-icons/bi'

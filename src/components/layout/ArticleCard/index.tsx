@@ -10,7 +10,7 @@ import {
   ArticleRoot,
   ArticleTitle,
   ArticleReadingTime,
-} from '@/components/layout/Article'
+} from '@/components/composables/Article'
 import { ScrollReveal } from '@/components/ui/ScrollReveal'
 import { HoverCard } from '@/components/ui/HoverCard'
 import { cn } from '@heroui/react'

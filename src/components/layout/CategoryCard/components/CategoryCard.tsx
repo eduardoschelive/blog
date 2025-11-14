@@ -5,7 +5,7 @@ import {
   CategoryRoot,
   CategoryImage,
   CategoryLink,
-} from '@/components/layout/Category'
+} from '@/components/composables/Category'
 import { HoverCard } from '@/components/ui/HoverCard'
 import { Link } from '@heroui/react'
 import { useTranslations } from 'next-intl'

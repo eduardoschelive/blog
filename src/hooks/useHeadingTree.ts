@@ -1,13 +1,15 @@
 import type { HeadingNode, HeadingTree } from '@/types/heading.type'
 import { slugfy } from '@/utils/slugfy'
 import { useEffect, useState } from 'react'
+import type { RefObject } from 'react'
 
-function useHeadingTree() {
+function useHeadingTree(containerRef?: RefObject<HTMLElement>) {
   const [headingTree, setHeadingTree] = useState<HeadingTree>()
 
   useEffect(() => {
+    const container = containerRef?.current || document
     const elements = Array.from(
-      document.querySelectorAll('h1, h2, h3, h4')
+      container.querySelectorAll('h1, h2, h3, h4')
     ) as HTMLElement[]
 
     if (elements.length === 0) return
@@ -49,7 +51,7 @@ function useHeadingTree() {
     })
 
     setHeadingTree({ nodes, rootIds })
-  }, [])
+  }, [containerRef])
 
   return { headingTree }
 }

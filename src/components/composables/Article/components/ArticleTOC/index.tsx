@@ -5,15 +5,17 @@ import { useHeadings } from '@/hooks/useHeadingTree'
 import { useScroll } from '@/hooks/useScroll'
 import { cn } from '@heroui/react'
 import { useTranslations } from 'next-intl'
-import type { HTMLAttributes } from 'react'
+import type { HTMLAttributes, RefObject } from 'react'
 import { Stagger } from '@/components/animated/Stagger'
 import { StaggerItem } from '@/components/animated/StaggerItem'
 
-type ArticleTOCProps = HTMLAttributes<HTMLDivElement>
+interface ArticleTOCProps extends HTMLAttributes<HTMLDivElement> {
+  containerRef?: RefObject<HTMLElement>
+}
 
-export function ArticleTOC({ className }: ArticleTOCProps) {
+export function ArticleTOC({ className, containerRef }: ArticleTOCProps) {
   const t = useTranslations('TableOfContents')
-  const { headingTree } = useHeadings()
+  const { headingTree } = useHeadings(containerRef)
   const { scrollToHeading } = useScroll()
 
   const headingIds = headingTree ? Object.keys(headingTree.nodes) : []

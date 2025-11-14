@@ -15,7 +15,7 @@ export function PageHeaderRoot({
   return (
     <section
       className={cn(
-        'w-full px-4 pt-4 pb-8 md:pt-6 md:pb-12 relative',
+        'w-full px-4 pt-4 pb-6 md:pt-6 md:pb-8 relative',
         className
       )}
       {...props}

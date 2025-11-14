@@ -5,6 +5,7 @@ import { LazyMotionProvider } from './LazyMotionProvider'
 import { MultiProvider } from './MultiProvider'
 import { ThemeProvider } from './ThemeProvider'
 import { UIProvider } from './UIProvider'
+import { HashScrollProvider } from './HashScrollProvider'
 
 interface ProvidersProps {
   children: ReactNode
@@ -19,6 +20,7 @@ function Providers({ children }: ProvidersProps) {
         NextIntlClientProvider,
         UIProvider,
         ClickSparkProvider,
+        HashScrollProvider,
       ]}
     >
       {children}

@@ -2,18 +2,20 @@
 
 import { BlurText } from '@/components/animated/BlurText'
 import { cn } from '@heroui/react'
-import type { ReactNode, HTMLAttributes } from 'react'
+import type { ReactNode, HTMLAttributes, ElementType } from 'react'
 import { RotateIn } from '@/components/animated/RotateIn'
 
 interface PageHeaderTitleProps extends HTMLAttributes<HTMLDivElement> {
   icon?: ReactNode
   children: string
+  as?: ElementType
 }
 
 export function PageHeaderTitle({
   icon,
   children,
   className,
+  as = 'h1',
   ...props
 }: PageHeaderTitleProps) {
   return (
@@ -21,6 +23,7 @@ export function PageHeaderTitle({
       {icon && <RotateIn>{icon}</RotateIn>}
 
       <BlurText
+        as={as}
         text={children}
         className="text-4xl md:text-5xl lg:text-6xl font-bold"
         direction="bottom"

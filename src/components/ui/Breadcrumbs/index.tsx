@@ -5,14 +5,14 @@ import { cn } from '@heroui/react'
 import type { ReactNode } from 'react'
 import { FadeIn } from '@/components/animated/FadeIn'
 
-export interface BreadcrumbItemData {
+export interface BreadcrumbItem {
   label: string
   href?: string
   icon?: ReactNode
 }
 
 interface BreadcrumbsProps {
-  items: BreadcrumbItemData[]
+  items: BreadcrumbItem[]
   className?: string
 }
 

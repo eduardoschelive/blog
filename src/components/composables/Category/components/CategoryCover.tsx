@@ -2,7 +2,7 @@
 
 import { CategoryImage } from './CategoryImage'
 import { cn } from '@heroui/react'
-import { FadeIn } from '@/components/animated/FadeIn'
+import { ScaleIn } from '@/components/animated/ScaleIn'
 
 interface CategoryCoverProps {
   className?: string
@@ -10,8 +10,8 @@ interface CategoryCoverProps {
 
 export function CategoryCover({ className }: CategoryCoverProps) {
   return (
-    <FadeIn direction="up">
+    <ScaleIn>
       <CategoryImage className={cn('h-[200px] md:h-[280px]', className)} />
-    </FadeIn>
+    </ScaleIn>
   )
 }

@@ -1,7 +1,7 @@
 'use client'
 
 import { m, type Transition } from 'framer-motion'
-import { useEffect, useRef, useState, useMemo } from 'react'
+import { useEffect, useRef, useState, useMemo, type ElementType } from 'react'
 
 type BlurTextProps = {
   text?: string
@@ -16,6 +16,7 @@ type BlurTextProps = {
   easing?: (t: number) => number
   onAnimationComplete?: () => void
   stepDuration?: number
+  as?: ElementType
 }
 
 const buildKeyframes = (
@@ -47,10 +48,11 @@ const BlurText: React.FC<BlurTextProps> = ({
   easing = (t: number) => t,
   onAnimationComplete,
   stepDuration = 0.25,
+  as: Component = 'p',
 }) => {
   const elements = animateBy === 'words' ? text.split(' ') : text.split('')
   const [inView, setInView] = useState(false)
-  const ref = useRef<HTMLParagraphElement>(null)
+  const ref = useRef<HTMLElement>(null)
 
   useEffect(() => {
     if (!ref.current) return
@@ -97,7 +99,7 @@ const BlurText: React.FC<BlurTextProps> = ({
   )
 
   return (
-    <p
+    <Component
       ref={ref}
       className={className}
       style={{ display: 'flex', flexWrap: 'wrap' }}
@@ -131,7 +133,7 @@ const BlurText: React.FC<BlurTextProps> = ({
           </m.span>
         )
       })}
-    </p>
+    </Component>
   )
 }
 

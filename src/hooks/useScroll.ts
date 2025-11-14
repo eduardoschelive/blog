@@ -23,9 +23,12 @@ function useScroll() {
 
     const el = document.getElementById(id)
     const header = document.getElementById(HEADER_ID)
-    if (el) {
-      const headerHeight = header ? header.offsetHeight : 0
-      const elementPosition = el.offsetTop - headerHeight
+
+    if (el && header) {
+      const headerHeight = header.offsetHeight
+      const elementRect = el.getBoundingClientRect()
+      const elementPosition =
+        elementRect.top + window.scrollY - headerHeight - 16
 
       window.scrollTo({
         top: elementPosition,

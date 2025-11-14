@@ -130,7 +130,7 @@ function useActiveHeading(headingIds: string[]) {
     let timeoutId: NodeJS.Timeout
     const debouncedUpdate = () => {
       clearTimeout(timeoutId)
-      timeoutId = setTimeout(updateActiveHeading, 50)
+      timeoutId = setTimeout(updateActiveHeading, 5)
     }
 
     updateActiveHeading()

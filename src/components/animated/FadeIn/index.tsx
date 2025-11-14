@@ -1,8 +1,9 @@
 'use client'
 
-import { m } from 'framer-motion'
+import { m, useInView } from 'framer-motion'
 import type { ReactNode } from 'react'
 import { ANIMATION_CONFIG } from '@/constants/animations'
+import { useRef } from 'react'
 
 interface FadeInProps {
   children: ReactNode
@@ -11,6 +12,7 @@ interface FadeInProps {
   className?: string
   fast?: boolean
   style?: React.CSSProperties
+  inView?: boolean
 }
 
 export function FadeIn({
@@ -20,7 +22,11 @@ export function FadeIn({
   className,
   fast = false,
   style,
+  inView = false,
 }: FadeInProps) {
+  const ref = useRef(null)
+  const isInView = useInView(ref, { once: true, amount: 0.2 })
+
   const directions = {
     up: { y: ANIMATION_CONFIG.distance.medium },
     down: { y: -ANIMATION_CONFIG.distance.medium },
@@ -38,10 +44,17 @@ export function FadeIn({
     delay,
   }
 
+  const shouldAnimate = inView ? isInView : true
+
   return (
     <m.div
+      ref={inView ? ref : undefined}
       initial={{ opacity: 0, ...directions[direction] }}
-      animate={{ opacity: 1, x: 0, y: 0 }}
+      animate={
+        shouldAnimate
+          ? { opacity: 1, x: 0, y: 0 }
+          : { opacity: 0, ...directions[direction] }
+      }
       transition={transition}
       className={className}
       style={style}

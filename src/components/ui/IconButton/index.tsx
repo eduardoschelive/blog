@@ -16,7 +16,13 @@ function IconButton({
   ...props
 }: IconButtonProps) {
   const button = (
-    <Button {...props} isIconOnly radius="full" variant="light">
+    <Button
+      {...props}
+      isIconOnly
+      radius="full"
+      variant="light"
+      suppressHydrationWarning
+    >
       {children}
     </Button>
   )
@@ -27,6 +33,7 @@ function IconButton({
         content={tooltip}
         delay={tooltipDelay}
         closeDelay={tooltipCloseDelay}
+        suppressHydrationWarning
       >
         {button}
       </Tooltip>

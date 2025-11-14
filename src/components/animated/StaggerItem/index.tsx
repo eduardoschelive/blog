@@ -7,18 +7,34 @@ import { ANIMATION_CONFIG } from '@/constants/animations'
 interface StaggerItemProps {
   children: ReactNode
   className?: string
+  direction?: 'up' | 'down' | 'left' | 'right'
 }
 
-export function StaggerItem({ children, className }: StaggerItemProps) {
+export function StaggerItem({
+  children,
+  className,
+  direction = 'up',
+}: StaggerItemProps) {
+  const directions = {
+    up: { y: ANIMATION_CONFIG.distance.medium },
+    down: { y: -ANIMATION_CONFIG.distance.medium },
+    left: { x: -ANIMATION_CONFIG.distance.medium },
+    right: { x: ANIMATION_CONFIG.distance.medium },
+  }
+
   return (
     <m.div
       variants={{
-        hidden: { opacity: 0, y: ANIMATION_CONFIG.distance.medium },
-        visible: { opacity: 1, y: 0 },
-      }}
-      transition={{
-        duration: ANIMATION_CONFIG.duration.fast,
-        ease: ANIMATION_CONFIG.easing.bounce,
+        hidden: { opacity: 0, ...directions[direction] },
+        visible: {
+          opacity: 1,
+          x: 0,
+          y: 0,
+          transition: {
+            duration: ANIMATION_CONFIG.duration.fast,
+            ease: ANIMATION_CONFIG.easing.bounce,
+          },
+        },
       }}
       className={className}
     >

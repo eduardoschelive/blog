@@ -11,7 +11,7 @@ export function ArticleCover() {
 
   return (
     <ScaleIn className="w-full max-w-7xl mx-auto mb-8">
-      <ArticleImage className="h-[300px] md:h-[400px] lg:h-[500px]" />
+      <ArticleImage className="h-[250px] md:h-[300px] lg:h-[350px]" />
     </ScaleIn>
   )
 }

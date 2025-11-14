@@ -6,7 +6,6 @@ import { useScroll } from '@/hooks/useScroll'
 import { cn } from '@heroui/react'
 import { useTranslations } from 'next-intl'
 import type { HTMLAttributes } from 'react'
-import { FadeIn } from '@/components/animated/FadeIn'
 import { Stagger } from '@/components/animated/Stagger'
 import { StaggerItem } from '@/components/animated/StaggerItem'
 
@@ -44,74 +43,75 @@ export function ArticleTOC({ className }: ArticleTOCProps) {
     if (!node || node.childIds.length === 0) return null
 
     return (
-      <Stagger delay={0.05}>
-        <ul className="space-y-1 mt-1">
-          {node.childIds.map((childId) => {
-            const child = headingTree.nodes[childId]
-            const isActive = child.id === activeId
-            return (
-              <StaggerItem key={child.id} className={getIndentClass(depth + 1)}>
-                <a
-                  href={`#${child.id}`}
-                  onClick={(event) => handleHeadingClick(event, child.id)}
-                  className={cn(
-                    'block py-1 text-sm transition-all duration-200 border-l-2 pl-3',
-                    isActive
-                      ? 'border-primary text-primary font-semibold'
-                      : 'border-transparent text-foreground/60 hover:text-foreground hover:border-foreground/20'
-                  )}
-                >
-                  {child.text}
-                </a>
-                {renderHeadings(child.id, depth + 1)}
-              </StaggerItem>
-            )
-          })}
-        </ul>
-      </Stagger>
+      <ul className="space-y-1 mt-1">
+        {node.childIds.map((childId) => {
+          const child = headingTree.nodes[childId]
+          const isActive = child.id === activeId
+          return (
+            <StaggerItem
+              key={child.id}
+              direction="right"
+              className={getIndentClass(depth + 1)}
+            >
+              <a
+                href={`#${child.id}`}
+                onClick={(event) => handleHeadingClick(event, child.id)}
+                className={cn(
+                  'block py-1 text-sm transition-all duration-200 border-l-2 pl-3',
+                  isActive
+                    ? 'border-primary text-primary font-semibold'
+                    : 'border-transparent text-foreground/60 hover:text-foreground hover:border-foreground/20'
+                )}
+              >
+                {child.text}
+              </a>
+              {renderHeadings(child.id, depth + 1)}
+            </StaggerItem>
+          )
+        })}
+      </ul>
     )
   }
 
   if (!headingTree || headingTree.rootIds.length === 0) return null
 
   return (
-    <FadeIn
-      direction="right"
-      delay={0.3}
+    <Stagger
+      delay={0.2}
       className={cn(
         'sticky top-24 max-h-[calc(100vh-8rem)] overflow-y-auto',
         'hidden lg:block',
         className
       )}
     >
-      <h3 className="mb-4 text-lg font-bold text-foreground flex items-center gap-2">
-        {t('title')}
-      </h3>
+      <StaggerItem direction="right">
+        <h3 className="mb-4 text-lg font-bold text-foreground flex items-center gap-2">
+          {t('title')}
+        </h3>
+      </StaggerItem>
 
-      <Stagger delay={0.1}>
-        <nav className="space-y-2">
-          {headingTree.rootIds.map((rootId) => {
-            const isActive = rootId === activeId
-            return (
-              <StaggerItem key={rootId}>
-                <a
-                  href={`#${rootId}`}
-                  onClick={(event) => handleHeadingClick(event, rootId)}
-                  className={cn(
-                    'block py-1.5 text-sm font-medium transition-all duration-200 border-l-2 pl-3',
-                    isActive
-                      ? 'border-primary text-primary font-bold'
-                      : 'border-transparent text-foreground/70 hover:text-foreground hover:border-foreground/20'
-                  )}
-                >
-                  {headingTree.nodes[rootId].text}
-                </a>
-                {renderHeadings(rootId, 1)}
-              </StaggerItem>
-            )
-          })}
-        </nav>
-      </Stagger>
-    </FadeIn>
+      <nav className="space-y-2">
+        {headingTree.rootIds.map((rootId) => {
+          const isActive = rootId === activeId
+          return (
+            <StaggerItem key={rootId} direction="right">
+              <a
+                href={`#${rootId}`}
+                onClick={(event) => handleHeadingClick(event, rootId)}
+                className={cn(
+                  'block py-1.5 text-sm font-medium transition-all duration-200 border-l-2 pl-3',
+                  isActive
+                    ? 'border-primary text-primary font-bold'
+                    : 'border-transparent text-foreground/70 hover:text-foreground hover:border-foreground/20'
+                )}
+              >
+                {headingTree.nodes[rootId].text}
+              </a>
+              {renderHeadings(rootId, 1)}
+            </StaggerItem>
+          )
+        })}
+      </nav>
+    </Stagger>
   )
 }

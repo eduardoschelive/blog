@@ -7,13 +7,11 @@ import type { HTMLAttributes } from 'react'
 
 interface ArticleImageProps extends HTMLAttributes<HTMLDivElement> {
   fallbackIcon?: string
-  showPattern?: boolean
 }
 
 export function ArticleImage({
   className,
   fallbackIcon = '📰',
-  showPattern = true,
   ...props
 }: ArticleImageProps) {
   const { article } = useArticle()
@@ -42,7 +40,6 @@ export function ArticleImage({
     <FallbackImage
       icon={fallbackIcon}
       title={article.category.title}
-      showPattern={showPattern}
       gradient="medium"
       iconSize="md"
       className={className}

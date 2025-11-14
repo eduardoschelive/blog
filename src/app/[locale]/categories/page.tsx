@@ -1,5 +1,5 @@
 import { CategoriesList } from '@/components/layout/CategoriesList'
-import { BackgroundDecorations } from '@/components/layout/BackgroundDecorations'
+import { BackgroundDecorations } from '@/components/ui/BackgroundDecorations'
 import type { Metadata } from 'next'
 import { getTranslations } from 'next-intl/server'
 import {

@@ -10,6 +10,7 @@ import {
   ArticleDescription,
   ArticleLink,
 } from '@/components/layout/Article'
+import { HoverCard } from '@/components/ui/HoverCard'
 import type { Article } from '@/types/article.type'
 
 import { m } from 'framer-motion'
@@ -26,7 +27,7 @@ import { useScroll } from '@/hooks/useScroll'
 import { useTranslations } from 'next-intl'
 
 interface HeroClientProps {
-  article?: Article
+  article: Article
 }
 
 function HeroClient({ article }: HeroClientProps) {
@@ -115,26 +116,28 @@ function HeroClient({ article }: HeroClientProps) {
                   ease: [0.25, 0.46, 0.45, 0.94],
                 }}
               >
-                <Card className="relative w-full transition-all duration-300 shadow-lg drop-shadow hover:scale-[1.02] lg:hover:scale-105">
-                  <ArticleImage showPattern />
+                <HoverCard>
+                  <Card className="relative w-full shadow-lg drop-shadow">
+                    <ArticleImage />
 
-                  <Divider />
+                    <Divider />
 
-                  <CardHeader className="pb-0 pt-4 sm:pt-6 px-4 sm:px-6 flex-col items-start gap-2 sm:gap-3">
-                    <ArticleCategory asChip asLink />
-                    <ArticleTitle className="text-xl sm:text-2xl font-bold leading-tight line-clamp-2" />
-                  </CardHeader>
+                    <CardHeader className="pb-0 pt-4 sm:pt-6 px-4 sm:px-6 flex-col items-start gap-2 sm:gap-3">
+                      <ArticleCategory asChip asLink />
+                      <ArticleTitle className="text-xl sm:text-2xl font-bold leading-tight line-clamp-2" />
+                    </CardHeader>
 
-                  <CardBody className="px-4 sm:px-6 py-3 sm:py-4">
-                    <ArticleDescription className="text-sm sm:text-base text-foreground/70 line-clamp-3 leading-relaxed" />
-                  </CardBody>
+                    <CardBody className="px-4 sm:px-6 py-3 sm:py-4">
+                      <ArticleDescription className="text-sm sm:text-base text-foreground/70 line-clamp-3 leading-relaxed" />
+                    </CardBody>
 
-                  <CardFooter className="px-4 sm:px-6 pb-4 sm:pb-6">
-                    <ArticleLink className="text-sm sm:text-base text-primary font-bold">
-                      {t('readMore')}
-                    </ArticleLink>
-                  </CardFooter>
-                </Card>
+                    <CardFooter className="px-4 sm:px-6 pb-4 sm:pb-6">
+                      <ArticleLink className="text-sm sm:text-base text-primary font-bold">
+                        {t('readMore')}
+                      </ArticleLink>
+                    </CardFooter>
+                  </Card>
+                </HoverCard>
               </m.div>
             </div>
           </ArticleRoot>

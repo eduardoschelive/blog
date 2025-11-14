@@ -3,7 +3,7 @@
 import type { Article } from '@/types/article.type'
 import { Button } from '@heroui/react'
 import { useTranslations } from 'next-intl'
-import { ArticleCard } from '@/components/ui/ArticleCard'
+import { ArticleCard } from '@/components/layout/ArticleCard'
 import { Link } from '@/i18n/navigation'
 
 interface ArticleListClientProps {

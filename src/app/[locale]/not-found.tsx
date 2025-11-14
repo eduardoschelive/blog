@@ -5,7 +5,7 @@ import { useTranslations } from 'next-intl'
 import { m } from 'framer-motion'
 import { Button } from '@heroui/react'
 import { FiHome, FiBookOpen, FiAlertCircle } from 'react-icons/fi'
-import { BackgroundDecorations } from '@/components/layout/BackgroundDecorations'
+import { BackgroundDecorations } from '@/components/ui/BackgroundDecorations'
 
 export default function NotFound() {
   const t = useTranslations('NotFound')

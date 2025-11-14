@@ -7,7 +7,7 @@ import {
   CategoryCover,
   CategoryContent,
 } from '@/components/layout/Category'
-import { ArticleCard } from '@/components/ui/ArticleCard'
+import { ArticleCard } from '@/components/layout/ArticleCard'
 import {
   PageHeaderRoot,
   PageHeaderTitle,
@@ -18,7 +18,7 @@ import { Breadcrumbs } from '@/components/ui/Breadcrumbs'
 import { ScrollReveal } from '@/components/ui/ScrollReveal'
 import { BiSolidCategory } from 'react-icons/bi'
 import { HiHome, HiFolder } from 'react-icons/hi2'
-import { BackgroundDecorations } from '@/components/layout/BackgroundDecorations'
+import { BackgroundDecorations } from '@/components/ui/BackgroundDecorations'
 
 interface CategoryProps {
   params: Promise<{

@@ -4,10 +4,10 @@ import { HEADER_ID } from '@/constants/elements'
 import { Link } from '@/i18n/navigation'
 import { Navbar, NavbarBrand, NavbarContent, NavbarItem } from '@heroui/react'
 import { useTranslations } from 'next-intl'
-import { LanguageSelect } from '../LanguageSelect'
-import { RSSButton } from '../RSSButton'
-import { SearchButton } from '../SearchButton'
-import { ThemeSwitch } from '../ThemeSwitch'
+import { LanguageSelect } from '@/components/ui/LanguageSelect'
+import { RSSButton } from '@/components/ui/RSSButton'
+import { SearchButton } from '@/components/ui/SearchButton'
+import { ThemeSwitch } from '@/components/ui/ThemeSwitch'
 
 function Header() {
   const t = useTranslations('Navbar')

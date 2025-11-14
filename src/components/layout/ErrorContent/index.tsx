@@ -6,7 +6,7 @@ import { m } from 'framer-motion'
 import { Button } from '@heroui/react'
 import { FiHome, FiRefreshCw, FiAlertTriangle } from 'react-icons/fi'
 import { useEffect } from 'react'
-import { BackgroundDecorations } from '@/components/layout/BackgroundDecorations'
+import { BackgroundDecorations } from '@/components/ui/BackgroundDecorations'
 
 interface ErrorProps {
   error: Error & { digest?: string }

@@ -6,7 +6,7 @@ import {
   ArticleCover,
 } from '@/components/layout/Article'
 import { Breadcrumbs } from '@/components/ui/Breadcrumbs'
-import { BackgroundDecorations } from '@/components/layout/BackgroundDecorations'
+import { BackgroundDecorations } from '@/components/ui/BackgroundDecorations'
 import { getArticles } from '@/content/articles'
 import { getTranslations } from 'next-intl/server'
 import type { Locale } from 'next-intl'

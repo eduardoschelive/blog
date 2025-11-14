@@ -3,12 +3,12 @@
 import { FOOTER_ID } from '@/constants/elements'
 import { useTranslations } from 'next-intl'
 import { IoLogoGithub, IoLogoLinkedin } from 'react-icons/io5'
-import { IconTooltip } from '../../ui/IconTooltip'
-import { IconButton } from '../../ui/IconButton'
-import { LanguageSelect } from '../LanguageSelect'
-import { RSSButton } from '../RSSButton'
-import { SearchButton } from '../SearchButton'
-import { ThemeSwitch } from '../ThemeSwitch'
+import { IconTooltip } from '@/components/ui/IconTooltip'
+import { IconButton } from '@/components/ui/IconButton'
+import { LanguageSelect } from '@/components/ui/LanguageSelect'
+import { RSSButton } from '@/components/ui/RSSButton'
+import { SearchButton } from '@/components/ui/SearchButton'
+import { ThemeSwitch } from '@/components/ui/ThemeSwitch'
 
 function Footer() {
   const t = useTranslations('Footer')

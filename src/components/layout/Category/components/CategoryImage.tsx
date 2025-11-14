@@ -9,16 +9,12 @@ interface CategoryImageProps {
   className?: string
   height?: string
   iconSize?: 'sm' | 'md' | 'lg'
-  enableHover?: boolean
-  showPattern?: boolean
 }
 
 export function CategoryImage({
   className,
   height,
   iconSize = 'md',
-  enableHover = false,
-  showPattern = true,
 }: CategoryImageProps) {
   const { category } = useCategory()
 
@@ -30,8 +26,7 @@ export function CategoryImage({
           alt={category.title}
           className={cn(
             'object-cover w-full h-full rounded-none',
-            enableHover &&
-              'group-hover:scale-105 transition-transform duration-500 ease-out'
+            'group-hover:scale-105 transition-transform duration-500 ease-out'
           )}
           classNames={{
             wrapper: '!max-w-full h-full w-full rounded-none',
@@ -46,7 +41,6 @@ export function CategoryImage({
   return (
     <FallbackImage
       icon={<HiBookOpen />}
-      showPattern={showPattern}
       gradient="medium"
       iconSize={iconSize}
       className={cn(height, className)}

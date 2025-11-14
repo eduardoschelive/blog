@@ -4,7 +4,7 @@ import type { Article } from '@/types/article.type'
 import { Button } from '@heroui/react'
 import { useTranslations } from 'next-intl'
 import { ArticleCard } from '@/components/layout/ArticleCard'
-import { Link } from '@/i18n/navigation'
+import { useState } from 'react'
 
 interface ArticleListClientProps {
   articles: Article[]
@@ -12,10 +12,14 @@ interface ArticleListClientProps {
 
 function ArticleListClient({ articles }: ArticleListClientProps) {
   const t = useTranslations('HomePage.latest')
+  const [showAll, setShowAll] = useState(false)
 
   if (!articles || articles.length === 0) {
     return null
   }
+
+  const displayedArticles = showAll ? articles : articles.slice(0, 10)
+  const hasMore = articles.length > 10
 
   return (
     <section className="w-full">
@@ -24,7 +28,7 @@ function ArticleListClient({ articles }: ArticleListClientProps) {
       </div>
 
       <div className="grid gap-8">
-        {articles.map((article) => (
+        {displayedArticles.map((article) => (
           <ArticleCard
             key={`${article.slug}-${article.locale}`}
             article={article}
@@ -35,17 +39,18 @@ function ArticleListClient({ articles }: ArticleListClientProps) {
         ))}
       </div>
 
-      <div className="mt-12 text-center">
-        <Button
-          as={Link}
-          href="/articles"
-          color="primary"
-          size="lg"
-          className="font-semibold"
-        >
-          {t('viewAll')} →
-        </Button>
-      </div>
+      {hasMore && !showAll && (
+        <div className="mt-12 text-center">
+          <Button
+            onPress={() => setShowAll(true)}
+            color="primary"
+            size="lg"
+            className="font-semibold"
+          >
+            {t('viewAll')} →
+          </Button>
+        </div>
+      )}
     </section>
   )
 }

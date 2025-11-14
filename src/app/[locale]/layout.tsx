@@ -7,6 +7,7 @@ import { hasLocale } from 'next-intl'
 import { Fira_Code } from 'next/font/google'
 import localFont from 'next/font/local'
 import { notFound } from 'next/navigation'
+import { PERSONAL_INFO } from '@/constants/personal'
 import '../globals.css'
 
 const satoshi = localFont({
@@ -73,8 +74,8 @@ const firaCode = Fira_Code({
 })
 
 export const metadata: Metadata = {
-  title: 'Eduardo Schelive | Blog',
-  description: 'A personal blog by Eduardo Schelive',
+  title: `${PERSONAL_INFO.name.short} | Blog`,
+  description: `A personal blog by ${PERSONAL_INFO.name.short}`,
 }
 
 type Props = {

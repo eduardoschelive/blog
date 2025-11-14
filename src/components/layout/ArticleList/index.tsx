@@ -6,7 +6,6 @@ async function ArticleList() {
   const locale = await getLocale()
 
   const articles = await getArticles(locale, {
-    limit: 10,
     sort: { field: 'createdAt', direction: 'DESC' },
   })
 

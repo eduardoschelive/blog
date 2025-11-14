@@ -13,6 +13,7 @@ import {
 import { HoverCard } from '@/components/ui/HoverCard'
 import type { Article } from '@/types/article.type'
 import { FadeIn } from '@/components/animated/FadeIn'
+import { PERSONAL_INFO } from '@/constants/personal'
 
 import {
   Button,
@@ -49,7 +50,7 @@ function HeroClient({ article }: HeroClientProps) {
                   animateBy="letters"
                 />
                 <BlurText
-                  text="Eduardo Guiraldelli Schelive"
+                  text={PERSONAL_INFO.name.full}
                   className="block text-secondary"
                   direction="bottom"
                   delay={50}

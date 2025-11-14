@@ -7,6 +7,7 @@ import {
 } from '@/components/composables/PageHeader'
 import { AnimatedDivider } from '@/components/animated/AnimatedDivider'
 import { ArticleMetadata } from '../ArticleMetadata'
+import { ArticleReadingTime } from '../ArticleReadingTime'
 import { useArticle } from '../../context'
 import { TbFileText } from 'react-icons/tb'
 
@@ -22,6 +23,10 @@ export function ArticleHeader() {
       >
         {article.title}
       </PageHeaderTitle>
+
+      <div className="mb-6">
+        <ArticleReadingTime />
+      </div>
 
       <ArticleMetadata />
 

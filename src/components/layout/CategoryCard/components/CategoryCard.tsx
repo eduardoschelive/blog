@@ -28,10 +28,10 @@ export function CategoryCard({ category, limit = 3 }: CategoryCardProps) {
         className="bg-content2 border border-divider/20 rounded-xl overflow-hidden
                    shadow-lg grid grid-cols-1 lg:grid-cols-[300px_1fr] gap-0"
       >
-        <CategoryImage height="h-64 lg:h-full" iconSize="md" />
+        <CategoryImage height="h-48 lg:h-full" iconSize="md" />
 
-        <div className="p-6 lg:p-8 flex flex-col">
-          <div className="mb-4">
+        <div className="p-4 lg:p-8 flex flex-col">
+          <div className="mb-3 lg:mb-4">
             <Link
               href={`/categories/${category.slug}`}
               className="text-3xl font-bold mb-2 hover:text-primary transition-colors block"
@@ -43,23 +43,25 @@ export function CategoryCard({ category, limit = 3 }: CategoryCardProps) {
             </p>
           </div>
 
-          <p className="text-foreground/70 mb-6 line-clamp-3 text-base">
+          <p className="text-foreground/70 mb-4 lg:mb-6 line-clamp-2 lg:line-clamp-3 text-sm lg:text-base">
             {category.description}
           </p>
 
           {!hasArticles && (
-            <div className="text-center py-8 flex-1 flex items-center justify-center">
-              <p className="text-foreground/50">{t('comingSoon')}</p>
+            <div className="text-center py-6 lg:py-8 flex-1 flex items-center justify-center">
+              <p className="text-foreground/50 text-sm lg:text-base">
+                {t('comingSoon')}
+              </p>
             </div>
           )}
 
           {hasArticles && (
             <>
-              <p className="text-sm font-semibold text-primary mb-4">
+              <p className="text-xs lg:text-sm font-semibold text-primary mb-3 lg:mb-4">
                 📍 {t('startHere')}
               </p>
 
-              <div className="space-y-3 mb-6">
+              <div className="space-y-2 lg:space-y-3 mb-4 lg:mb-6">
                 {previewArticles.map((article) => (
                   <Link
                     key={article.slug}

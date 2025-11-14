@@ -13,7 +13,6 @@ export function AnimatedDivider() {
         ease: [0.25, 0.46, 0.45, 0.94] as const,
         delay: 0.4,
       }}
-      className="mb-6"
     >
       <GradientDivider />
     </m.div>

@@ -26,29 +26,27 @@ export function ScrollReveal({ children, className }: ScrollRevealProps) {
     const handleScroll = () => {
       if (!ref.current) return
 
-      // Cancela frame anterior se ainda não executou
       if (rafId) cancelAnimationFrame(rafId)
 
-      // Usa RAF para sincronizar com repaint do browser
       rafId = requestAnimationFrame(() => {
         if (!ref.current) return
 
         const rect = ref.current.getBoundingClientRect()
         const viewportHeight = window.innerHeight
 
-        // Lock quando elemento saiu completamente por cima
         if (rect.bottom < 0) {
           setIsLockedVisible(true)
+          return
         }
-        // Reset quando elemento volta por baixo
-        else if (rect.top > viewportHeight) {
+        if (rect.top > viewportHeight) {
           setIsLockedVisible(false)
+          return
         }
       })
     }
 
     window.addEventListener('scroll', handleScroll, { passive: true })
-    handleScroll() // Check inicial
+    handleScroll()
 
     return () => {
       window.removeEventListener('scroll', handleScroll)

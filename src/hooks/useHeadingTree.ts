@@ -3,7 +3,7 @@ import { slugfy } from '@/utils/slugfy'
 import { useEffect, useState } from 'react'
 import type { RefObject } from 'react'
 
-function useHeadingTree(containerRef?: RefObject<HTMLElement>) {
+function useHeadingTree(containerRef?: RefObject<HTMLElement | null>) {
   const [headingTree, setHeadingTree] = useState<HeadingTree>()
 
   useEffect(() => {

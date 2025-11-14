@@ -10,7 +10,7 @@ import { Stagger } from '@/components/animated/Stagger'
 import { StaggerItem } from '@/components/animated/StaggerItem'
 
 interface ArticleTOCProps extends HTMLAttributes<HTMLDivElement> {
-  containerRef?: RefObject<HTMLElement>
+  containerRef?: RefObject<HTMLElement | null>
 }
 
 export function ArticleTOC({ className, containerRef }: ArticleTOCProps) {

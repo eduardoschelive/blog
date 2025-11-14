@@ -21,25 +21,39 @@ export function ScrollReveal({ children, className }: ScrollRevealProps) {
   useEffect(() => {
     if (!ref.current) return
 
+    let rafId: number
+
     const handleScroll = () => {
       if (!ref.current) return
 
-      const rect = ref.current.getBoundingClientRect()
-      const viewportHeight = window.innerHeight
+      // Cancela frame anterior se ainda não executou
+      if (rafId) cancelAnimationFrame(rafId)
 
-      if (rect.bottom < 0) {
-        setIsLockedVisible(true)
-      }
+      // Usa RAF para sincronizar com repaint do browser
+      rafId = requestAnimationFrame(() => {
+        if (!ref.current) return
 
-      if (rect.top > viewportHeight) {
-        setIsLockedVisible(false)
-      }
+        const rect = ref.current.getBoundingClientRect()
+        const viewportHeight = window.innerHeight
+
+        // Lock quando elemento saiu completamente por cima
+        if (rect.bottom < 0) {
+          setIsLockedVisible(true)
+        }
+        // Reset quando elemento volta por baixo
+        else if (rect.top > viewportHeight) {
+          setIsLockedVisible(false)
+        }
+      })
     }
 
     window.addEventListener('scroll', handleScroll, { passive: true })
-    handleScroll()
+    handleScroll() // Check inicial
 
-    return () => window.removeEventListener('scroll', handleScroll)
+    return () => {
+      window.removeEventListener('scroll', handleScroll)
+      if (rafId) cancelAnimationFrame(rafId)
+    }
   }, [])
 
   const shouldBeVisible = isLockedVisible || isInView

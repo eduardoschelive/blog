@@ -5,7 +5,7 @@ import {
   PageHeaderTitle,
   PageHeaderSubtitle,
 } from '@/components/composables/PageHeader'
-import { AnimatedDivider } from '@/components/ui/AnimatedDivider'
+import { AnimatedDivider } from '@/components/animated/AnimatedDivider'
 import { ArticleMetadata } from '../ArticleMetadata'
 import { useArticle } from '../../context'
 import { TbFileText } from 'react-icons/tb'

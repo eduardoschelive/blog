@@ -36,7 +36,10 @@ function AnimatedLink({
           className="absolute left-1/2 bottom-0 h-0.5 bg-current -translate-x-1/2"
           initial={{ width: '0%' }}
           animate={{ width: isHovered ? '100%' : '0%' }}
-          transition={{ duration: 0.3, ease: 'easeInOut' }}
+          transition={{
+            duration: 0.3,
+            ease: 'easeInOut',
+          }}
         />
       </span>
       <m.span

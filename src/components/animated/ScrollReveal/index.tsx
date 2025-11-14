@@ -59,8 +59,8 @@ export function ScrollReveal({ children, className }: ScrollRevealProps) {
   return (
     <m.div
       ref={ref}
-      initial={{ opacity: 0, x: -100 }}
-      animate={shouldBeVisible ? { opacity: 1, x: 0 } : { opacity: 0, x: -100 }}
+      initial={{ opacity: 0, x: -20 }}
+      animate={shouldBeVisible ? { opacity: 1, x: 0 } : { opacity: 0, x: -20 }}
       transition={{
         duration: 0.5,
         ease: [0.25, 0.4, 0.25, 1],

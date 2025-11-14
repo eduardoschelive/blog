@@ -7,6 +7,8 @@ import { Button } from '@heroui/react'
 import { TbHome, TbRefresh, TbAlertTriangle } from 'react-icons/tb'
 import { useEffect } from 'react'
 import { BackgroundDecorations } from '@/components/ui/BackgroundDecorations'
+import { FadeIn } from '@/components/animated/FadeIn'
+import { ScaleIn } from '@/components/animated/ScaleIn'
 
 interface ErrorProps {
   error: Error & { digest?: string }
@@ -25,22 +27,7 @@ export default function ErrorContent({ error, reset }: ErrorProps) {
       <BackgroundDecorations />
 
       <div className="w-full max-w-lg mx-auto text-center relative z-10">
-        <m.div
-          initial={{ scale: 0, rotate: 0 }}
-          animate={{ scale: 1, rotate: [0, -10, 10, -10, 0] }}
-          transition={{
-            scale: {
-              duration: 0.6,
-              ease: [0.25, 0.46, 0.45, 0.94],
-            },
-            rotate: {
-              duration: 0.8,
-              delay: 0.6,
-              ease: 'easeInOut',
-            },
-          }}
-          className="flex justify-center mb-4"
-        >
+        <ScaleIn delay={0} className="flex justify-center mb-4">
           <m.div className="relative">
             <m.div
               className="absolute inset-0 bg-linear-to-r from-danger to-warning rounded-full blur-2xl opacity-30"
@@ -55,80 +42,50 @@ export default function ErrorContent({ error, reset }: ErrorProps) {
             />
             <TbAlertTriangle className="w-12 h-12 md:w-16 md:h-16 text-danger relative z-10" />
           </m.div>
-        </m.div>
+        </ScaleIn>
 
-        <m.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{
-            duration: 0.6,
-            delay: 0.2,
-            ease: [0.25, 0.46, 0.45, 0.94],
-          }}
-          className="mb-3"
-        >
-          <h1 className="text-5xl font-black text-danger">{t('errorCode')}</h1>
-        </m.div>
+        <FadeIn direction="up" delay={0.2}>
+          <h1 className="text-5xl font-black text-danger mb-3">
+            {t('errorCode')}
+          </h1>
+        </FadeIn>
 
-        <m.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{
-            duration: 0.6,
-            delay: 0.4,
-            ease: [0.25, 0.46, 0.45, 0.94],
-          }}
-          className="mb-3"
-        >
-          <h2 className="text-xl md:text-2xl font-bold text-foreground">
+        <FadeIn direction="up" delay={0.4}>
+          <h2 className="text-xl md:text-2xl font-bold text-foreground mb-3">
             {t('title')}
           </h2>
-        </m.div>
+        </FadeIn>
 
-        <m.p
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{
-            duration: 0.6,
-            delay: 0.6,
-            ease: [0.25, 0.46, 0.45, 0.94],
-          }}
-          className="text-xs md:text-sm text-foreground/70 max-w-md mx-auto mb-4 leading-relaxed"
-        >
-          {t('description')}
-        </m.p>
+        <FadeIn direction="up" delay={0.6}>
+          <p className="text-xs md:text-sm text-foreground/70 max-w-md mx-auto mb-4 leading-relaxed">
+            {t('description')}
+          </p>
+        </FadeIn>
 
-        <m.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{
-            duration: 0.6,
-            delay: 0.8,
-            ease: [0.25, 0.46, 0.45, 0.94],
-          }}
-          className="flex flex-col sm:flex-row gap-2 justify-center items-center mb-6"
-        >
-          <Button
-            onPress={reset}
-            color="danger"
-            size="md"
-            startContent={<TbRefresh className="w-4 h-4" />}
-            className="font-semibold shadow-lg hover:scale-105 transition-transform w-full sm:w-auto sm:min-w-40"
-          >
-            {t('tryAgain')}
-          </Button>
+        <FadeIn direction="up" delay={0.8}>
+          <div className="flex flex-col sm:flex-row gap-2 justify-center items-center mb-6">
+            <Button
+              onPress={reset}
+              color="danger"
+              size="md"
+              startContent={<TbRefresh className="w-4 h-4" />}
+              className="font-semibold shadow-lg hover:scale-105 transition-transform w-full sm:w-auto sm:min-w-40"
+            >
+              {t('tryAgain')}
+            </Button>
 
-          <Button
-            as={Link}
-            href="/"
-            variant="bordered"
-            size="md"
-            startContent={<TbHome className="w-4 h-4" />}
-            className="font-semibold border-2 hover:scale-105 transition-transform w-full sm:w-auto sm:min-w-40"
-          >
-            {t('goHome')}
-          </Button>
-        </m.div>
+            <Button
+              as={Link}
+              href="/"
+              variant="bordered"
+              size="md"
+              startContent={<TbHome className="w-4 h-4" />}
+              className="font-semibold border-2 hover:scale-105 transition-transform w-full sm:w-auto sm:min-w-40"
+            >
+              {t('goHome')}
+            </Button>
+          </div>
+        </FadeIn>
 
         <div className="flex justify-center gap-4">
           <m.div

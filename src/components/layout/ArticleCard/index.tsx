@@ -11,7 +11,7 @@ import {
   ArticleTitle,
   ArticleReadingTime,
 } from '@/components/composables/Article'
-import { ScrollReveal } from '@/components/ui/ScrollReveal'
+import { ScrollReveal } from '@/components/animated/ScrollReveal'
 import { HoverCard } from '@/components/ui/HoverCard'
 import { cn } from '@heroui/react'
 

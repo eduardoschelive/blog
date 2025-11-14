@@ -1,7 +1,7 @@
 'use client'
 
 import { useCategory } from '../context'
-import { AnimatedLink } from '@/components/ui/AnimatedLink'
+import { AnimatedLink } from '@/components/animated/AnimatedLink'
 import { cn } from '@heroui/react'
 import type { ReactNode } from 'react'
 

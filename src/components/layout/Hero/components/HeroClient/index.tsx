@@ -1,7 +1,7 @@
 'use client'
 
 import { Link } from '@/i18n/navigation'
-import { BlurText } from '@/components/ui/BlurText'
+import { BlurText } from '@/components/animated/BlurText'
 import {
   ArticleRoot,
   ArticleImage,
@@ -12,8 +12,8 @@ import {
 } from '@/components/composables/Article'
 import { HoverCard } from '@/components/ui/HoverCard'
 import type { Article } from '@/types/article.type'
+import { FadeIn } from '@/components/animated/FadeIn'
 
-import { m } from 'framer-motion'
 import {
   Button,
   Card,
@@ -65,35 +65,28 @@ function HeroClient({ article }: HeroClientProps) {
               />
             </div>
 
-            <m.div
-              className="flex flex-col sm:flex-row gap-3 sm:gap-4"
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{
-                duration: 0.6,
-                delay: 0.8,
-                ease: [0.25, 0.46, 0.45, 0.94],
-              }}
-            >
-              <Button
-                as={Link}
-                href="/about"
-                color="primary"
-                size="lg"
-                className="font-semibold shadow-lg hover:scale-105 transition-transform w-full sm:w-auto"
-              >
-                {t('aboutButton')}
-              </Button>
-              <Button
-                as={Link}
-                href="/categories"
-                variant="bordered"
-                size="lg"
-                className="font-semibold border-2 hover:scale-105 transition-transform w-full sm:w-auto"
-              >
-                {t('articlesButton')}
-              </Button>
-            </m.div>
+            <FadeIn direction="up" delay={0.8}>
+              <div className="flex flex-col sm:flex-row gap-3 sm:gap-4">
+                <Button
+                  as={Link}
+                  href="/about"
+                  color="primary"
+                  size="lg"
+                  className="font-semibold shadow-lg hover:scale-105 transition-transform w-full sm:w-auto"
+                >
+                  {t('aboutButton')}
+                </Button>
+                <Button
+                  as={Link}
+                  href="/categories"
+                  variant="bordered"
+                  size="lg"
+                  className="font-semibold border-2 hover:scale-105 transition-transform w-full sm:w-auto"
+                >
+                  {t('articlesButton')}
+                </Button>
+              </div>
+            </FadeIn>
           </div>
 
           <ArticleRoot article={article}>
@@ -106,39 +99,32 @@ function HeroClient({ article }: HeroClientProps) {
                 animateBy="letters"
               />
 
-              <m.div
-                className="relative"
-                initial={{ opacity: 0, x: 100 }}
-                animate={{ opacity: 1, x: 0 }}
-                transition={{
-                  duration: 0.8,
-                  delay: 0.5,
-                  ease: [0.25, 0.46, 0.45, 0.94],
-                }}
-              >
-                <HoverCard>
-                  <Card className="relative w-full shadow-lg drop-shadow">
-                    <ArticleImage />
+              <FadeIn direction="right" delay={0.5}>
+                <div className="relative">
+                  <HoverCard>
+                    <Card className="relative w-full shadow-lg drop-shadow">
+                      <ArticleImage />
 
-                    <Divider />
+                      <Divider />
 
-                    <CardHeader className="pb-0 pt-4 sm:pt-6 px-4 sm:px-6 flex-col items-start gap-2 sm:gap-3">
-                      <ArticleCategory asChip asLink />
-                      <ArticleTitle className="text-xl sm:text-2xl font-bold leading-tight line-clamp-2" />
-                    </CardHeader>
+                      <CardHeader className="pb-0 pt-4 sm:pt-6 px-4 sm:px-6 flex-col items-start gap-2 sm:gap-3">
+                        <ArticleCategory asChip asLink />
+                        <ArticleTitle className="text-xl sm:text-2xl font-bold leading-tight line-clamp-2" />
+                      </CardHeader>
 
-                    <CardBody className="px-4 sm:px-6 py-3 sm:py-4">
-                      <ArticleDescription className="text-sm sm:text-base text-foreground/70 line-clamp-3 leading-relaxed" />
-                    </CardBody>
+                      <CardBody className="px-4 sm:px-6 py-3 sm:py-4">
+                        <ArticleDescription className="text-sm sm:text-base text-foreground/70 line-clamp-3 leading-relaxed" />
+                      </CardBody>
 
-                    <CardFooter className="px-4 sm:px-6 pb-4 sm:pb-6">
-                      <ArticleLink className="text-sm sm:text-base text-primary font-bold">
-                        {t('readMore')}
-                      </ArticleLink>
-                    </CardFooter>
-                  </Card>
-                </HoverCard>
-              </m.div>
+                      <CardFooter className="px-4 sm:px-6 pb-4 sm:pb-6">
+                        <ArticleLink className="text-sm sm:text-base text-primary font-bold">
+                          {t('readMore')}
+                        </ArticleLink>
+                      </CardFooter>
+                    </Card>
+                  </HoverCard>
+                </div>
+              </FadeIn>
             </div>
           </ArticleRoot>
         </div>

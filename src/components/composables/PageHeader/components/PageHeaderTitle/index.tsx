@@ -1,9 +1,9 @@
 'use client'
 
-import { BlurText } from '@/components/ui/BlurText'
-import { m } from 'framer-motion'
+import { BlurText } from '@/components/animated/BlurText'
 import { cn } from '@heroui/react'
 import type { ReactNode, HTMLAttributes } from 'react'
+import { RotateIn } from '@/components/animated/RotateIn'
 
 interface PageHeaderTitleProps extends HTMLAttributes<HTMLDivElement> {
   icon?: ReactNode
@@ -18,18 +18,7 @@ export function PageHeaderTitle({
 }: PageHeaderTitleProps) {
   return (
     <div className={cn('flex items-center gap-4 mb-6', className)} {...props}>
-      {icon && (
-        <m.div
-          initial={{ scale: 0, rotate: -180 }}
-          animate={{ scale: 1, rotate: 0 }}
-          transition={{
-            duration: 0.5,
-            ease: [0.25, 0.46, 0.45, 0.94],
-          }}
-        >
-          {icon}
-        </m.div>
-      )}
+      {icon && <RotateIn>{icon}</RotateIn>}
 
       <BlurText
         text={children}

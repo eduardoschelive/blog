@@ -1,7 +1,7 @@
 'use client'
 
 import { useArticle } from '../../context'
-import { AnimatedLink } from '@/components/ui/AnimatedLink'
+import { AnimatedLink } from '@/components/animated/AnimatedLink'
 import type { ComponentProps, ReactNode } from 'react'
 
 interface ArticleLinkProps

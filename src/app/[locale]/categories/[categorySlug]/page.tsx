@@ -13,9 +13,9 @@ import {
   PageHeaderTitle,
   PageHeaderSubtitle,
 } from '@/components/composables/PageHeader'
-import { AnimatedDivider } from '@/components/ui/AnimatedDivider'
+import { AnimatedDivider } from '@/components/animated/AnimatedDivider'
 import { Breadcrumbs } from '@/components/ui/Breadcrumbs'
-import { ScrollReveal } from '@/components/ui/ScrollReveal'
+import { ScrollReveal } from '@/components/animated/ScrollReveal'
 import { TbCategory } from 'react-icons/tb'
 import { TbHome, TbFolder } from 'react-icons/tb'
 import { BackgroundDecorations } from '@/components/ui/BackgroundDecorations'

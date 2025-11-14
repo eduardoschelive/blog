@@ -6,6 +6,8 @@ import { m } from 'framer-motion'
 import { Button } from '@heroui/react'
 import { TbHome, TbBook, TbAlertCircle } from 'react-icons/tb'
 import { BackgroundDecorations } from '@/components/ui/BackgroundDecorations'
+import { RotateIn } from '@/components/animated/RotateIn'
+import { FadeIn } from '@/components/animated/FadeIn'
 
 export default function NotFound() {
   const t = useTranslations('NotFound')
@@ -15,15 +17,7 @@ export default function NotFound() {
       <BackgroundDecorations />
 
       <div className="w-full max-w-lg mx-auto text-center relative z-10">
-        <m.div
-          initial={{ scale: 0, rotate: -180 }}
-          animate={{ scale: 1, rotate: 0 }}
-          transition={{
-            duration: 0.6,
-            ease: [0.25, 0.46, 0.45, 0.94],
-          }}
-          className="flex justify-center mb-4"
-        >
+        <RotateIn className="flex justify-center mb-4">
           <m.div className="relative">
             <m.div
               className="absolute inset-0 bg-linear-to-r from-primary to-secondary rounded-full blur-2xl opacity-30"
@@ -38,57 +32,27 @@ export default function NotFound() {
             />
             <TbAlertCircle className="w-12 h-12 md:w-16 md:h-16 text-primary relative z-10" />
           </m.div>
-        </m.div>
+        </RotateIn>
 
-        <m.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{
-            duration: 0.6,
-            delay: 0.2,
-            ease: [0.25, 0.46, 0.45, 0.94],
-          }}
-          className="mb-3"
-        >
+        <FadeIn direction="up" delay={0.2} className="mb-3">
           <h1 className="text-7xl font-black text-primary">{t('errorCode')}</h1>
-        </m.div>
+        </FadeIn>
 
-        <m.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{
-            duration: 0.6,
-            delay: 0.4,
-            ease: [0.25, 0.46, 0.45, 0.94],
-          }}
-          className="mb-3"
-        >
+        <FadeIn direction="up" delay={0.4} className="mb-3">
           <h2 className="text-xl md:text-2xl font-bold text-foreground">
             {t('title')}
           </h2>
-        </m.div>
+        </FadeIn>
 
-        <m.p
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{
-            duration: 0.6,
-            delay: 0.6,
-            ease: [0.25, 0.46, 0.45, 0.94],
-          }}
-          className="text-xs md:text-sm text-foreground/70 max-w-md mx-auto mb-4 leading-relaxed"
-        >
-          {t('description')}
-        </m.p>
+        <FadeIn direction="up" delay={0.6}>
+          <p className="text-xs md:text-sm text-foreground/70 max-w-md mx-auto mb-4 leading-relaxed">
+            {t('description')}
+          </p>
+        </FadeIn>
 
-        <m.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{
-            duration: 0.6,
-            delay: 0.8,
-            ease: [0.25, 0.46, 0.45, 0.94],
-          }}
+        <FadeIn
+          direction="up"
+          delay={0.8}
           className="flex flex-col sm:flex-row gap-2 justify-center items-center mb-6"
         >
           <Button
@@ -112,7 +76,7 @@ export default function NotFound() {
           >
             {t('browseArticles')}
           </Button>
-        </m.div>
+        </FadeIn>
 
         <div className="flex justify-center gap-4">
           <m.div

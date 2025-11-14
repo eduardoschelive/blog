@@ -2,7 +2,7 @@
 
 import type { CategoryWithArticles } from '@/types/category.type'
 import { CategoryCard } from '@/components/layout/CategoryCard'
-import { ScrollReveal } from '@/components/ui/ScrollReveal'
+import { ScrollReveal } from '@/components/animated/ScrollReveal'
 import { PREVIEW_ARTICLES_LIMIT } from '@/constants/content'
 
 interface CategoriesListClientProps {

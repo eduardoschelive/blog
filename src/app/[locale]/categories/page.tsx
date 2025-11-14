@@ -7,7 +7,7 @@ import {
   PageHeaderTitle,
   PageHeaderSubtitle,
 } from '@/components/composables/PageHeader'
-import { AnimatedDivider } from '@/components/ui/AnimatedDivider'
+import { AnimatedDivider } from '@/components/animated/AnimatedDivider'
 import { TbCategory } from 'react-icons/tb'
 
 export default async function CategoriesPage() {

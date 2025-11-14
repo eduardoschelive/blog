@@ -7,11 +7,11 @@ import {
   DropdownItem,
   DropdownMenu,
   DropdownTrigger,
+  Tooltip,
 } from '@heroui/react'
 import type { Locale } from 'next-intl'
 import { useTranslations } from 'next-intl'
 import { TbWorldCog } from 'react-icons/tb'
-import { IconTooltip } from '../../ui/IconTooltip'
 import { IconButton } from '../../ui/IconButton'
 
 function LanguageSelect() {
@@ -24,20 +24,16 @@ function LanguageSelect() {
 
   return (
     <Dropdown>
-      <IconTooltip
-        delay={1000}
-        closeDelay={200}
-        content={t('tooltip.description')}
-      >
-        <div>
+      <Tooltip content={t('tooltip.description')} delay={1000} closeDelay={200}>
+        <div suppressHydrationWarning>
           <DropdownTrigger>
-            <IconButton>
+            <IconButton aria-label={t('tooltip.description')}>
               <TbWorldCog size={22} strokeWidth={1.5} />
             </IconButton>
           </DropdownTrigger>
         </div>
-      </IconTooltip>
-      <DropdownMenu>
+      </Tooltip>
+      <DropdownMenu aria-label={t('tooltip.description')}>
         {LOCALES.map((locale) => (
           <DropdownItem
             key={locale}

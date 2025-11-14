@@ -1,5 +1,3 @@
 export { PageHeaderRoot } from './components/PageHeaderRoot'
 export { PageHeaderTitle } from './components/PageHeaderTitle'
-export { PageHeaderDivider } from './components/PageHeaderDivider'
 export { PageHeaderSubtitle } from './components/PageHeaderSubtitle'
-export { PageHeaderContent } from './components/PageHeaderContent'

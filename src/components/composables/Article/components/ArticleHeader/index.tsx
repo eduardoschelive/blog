@@ -3,9 +3,9 @@
 import {
   PageHeaderRoot,
   PageHeaderTitle,
-  PageHeaderDivider,
   PageHeaderSubtitle,
 } from '@/components/composables/PageHeader'
+import { AnimatedDivider } from '@/components/ui/AnimatedDivider'
 import { ArticleMetadata } from '../ArticleMetadata'
 import { useArticle } from '../../context'
 import { TbFileText } from 'react-icons/tb'
@@ -29,7 +29,7 @@ export function ArticleHeader() {
         <PageHeaderSubtitle>{article.description}</PageHeaderSubtitle>
       )}
 
-      <PageHeaderDivider />
+      <AnimatedDivider />
     </PageHeaderRoot>
   )
 }

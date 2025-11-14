@@ -343,71 +343,6 @@ import { ANIMATION_VARIANTS, TRANSITIONS } from '@/constants/animations'
 15. Página de categorias
 16. Outros componentes com animações inline
 
-### 9. Imports de Ícones de Múltiplas Famílias
-
-**Severidade:** 🟡 MÉDIA  
-**Impacto:** 5-10KB extras no bundle
-
-**Arquivos (17 total):**
-
-Atualmente importando de 3 famílias diferentes:
-
-- `react-icons/hi2` (HeroIcons v2) - Mais usado
-- `react-icons/bi` (BoxIcons)
-- `react-icons/io5` (Ionicons 5)
-
-**Exemplos:**
-
-```typescript
-import { HiDocumentText, HiHome, HiFolder } from 'react-icons/hi2'
-import { BiSolidCategory } from 'react-icons/bi'
-import { IoInformationCircle } from 'react-icons/io5'
-```
-
-**Problema:**
-
-- Cada família adiciona ~2-3KB ao bundle
-- Inconsistência visual entre famílias
-- Mais difícil manter consistência
-
-**Solução:**
-
-**Opção 1 (Recomendada):** Padronizar em HeroIcons v2 apenas
-
-Substituições necessárias:
-
-- `BiSolidCategory` → `HiFolderOpen` ou `HiRectangleGroup`
-- `IoInformationCircle` → `HiInformationCircle`
-
-**Opção 2:** Criar barrel export para ícones mais usados
-
-```typescript
-// src/components/ui/Icons/index.ts
-export {
-  HiHome,
-  HiFolder,
-  HiFolderOpen,
-  HiDocumentText,
-  HiBookOpen,
-  HiClock,
-  HiOutlineCalendarDays,
-  HiInformationCircle,
-  // ... outros ícones comuns
-} from 'react-icons/hi2'
-
-// Uso:
-import { HiHome, HiFolder } from '@/components/ui/Icons'
-```
-
-**Benefícios:**
-
-- ✅ -5-10KB bundle size
-- ✅ Consistência visual total
-- ✅ Imports mais limpos
-- ✅ Fácil adicionar novos ícones
-
----
-
 ## 🟢 Problemas de BAIXA Severidade
 
 ### 10. PageHeaderContent é um Pass-Through Inútil
@@ -475,7 +410,7 @@ export function GradientDivider({ className }: GradientDividerProps = {}) {
 
 **PageHeaderDivider (animado):**
 
-```typescript
+````typescript
 export function PageHeaderDivider({ className }: PageHeaderDividerProps) {
   return (
     <m.div
@@ -489,84 +424,12 @@ export function PageHeaderDivider({ className }: PageHeaderDividerProps) {
     />
   )
 }
-```
-
-**Solução:**
-
-Unificar em um único componente:
-
-```typescript
-// src/components/ui/Divider/index.tsx
-interface DividerProps {
-  animated?: boolean
-  gradient?: GradientVariant
-  thickness?: 'thin' | 'medium' | 'thick'
-  className?: string
-}
-
-export function Divider({
-  animated = false,
-  gradient = 'primary',
-  thickness = 'thin',
-  className
-}: DividerProps) {
-  const thicknesses = {
-    thin: 'h-px',
-    medium: 'h-1',
-    thick: 'h-2'
-  }
-
-  const baseClasses = cn(
-    'w-full rounded-full',
-    thicknesses[thickness],
-    GRADIENTS[gradient],
-    className
-  )
-
-  if (animated) {
-    return (
-      <m.div
-        initial={{ width: '0%' }}
-        animate={{ width: '100%' }}
-        transition={TRANSITIONS.standard}
-        className={baseClasses}
-      />
-    )
-  }
-
-  return <div className={baseClasses} />
-}
-```
-
-**Uso:**
-
-```typescript
-// Divider estático
-<Divider />
-
-// Divider animado (PageHeader)
-<Divider animated />
-
-// Divider customizado
-<Divider
-  animated
-  gradient="medium"
-  thickness="thick"
-  className="mb-6"
-/>
-```
-
-**Benefícios:**
-
-- ✅ Componente único para todos os dividers
-- ✅ Configurável via props
-- ✅ Pode deletar GradientDivider
 
 ---
 
 ### 12. IconButton Oferece Pouca Abstração
 
-**Severidade:** 🟢 BAIXA  
+**Severidade:** 🟢 BAIXA
 **Impacto:** Depende do uso
 
 **Arquivo:** `src/components/ui/IconButton/index.tsx`
@@ -583,7 +446,7 @@ function IconButton({ children, ...props }: IconButtonProps) {
     </Button>
   )
 }
-```
+````
 
 **Análise:**
 

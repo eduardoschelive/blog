@@ -3,8 +3,8 @@
 import { FOOTER_ID } from '@/constants/elements'
 import { useTranslations } from 'next-intl'
 import { TbBrandGithub, TbBrandLinkedin } from 'react-icons/tb'
-import { IconTooltip } from '@/components/ui/IconTooltip'
 import { IconButton } from '@/components/ui/IconButton'
+import { Link } from '@heroui/react'
 import { LanguageSelect } from '@/components/ui/LanguageSelect'
 import { RSSButton } from '@/components/ui/RSSButton'
 import { SearchButton } from '@/components/ui/SearchButton'
@@ -40,17 +40,15 @@ function Footer() {
             {socialLinks.map((link) => {
               const Icon = link.icon
               return (
-                <IconTooltip key={link.name} content={link.tooltip}>
-                  <IconButton
-                    as="a"
-                    href={link.href}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    aria-label={link.name}
-                  >
-                    <Icon size={22} />
-                  </IconButton>
-                </IconTooltip>
+                <IconButton
+                  key={link.name}
+                  as={Link}
+                  href={link.href}
+                  aria-label={link.name}
+                  tooltip={link.tooltip}
+                >
+                  <Icon size={22} />
+                </IconButton>
               )
             })}
           </div>

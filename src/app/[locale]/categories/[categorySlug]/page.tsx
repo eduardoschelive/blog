@@ -11,9 +11,9 @@ import { ArticleCard } from '@/components/layout/ArticleCard'
 import {
   PageHeaderRoot,
   PageHeaderTitle,
-  PageHeaderDivider,
   PageHeaderSubtitle,
 } from '@/components/composables/PageHeader'
+import { AnimatedDivider } from '@/components/ui/AnimatedDivider'
 import { Breadcrumbs } from '@/components/ui/Breadcrumbs'
 import { ScrollReveal } from '@/components/ui/ScrollReveal'
 import { TbCategory } from 'react-icons/tb'
@@ -71,7 +71,7 @@ export default async function CategoryPage({ params }: CategoryProps) {
           {category.title}
         </PageHeaderTitle>
 
-        <PageHeaderDivider />
+        <AnimatedDivider />
 
         {category.description && (
           <PageHeaderSubtitle>{category.description}</PageHeaderSubtitle>

@@ -1,13 +1,9 @@
 'use client'
 
 import { m } from 'framer-motion'
-import { GradientDivider } from '@/components/ui/GradientDivider'
+import { GradientDivider } from '../GradientDivider'
 
-interface PageHeaderDividerProps {
-  className?: string
-}
-
-export function PageHeaderDivider({ className }: PageHeaderDividerProps) {
+export function AnimatedDivider() {
   return (
     <m.div
       initial={{ width: '0%' }}
@@ -19,7 +15,7 @@ export function PageHeaderDivider({ className }: PageHeaderDividerProps) {
       }}
       className="mb-6"
     >
-      <GradientDivider className={className} />
+      <GradientDivider />
     </m.div>
   )
 }

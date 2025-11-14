@@ -2,7 +2,6 @@
 
 import { useTranslations } from 'next-intl'
 import { useState } from 'react'
-import { IconTooltip } from '../../ui/IconTooltip'
 import { IconButton } from '../../ui/IconButton'
 
 interface SearchButtonProps {
@@ -33,37 +32,30 @@ function SearchButton({ className = '' }: SearchButtonProps) {
 
   return (
     <>
-      <IconTooltip delay={1000} closeDelay={200} content={t('search.tooltip')}>
-        <IconButton
-          onClick={() => setIsOpen(true)}
-          className={className}
-          aria-label={t('search.button')}
+      <IconButton
+        onClick={() => setIsOpen(true)}
+        className={className}
+        aria-label={t('search.button')}
+        tooltip={t('search.tooltip')}
+      >
+        <svg
+          width="20"
+          height="20"
+          viewBox="0 0 24 24"
+          fill="none"
+          xmlns="http://www.w3.org/2000/svg"
+          className="text-current"
         >
-          <svg
-            width="20"
-            height="20"
-            viewBox="0 0 24 24"
-            fill="none"
-            xmlns="http://www.w3.org/2000/svg"
-            className="text-current"
-          >
-            <circle
-              cx="11"
-              cy="11"
-              r="8"
-              stroke="currentColor"
-              strokeWidth="2"
-            />
-            <path
-              d="m21 21-4.35-4.35"
-              stroke="currentColor"
-              strokeWidth="2"
-              strokeLinecap="round"
-              strokeLinejoin="round"
-            />
-          </svg>
-        </IconButton>
-      </IconTooltip>
+          <circle cx="11" cy="11" r="8" stroke="currentColor" strokeWidth="2" />
+          <path
+            d="m21 21-4.35-4.35"
+            stroke="currentColor"
+            strokeWidth="2"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+          />
+        </svg>
+      </IconButton>
 
       {/* Search Modal */}
       {isOpen && (

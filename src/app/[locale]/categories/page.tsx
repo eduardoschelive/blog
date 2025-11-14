@@ -5,9 +5,9 @@ import { getTranslations } from 'next-intl/server'
 import {
   PageHeaderRoot,
   PageHeaderTitle,
-  PageHeaderDivider,
   PageHeaderSubtitle,
 } from '@/components/composables/PageHeader'
+import { AnimatedDivider } from '@/components/ui/AnimatedDivider'
 import { TbCategory } from 'react-icons/tb'
 
 export default async function CategoriesPage() {
@@ -26,7 +26,7 @@ export default async function CategoriesPage() {
           {t('title')}
         </PageHeaderTitle>
 
-        <PageHeaderDivider />
+        <AnimatedDivider />
 
         <PageHeaderSubtitle>{t('subtitle')}</PageHeaderSubtitle>
       </PageHeaderRoot>

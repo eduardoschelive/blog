@@ -3,7 +3,7 @@
 import type { Article } from '@/types/article.type'
 import { Button } from '@heroui/react'
 import { useTranslations } from 'next-intl'
-import { AnimatedArticleCard } from '../AnimatedArticleCard'
+import { ArticleCard } from '@/components/ui/ArticleCard'
 import { Link } from '@/i18n/navigation'
 
 interface ArticleListClientProps {
@@ -25,9 +25,11 @@ function ArticleListClient({ articles }: ArticleListClientProps) {
 
       <div className="grid gap-8">
         {articles.map((article) => (
-          <AnimatedArticleCard
+          <ArticleCard
             key={`${article.slug}-${article.locale}`}
             article={article}
+            showCategoryChip
+            linkText={t('readMore')}
           />
         ))}
       </div>

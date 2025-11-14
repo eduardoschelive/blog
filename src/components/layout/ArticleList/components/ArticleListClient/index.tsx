@@ -29,6 +29,7 @@ function ArticleListClient({ articles }: ArticleListClientProps) {
             key={`${article.slug}-${article.locale}`}
             article={article}
             showCategoryChip
+            showDateIcon
             linkText={t('readMore')}
           />
         ))}

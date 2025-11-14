@@ -112,7 +112,7 @@ export default heroui({
         content4: '#9699a3',
         default: {
           50: '#ffffff',
-          100: '#fafafa',
+          100: '#d5d6db',
           200: '#e9e9ec',
           300: '#cbccd1',
           400: '#9699a3',
@@ -121,8 +121,8 @@ export default heroui({
           700: '#40434f',
           800: '#343b58',
           900: '#262640',
-          DEFAULT: '#6c6e75',
-          foreground: '#343b58',
+          DEFAULT: '#b3b5bd',
+          foreground: '#1a1b26',
         },
         primary: {
           50: '#e6f2ff',

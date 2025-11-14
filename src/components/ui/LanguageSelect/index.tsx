@@ -10,7 +10,7 @@ import {
 } from '@heroui/react'
 import type { Locale } from 'next-intl'
 import { useTranslations } from 'next-intl'
-import { TbWorld } from 'react-icons/tb'
+import { TbWorldCog } from 'react-icons/tb'
 import { IconTooltip } from '../../ui/IconTooltip'
 import { IconButton } from '../../ui/IconButton'
 
@@ -32,7 +32,7 @@ function LanguageSelect() {
         <div>
           <DropdownTrigger>
             <IconButton>
-              <TbWorld size={22} />
+              <TbWorldCog size={22} strokeWidth={1.5} />
             </IconButton>
           </DropdownTrigger>
         </div>

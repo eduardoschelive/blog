@@ -6,6 +6,7 @@ import { useTheme } from 'next-themes'
 import { useEffect, useState } from 'react'
 import { TbMoon, TbSun } from 'react-icons/tb'
 import { IconButton } from '../../ui/IconButton'
+import { useThemeAnimation } from '@/hooks/useThemeAnimation'
 
 export function ThemeSwitch() {
   const { resolvedTheme, setTheme } = useTheme()
@@ -14,10 +15,13 @@ export function ThemeSwitch() {
 
   const isDarkTheme = resolvedTheme === 'dark'
 
-  const handleThemeChange = (): void => {
-    const newTheme = isDarkTheme ? 'light' : 'dark'
-    setTheme(newTheme)
-  }
+  const { ref, toggleWithAnimation } = useThemeAnimation({
+    duration: 500,
+    blurAmount: 2,
+    onToggle: () => {
+      setTheme(isDarkTheme ? 'light' : 'dark')
+    },
+  })
 
   useEffect(() => {
     setIsMounted(true)
@@ -31,7 +35,8 @@ export function ThemeSwitch() {
 
   return (
     <IconButton
-      onClick={handleThemeChange}
+      ref={ref}
+      onClick={toggleWithAnimation}
       aria-label={tooltipText}
       tooltip={tooltipText}
     >

@@ -4,7 +4,7 @@ import { Link } from '@/i18n/navigation'
 import { useTranslations } from 'next-intl'
 import { m } from 'framer-motion'
 import { Button } from '@heroui/react'
-import { FiHome, FiBookOpen, FiAlertCircle } from 'react-icons/fi'
+import { TbHome, TbBook, TbAlertCircle } from 'react-icons/tb'
 import { BackgroundDecorations } from '@/components/ui/BackgroundDecorations'
 
 export default function NotFound() {
@@ -36,7 +36,7 @@ export default function NotFound() {
                 ease: 'easeInOut',
               }}
             />
-            <FiAlertCircle className="w-12 h-12 md:w-16 md:h-16 text-primary relative z-10" />
+            <TbAlertCircle className="w-12 h-12 md:w-16 md:h-16 text-primary relative z-10" />
           </m.div>
         </m.div>
 
@@ -96,7 +96,7 @@ export default function NotFound() {
             href="/"
             color="primary"
             size="md"
-            startContent={<FiHome className="w-4 h-4" />}
+            startContent={<TbHome className="w-4 h-4" />}
             className="font-semibold shadow-lg hover:scale-105 transition-transform w-full sm:w-auto sm:min-w-40"
           >
             {t('goHome')}
@@ -107,7 +107,7 @@ export default function NotFound() {
             href="/categories"
             variant="bordered"
             size="md"
-            startContent={<FiBookOpen className="w-4 h-4" />}
+            startContent={<TbBook className="w-4 h-4" />}
             className="font-semibold border-2 hover:scale-105 transition-transform w-full sm:w-auto sm:min-w-40"
           >
             {t('browseArticles')}

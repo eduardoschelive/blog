@@ -16,8 +16,8 @@ import {
 } from '@/components/composables/PageHeader'
 import { Breadcrumbs } from '@/components/ui/Breadcrumbs'
 import { ScrollReveal } from '@/components/ui/ScrollReveal'
-import { BiSolidCategory } from 'react-icons/bi'
-import { HiHome, HiFolder } from 'react-icons/hi2'
+import { TbCategory } from 'react-icons/tb'
+import { TbHome, TbFolder } from 'react-icons/tb'
 import { BackgroundDecorations } from '@/components/ui/BackgroundDecorations'
 
 interface CategoryProps {
@@ -44,16 +44,16 @@ export default async function CategoryPage({ params }: CategoryProps) {
           {
             label: t('Navbar.home'),
             href: '/',
-            icon: <HiHome className="text-base shrink-0" />,
+            icon: <TbHome className="text-base shrink-0" />,
           },
           {
             label: t('Navbar.categories'),
             href: '/categories',
-            icon: <BiSolidCategory className="text-base shrink-0" />,
+            icon: <TbCategory className="text-base shrink-0" />,
           },
           {
             label: category.title,
-            icon: <HiFolder className="text-base shrink-0" />,
+            icon: <TbFolder className="text-base shrink-0" />,
           },
         ]}
       />
@@ -65,7 +65,7 @@ export default async function CategoryPage({ params }: CategoryProps) {
       <PageHeaderRoot>
         <PageHeaderTitle
           icon={
-            <BiSolidCategory className="text-primary text-4xl md:text-5xl lg:text-6xl" />
+            <TbCategory className="text-primary text-4xl md:text-5xl lg:text-6xl" />
           }
         >
           {category.title}

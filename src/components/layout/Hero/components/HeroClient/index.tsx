@@ -22,7 +22,7 @@ import {
   CardHeader,
   Divider,
 } from '@heroui/react'
-import { FiArrowDown } from 'react-icons/fi'
+import { TbArrowDown } from 'react-icons/tb'
 import { useScroll } from '@/hooks/useScroll'
 import { useTranslations } from 'next-intl'
 
@@ -153,7 +153,7 @@ function HeroClient({ article }: HeroClientProps) {
         radius="none"
         data-hover="false"
       >
-        <FiArrowDown className="w-8 h-8 text-primary animate-bounce" />
+        <TbArrowDown className="w-8 h-8 text-primary animate-bounce" />
       </Button>
     </section>
   )

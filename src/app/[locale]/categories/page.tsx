@@ -8,7 +8,7 @@ import {
   PageHeaderDivider,
   PageHeaderSubtitle,
 } from '@/components/composables/PageHeader'
-import { BiSolidCategory } from 'react-icons/bi'
+import { TbCategory } from 'react-icons/tb'
 
 export default async function CategoriesPage() {
   const t = await getTranslations('Categories')
@@ -20,7 +20,7 @@ export default async function CategoriesPage() {
       <PageHeaderRoot>
         <PageHeaderTitle
           icon={
-            <BiSolidCategory className="text-primary text-4xl md:text-5xl lg:text-6xl" />
+            <TbCategory className="text-primary text-4xl md:text-5xl lg:text-6xl" />
           }
         >
           {t('title')}

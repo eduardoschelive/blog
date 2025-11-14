@@ -4,7 +4,7 @@ import { useArticle } from '../../context'
 import { cn } from '@heroui/react'
 import { useTranslations } from 'next-intl'
 import type { HTMLAttributes } from 'react'
-import { HiClock } from 'react-icons/hi2'
+import { TbClock } from 'react-icons/tb'
 export function ArticleReadingTime({
   className,
   ...props
@@ -20,7 +20,7 @@ export function ArticleReadingTime({
       )}
       {...props}
     >
-      <HiClock className="w-3.5 h-3.5" />
+      <TbClock className="w-3.5 h-3.5" />
       {t('readingTime', { minutes: article.readingTime })}
     </span>
   )

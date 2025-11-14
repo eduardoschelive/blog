@@ -5,7 +5,7 @@ import { cn } from '@heroui/react'
 import { useLocale, useTranslations } from 'next-intl'
 import type { HTMLAttributes, ReactNode } from 'react'
 import { formatDate, DEFAULT_DATE_FORMAT } from '@/utils/date'
-import { HiOutlineCalendarDays } from 'react-icons/hi2'
+import { TbCalendar } from 'react-icons/tb'
 
 interface ArticleDateProps extends HTMLAttributes<HTMLSpanElement> {
   children?: ReactNode
@@ -41,7 +41,7 @@ function ArticleDate({
       )}
       {...props}
     >
-      {showIcon && <HiOutlineCalendarDays className="w-3.5 h-3.5" />}
+      {showIcon && <TbCalendar className="w-3.5 h-3.5" />}
       <time dateTime={dateTime}>{content}</time>
     </span>
   )

@@ -8,7 +8,7 @@ import {
 } from '@/components/composables/PageHeader'
 import { ArticleMetadata } from '../ArticleMetadata'
 import { useArticle } from '../../context'
-import { HiDocumentText } from 'react-icons/hi2'
+import { TbFileText } from 'react-icons/tb'
 
 export function ArticleHeader() {
   const { article } = useArticle()
@@ -17,7 +17,7 @@ export function ArticleHeader() {
     <PageHeaderRoot>
       <PageHeaderTitle
         icon={
-          <HiDocumentText className="text-primary text-4xl md:text-5xl lg:text-6xl" />
+          <TbFileText className="text-primary text-4xl md:text-5xl lg:text-6xl" />
         }
       >
         {article.title}

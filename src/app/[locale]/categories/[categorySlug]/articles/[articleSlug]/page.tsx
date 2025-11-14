@@ -10,8 +10,8 @@ import { BackgroundDecorations } from '@/components/ui/BackgroundDecorations'
 import { getArticles } from '@/content/articles'
 import { getTranslations } from 'next-intl/server'
 import type { Locale } from 'next-intl'
-import { HiDocumentText, HiHome, HiFolder } from 'react-icons/hi2'
-import { BiSolidCategory } from 'react-icons/bi'
+import { TbFileText, TbHome, TbFolder } from 'react-icons/tb'
+import { TbCategory } from 'react-icons/tb'
 import type { Metadata } from 'next'
 
 interface ArticleProps {
@@ -47,21 +47,21 @@ export default async function ArticlePage({ params }: ArticleProps) {
           {
             label: t('Navbar.home'),
             href: '/',
-            icon: <HiHome className="text-base shrink-0" />,
+            icon: <TbHome className="text-base shrink-0" />,
           },
           {
             label: t('Navbar.categories'),
             href: '/categories',
-            icon: <BiSolidCategory className="text-base shrink-0" />,
+            icon: <TbCategory className="text-base shrink-0" />,
           },
           {
             label: article.category.title,
             href: `/categories/${categorySlug}`,
-            icon: <HiFolder className="text-base shrink-0" />,
+            icon: <TbFolder className="text-base shrink-0" />,
           },
           {
             label: article.title,
-            icon: <HiDocumentText className="text-base shrink-0" />,
+            icon: <TbFileText className="text-base shrink-0" />,
           },
         ]}
       />

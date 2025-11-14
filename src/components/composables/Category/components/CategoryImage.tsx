@@ -3,7 +3,7 @@
 import { useCategory } from '../context'
 import { cn, Image } from '@heroui/react'
 import { FallbackImage } from '@/components/ui/FallbackImage'
-import { HiBookOpen } from 'react-icons/hi2'
+import { TbBook } from 'react-icons/tb'
 
 interface CategoryImageProps {
   className?: string
@@ -40,7 +40,7 @@ export function CategoryImage({
 
   return (
     <FallbackImage
-      icon={<HiBookOpen />}
+      icon={<TbBook />}
       gradient="medium"
       iconSize={iconSize}
       className={cn(height, className)}

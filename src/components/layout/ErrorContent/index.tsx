@@ -4,7 +4,7 @@ import { Link } from '@/i18n/navigation'
 import { useTranslations } from 'next-intl'
 import { m } from 'framer-motion'
 import { Button } from '@heroui/react'
-import { FiHome, FiRefreshCw, FiAlertTriangle } from 'react-icons/fi'
+import { TbHome, TbRefresh, TbAlertTriangle } from 'react-icons/tb'
 import { useEffect } from 'react'
 import { BackgroundDecorations } from '@/components/ui/BackgroundDecorations'
 
@@ -53,7 +53,7 @@ export default function ErrorContent({ error, reset }: ErrorProps) {
                 ease: 'easeInOut',
               }}
             />
-            <FiAlertTriangle className="w-12 h-12 md:w-16 md:h-16 text-danger relative z-10" />
+            <TbAlertTriangle className="w-12 h-12 md:w-16 md:h-16 text-danger relative z-10" />
           </m.div>
         </m.div>
 
@@ -112,7 +112,7 @@ export default function ErrorContent({ error, reset }: ErrorProps) {
             onPress={reset}
             color="danger"
             size="md"
-            startContent={<FiRefreshCw className="w-4 h-4" />}
+            startContent={<TbRefresh className="w-4 h-4" />}
             className="font-semibold shadow-lg hover:scale-105 transition-transform w-full sm:w-auto sm:min-w-40"
           >
             {t('tryAgain')}
@@ -123,7 +123,7 @@ export default function ErrorContent({ error, reset }: ErrorProps) {
             href="/"
             variant="bordered"
             size="md"
-            startContent={<FiHome className="w-4 h-4" />}
+            startContent={<TbHome className="w-4 h-4" />}
             className="font-semibold border-2 hover:scale-105 transition-transform w-full sm:w-auto sm:min-w-40"
           >
             {t('goHome')}

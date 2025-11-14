@@ -3,7 +3,7 @@
 import type { TooltipProps, VariantProps } from '@heroui/react'
 import { Tooltip, tv } from '@heroui/react'
 import type { ElementType } from 'react'
-import { IoInformationCircle } from 'react-icons/io5'
+import { TbInfoCircle } from 'react-icons/tb'
 
 const tooltipVariants = tv({
   base: 'text-xl',
@@ -21,7 +21,7 @@ const variantIcons: Record<
   keyof typeof tooltipVariants.variants.variant,
   ElementType
 > = {
-  info: IoInformationCircle,
+  info: TbInfoCircle,
 }
 
 interface IconTooltipProps

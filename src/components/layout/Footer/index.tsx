@@ -2,7 +2,7 @@
 
 import { FOOTER_ID } from '@/constants/elements'
 import { useTranslations } from 'next-intl'
-import { IoLogoGithub, IoLogoLinkedin } from 'react-icons/io5'
+import { TbBrandGithub, TbBrandLinkedin } from 'react-icons/tb'
 import { IconTooltip } from '@/components/ui/IconTooltip'
 import { IconButton } from '@/components/ui/IconButton'
 import { LanguageSelect } from '@/components/ui/LanguageSelect'
@@ -17,13 +17,13 @@ function Footer() {
     {
       name: 'GitHub',
       href: 'https://github.com/eduardoschelive',
-      icon: IoLogoGithub,
+      icon: TbBrandGithub,
       tooltip: t('social.github'),
     },
     {
       name: 'LinkedIn',
       href: 'https://linkedin.com/in/eduardoschelive',
-      icon: IoLogoLinkedin,
+      icon: TbBrandLinkedin,
       tooltip: t('social.linkedin'),
     },
   ]

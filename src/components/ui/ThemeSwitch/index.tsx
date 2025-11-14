@@ -4,7 +4,7 @@ import { Skeleton } from '@heroui/react'
 import { useTranslations } from 'next-intl'
 import { useTheme } from 'next-themes'
 import { useEffect, useState } from 'react'
-import { IoMoon, IoSunny } from 'react-icons/io5'
+import { TbMoon, TbSun } from 'react-icons/tb'
 import { IconTooltip } from '../../ui/IconTooltip'
 import { IconButton } from '../../ui/IconButton'
 
@@ -40,7 +40,7 @@ export function ThemeSwitch() {
           theme: isDarkTheme ? t('light') : t('dark'),
         })}
       >
-        {isDarkTheme ? <IoMoon size={22} /> : <IoSunny size={22} />}
+        {isDarkTheme ? <TbMoon size={22} /> : <TbSun size={22} />}
       </IconButton>
     </IconTooltip>
   )

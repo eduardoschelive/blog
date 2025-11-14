@@ -9,7 +9,7 @@ import {
 import { HoverCard } from '@/components/ui/HoverCard'
 import { Link } from '@heroui/react'
 import { useTranslations } from 'next-intl'
-import { HiDocumentText } from 'react-icons/hi2'
+import { TbFileText } from 'react-icons/tb'
 
 interface CategoryCardProps {
   category: CategoryWithArticles
@@ -73,7 +73,7 @@ export function CategoryCard({ category, limit = 3 }: CategoryCardProps) {
                           {article.sequence}
                         </span>
                       ) : (
-                        <HiDocumentText className="text-primary text-xl" />
+                        <TbFileText className="text-primary text-xl" />
                       )}
                     </div>
                     <div className="flex-1 min-w-0">

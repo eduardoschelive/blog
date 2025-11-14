@@ -3,19 +3,25 @@
 import { cn } from '@heroui/react'
 import type { ReactNode } from 'react'
 
+/**
+ * TODO: Este componente será substituído por imagens de CDN em breve.
+ * Por enquanto, pode continuar sendo usado normalmente.
+ */
 interface FallbackImageProps {
   icon?: ReactNode
   title?: string
-  showPattern?: boolean
   gradient?: 'subtle' | 'medium' | 'strong'
   iconSize?: 'sm' | 'md' | 'lg'
   className?: string
 }
 
+/**
+ * TODO: Este componente será substituído por imagens de CDN em breve.
+ * Por enquanto, pode continuar sendo usado normalmente.
+ */
 export function FallbackImage({
   icon,
   title,
-  showPattern = false,
   gradient = 'medium',
   iconSize = 'md',
   className,
@@ -40,14 +46,12 @@ export function FallbackImage({
         className
       )}
     >
-      {showPattern && (
-        <div
-          className="absolute inset-0 opacity-10"
-          style={{
-            backgroundImage: `url("data:image/svg+xml,%3Csvg width='60' height='60' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M0 0h60v60H0z' fill='none'/%3E%3Cpath d='M30 0v60M0 30h60' stroke='%23fff' stroke-width='1' opacity='.1'/%3E%3C/svg%3E")`,
-          }}
-        />
-      )}
+      <div
+        className="absolute inset-0 opacity-10"
+        style={{
+          backgroundImage: `url("data:image/svg+xml,%3Csvg width='60' height='60' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M0 0h60v60H0z' fill='none'/%3E%3Cpath d='M30 0v60M0 30h60' stroke='%23fff' stroke-width='1' opacity='.1'/%3E%3C/svg%3E")`,
+        }}
+      />
 
       <div className="text-center relative z-10">
         <div className={cn(iconSizes[iconSize], 'mb-3 opacity-50')}>{icon}</div>

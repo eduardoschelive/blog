@@ -2,7 +2,6 @@
 
 import { ArticleDate } from '../ArticleDate'
 import { ArticleReadingTime } from '../ArticleReadingTime'
-import { ArticleCategory } from '../ArticleCategory'
 import { useTranslations } from 'next-intl'
 import { FadeIn } from '@/components/animated/FadeIn'
 import { useArticle } from '../../context'

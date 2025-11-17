@@ -14,7 +14,9 @@ import {
   PageHeaderTitle,
   PageHeaderSubtitle,
 } from '@/components/composables/PageHeader'
+import { AnimatedDivider } from '@/components/animated/AnimatedDivider'
 import { Breadcrumbs } from '@/components/ui/Breadcrumbs'
+import { ScrollReveal } from '@/components/animated/ScrollReveal'
 import { TbCategory } from 'react-icons/tb'
 import { TbHome, TbFolder } from 'react-icons/tb'
 import { BackgroundDecorations } from '@/components/ui/BackgroundDecorations'
@@ -92,6 +94,8 @@ export default async function CategoryPage({ params }: PageProps) {
           {category.title}
         </PageHeaderTitle>
 
+        <AnimatedDivider />
+
         {category.description && (
           <PageHeaderSubtitle>{category.description}</PageHeaderSubtitle>
         )}
@@ -99,7 +103,9 @@ export default async function CategoryPage({ params }: PageProps) {
 
       <div className="w-full px-4 py-8">
         <div className="max-w-7xl mx-auto space-y-12">
-          <CategoryContent />
+          <ScrollReveal>
+            <CategoryContent />
+          </ScrollReveal>
 
           {category.articles && category.articles.length > 0 && (
             <section className="space-y-8">

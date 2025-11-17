@@ -3,6 +3,7 @@
 import { useArticle } from '../../context'
 import { cn } from '@heroui/react'
 import type { HTMLAttributes } from 'react'
+import { FadeIn } from '@/components/animated/FadeIn'
 import { forwardRef } from 'react'
 
 export const ArticleContent = forwardRef<
@@ -12,8 +13,14 @@ export const ArticleContent = forwardRef<
   const { article } = useArticle()
 
   return (
-    <article ref={ref} className={cn('max-w-none prose', className)} {...props}>
-      {article.content}
-    </article>
+    <FadeIn direction="up" delay={0.2} inView>
+      <article
+        ref={ref}
+        className={cn('max-w-none prose', className)}
+        {...props}
+      >
+        {article.content}
+      </article>
+    </FadeIn>
   )
 })

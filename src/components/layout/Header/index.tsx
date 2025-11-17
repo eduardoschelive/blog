@@ -19,6 +19,7 @@ import { ThemeSwitch } from '@/components/ui/ThemeSwitch'
 import { useState } from 'react'
 import { AnimatePresence } from 'framer-motion'
 import { TbMenu2, TbX, TbBrandGithub, TbBrandLinkedin } from 'react-icons/tb'
+import { ScaleIn } from '@/components/animated/ScaleIn'
 import { IconButton } from '@/components/ui/IconButton'
 import { Link as HeroUILink } from '@heroui/react'
 import { PERSONAL_INFO } from '@/constants/personal'
@@ -73,9 +74,13 @@ function Header() {
           icon={(isOpen) => (
             <AnimatePresence mode="wait">
               {isOpen ? (
-                <TbX key="close" size={24} />
+                <ScaleIn key="close" delay={0}>
+                  <TbX size={24} />
+                </ScaleIn>
               ) : (
-                <TbMenu2 key="menu" size={24} />
+                <ScaleIn key="menu" delay={0}>
+                  <TbMenu2 size={24} />
+                </ScaleIn>
               )}
             </AnimatePresence>
           )}

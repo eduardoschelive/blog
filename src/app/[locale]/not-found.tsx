@@ -5,6 +5,8 @@ import { useTranslations } from 'next-intl'
 import { Button } from '@heroui/react'
 import { TbHome, TbBook, TbAlertCircle } from 'react-icons/tb'
 import { BackgroundDecorations } from '@/components/ui/BackgroundDecorations'
+import { RotateIn } from '@/components/animated/RotateIn'
+import { FadeIn } from '@/components/animated/FadeIn'
 
 export default function NotFound() {
   const t = useTranslations('NotFound')
@@ -14,23 +16,34 @@ export default function NotFound() {
       <BackgroundDecorations />
 
       <div className="w-full max-w-lg mx-auto text-center relative z-10">
-        <div className="flex justify-center mb-4">
-          <TbAlertCircle className="w-12 h-12 md:w-16 md:h-16 text-primary" />
-        </div>
+        <RotateIn className="flex justify-center mb-4">
+          <div className="relative">
+            <div className="absolute inset-0 bg-linear-to-r from-primary to-secondary rounded-full blur-2xl opacity-30 animate-pulse-slow" />
+            <TbAlertCircle className="w-12 h-12 md:w-16 md:h-16 text-primary relative z-10" />
+          </div>
+        </RotateIn>
 
-        <h1 className="text-7xl font-black text-primary mb-3">
-          {t('errorCode')}
-        </h1>
+        <FadeIn direction="up" delay={0.2} className="mb-3">
+          <h1 className="text-7xl font-black text-primary">{t('errorCode')}</h1>
+        </FadeIn>
 
-        <h2 className="text-xl md:text-2xl font-bold text-foreground mb-3">
-          {t('title')}
-        </h2>
+        <FadeIn direction="up" delay={0.4} className="mb-3">
+          <h2 className="text-xl md:text-2xl font-bold text-foreground">
+            {t('title')}
+          </h2>
+        </FadeIn>
 
-        <p className="text-xs md:text-sm text-foreground/70 max-w-md mx-auto mb-4 leading-relaxed">
-          {t('description')}
-        </p>
+        <FadeIn direction="up" delay={0.6}>
+          <p className="text-xs md:text-sm text-foreground/70 max-w-md mx-auto mb-4 leading-relaxed">
+            {t('description')}
+          </p>
+        </FadeIn>
 
-        <div className="flex flex-col sm:flex-row gap-2 justify-center items-center">
+        <FadeIn
+          direction="up"
+          delay={0.8}
+          className="flex flex-col sm:flex-row gap-2 justify-center items-center"
+        >
           <Button
             as={Link}
             href="/"
@@ -52,7 +65,7 @@ export default function NotFound() {
           >
             {t('browseArticles')}
           </Button>
-        </div>
+        </FadeIn>
       </div>
     </main>
   )

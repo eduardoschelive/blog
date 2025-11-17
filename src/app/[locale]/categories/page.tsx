@@ -1,6 +1,8 @@
 import { CategoriesList } from '@/components/layout/CategoriesList'
 import { BackgroundDecorations } from '@/components/ui/BackgroundDecorations'
+import { LOCALES } from '@/constants/locale'
 import type { Metadata } from 'next'
+import type { Locale } from 'next-intl'
 import { getTranslations } from 'next-intl/server'
 import {
   PageHeaderRoot,
@@ -10,7 +12,23 @@ import {
 import { AnimatedDivider } from '@/components/animated/AnimatedDivider'
 import { TbCategory } from 'react-icons/tb'
 
-export default async function CategoriesPage() {
+export const dynamic = 'force-static'
+export const dynamicParams = false
+
+type PageParams = {
+  locale: Locale
+}
+
+interface PageProps {
+  params: Promise<PageParams>
+}
+
+export async function generateStaticParams(): Promise<PageParams[]> {
+  return LOCALES.map((locale) => ({ locale }))
+}
+
+export default async function CategoriesPage({ params }: PageProps) {
+  await params
   const t = await getTranslations('Categories')
 
   return (
@@ -41,7 +59,10 @@ export default async function CategoriesPage() {
   )
 }
 
-export async function generateMetadata(): Promise<Metadata> {
+export async function generateMetadata({
+  params,
+}: PageProps): Promise<Metadata> {
+  await params
   const t = await getTranslations('Categories')
 
   return {

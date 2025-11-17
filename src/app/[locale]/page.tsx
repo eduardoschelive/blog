@@ -2,6 +2,19 @@ import { Hero } from '@/components/layout/Hero'
 import { ArticleList } from '@/components/layout/ArticleList'
 import { CategoriesSidebar } from '@/components/layout/CategoriesSidebar'
 import { HomePageClient } from './components/HomePageClient'
+import { LOCALES } from '@/constants/locale'
+import type { Locale } from 'next-intl'
+
+export const dynamic = 'force-static'
+export const dynamicParams = false
+
+type PageParams = {
+  locale: Locale
+}
+
+export async function generateStaticParams(): Promise<PageParams[]> {
+  return LOCALES.map((locale) => ({ locale }))
+}
 
 export default async function HomePage() {
   return (

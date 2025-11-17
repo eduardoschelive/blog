@@ -2,7 +2,6 @@
 
 import { Link } from '@/i18n/navigation'
 import { useTranslations } from 'next-intl'
-import { m } from 'framer-motion'
 import { Button } from '@heroui/react'
 import { TbHome, TbBook, TbAlertCircle } from 'react-icons/tb'
 import { BackgroundDecorations } from '@/components/ui/BackgroundDecorations'
@@ -13,25 +12,15 @@ export default function NotFound() {
   const t = useTranslations('NotFound')
 
   return (
-    <main className="min-h-[calc(100vh-128px)] flex items-center justify-center px-4 relative overflow-hidden">
+    <main className="min-h-[calc(100vh-4rem)] flex items-start justify-center px-4 pt-20 md:pt-32 relative overflow-hidden">
       <BackgroundDecorations />
 
       <div className="w-full max-w-lg mx-auto text-center relative z-10">
         <RotateIn className="flex justify-center mb-4">
-          <m.div className="relative">
-            <m.div
-              className="absolute inset-0 bg-linear-to-r from-primary to-secondary rounded-full blur-2xl opacity-30"
-              animate={{
-                opacity: [0.2, 0.4, 0.2],
-              }}
-              transition={{
-                duration: 2,
-                repeat: Infinity,
-                ease: 'easeInOut',
-              }}
-            />
+          <div className="relative">
+            <div className="absolute inset-0 bg-linear-to-r from-primary to-secondary rounded-full blur-2xl opacity-30 animate-pulse-slow" />
             <TbAlertCircle className="w-12 h-12 md:w-16 md:h-16 text-primary relative z-10" />
-          </m.div>
+          </div>
         </RotateIn>
 
         <FadeIn direction="up" delay={0.2} className="mb-3">
@@ -53,7 +42,7 @@ export default function NotFound() {
         <FadeIn
           direction="up"
           delay={0.8}
-          className="flex flex-col sm:flex-row gap-2 justify-center items-center mb-6"
+          className="flex flex-col sm:flex-row gap-2 justify-center items-center"
         >
           <Button
             as={Link}
@@ -77,44 +66,6 @@ export default function NotFound() {
             {t('browseArticles')}
           </Button>
         </FadeIn>
-
-        <div className="flex justify-center gap-4">
-          <m.div
-            className="w-1.5 h-1.5 bg-primary rounded-full opacity-60"
-            animate={{
-              y: [0, -10, 0],
-            }}
-            transition={{
-              duration: 3,
-              repeat: Infinity,
-              ease: 'easeInOut',
-            }}
-          />
-          <m.div
-            className="w-1.5 h-1.5 bg-secondary rounded-full opacity-60"
-            animate={{
-              y: [0, -10, 0],
-            }}
-            transition={{
-              duration: 3,
-              delay: 0.5,
-              repeat: Infinity,
-              ease: 'easeInOut',
-            }}
-          />
-          <m.div
-            className="w-1.5 h-1.5 bg-primary rounded-full opacity-60"
-            animate={{
-              y: [0, -10, 0],
-            }}
-            transition={{
-              duration: 3,
-              delay: 1,
-              repeat: Infinity,
-              ease: 'easeInOut',
-            }}
-          />
-        </div>
       </div>
     </main>
   )

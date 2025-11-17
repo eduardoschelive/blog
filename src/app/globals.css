@@ -57,14 +57,17 @@
     animation: gradient 8s ease infinite;
   }
 
-  * {
-    transition:
-      background-color 0.3s ease,
-      color 0.3s ease,
-      border-color 0.3s ease;
+  @keyframes pulse-slow {
+    0%,
+    100% {
+      opacity: 0.2;
+    }
+    50% {
+      opacity: 0.4;
+    }
   }
 
-  html.transitioning * {
-    transition: none !important;
+  .animate-pulse-slow {
+    animation: pulse-slow 2s ease-in-out infinite;
   }
 }

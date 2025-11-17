@@ -1,17 +1,41 @@
 import { ArticlePageClient } from './ArticlePageClient'
 import { getArticles } from '@/content/articles'
+import { LOCALES } from '@/constants/locale'
 import type { Locale } from 'next-intl'
 import type { Metadata } from 'next'
 
-interface ArticleProps {
-  params: Promise<{
-    categorySlug: string
-    articleSlug: string
-    locale: Locale
-  }>
+export const dynamic = 'force-static'
+export const dynamicParams = false
+
+type PageParams = {
+  categorySlug: string
+  articleSlug: string
+  locale: Locale
 }
 
-export default async function ArticlePage({ params }: ArticleProps) {
+interface PageProps {
+  params: Promise<PageParams>
+}
+
+export async function generateStaticParams(): Promise<PageParams[]> {
+  const params: PageParams[] = []
+
+  for (const locale of LOCALES) {
+    const articles = await getArticles(locale)
+
+    for (const article of articles) {
+      params.push({
+        locale,
+        categorySlug: article.category.slug,
+        articleSlug: article.slug,
+      })
+    }
+  }
+
+  return params
+}
+
+export default async function ArticlePage({ params }: PageProps) {
   const { categorySlug, articleSlug, locale } = await params
 
   const articles = await getArticles(locale, {
@@ -32,7 +56,7 @@ export default async function ArticlePage({ params }: ArticleProps) {
 
 export async function generateMetadata({
   params,
-}: ArticleProps): Promise<Metadata> {
+}: PageProps): Promise<Metadata> {
   const { categorySlug, articleSlug, locale } = await params
 
   const articles = await getArticles(locale, {

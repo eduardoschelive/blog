@@ -2,6 +2,7 @@ import type { Metadata } from 'next'
 import type { Locale } from 'next-intl'
 import { getTranslations } from 'next-intl/server'
 import { getCategories } from '@/content/categories'
+import { LOCALES } from '@/constants/locale'
 import {
   CategoryRoot,
   CategoryCover,
@@ -20,14 +21,36 @@ import { TbCategory } from 'react-icons/tb'
 import { TbHome, TbFolder } from 'react-icons/tb'
 import { BackgroundDecorations } from '@/components/ui/BackgroundDecorations'
 
-interface CategoryProps {
-  params: Promise<{
-    categorySlug: string
-    locale: Locale
-  }>
+export const dynamic = 'force-static'
+export const dynamicParams = false
+
+type PageParams = {
+  categorySlug: string
+  locale: Locale
 }
 
-export default async function CategoryPage({ params }: CategoryProps) {
+interface PageProps {
+  params: Promise<PageParams>
+}
+
+export async function generateStaticParams(): Promise<PageParams[]> {
+  const params: PageParams[] = []
+
+  for (const locale of LOCALES) {
+    const categories = await getCategories(locale)
+
+    for (const category of categories) {
+      params.push({
+        locale,
+        categorySlug: category.slug,
+      })
+    }
+  }
+
+  return params
+}
+
+export default async function CategoryPage({ params }: PageProps) {
   const { categorySlug, locale } = await params
   const t = await getTranslations()
 
@@ -104,7 +127,7 @@ export default async function CategoryPage({ params }: CategoryProps) {
 
 export async function generateMetadata({
   params,
-}: CategoryProps): Promise<Metadata> {
+}: PageProps): Promise<Metadata> {
   const { categorySlug, locale } = await params
 
   const [category] = await getCategories(locale, {

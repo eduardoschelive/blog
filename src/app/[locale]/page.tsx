@@ -1,7 +1,7 @@
 import { Hero } from '@/components/layout/Hero'
 import { ArticleList } from '@/components/layout/ArticleList'
 import { CategoriesSidebar } from '@/components/layout/CategoriesSidebar'
-import { HomePageClient } from './components/HomePageClient'
+import { BackgroundDecorations } from '@/components/ui/BackgroundDecorations'
 import { LOCALES } from '@/constants/locale'
 import type { Locale } from 'next-intl'
 
@@ -18,7 +18,8 @@ export async function generateStaticParams(): Promise<PageParams[]> {
 
 export default async function HomePage() {
   return (
-    <HomePageClient>
+    <div className="relative">
+      <BackgroundDecorations />
       <Hero />
       <div className="w-full px-4 py-20">
         <div className="max-w-7xl mx-auto">
@@ -30,6 +31,6 @@ export default async function HomePage() {
           </div>
         </div>
       </div>
-    </HomePageClient>
+    </div>
   )
 }

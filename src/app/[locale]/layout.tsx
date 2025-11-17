@@ -99,7 +99,7 @@ export default async function RootLayout({
       >
         <Providers>
           <Header />
-          {children}
+          <main>{children}</main>
           <Footer />
         </Providers>
       </body>

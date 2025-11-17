@@ -1,0 +1,183 @@
+---
+title: MDX Components Testing
+description: Test all available MDX components and their features
+slug: components
+tags:
+  - mdx
+  - components
+  - testing
+---
+
+# MDX Components Testing
+
+This article is designed to test all MDX components available in the blog system. It serves as a comprehensive reference for component rendering, styling, and functionality.
+
+## Code Blocks
+
+Testing the optimized Shiki syntax highlighter with dynamic language loading:
+
+### TypeScript Example
+
+```typescript
+interface User {
+  id: number
+  name: string
+  email: string
+  createdAt: Date
+}
+
+async function fetchUser(id: number): Promise<User> {
+  const response = await fetch(`/api/users/${id}`)
+
+  if (!response.ok) {
+    throw new Error(`Failed to fetch user: ${response.statusText}`)
+  }
+
+  return response.json()
+}
+
+const user = await fetchUser(1)
+console.log(`Welcome, ${user.name}!`)
+```
+
+### JavaScript Example
+
+```javascript
+function fibonacci(n) {
+  if (n <= 1) return n
+  return fibonacci(n - 1) + fibonacci(n - 2)
+}
+
+const result = fibonacci(10)
+console.log(`Fibonacci(10) = ${result}`)
+```
+
+## Typography
+
+Testing various heading levels and text formatting options.
+
+### Level 3 Heading
+
+This is a paragraph under a level 3 heading. It demonstrates normal text flow and spacing.
+
+#### Level 4 Heading
+
+Even smaller headings maintain proper hierarchy and spacing.
+
+##### Level 5 Heading
+
+Testing deeper nesting levels.
+
+###### Level 6 Heading
+
+The smallest heading level available.
+
+## Text Formatting
+
+This is **bold text** and this is _italic text_. You can combine them for **_bold italic text_**.
+
+You can also use ~~strikethrough~~ for deleted or incorrect text.
+
+Use `inline code` for variable names, function calls, or short code snippets within paragraphs.
+
+## Lists
+
+### Unordered List
+
+- First item in the list
+- Second item with **bold** text
+- Third item with nested list:
+  - Nested item 1
+  - Nested item 2
+    - Deeply nested item
+- Fourth item with `code`
+
+### Ordered List
+
+1. First step in the process
+2. Second step with _emphasis_
+3. Third step
+4. Fourth step with nested items:
+   1. Sub-step A
+   2. Sub-step B
+   3. Sub-step C
+5. Final step
+
+## Links
+
+Here's a standard link: [Visit Example](https://example.com)
+
+Links can also be used inline within text, like [this link](https://example.com), to provide references without breaking the reading flow.
+
+## Blockquotes
+
+> This is a blockquote. It can be used to highlight important information, quotes from other sources, or key takeaways.
+>
+> Blockquotes can span multiple paragraphs and maintain their distinctive styling throughout.
+
+## Horizontal Rule
+
+Use horizontal rules to separate sections:
+
+---
+
+## Inline Code vs Code Blocks
+
+Use `const variable = 'value'` for inline code snippets.
+
+For longer code examples, use fenced code blocks:
+
+```typescript
+const greeting = 'Hello, World!'
+console.log(greeting)
+```
+
+## Complex Code Example
+
+Testing syntax highlighting with a more complex example:
+
+```typescript
+class DataService<T> {
+  private cache = new Map<string, T>()
+
+  constructor(private baseUrl: string) {}
+
+  async get(id: string): Promise<T> {
+    if (this.cache.has(id)) {
+      return this.cache.get(id)!
+    }
+
+    const response = await fetch(`${this.baseUrl}/${id}`)
+    const data = await response.json()
+
+    this.cache.set(id, data)
+    return data
+  }
+
+  clearCache(): void {
+    this.cache.clear()
+  }
+}
+
+const userService = new DataService<User>('/api/users')
+const user = await userService.get('123')
+```
+
+## Mixed Content
+
+You can mix different elements together:
+
+1. A list item with **bold text**
+2. Another item with `inline code`
+3. An item with a [link](https://example.com)
+4. And one with _italic emphasis_
+
+> **Note:** This blockquote contains **bold text** and `inline code` to demonstrate mixed formatting.
+
+## Conclusion
+
+This article demonstrates all the major MDX components available in the blog system. Use it as a reference for component behavior and styling. The optimized Shiki highlighter with dynamic language loading ensures fast performance while maintaining beautiful syntax highlighting.
+
+---
+
+**Last updated:** 2025-11-17

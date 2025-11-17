@@ -38,6 +38,14 @@ export const components: MDXComponents = {
       </a>
     )
   },
-  code: (props) => <Code {...props} />,
+  pre: ({ children }) => <>{children}</>,
+  code: (props) => {
+    if (props.className?.includes('language-')) {
+      return <Code {...props} />
+    }
+    return (
+      <code className="bg-content2 px-1.5 py-0.5 rounded text-sm" {...props} />
+    )
+  },
   Code: Code,
 }

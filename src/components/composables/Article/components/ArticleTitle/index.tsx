@@ -10,7 +10,7 @@ interface ArticleTitleProps extends HTMLAttributes<HTMLHeadingElement> {
 }
 
 function ArticleTitle({
-  as: Component = 'h3',
+  as: Component = 'h2',
   className,
   children,
   ...props

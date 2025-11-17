@@ -1,0 +1,183 @@
+---
+title: Teste de Componentes MDX
+description: Teste todos os componentes MDX disponíveis e suas funcionalidades
+slug: components
+tags:
+  - mdx
+  - componentes
+  - teste
+---
+
+# Teste de Componentes MDX
+
+Este artigo foi criado para testar todos os componentes MDX disponíveis no sistema do blog. Serve como uma referência abrangente para renderização, estilização e funcionalidade dos componentes.
+
+## Blocos de Código
+
+Testando o syntax highlighter Shiki otimizado com carregamento dinâmico de linguagens:
+
+### Exemplo TypeScript
+
+```typescript
+interface Usuario {
+  id: number
+  nome: string
+  email: string
+  criadoEm: Date
+}
+
+async function buscarUsuario(id: number): Promise<Usuario> {
+  const resposta = await fetch(`/api/usuarios/${id}`)
+
+  if (!resposta.ok) {
+    throw new Error(`Falha ao buscar usuário: ${resposta.statusText}`)
+  }
+
+  return resposta.json()
+}
+
+const usuario = await buscarUsuario(1)
+console.log(`Bem-vindo, ${usuario.nome}!`)
+```
+
+### Exemplo JavaScript
+
+```javascript
+function fibonacci(n) {
+  if (n <= 1) return n
+  return fibonacci(n - 1) + fibonacci(n - 2)
+}
+
+const resultado = fibonacci(10)
+console.log(`Fibonacci(10) = ${resultado}`)
+```
+
+## Tipografia
+
+Testando vários níveis de títulos e opções de formatação de texto.
+
+### Título Nível 3
+
+Este é um parágrafo sob um título de nível 3. Demonstra o fluxo normal do texto e espaçamento.
+
+#### Título Nível 4
+
+Títulos ainda menores mantêm hierarquia e espaçamento adequados.
+
+##### Título Nível 5
+
+Testando níveis de aninhamento mais profundos.
+
+###### Título Nível 6
+
+O menor nível de título disponível.
+
+## Formatação de Texto
+
+Este é **texto em negrito** e este é _texto em itálico_. Você pode combiná-los para **_texto em negrito e itálico_**.
+
+Você também pode usar ~~texto tachado~~ para texto deletado ou incorreto.
+
+Use `código inline` para nomes de variáveis, chamadas de função ou trechos curtos de código dentro de parágrafos.
+
+## Listas
+
+### Lista Não Ordenada
+
+- Primeiro item da lista
+- Segundo item com texto em **negrito**
+- Terceiro item com lista aninhada:
+  - Item aninhado 1
+  - Item aninhado 2
+    - Item profundamente aninhado
+- Quarto item com `código`
+
+### Lista Ordenada
+
+1. Primeiro passo do processo
+2. Segundo passo com _ênfase_
+3. Terceiro passo
+4. Quarto passo com itens aninhados:
+   1. Sub-passo A
+   2. Sub-passo B
+   3. Sub-passo C
+5. Passo final
+
+## Links
+
+Aqui está um link padrão: [Visite o Exemplo](https://example.com)
+
+Links também podem ser usados inline dentro do texto, como [este link](https://example.com), para fornecer referências sem quebrar o fluxo de leitura.
+
+## Citações em Bloco
+
+> Esta é uma citação em bloco. Pode ser usada para destacar informações importantes, citações de outras fontes ou pontos-chave.
+>
+> Citações em bloco podem se estender por vários parágrafos e manter sua estilização distintiva por todo o conteúdo.
+
+## Linha Horizontal
+
+Use linhas horizontais para separar seções:
+
+---
+
+## Código Inline vs Blocos de Código
+
+Use `const variavel = 'valor'` para trechos de código inline.
+
+Para exemplos de código mais longos, use blocos de código cercados:
+
+```typescript
+const saudacao = 'Olá, Mundo!'
+console.log(saudacao)
+```
+
+## Exemplo de Código Complexo
+
+Testando syntax highlighting com um exemplo mais complexo:
+
+```typescript
+class ServicoDedados<T> {
+  private cache = new Map<string, T>()
+
+  constructor(private urlBase: string) {}
+
+  async obter(id: string): Promise<T> {
+    if (this.cache.has(id)) {
+      return this.cache.get(id)!
+    }
+
+    const resposta = await fetch(`${this.urlBase}/${id}`)
+    const dados = await resposta.json()
+
+    this.cache.set(id, dados)
+    return dados
+  }
+
+  limparCache(): void {
+    this.cache.clear()
+  }
+}
+
+const servicoUsuario = new ServicoDeados<Usuario>('/api/usuarios')
+const usuario = await servicoUsuario.obter('123')
+```
+
+## Conteúdo Misto
+
+Você pode misturar diferentes elementos juntos:
+
+1. Um item de lista com **texto em negrito**
+2. Outro item com `código inline`
+3. Um item com um [link](https://example.com)
+4. E um com _ênfase em itálico_
+
+> **Nota:** Esta citação em bloco contém **texto em negrito** e `código inline` para demonstrar formatação mista.
+
+## Conclusão
+
+Este artigo demonstra todos os principais componentes MDX disponíveis no sistema do blog. Use-o como referência para comportamento e estilização de componentes. O highlighter Shiki otimizado com carregamento dinâmico de linguagens garante performance rápida enquanto mantém um belo syntax highlighting.
+
+---
+
+**Última atualização:** 2025-11-17

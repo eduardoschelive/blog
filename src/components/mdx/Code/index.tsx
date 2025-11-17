@@ -18,16 +18,16 @@ async function Code({ children, lang, theme, ...props }: CodeProps) {
   )
 
   return (
-    <div className="bg-[#1a1b26] rounded-lg shadow-lg overflow-hidden">
+    <div className="bg-[#1a1b26] rounded-lg shadow-lg overflow-hidden not-prose my-6">
       <div className="flex items-center px-4 py-3 bg-[#24283b]">
-        <div className="flex space-x-2">
-          <div className="w-3 h-3 rounded-full bg-red-500"></div>
-          <div className="w-3 h-3 rounded-full bg-yellow-500"></div>
-          <div className="w-3 h-3 rounded-full bg-green-500"></div>
-        </div>
+        <span className="flex space-x-2">
+          <span className="w-3 h-3 rounded-full bg-red-500 block"></span>
+          <span className="w-3 h-3 rounded-full bg-yellow-500 block"></span>
+          <span className="w-3 h-3 rounded-full bg-green-500 block"></span>
+        </span>
       </div>
       <div className="p-4">
-        <span {...props} dangerouslySetInnerHTML={{ __html: code }} />
+        <code {...props} dangerouslySetInnerHTML={{ __html: code }} />
       </div>
     </div>
   )

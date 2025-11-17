@@ -1,18 +1,21 @@
-import { highlighter } from '@/shiki/highlighter'
+import { highlightCode } from '@/shiki/highlighter'
+import type { BundledLanguage } from 'shiki/langs'
+import type { BundledTheme } from 'shiki/themes'
 import type { ComponentPropsWithoutRef } from 'react'
 import './styles.css'
 
 interface CodeProps extends ComponentPropsWithoutRef<'code'> {
   children: string
-  lang: string
-  theme: string
+  lang?: string
+  theme?: string
 }
 
 async function Code({ children, lang, theme, ...props }: CodeProps) {
-  const code = highlighter.codeToHtml(String(children), {
-    lang: lang || 'ts',
-    theme: theme || 'tokyo-night',
-  })
+  const code = await highlightCode(
+    String(children),
+    (lang || 'typescript') as BundledLanguage,
+    (theme || 'tokyo-night') as BundledTheme
+  )
 
   return (
     <div className="bg-[#1a1b26] rounded-lg shadow-lg overflow-hidden">

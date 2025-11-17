@@ -10,7 +10,9 @@ interface LazyMotionProviderProps {
 
 export function LazyMotionProvider({ children }: LazyMotionProviderProps) {
   useEffect(() => {
-    const isBot = /bot|crawler|spider|lighthouse/i.test(navigator.userAgent)
+    const isBot =
+      /bot|crawler|spider|lighthouse|headless/i.test(navigator.userAgent) ||
+      navigator.webdriver
 
     const prefersReducedMotion = window.matchMedia(
       '(prefers-reduced-motion: reduce)'

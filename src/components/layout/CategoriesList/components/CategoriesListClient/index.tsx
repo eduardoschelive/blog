@@ -2,7 +2,6 @@
 
 import type { CategoryWithArticles } from '@/types/category.type'
 import { CategoryCard } from '@/components/layout/CategoryCard'
-import { ScrollReveal } from '@/components/animated/ScrollReveal'
 import { PREVIEW_ARTICLES_LIMIT } from '@/constants/content'
 
 interface CategoriesListClientProps {
@@ -15,9 +14,11 @@ export function CategoriesListClient({
   return (
     <div className="flex flex-col gap-8">
       {categories.map((category) => (
-        <ScrollReveal key={category.slug}>
-          <CategoryCard category={category} limit={PREVIEW_ARTICLES_LIMIT} />
-        </ScrollReveal>
+        <CategoryCard
+          key={category.slug}
+          category={category}
+          limit={PREVIEW_ARTICLES_LIMIT}
+        />
       ))}
     </div>
   )

@@ -5,7 +5,6 @@ import {
   PageHeaderTitle,
   PageHeaderSubtitle,
 } from '@/components/composables/PageHeader'
-import { AnimatedDivider } from '@/components/animated/AnimatedDivider'
 import { ArticleMetadata } from '../ArticleMetadata'
 import { ArticleReadingTime } from '../ArticleReadingTime'
 import { useArticle } from '../../context'
@@ -33,8 +32,6 @@ export function ArticleHeader() {
       {article.description && (
         <PageHeaderSubtitle>{article.description}</PageHeaderSubtitle>
       )}
-
-      <AnimatedDivider />
     </PageHeaderRoot>
   )
 }

@@ -7,7 +7,9 @@ interface HashScrollProviderProps {
   children: ReactNode
 }
 
-export function HashScrollProvider({ children }: HashScrollProviderProps) {
+function HashScrollProvider({ children }: HashScrollProviderProps) {
   useHashScroll()
   return <>{children}</>
 }
+
+export { HashScrollProvider }

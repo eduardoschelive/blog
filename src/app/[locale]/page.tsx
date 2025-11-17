@@ -12,11 +12,19 @@ type PageParams = {
   locale: Locale
 }
 
-export async function generateStaticParams(): Promise<PageParams[]> {
+export async function generateStaticParams(): Promise<
+  Array<{ locale: Locale }>
+> {
   return LOCALES.map((locale) => ({ locale }))
 }
 
-export default async function HomePage() {
+interface HomePageProps {
+  params: Promise<{ locale: Locale }>
+}
+
+export default async function HomePage({ params }: HomePageProps) {
+  await params
+
   return (
     <div className="relative">
       <BackgroundDecorations />

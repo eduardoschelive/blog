@@ -16,8 +16,8 @@ export function ThemeSwitch() {
   const isDarkTheme = resolvedTheme === 'dark'
 
   const { ref, toggleWithAnimation } = useThemeAnimation({
-    duration: 500,
-    blurAmount: 2,
+    duration: 300,
+    blurAmount: 1,
     onToggle: () => {
       setTheme(isDarkTheme ? 'light' : 'dark')
     },

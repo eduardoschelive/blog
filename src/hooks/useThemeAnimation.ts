@@ -47,14 +47,14 @@ interface UseThemeAnimationProps {
 }
 
 export const useThemeAnimation = ({
-  duration: propsDuration = 500,
-  blurAmount = 2,
+  duration: propsDuration = 300,
+  blurAmount = 1,
   onToggle,
 }: UseThemeAnimationProps) => {
   const isHighResolution =
     isBrowser && (window.innerWidth >= 3000 || window.innerHeight >= 2000)
   const duration = isHighResolution
-    ? Math.max(propsDuration * 0.8, 400)
+    ? Math.max(propsDuration * 0.7, 250)
     : propsDuration
   const ref = useRef<HTMLButtonElement>(null)
 

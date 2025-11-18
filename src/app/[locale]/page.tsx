@@ -12,14 +12,12 @@ type PageParams = {
   locale: Locale
 }
 
-export async function generateStaticParams(): Promise<
-  Array<{ locale: Locale }>
-> {
+export async function generateStaticParams(): Promise<Array<PageParams>> {
   return LOCALES.map((locale) => ({ locale }))
 }
 
 interface HomePageProps {
-  params: Promise<{ locale: Locale }>
+  params: Promise<PageParams>
 }
 
 export default async function HomePage({ params }: HomePageProps) {

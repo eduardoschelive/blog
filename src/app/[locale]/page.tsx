@@ -5,6 +5,7 @@ import { BackgroundDecorations } from '@/components/ui/BackgroundDecorations'
 import { LOCALES } from '@/constants/locale'
 import type { Locale } from 'next-intl'
 
+export const dynamic = 'force-static'
 export const dynamicParams = false
 
 type PageParams = {
@@ -22,7 +23,7 @@ interface HomePageProps {
 }
 
 export default async function HomePage({ params }: HomePageProps) {
-  const { locale } = await params
+  await params
 
   return (
     <div className="relative">

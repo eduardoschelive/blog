@@ -59,7 +59,7 @@ function SearchButton({ className = '' }: SearchButtonProps) {
   const [searchTerm, setSearchTerm] = useState('')
   const [selectedIndex, setSelectedIndex] = useState(0)
   const t = useTranslations('Navigation')
-  const { search, isLoading, isReady } = useSearch()
+  const { search, prefetch, isLoading, isReady } = useSearch()
 
   const results = useMemo(() => {
     if (!searchTerm.trim()) return { categories: [], articles: [] }
@@ -80,12 +80,10 @@ function SearchButton({ className = '' }: SearchButtonProps) {
     setSelectedIndex(0)
   }, [onClose])
 
-  // Reset selected index when results change
   useEffect(() => {
     setSelectedIndex(0)
   }, [results])
 
-  // Keyboard navigation
   const handleKeyDown = useCallback(
     (e: React.KeyboardEvent) => {
       if (e.key === 'ArrowDown') {
@@ -107,7 +105,6 @@ function SearchButton({ className = '' }: SearchButtonProps) {
     [allResults, selectedIndex]
   )
 
-  // Global keyboard shortcut to open
   useEffect(() => {
     const handleGlobalKeyDown = (e: KeyboardEvent) => {
       if ((e.metaKey || e.ctrlKey) && e.key === 'k') {
@@ -119,6 +116,21 @@ function SearchButton({ className = '' }: SearchButtonProps) {
     document.addEventListener('keydown', handleGlobalKeyDown)
     return () => document.removeEventListener('keydown', handleGlobalKeyDown)
   }, [onOpen])
+
+  useEffect(() => {
+    // Safari does not have this API yet
+    if ('requestIdleCallback' in window) {
+      const id = requestIdleCallback(() => prefetch())
+      return () => cancelIdleCallback(id)
+    } else {
+      const id = setTimeout(() => prefetch(), 200)
+      return () => clearTimeout(id)
+    }
+  }, [prefetch])
+
+  useEffect(() => {
+    if (isOpen) prefetch()
+  }, [isOpen, prefetch])
 
   const renderResult = (
     result: SearchResult,

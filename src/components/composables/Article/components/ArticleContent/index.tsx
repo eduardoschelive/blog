@@ -13,7 +13,7 @@ export const ArticleContent = forwardRef<
   const { article } = useArticle()
 
   return (
-    <FadeIn direction="up" delay={0.2} inView>
+    <FadeIn direction="up" fast>
       <article
         ref={ref}
         className={cn('max-w-none prose', className)}

@@ -11,8 +11,9 @@ import { Breadcrumbs } from '@/components/ui/Breadcrumbs'
 import { BackgroundDecorations } from '@/components/ui/BackgroundDecorations'
 import { useTranslations } from 'next-intl'
 import { TbFileText, TbHome, TbFolder, TbCategory } from 'react-icons/tb'
-import { useRef } from 'react'
+import { useRef, useEffect } from 'react'
 import type { Article } from '@/types/article.type'
+import { useScroll } from '@/hooks/useScroll'
 
 interface ArticlePageClientProps {
   article: Article
@@ -25,6 +26,37 @@ export function ArticlePageClient({
 }: ArticlePageClientProps) {
   const t = useTranslations()
   const articleContentRef = useRef<HTMLElement>(null)
+  const { scrollToHeading } = useScroll()
+
+  useEffect(() => {
+    const hash = window.location.hash
+    if (!hash) return
+
+    const id = hash.slice(1)
+
+    const element = document.getElementById(id)
+    if (element) {
+      scrollToHeading(id)
+      return
+    }
+
+    const observer = new MutationObserver(() => {
+      const el = document.getElementById(id)
+      if (el) {
+        observer.disconnect()
+        scrollToHeading(id)
+      }
+    })
+
+    observer.observe(document.body, {
+      childList: true,
+      subtree: true,
+      attributes: true,
+      attributeFilter: ['id'],
+    })
+
+    return () => observer.disconnect()
+  }, [scrollToHeading])
 
   return (
     <div className="min-h-screen relative">

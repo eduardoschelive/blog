@@ -84,7 +84,6 @@ function getMatchSnippet(
     }
   }
 
-  // Check sections first for articles
   if (item.sections && item.sections.length > 0 && fieldMatches['content']) {
     const result = findMatchInSections(item.sections, matchInfo)
     if (result.snippet) {
@@ -92,7 +91,6 @@ function getMatchSnippet(
     }
   }
 
-  // Fallback to other fields
   const fieldsToCheck = ['description', 'title']
 
   for (const field of fieldsToCheck) {
@@ -157,43 +155,48 @@ export function useSearch() {
     categories: [],
     articles: [],
   })
-  const [isLoading, setIsLoading] = useState(true)
+  const [isLoading, setIsLoading] = useState(false)
   const [error, setError] = useState<string | null>(null)
+  const [hasLoaded, setHasLoaded] = useState(false)
 
-  useEffect(() => {
-    async function loadIndex() {
-      try {
-        setIsLoading(true)
-        const response = await fetch(`/search/${locale}.json`)
+  const loadIndex = useCallback(async () => {
+    if (hasLoaded || isLoading) return
 
-        if (!response.ok) {
-          throw new Error('Failed to load search index')
-        }
+    try {
+      setIsLoading(true)
+      const response = await fetch(`/search/${locale}.json`)
 
-        const data: SearchData = await response.json()
-
-        // Concatenate sections content for search
-        const processedData: SearchData = {
-          categories: data.categories,
-          articles: data.articles.map((article) => ({
-            ...article,
-            content: article.sections
-              ? article.sections.map((s) => s.c).join(' ')
-              : '',
-          })),
-        }
-
-        setSearchData(processedData)
-        setError(null)
-      } catch (err) {
-        setError(err instanceof Error ? err.message : 'Unknown error')
-        setSearchData({ categories: [], articles: [] })
-      } finally {
-        setIsLoading(false)
+      if (!response.ok) {
+        throw new Error('Failed to load search index')
       }
-    }
 
-    loadIndex()
+      const data: SearchData = await response.json()
+
+      const processedData: SearchData = {
+        categories: data.categories,
+        articles: data.articles.map((article) => ({
+          ...article,
+          content: article.sections
+            ? article.sections.map((s) => s.c).join(' ')
+            : '',
+        })),
+      }
+
+      setSearchData(processedData)
+      setError(null)
+      setHasLoaded(true)
+    } catch (err) {
+      setError(err instanceof Error ? err.message : 'Unknown error')
+      setSearchData({ categories: [], articles: [] })
+    } finally {
+      setIsLoading(false)
+    }
+  }, [locale, hasLoaded, isLoading])
+
+  // Reset when locale changes
+  useEffect(() => {
+    setHasLoaded(false)
+    setSearchData({ categories: [], articles: [] })
   }, [locale])
 
   const { categorySearch, articleSearch } = useMemo(() => {
@@ -213,6 +216,11 @@ export function useSearch() {
 
   const search = useCallback(
     (query: string): SearchResults => {
+      if (!hasLoaded) {
+        loadIndex()
+        return { categories: [], articles: [] }
+      }
+
       const trimmedQuery = query.trim()
 
       if (!trimmedQuery) {
@@ -263,14 +271,15 @@ export function useSearch() {
         articles: mapResults(articleResults),
       }
     },
-    [categorySearch, articleSearch]
+    [categorySearch, articleSearch, hasLoaded, loadIndex]
   )
 
   return {
     search,
+    prefetch: loadIndex,
     isLoading,
     error,
-    isReady: !isLoading && !error,
+    isReady: hasLoaded && !isLoading && !error,
   }
 }
 

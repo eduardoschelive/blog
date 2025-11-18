@@ -3,11 +3,12 @@ import { Providers } from '@/providers/Providers'
 import { Header } from '@/components/layout/Header'
 import { Footer } from '@/components/layout/Footer'
 import type { Metadata } from 'next'
-import { hasLocale } from 'next-intl'
+import { hasLocale, setRequestLocale } from 'next-intl/server'
 import { Fira_Code } from 'next/font/google'
 import localFont from 'next/font/local'
 import { notFound } from 'next/navigation'
 import { PERSONAL_INFO } from '@/constants/personal'
+import { LOCALES } from '@/constants/locale'
 import '../globals.css'
 
 const satoshi = localFont({
@@ -78,6 +79,10 @@ export const metadata: Metadata = {
   description: `A personal blog by ${PERSONAL_INFO.name.short}`,
 }
 
+export function generateStaticParams() {
+  return LOCALES.map((locale) => ({ locale }))
+}
+
 type Props = {
   children: React.ReactNode
   params: Promise<{ locale: string }>
@@ -91,6 +96,9 @@ export default async function RootLayout({
   if (!hasLocale(routing.locales, locale)) {
     notFound()
   }
+
+  // Enable static rendering
+  setRequestLocale(locale)
 
   return (
     <html lang={locale} suppressHydrationWarning>

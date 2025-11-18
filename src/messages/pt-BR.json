@@ -76,11 +76,13 @@
       "button": "Pesquisar",
       "tooltip": "Pesquisar artigos",
       "placeholder": "Pesquisar artigos...",
-      "instructionsText": "Pressione",
-      "instructionsMiddle": "para pesquisar ou",
-      "instructionsEnd": "para fechar",
-      "enter": "Enter",
-      "esc": "Esc"
+      "close": "Fechar pesquisa",
+      "toOpen": "para abrir",
+      "toClose": "para fechar",
+      "toSearch": "para selecionar",
+      "noResults": "Nenhum resultado encontrado",
+      "categories": "Categorias",
+      "articles": "Artigos"
     },
     "rss": {
       "button": "Feed RSS",

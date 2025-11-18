@@ -76,11 +76,13 @@
       "button": "Search",
       "tooltip": "Search articles",
       "placeholder": "Search articles...",
-      "instructionsText": "Press",
-      "instructionsMiddle": "to search or",
-      "instructionsEnd": "to close",
-      "enter": "Enter",
-      "esc": "Esc"
+      "close": "Close search",
+      "toOpen": "to open",
+      "toClose": "to close",
+      "toSearch": "to select",
+      "noResults": "No results found",
+      "categories": "Categories",
+      "articles": "Articles"
     },
     "rss": {
       "button": "RSS Feed",

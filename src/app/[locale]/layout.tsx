@@ -3,13 +3,14 @@ import { Providers } from '@/providers/Providers'
 import { Header } from '@/components/layout/Header'
 import { Footer } from '@/components/layout/Footer'
 import type { Metadata } from 'next'
-import { hasLocale, setRequestLocale } from 'next-intl/server'
+import { setRequestLocale } from 'next-intl/server'
 import { Fira_Code } from 'next/font/google'
 import localFont from 'next/font/local'
 import { notFound } from 'next/navigation'
 import { PERSONAL_INFO } from '@/constants/personal'
 import { LOCALES } from '@/constants/locale'
 import '../globals.css'
+import { hasLocale, type Locale } from 'next-intl'
 
 const satoshi = localFont({
   src: '../../../public/fonts/Satoshi-Variable.woff2',
@@ -46,7 +47,7 @@ export default async function RootLayout({
     notFound()
   }
 
-  setRequestLocale(locale)
+  setRequestLocale(locale as Locale)
 
   return (
     <html lang={locale} suppressHydrationWarning>

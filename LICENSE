@@ -1,0 +1,35 @@
+MIT License with Deployment Restriction
+
+Copyright (c) 2025 Eduardo Guiraldelli Schelive
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to use,
+copy, modify, merge, and distribute the Software for educational, research,
+and personal learning purposes, subject to the following conditions:
+
+1. The above copyright notice and this permission notice shall be included in
+   all copies or substantial portions of the Software.
+
+2. DEPLOYMENT RESTRICTION: Only the copyright holder (Eduardo Guiraldelli Schelive)
+   is permitted to deploy, publish, or host this Software or any derivative works
+   in a production environment accessible to the public. This includes, but is not
+   limited to, web hosting services, cloud platforms, and any publicly accessible
+   servers.
+
+3. For purposes of clarity, the following uses ARE permitted:
+   - Running the Software locally for learning and experimentation
+   - Studying and analyzing the source code
+   - Creating derivative works for personal, non-deployed use
+   - Using portions of the code as reference for your own distinct projects
+
+4. The following uses are NOT permitted without explicit written permission:
+   - Deploying the Software or derivative works to any public-facing environment
+   - Using the Software as a template for a publicly deployed website or application
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+SOFTWARE.

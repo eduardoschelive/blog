@@ -90,6 +90,16 @@
     }
   },
 
+  "Code": {
+    "copy": "Copiar c\u00f3digo",
+    "copied": "Copiado!",
+    "download": "Baixar c\u00f3digo"
+  },
+  "MDXLink": {
+    "clickToAccess": "Clique aqui para acessar",
+    "clickToScroll": "Clique aqui para ir até a seção",
+    "clickToOpen": "Clique aqui para abrir em nova aba"
+  },
   "Categories": {
     "title": "Categorias",
     "subtitle": "Todos os meus artigos organizados por tema. A maioria segue uma ordem sequencial, então você pode ler como um guia de aprendizado.",

@@ -33,6 +33,10 @@ async function fetchUser(id: number): Promise<User> {
     throw new Error(`Failed to fetch user: ${response.statusText}`)
   }
 
+  // Ligatures: => !== === >= <= ->
+  const isValid = id >= 1 && id !== 0
+  const arrow = (x: number) => x * 2
+
   return response.json()
 }
 
@@ -105,9 +109,30 @@ Use `inline code` for variable names, function calls, or short code snippets wit
 
 ## Links
 
-Here's a standard link: [Visit Example](https://example.com)
+### External Links
+
+External links open in a new tab and show an indicator icon:
+
+- [Visit Example](https://example.com)
+- [GitHub](https://github.com)
+- [Next.js Documentation](https://nextjs.org/docs)
 
 Links can also be used inline within text, like [this link](https://example.com), to provide references without breaking the reading flow.
+
+### Internal Links
+
+Internal links to articles and categories show a preview tooltip on hover:
+
+- Link to category: [Debug Category](/categories/debug)
+- Link to this article: [Components Article](/categories/debug/articles/components)
+
+### Anchor Links
+
+Anchor links scroll smoothly to the target section:
+
+- [Go to Code Blocks](#code-blocks)
+- [Go to Typography](#typography)
+- [Go to Conclusion](#conclusion)
 
 ## Blockquotes
 

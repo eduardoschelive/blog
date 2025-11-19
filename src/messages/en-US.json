@@ -90,6 +90,16 @@
     }
   },
 
+  "Code": {
+    "copy": "Copy code",
+    "copied": "Copied!",
+    "download": "Download code"
+  },
+  "MDXLink": {
+    "clickToAccess": "Click here to access",
+    "clickToScroll": "Click here to scroll to section",
+    "clickToOpen": "Click here to open in new tab"
+  },
   "Categories": {
     "title": "Categories",
     "subtitle": "All my articles organized by topic. Most follow a sequential order, so you can read them like a guided learning path.",

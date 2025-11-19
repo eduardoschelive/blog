@@ -1,4 +1,8 @@
 code {
+  font-family: var(--font-mono), ui-monospace, monospace;
+  font-feature-settings:
+    'liga' 1,
+    'calt' 1;
   counter-reset: step;
   counter-increment: step 0;
 }

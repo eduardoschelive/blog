@@ -1,0 +1,31 @@
+'use client'
+
+import { useState, useCallback } from 'react'
+
+interface UseClipboardOptions {
+  timeout?: number
+}
+
+function useClipboard(options: UseClipboardOptions = {}) {
+  const { timeout = 2000 } = options
+  const [copied, setCopied] = useState(false)
+
+  const copy = useCallback(
+    async (text: string) => {
+      try {
+        await navigator.clipboard.writeText(text)
+        setCopied(true)
+        setTimeout(() => setCopied(false), timeout)
+        return true
+      } catch {
+        setCopied(false)
+        return false
+      }
+    },
+    [timeout]
+  )
+
+  return { copied, copy }
+}
+
+export { useClipboard }

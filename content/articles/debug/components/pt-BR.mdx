@@ -33,6 +33,10 @@ async function buscarUsuario(id: number): Promise<Usuario> {
     throw new Error(`Falha ao buscar usuário: ${resposta.statusText}`)
   }
 
+  // Ligatures: => !== === >= <= ->
+  const isValid = id >= 1 && id !== 0
+  const arrow = (x: number) => x * 2
+
   return resposta.json()
 }
 
@@ -105,9 +109,30 @@ Use `código inline` para nomes de variáveis, chamadas de função ou trechos c
 
 ## Links
 
-Aqui está um link padrão: [Visite o Exemplo](https://example.com)
+### Links Externos
+
+Links externos abrem em uma nova aba e mostram um ícone indicador:
+
+- [Visite o Exemplo](https://example.com)
+- [GitHub](https://github.com)
+- [Documentação do Next.js](https://nextjs.org/docs)
 
 Links também podem ser usados inline dentro do texto, como [este link](https://example.com), para fornecer referências sem quebrar o fluxo de leitura.
+
+### Links Internos
+
+Links internos para artigos e categorias mostram um tooltip de preview ao passar o mouse:
+
+- Link para categoria: [Categoria Debug](/categorias/debug)
+- Link para este artigo: [Artigo de Componentes](/categorias/debug/artigos/components)
+
+### Links de Âncora
+
+Links de âncora fazem scroll suave até a seção de destino:
+
+- [Ir para Blocos de Código](#blocos-de-codigo)
+- [Ir para Tipografia](#tipografia)
+- [Ir para Conclusão](#conclusao)
 
 ## Citações em Bloco
 

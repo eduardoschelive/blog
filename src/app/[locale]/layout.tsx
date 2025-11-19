@@ -13,7 +13,7 @@ import '../globals.css'
 import { hasLocale, type Locale } from 'next-intl'
 
 const satoshi = localFont({
-  src: '../../../public/fonts/Satoshi-Variable.woff2',
+  src: '../../../public/fonts/Satoshi-Variable-subset.woff2',
   variable: '--font-sans',
   display: 'swap',
 })

@@ -1,7 +1,7 @@
 'use client'
 
 import { useArticle } from '../../context'
-import { cn } from '@heroui/react'
+import { cn, Tooltip } from '@heroui/react'
 import { useLocale, useTranslations } from 'next-intl'
 import type { HTMLAttributes, ReactNode } from 'react'
 import { formatDate, DEFAULT_DATE_FORMAT } from '@/utils/date'
@@ -11,6 +11,7 @@ interface ArticleDateProps extends HTMLAttributes<HTMLSpanElement> {
   children?: ReactNode
   format?: Intl.DateTimeFormatOptions
   showIcon?: boolean
+  showUpdatedTooltip?: boolean
 }
 
 function ArticleDate({
@@ -18,6 +19,7 @@ function ArticleDate({
   children,
   format = DEFAULT_DATE_FORMAT,
   showIcon,
+  showUpdatedTooltip = false,
   ...props
 }: ArticleDateProps) {
   const { article } = useArticle()
@@ -25,6 +27,7 @@ function ArticleDate({
   const t = useTranslations('Article')
 
   const formattedDate = formatDate(article.createdAt, locale, format)
+  const formattedUpdatedDate = formatDate(article.updatedAt, locale, format)
   const content = children ?? formattedDate ?? t('dateNotAvailable')
 
   const dateTime = article.createdAt
@@ -33,10 +36,16 @@ function ArticleDate({
       : article.createdAt.toISOString()
     : undefined
 
-  return (
+  const hasUpdated =
+    article.updatedAt &&
+    article.createdAt &&
+    article.updatedAt.getTime() !== article.createdAt.getTime()
+
+  const dateElement = (
     <span
       className={cn(
         'inline-flex items-center gap-1 text-foreground/60',
+        showUpdatedTooltip && hasUpdated && 'cursor-help',
         className
       )}
       {...props}
@@ -45,6 +54,20 @@ function ArticleDate({
       <time dateTime={dateTime}>{content}</time>
     </span>
   )
+
+  if (showUpdatedTooltip && hasUpdated) {
+    return (
+      <Tooltip
+        content={t('updatedAt', { date: formattedUpdatedDate })}
+        delay={500}
+        closeDelay={200}
+      >
+        {dateElement}
+      </Tooltip>
+    )
+  }
+
+  return dateElement
 }
 
 export { ArticleDate }

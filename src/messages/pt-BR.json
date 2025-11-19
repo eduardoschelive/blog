@@ -12,7 +12,8 @@
     "dateNotAvailable": "Data não disponível",
     "readingTime": "{minutes, plural, =1 {1 min de leitura} other {# min de leitura}}",
     "filedUnder": "Arquivado em",
-    "on": "em"
+    "on": "em",
+    "updatedAt": "Atualizado em {date}"
   },
   "HomePage": {
     "latest": {

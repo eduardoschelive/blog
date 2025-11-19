@@ -1,5 +1,8 @@
 # Eduardo Schelive's Blog
 
+[![GitHub](https://img.shields.io/badge/GitHub-181717?style=flat&logo=github&logoColor=white)](https://github.com/eduardoschelive)
+[![LinkedIn](https://img.shields.io/badge/LinkedIn-0A66C2?style=flat&logo=linkedin&logoColor=white)](https://linkedin.com/in/eduardoschelive)
+
 A modern, multilingual personal blog built with Next.js 15, featuring a custom Tokyo Night theme, MDX content management, and full internationalization support.
 
 ## Features
@@ -132,10 +135,3 @@ Routes are automatically localized:
 ## License
 
 This project is licensed under a modified MIT License that allows free use for educational and learning purposes, but restricts public deployment to the author only. See [LICENSE](LICENSE) for details.
-
-## Author
-
-**Eduardo Guiraldelli Schelive**
-
-[![GitHub](https://img.shields.io/badge/GitHub-181717?style=flat&logo=github&logoColor=white)](https://github.com/eduardoschelive)
-[![LinkedIn](https://img.shields.io/badge/LinkedIn-0A66C2?style=flat&logo=linkedin&logoColor=white)](https://linkedin.com/in/eduardoschelive)

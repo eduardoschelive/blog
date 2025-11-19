@@ -55,7 +55,7 @@ function ArticleDate({
     </span>
   )
 
-  if (showUpdatedTooltip && hasUpdated) {
+  if (showUpdatedTooltip && hasUpdated && formattedUpdatedDate) {
     return (
       <Tooltip
         content={t('updatedAt', { date: formattedUpdatedDate })}

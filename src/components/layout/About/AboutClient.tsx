@@ -3,19 +3,20 @@
 import { useTranslations } from 'next-intl'
 import { BlurText } from '@/components/animated/BlurText'
 import { FadeIn } from '@/components/animated/FadeIn'
-import { ScaleIn } from '@/components/animated/ScaleIn'
 import { Stagger } from '@/components/animated/Stagger'
 import { StaggerItem } from '@/components/animated/StaggerItem'
-import { Card, CardBody, CardHeader, Link, Image } from '@heroui/react'
+import { Card, CardBody, CardHeader, Link } from '@heroui/react'
 import { TbTools, TbBox, TbCode } from 'react-icons/tb'
 import { PERSONAL_INFO } from '@/constants/personal'
+import { ImageCDN } from '@/components/ui/ImageCDN'
+import { ScaleIn } from '@/components/animated/ScaleIn'
+import { TiltCard } from '@/components/ui/TiltCard'
 
 interface AboutClientProps {
   yearsOfExperience: number
-  photoUrl?: string
 }
 
-function AboutClient({ yearsOfExperience, photoUrl }: AboutClientProps) {
+function AboutClient({ yearsOfExperience }: AboutClientProps) {
   const t = useTranslations('AboutPage')
   const { name, links } = PERSONAL_INFO
 
@@ -59,41 +60,49 @@ function AboutClient({ yearsOfExperience, photoUrl }: AboutClientProps) {
               </div>
             </div>
 
-            {/* Right: Image */}
             <FadeIn direction="right" delay={0.5}>
               <div className="w-full flex justify-center lg:justify-end">
-                {photoUrl ? (
-                  <ScaleIn delay={0.3}>
-                    <Image
-                      src={photoUrl}
-                      alt={name.full}
-                      className="rounded-2xl shadow-2xl max-w-md w-full h-auto object-cover"
-                      classNames={{
-                        wrapper: 'max-w-md w-full',
-                      }}
-                    />
-                  </ScaleIn>
-                ) : (
-                  <div className="max-w-md w-full aspect-[3/4] bg-gradient-to-br from-primary/20 to-secondary/20 rounded-2xl shadow-2xl flex items-center justify-center">
-                    <p className="text-foreground/50 text-lg">
-                      Photo coming soon
-                    </p>
-                  </div>
-                )}
+                <ScaleIn delay={0.3}>
+                  <TiltCard maxTilt={15}>
+                    <div className="relative max-w-md w-full group">
+                      {/* Animated gradient background */}
+                      <div className="absolute -inset-1 bg-gradient-to-r from-primary via-secondary to-primary rounded-2xl blur-lg opacity-50 group-hover:opacity-75 animate-pulse-slow transition-opacity duration-500" />
+
+                      {/* Image container */}
+                      <div className="relative">
+                        <ImageCDN
+                          filename="profile"
+                          alt={name.full}
+                          transformations={{
+                            w: 800,
+                            h: 1000,
+                            c: 'fill',
+                            g: 'auto',
+                            f: 'webp',
+                            q: 'auto',
+                            dpr: 'auto',
+                          }}
+                          className="rounded-2xl shadow-2xl w-full h-auto object-cover ring-2 ring-primary/20 group-hover:ring-primary/40 transition-all duration-300"
+                          classNames={{
+                            wrapper: 'w-full',
+                          }}
+                        />
+                      </div>
+                    </div>
+                  </TiltCard>
+                </ScaleIn>
               </div>
             </FadeIn>
           </div>
         </div>
       </section>
 
-      {/* Curiosities Section */}
       <section className="px-4 py-16 lg:py-24">
         <div className="max-w-7xl mx-auto">
           <Stagger delay={0.15}>
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-              {/* Curiosity 1: Early Start */}
               <StaggerItem direction="up">
-                <Card className="h-full shadow-lg">
+                <Card className="h-full shadow-lg hover:shadow-2xl bg-content2 border border-divider/20 hover:border-divider/40 transition-all duration-300">
                   <CardHeader className="pb-2 flex-row items-center gap-3">
                     <div className="p-2 rounded-lg bg-primary/10">
                       <TbTools className="w-6 h-6 text-primary" />
@@ -110,9 +119,8 @@ function AboutClient({ yearsOfExperience, photoUrl }: AboutClientProps) {
                 </Card>
               </StaggerItem>
 
-              {/* Curiosity 2: Minecraft Origins */}
               <StaggerItem direction="up">
-                <Card className="h-full shadow-lg">
+                <Card className="h-full shadow-lg hover:shadow-2xl bg-content2 border border-divider/20 hover:border-divider/40 transition-all duration-300">
                   <CardHeader className="pb-2 flex-row items-center gap-3">
                     <div className="p-2 rounded-lg bg-primary/10">
                       <TbBox className="w-6 h-6 text-primary" />
@@ -137,9 +145,8 @@ function AboutClient({ yearsOfExperience, photoUrl }: AboutClientProps) {
                 </Card>
               </StaggerItem>
 
-              {/* Curiosity 3: Clipper */}
               <StaggerItem direction="up">
-                <Card className="h-full shadow-lg">
+                <Card className="h-full shadow-lg hover:shadow-2xl bg-content2 border border-divider/20 hover:border-divider/40 transition-all duration-300">
                   <CardHeader className="pb-2 flex-row items-center gap-3">
                     <div className="p-2 rounded-lg bg-primary/10">
                       <TbCode className="w-6 h-6 text-primary" />

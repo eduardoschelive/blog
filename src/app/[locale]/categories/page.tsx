@@ -1,5 +1,4 @@
 import { CategoriesList } from '@/components/layout/CategoriesList'
-import { BackgroundDecorations } from '@/components/ui/BackgroundDecorations'
 import { LOCALES } from '@/constants/locale'
 import type { Metadata } from 'next'
 import type { Locale } from 'next-intl'
@@ -32,9 +31,7 @@ export default async function CategoriesPage({ params }: PageProps) {
   const t = await getTranslations('Categories')
 
   return (
-    <div className="min-h-screen relative pt-8">
-      <BackgroundDecorations />
-
+    <div className="min-h-screen pt-8">
       <PageHeaderRoot>
         <PageHeaderTitle
           icon={

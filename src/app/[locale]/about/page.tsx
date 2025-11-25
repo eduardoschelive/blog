@@ -3,7 +3,6 @@ import type { Locale } from 'next-intl'
 import { AboutClient } from '@/components/layout/About/AboutClient'
 import { PERSONAL_INFO } from '@/constants/personal'
 import { calculateYearsSince } from '@/utils/dates'
-import { BackgroundDecorations } from '@/components/ui/BackgroundDecorations'
 
 export const dynamic = 'force-static'
 export const dynamicParams = false
@@ -25,10 +24,5 @@ export default async function AboutPage({ params }: PageProps) {
 
   const yearsOfExperience = calculateYearsSince(PERSONAL_INFO.careerStart)
 
-  return (
-    <div className="relative">
-      <BackgroundDecorations />
-      <AboutClient yearsOfExperience={yearsOfExperience} />
-    </div>
-  )
+  return <AboutClient yearsOfExperience={yearsOfExperience} />
 }

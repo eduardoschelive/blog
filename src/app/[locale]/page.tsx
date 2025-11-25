@@ -1,7 +1,6 @@
 import { Hero } from '@/components/layout/Hero'
 import { ArticleList } from '@/components/layout/ArticleList'
 import { CategoriesSidebar } from '@/components/layout/CategoriesSidebar'
-import { BackgroundDecorations } from '@/components/ui/BackgroundDecorations'
 import { LOCALES } from '@/constants/locale'
 import type { Locale } from 'next-intl'
 
@@ -24,8 +23,7 @@ export default async function HomePage({ params }: HomePageProps) {
   await params
 
   return (
-    <div className="relative">
-      <BackgroundDecorations />
+    <>
       <Hero />
       <div className="w-full px-4 py-20">
         <div className="max-w-7xl mx-auto">
@@ -37,6 +35,6 @@ export default async function HomePage({ params }: HomePageProps) {
           </div>
         </div>
       </div>
-    </div>
+    </>
   )
 }

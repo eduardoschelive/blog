@@ -19,7 +19,6 @@ import { Breadcrumbs } from '@/components/ui/Breadcrumbs'
 import { ScrollReveal } from '@/components/animated/ScrollReveal'
 import { TbCategory } from 'react-icons/tb'
 import { TbHome, TbFolder } from 'react-icons/tb'
-import { BackgroundDecorations } from '@/components/ui/BackgroundDecorations'
 
 export const dynamic = 'force-static'
 export const dynamicParams = false
@@ -61,7 +60,6 @@ export default async function CategoryPage({ params }: PageProps) {
 
   return (
     <CategoryRoot category={category} className="min-h-screen">
-      <BackgroundDecorations />
       <Breadcrumbs
         items={[
           {

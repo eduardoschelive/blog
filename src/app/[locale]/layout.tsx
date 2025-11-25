@@ -2,6 +2,7 @@ import { routing } from '@/i18n/routing'
 import { Providers } from '@/providers/Providers'
 import { Header } from '@/components/layout/Header'
 import { Footer } from '@/components/layout/Footer'
+import { BackgroundDecorations } from '@/components/ui/BackgroundDecorations'
 import type { Metadata } from 'next'
 import { setRequestLocale } from 'next-intl/server'
 import { Fira_Code } from 'next/font/google'
@@ -57,6 +58,7 @@ export default async function RootLayout({
         className={`${satoshi.variable} ${firaCode.variable} antialiased font-sans`}
       >
         <Providers>
+          <BackgroundDecorations />
           <Header />
           <main>{children}</main>
           <Footer />

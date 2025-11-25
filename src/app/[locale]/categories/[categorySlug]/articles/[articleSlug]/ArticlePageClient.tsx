@@ -8,7 +8,6 @@ import {
   ArticleCover,
 } from '@/components/composables/Article'
 import { Breadcrumbs } from '@/components/ui/Breadcrumbs'
-import { BackgroundDecorations } from '@/components/ui/BackgroundDecorations'
 import { useTranslations } from 'next-intl'
 import { TbFileText, TbHome, TbFolder, TbCategory } from 'react-icons/tb'
 import { useRef, useEffect } from 'react'
@@ -59,8 +58,7 @@ export function ArticlePageClient({
   }, [scrollToHeading])
 
   return (
-    <div className="min-h-screen relative">
-      <BackgroundDecorations />
+    <div className="min-h-screen">
       <Breadcrumbs
         items={[
           {

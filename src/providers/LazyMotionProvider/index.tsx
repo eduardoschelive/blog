@@ -18,7 +18,17 @@ export function LazyMotionProvider({ children }: LazyMotionProviderProps) {
       '(prefers-reduced-motion: reduce)'
     ).matches
 
-    if (isBot || prefersReducedMotion) {
+    const isTouchDevice =
+      'ontouchstart' in window || navigator.maxTouchPoints > 0
+    const isSmallScreen = window.innerWidth < 768
+    const isMobileUA =
+      /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(
+        navigator.userAgent
+      )
+
+    const isMobile = (isTouchDevice && isSmallScreen) || isMobileUA
+
+    if (isBot || prefersReducedMotion || isMobile) {
       MotionGlobalConfig.skipAnimations = true
     }
   }, [])

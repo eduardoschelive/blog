@@ -38,7 +38,10 @@ export function TiltCard({ children, className, maxTilt = 10 }: TiltCardProps) {
       ref={ref}
       onMouseMove={handleMouseMove}
       onMouseLeave={handleMouseLeave}
-      className={cn('transition-transform duration-300 ease-out', className)}
+      className={cn(
+        'md:transition-transform md:duration-300 md:ease-out md:will-change-transform',
+        className
+      )}
       style={{
         transform: `perspective(1000px) rotateX(${rotation.x}deg) rotateY(${rotation.y}deg)`,
         transformStyle: 'preserve-3d',

@@ -22,27 +22,29 @@ export function ScrollReveal({ children, className }: ScrollRevealProps) {
     if (!ref.current) return
 
     let rafId: number
+    let ticking = false
 
     const handleScroll = () => {
-      if (!ref.current) return
+      if (!ticking && ref.current) {
+        ticking = true
+        rafId = requestAnimationFrame(() => {
+          if (!ref.current) {
+            ticking = false
+            return
+          }
 
-      if (rafId) cancelAnimationFrame(rafId)
+          const rect = ref.current.getBoundingClientRect()
+          const viewportHeight = window.innerHeight
 
-      rafId = requestAnimationFrame(() => {
-        if (!ref.current) return
+          if (rect.bottom < 0) {
+            setIsLockedVisible(true)
+          } else if (rect.top > viewportHeight) {
+            setIsLockedVisible(false)
+          }
 
-        const rect = ref.current.getBoundingClientRect()
-        const viewportHeight = window.innerHeight
-
-        if (rect.bottom < 0) {
-          setIsLockedVisible(true)
-          return
-        }
-        if (rect.top > viewportHeight) {
-          setIsLockedVisible(false)
-          return
-        }
-      })
+          ticking = false
+        })
+      }
     }
 
     window.addEventListener('scroll', handleScroll, { passive: true })

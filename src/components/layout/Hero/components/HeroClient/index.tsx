@@ -134,7 +134,7 @@ function HeroClient({ article }: HeroClientProps) {
 
       <Button
         onPress={scrollToNextPage}
-        className="absolute bottom-8 left-1/2 -translate-x-1/2 cursor-pointer group hover:scale-110 transition-transform rounded-full"
+        className="hidden md:flex absolute bottom-8 left-1/2 -translate-x-1/2 cursor-pointer group hover:scale-110 transition-transform rounded-full"
         aria-label={t('scrollDown')}
         variant="light"
         isIconOnly

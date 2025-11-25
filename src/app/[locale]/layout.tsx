@@ -24,9 +24,11 @@ const firaCode = Fira_Code({
   display: 'swap',
 })
 
+const { name } = PERSONAL_INFO
+
 export const metadata: Metadata = {
-  title: `${PERSONAL_INFO.name.short} | Blog`,
-  description: `A personal blog by ${PERSONAL_INFO.name.short}`,
+  title: `${name.short} | Blog`,
+  description: `A personal blog by ${name.short}`,
 }
 
 export function generateStaticParams() {

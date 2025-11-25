@@ -2,7 +2,7 @@
 
 import { FOOTER_ID } from '@/constants/elements'
 import { useTranslations } from 'next-intl'
-import { TbBrandGithub, TbBrandLinkedin, TbRss } from 'react-icons/tb'
+import { TbBrandGithub, TbBrandLinkedin, TbRss, TbMail } from 'react-icons/tb'
 import { IconButton } from '@/components/ui/IconButton'
 import { Link } from '@/i18n/navigation'
 import { Link as HeroUILink } from '@heroui/react'
@@ -11,17 +11,24 @@ import { PERSONAL_INFO } from '@/constants/personal'
 function Footer() {
   const t = useTranslations('Footer')
   const tNav = useTranslations('Navbar')
+  const { name, social } = PERSONAL_INFO
 
   const socialLinks = [
     {
+      name: 'Email',
+      href: `mailto:${social.email}`,
+      icon: TbMail,
+      tooltip: t('social.email'),
+    },
+    {
       name: 'GitHub',
-      href: PERSONAL_INFO.social.github,
+      href: social.github,
       icon: TbBrandGithub,
       tooltip: t('social.github'),
     },
     {
       name: 'LinkedIn',
-      href: PERSONAL_INFO.social.linkedin,
+      href: social.linkedin,
       icon: TbBrandLinkedin,
       tooltip: t('social.linkedin'),
     },
@@ -50,7 +57,7 @@ function Footer() {
           {/* Column 1: Brand & Description */}
           <div>
             <Link href="/" className="inline-block mb-3">
-              <h3 className="font-bold text-lg">{PERSONAL_INFO.name.full}</h3>
+              <h3 className="font-bold text-lg">{name.full}</h3>
             </Link>
             <p className="text-sm text-default-500 leading-relaxed">
               Software Engineer sharing insights about web development, cloud
@@ -101,7 +108,7 @@ function Footer() {
         <div className="md:hidden space-y-6 mb-6">
           <div className="text-center">
             <Link href="/" className="inline-block mb-3">
-              <h3 className="font-bold text-lg">{PERSONAL_INFO.name.full}</h3>
+              <h3 className="font-bold text-lg">{name.full}</h3>
             </Link>
             <p className="text-sm text-default-500">
               Software Engineer sharing insights about web development and
@@ -141,8 +148,7 @@ function Footer() {
         {/* Bottom Bar */}
         <div className="border-t border-divider pt-6">
           <p className="text-sm text-default-500 text-center">
-            © {new Date().getFullYear()} {PERSONAL_INFO.name.full}.{' '}
-            {t('copyright')}
+            © {new Date().getFullYear()} {name.full}. {t('copyright')}
           </p>
         </div>
       </div>

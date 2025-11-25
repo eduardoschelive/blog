@@ -48,6 +48,7 @@
   },
   "Footer": {
     "social": {
+      "email": "Envie-me um email",
       "github": "Visite meu perfil no GitHub",
       "linkedin": "Conecte-se comigo no LinkedIn"
     },
@@ -115,6 +116,34 @@
       "title": "Conteúdo em Breve!",
       "subtitle": "Estamos preparando conteúdo incrível para você",
       "cta": "Volte em breve!"
+    }
+  },
+  "AboutPage": {
+    "greeting": "Olá, eu sou",
+    "intro": "Eu comecei a mexer com desenvolvimento de software em 2013 (fazem {years} anos, quando eu tinha apenas 10 anos) por puro hobbie e decidi que seria a minha profissão no futuro.",
+    "experience": "Eu já trabalhei em diversas empresas e atuo principalmente no ramo de desenvolvimento web, apesar de já ter feito aplicativos e soluções desktop.",
+    "curiosities": {
+      "title": "Algumas Curiosidades",
+      "techstack": {
+        "title": "Minha stack favorita",
+        "description": "Eu gosto de todas as ferramentas e de tudo que há em tecnologia. Eu acredito que se você conhece o suficiente da sua tecnologia, você é quem tem mais motivos para não gostar dela. Afinal, quanto mais experiência, mais fácil spottar os defeitos dela."
+      },
+      "minecraft": {
+        "title": "Jogos Também Ensinam",
+        "description": "Eu comecei na programação por causa do",
+        "link": "Plugin Skript do Minecraft",
+        "continuation": "Eu queria criar sistemas e comandos no servidor, então fui aprendendo lógica, eventos, variáveis e condições ali mesmo. Aquilo virou minha porta de entrada pro mundo do código, e foi onde percebi que eu realmente curtia programar. Posteriormente, pelos mesmos motivos, aprendi e me aprofundei em Java"
+      },
+      "clipper": {
+        "title": "Old But Gold",
+        "description": "Eu já trabalhei com tecnologias muito mais antigas, como Clipper (lançado em 1985). Tive o privilégio de criar uma API RESTful completa do zero. Pode parecer bobo, mas lembre-se que Clipper não possui nenhuma abstração pra isso como as linguagens modernas (e caso tenha, eu não usei), o que significou estudar as RFCs e como funciona a fundo o processo de quando você faz um request para um servidor."
+      }
+    },
+    "contact": {
+      "title": "Entre em Contato",
+      "email": "Envie-me um email",
+      "github": "Veja meu GitHub",
+      "linkedin": "Conecte-se no LinkedIn"
     }
   }
 }

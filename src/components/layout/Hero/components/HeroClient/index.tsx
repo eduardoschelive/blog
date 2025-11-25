@@ -34,6 +34,7 @@ interface HeroClientProps {
 function HeroClient({ article }: HeroClientProps) {
   const { scrollToNextPage } = useScroll()
   const t = useTranslations('Hero')
+  const { name } = PERSONAL_INFO
 
   return (
     <section className="relative min-h-[calc(100vh-64px)] flex items-center justify-center px-4 py-12 overflow-hidden">
@@ -50,7 +51,7 @@ function HeroClient({ article }: HeroClientProps) {
                   animateBy="letters"
                 />
                 <BlurText
-                  text={PERSONAL_INFO.name.full}
+                  text={name.full}
                   className="block text-secondary"
                   direction="bottom"
                   delay={50}

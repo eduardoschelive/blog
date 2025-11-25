@@ -27,6 +27,7 @@ import { PERSONAL_INFO } from '@/constants/personal'
 function Header() {
   const t = useTranslations('Navbar')
   const [isMenuOpen, setIsMenuOpen] = useState(false)
+  const { name, social } = PERSONAL_INFO
 
   const menuItems = [
     { label: t('home'), href: '/' },
@@ -37,12 +38,12 @@ function Header() {
   const socialLinks = [
     {
       name: 'GitHub',
-      href: PERSONAL_INFO.social.github,
+      href: social.github,
       icon: TbBrandGithub,
     },
     {
       name: 'LinkedIn',
-      href: PERSONAL_INFO.social.linkedin,
+      href: social.linkedin,
       icon: TbBrandLinkedin,
     },
   ]
@@ -57,7 +58,7 @@ function Header() {
       <NavbarContent className="sm:hidden flex-1" justify="center">
         <NavbarBrand className="flex justify-center">
           <Link href="/">
-            <p className="font-bold text-inherit">{PERSONAL_INFO.name.short}</p>
+            <p className="font-bold text-inherit">{name.short}</p>
           </Link>
         </NavbarBrand>
       </NavbarContent>
@@ -90,7 +91,7 @@ function Header() {
       <NavbarContent className="hidden sm:flex" justify="start">
         <NavbarBrand>
           <Link href="/">
-            <p className="font-bold text-inherit">{PERSONAL_INFO.name.short}</p>
+            <p className="font-bold text-inherit">{name.short}</p>
           </Link>
         </NavbarBrand>
       </NavbarContent>

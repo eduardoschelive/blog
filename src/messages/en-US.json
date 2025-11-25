@@ -48,6 +48,7 @@
   },
   "Footer": {
     "social": {
+      "email": "Send me an email",
       "github": "Visit my GitHub profile",
       "linkedin": "Connect with me on LinkedIn"
     },
@@ -115,6 +116,34 @@
       "title": "Content Coming Soon!",
       "subtitle": "We're preparing amazing content for you",
       "cta": "Check back soon!"
+    }
+  },
+  "AboutPage": {
+    "greeting": "Hello, I'm",
+    "intro": "I started working with software development in 2013 (that's {years} years ago, when I was just 10 years old) purely as a hobby and decided it would be my profession in the future.",
+    "experience": "I've worked at several companies and mainly operate in web development, although I've also created mobile apps and desktop solutions.",
+    "curiosities": {
+      "title": "Some Curiosities",
+      "techstack": {
+        "title": "My Favorite Stack",
+        "description": "I like all tools and everything in technology. I believe that if you know enough about your technology, you're the one with the most reasons not to like it. After all, the more experience you have, the easier it is to spot its flaws."
+      },
+      "minecraft": {
+        "title": "Games Teach Too",
+        "description": "I started programming because of the",
+        "link": "Minecraft Skript plugin",
+        "continuation": "I wanted to create systems and commands on the server, so I learned logic, events, variables, and conditions right there. That became my gateway to the world of code, and that's where I realized I really enjoyed programming. Later, for the same reasons, I learned and delved into Java"
+      },
+      "clipper": {
+        "title": "Old But Gold",
+        "description": "I've worked with much older technologies, like Clipper (released in 1985). I had the privilege of creating a complete RESTful API from scratch. It might sound trivial, but remember that Clipper doesn't have any abstraction for this like modern languages (and if it does, I didn't use it), which meant studying the RFCs and understanding in-depth the process of when you make a request to a server."
+      }
+    },
+    "contact": {
+      "title": "Get in Touch",
+      "email": "Send me an email",
+      "github": "Check out my GitHub",
+      "linkedin": "Connect on LinkedIn"
     }
   }
 }

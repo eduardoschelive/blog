@@ -12,9 +12,10 @@ export function ImageCDN({
   filename,
   transformations,
   alt,
+  loading = 'lazy',
   ...props
 }: ImageCDNProps) {
   const imageUrl = getCDNImageUrl(filename, transformations)
 
-  return <Image src={imageUrl} alt={alt} {...props} />
+  return <Image src={imageUrl} alt={alt} loading={loading} {...props} />
 }

@@ -17,12 +17,14 @@ const satoshi = localFont({
   src: '../../../public/fonts/Satoshi-Variable-subset.woff2',
   variable: '--font-sans',
   display: 'swap',
+  preload: true,
 })
 
 const firaCode = Fira_Code({
   variable: '--font-mono',
   subsets: ['latin'],
   display: 'swap',
+  preload: false,
 })
 
 const { name } = PERSONAL_INFO

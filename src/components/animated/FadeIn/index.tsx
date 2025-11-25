@@ -34,6 +34,8 @@ export function FadeIn({
     right: { x: ANIMATION_CONFIG.distance.medium },
   }
 
+  const isMobile = typeof window !== 'undefined' && window.innerWidth < 768
+
   const transition = {
     duration: fast
       ? ANIMATION_CONFIG.duration.fast
@@ -49,13 +51,21 @@ export function FadeIn({
   return (
     <m.div
       ref={inView ? ref : undefined}
-      initial={{ opacity: 0, ...directions[direction] }}
+      initial={
+        isMobile ? { opacity: 0 } : { opacity: 0, ...directions[direction] }
+      }
       animate={
         shouldAnimate
           ? { opacity: 1, x: 0, y: 0 }
-          : { opacity: 0, ...directions[direction] }
+          : isMobile
+            ? { opacity: 0 }
+            : { opacity: 0, ...directions[direction] }
       }
-      transition={transition}
+      transition={
+        isMobile
+          ? { ...transition, duration: transition.duration * 0.6 }
+          : transition
+      }
       className={className}
       style={style}
     >

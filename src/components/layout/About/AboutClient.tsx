@@ -66,7 +66,7 @@ function AboutClient({ yearsOfExperience }: AboutClientProps) {
                   <TiltCard maxTilt={15}>
                     <div className="relative max-w-md w-full group">
                       {/* Animated gradient background */}
-                      <div className="absolute -inset-1 bg-gradient-to-r from-primary via-secondary to-primary rounded-2xl blur-lg opacity-50 group-hover:opacity-75 animate-pulse-slow transition-opacity duration-500" />
+                      <div className="absolute -inset-1 bg-gradient-to-r from-primary via-secondary to-primary rounded-2xl blur-md md:blur-lg opacity-50 group-hover:opacity-75 md:animate-pulse-slow transition-opacity duration-500" />
 
                       {/* Image container */}
                       <div className="relative">

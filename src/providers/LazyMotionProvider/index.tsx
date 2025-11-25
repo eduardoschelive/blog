@@ -3,12 +3,15 @@
 import { domAnimation, LazyMotion, MotionGlobalConfig } from 'framer-motion'
 import type { ReactNode } from 'react'
 import { useEffect } from 'react'
+import { useIsMobile } from '@/hooks/useIsMobile'
 
 interface LazyMotionProviderProps {
   children: ReactNode
 }
 
 export function LazyMotionProvider({ children }: LazyMotionProviderProps) {
+  const { isMobile } = useIsMobile()
+
   useEffect(() => {
     const isBot =
       /bot|crawler|spider|lighthouse|headless/i.test(navigator.userAgent) ||
@@ -18,20 +21,10 @@ export function LazyMotionProvider({ children }: LazyMotionProviderProps) {
       '(prefers-reduced-motion: reduce)'
     ).matches
 
-    const isTouchDevice =
-      'ontouchstart' in window || navigator.maxTouchPoints > 0
-    const isSmallScreen = window.innerWidth < 768
-    const isMobileUA =
-      /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(
-        navigator.userAgent
-      )
-
-    const isMobile = (isTouchDevice && isSmallScreen) || isMobileUA
-
     if (isBot || prefersReducedMotion || isMobile) {
       MotionGlobalConfig.skipAnimations = true
     }
-  }, [])
+  }, [isMobile])
 
   return (
     <LazyMotion features={domAnimation} strict>

@@ -18,14 +18,8 @@ export function LazyMotionProvider({ children }: LazyMotionProviderProps) {
       '(prefers-reduced-motion: reduce)'
     ).matches
 
-    // Reduce animations on mobile for better performance
-    const isMobile = window.innerWidth < 768
-
     if (isBot || prefersReducedMotion) {
       MotionGlobalConfig.skipAnimations = true
-    } else if (isMobile) {
-      // Reduce animation complexity on mobile
-      MotionGlobalConfig.reducedMotion = 'user'
     }
   }, [])
 

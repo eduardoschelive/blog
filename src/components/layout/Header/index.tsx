@@ -167,7 +167,7 @@ function Header() {
             ))}
           </div>
 
-          <div className="border-t border-divider pt-4 pb-6 mb-safe">
+          <div className="border-t border-divider pt-4 pb-20 mb-safe">
             <div className="flex justify-center gap-3">
               {socialLinks.map((link) => {
                 const Icon = link.icon

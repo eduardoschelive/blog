@@ -18,22 +18,18 @@ export function createSortFunction<T>(
     const aValue = a[field]
     const bValue = b[field]
 
-    // Handle null/undefined values - always push them to the end
     if (aValue == null && bValue == null) return 0
     if (aValue == null) return 1
     if (bValue == null) return -1
 
-    // Handle Date objects
     if (aValue instanceof Date && bValue instanceof Date) {
       return (aValue.getTime() - bValue.getTime()) * multiplier
     }
 
-    // Handle numbers
     if (typeof aValue === 'number' && typeof bValue === 'number') {
       return (aValue - bValue) * multiplier
     }
 
-    // Handle strings (case-insensitive)
     if (typeof aValue === 'string' && typeof bValue === 'string') {
       return (
         aValue.localeCompare(bValue, undefined, { sensitivity: 'base' }) *
@@ -41,12 +37,10 @@ export function createSortFunction<T>(
       )
     }
 
-    // Handle booleans
     if (typeof aValue === 'boolean' && typeof bValue === 'boolean') {
       return (Number(aValue) - Number(bValue)) * multiplier
     }
 
-    // Fallback: try to compare as strings
     return String(aValue).localeCompare(String(bValue)) * multiplier
   }
 }

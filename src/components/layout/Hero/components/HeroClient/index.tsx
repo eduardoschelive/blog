@@ -1,7 +1,6 @@
 'use client'
 
 import { Link } from '@/i18n/navigation'
-import { BlurText } from '@/components/animated/BlurText'
 import {
   ArticleRoot,
   ArticleImage,
@@ -12,7 +11,6 @@ import {
 } from '@/components/composables/Article'
 import { HoverCard } from '@/components/ui/HoverCard'
 import type { Article } from '@/types/article.type'
-import { FadeIn } from '@/components/animated/FadeIn'
 import { PERSONAL_INFO } from '@/constants/personal'
 
 import {
@@ -43,90 +41,68 @@ function HeroClient({ article }: HeroClientProps) {
           <div className="space-y-6 lg:space-y-8">
             <div className="space-y-3 lg:space-y-4">
               <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold leading-tight">
-                <BlurText
-                  text={t('greeting')}
-                  className="block text-foreground/80 text-xl sm:text-2xl lg:text-3xl font-normal mb-2"
-                  direction="top"
-                  delay={30}
-                  animateBy="letters"
-                />
-                <BlurText
-                  text={name.full}
-                  className="block text-secondary"
-                  direction="bottom"
-                  delay={50}
-                  animateBy="words"
-                />
+                <span className="block text-foreground/80 text-xl sm:text-2xl lg:text-3xl font-normal mb-2">
+                  {t('greeting')}
+                </span>
+                <span className="block text-secondary">{name.full}</span>
               </h1>
-              <BlurText
-                text={t('subtitle')}
-                className="text-base sm:text-lg lg:text-xl xl:text-2xl text-foreground/70 leading-relaxed max-w-xl"
-                direction="bottom"
-                delay={25}
-                animateBy="words"
-              />
+              <p className="text-base sm:text-lg lg:text-xl xl:text-2xl text-foreground/70 leading-relaxed max-w-xl">
+                {t('subtitle')}
+              </p>
             </div>
 
-            <FadeIn direction="up" delay={0.8}>
-              <div className="flex flex-col sm:flex-row gap-3 sm:gap-4">
-                <Button
-                  as={Link}
-                  href="/about"
-                  color="primary"
-                  size="lg"
-                  className="font-semibold shadow-lg hover:scale-105 transition-transform w-full sm:w-auto"
-                >
-                  {t('aboutButton')}
-                </Button>
-                <Button
-                  as={Link}
-                  href="/categories"
-                  variant="bordered"
-                  size="lg"
-                  className="font-semibold border-2 hover:scale-105 transition-transform w-full sm:w-auto"
-                >
-                  {t('articlesButton')}
-                </Button>
-              </div>
-            </FadeIn>
+            <div className="flex flex-col sm:flex-row gap-3 sm:gap-4">
+              <Button
+                as={Link}
+                href="/about"
+                color="primary"
+                size="lg"
+                className="font-semibold shadow-lg hover:scale-105 transition-transform w-full sm:w-auto"
+              >
+                {t('aboutButton')}
+              </Button>
+              <Button
+                as={Link}
+                href="/categories"
+                variant="bordered"
+                size="lg"
+                className="font-semibold shadow-lg hover:scale-105 transition-transform w-full sm:w-auto"
+              >
+                {t('articlesButton')}
+              </Button>
+            </div>
           </div>
 
           <ArticleRoot article={article}>
             <div className="w-full mt-8 lg:mt-0">
-              <BlurText
-                text={t('featuredArticle')}
-                className="mb-4 text-xs sm:text-sm font-bold text-primary uppercase tracking-widest"
-                direction="bottom"
-                delay={40}
-                animateBy="letters"
-              />
+              <p className="mb-4 text-xs sm:text-sm font-bold text-primary uppercase tracking-widest">
+                {t('featuredArticle')}
+              </p>
 
-              <FadeIn direction="right" delay={0.5}>
-                <div className="relative">
-                  <HoverCard>
-                    <Card className="relative w-full shadow-lg drop-shadow">
-                      <ArticleImage />
+              <div className="relative">
+                <HoverCard>
+                  <Card className="relative w-full shadow-lg drop-shadow">
+                    <ArticleImage />
 
-                      <Divider />
+                    <Divider />
 
-                      <CardHeader className="pb-0 pt-4 sm:pt-6 px-4 sm:px-6 flex-col items-start gap-2 sm:gap-3">
-                        <ArticleCategory asChip asLink />
-                        <ArticleTitle className="text-xl sm:text-2xl font-bold leading-tight line-clamp-2" />
-                      </CardHeader>
+                    <CardHeader className="pb-0 pt-4 sm:pt-6 px-4 sm:px-6 flex-col items-start gap-2 sm:gap-3">
+                      <ArticleCategory asChip asLink />
+                      <ArticleTitle className="text-xl sm:text-2xl font-bold leading-tight line-clamp-2" />
+                    </CardHeader>
 
-                      <CardBody className="px-4 sm:px-6 py-3 sm:py-4">
-                        <ArticleDescription className="text-sm sm:text-base text-foreground/70 line-clamp-3 leading-relaxed" />
-                      </CardBody>
+                    <CardBody className="px-4 sm:px-6 py-3 sm:py-4">
+                      <ArticleDescription className="text-sm sm:text-base text-foreground/70 line-clamp-3 leading-relaxed" />
+                    </CardBody>
 
-                      <CardFooter className="px-4 sm:px-6 pb-4 sm:pb-6">
-                        <ArticleLink className="text-sm sm:text-base text-primary font-bold">
-                          {t('readMore')}
-                        </ArticleLink>
-                      </CardFooter>
-                    </Card>
-                  </HoverCard>
-                </div>
-              </FadeIn>
+                    <CardFooter className="px-4 sm:px-6 pb-4 sm:pb-6">
+                      <ArticleLink className="text-sm sm:text-base text-primary font-bold">
+                        {t('readMore')}
+                      </ArticleLink>
+                    </CardFooter>
+                  </Card>
+                </HoverCard>
+              </div>
             </div>
           </ArticleRoot>
         </div>

@@ -6,8 +6,6 @@ import { useScroll } from '@/hooks/useScroll'
 import { cn } from '@heroui/react'
 import { useTranslations } from 'next-intl'
 import type { HTMLAttributes, RefObject } from 'react'
-import { Stagger } from '@/components/animated/Stagger'
-import { StaggerItem } from '@/components/animated/StaggerItem'
 
 interface ArticleTOCProps extends HTMLAttributes<HTMLDivElement> {
   containerRef?: RefObject<HTMLElement | null>
@@ -50,11 +48,7 @@ export function ArticleTOC({ className, containerRef }: ArticleTOCProps) {
           const child = headingTree.nodes[childId]
           const isActive = child.id === activeId
           return (
-            <StaggerItem
-              key={child.id}
-              direction="right"
-              className={getIndentClass(depth + 1)}
-            >
+            <li key={child.id} className={getIndentClass(depth + 1)}>
               <a
                 href={`#${child.id}`}
                 onClick={(event) => handleHeadingClick(event, child.id)}
@@ -68,7 +62,7 @@ export function ArticleTOC({ className, containerRef }: ArticleTOCProps) {
                 {child.text}
               </a>
               {renderHeadings(child.id, depth + 1)}
-            </StaggerItem>
+            </li>
           )
         })}
       </ul>
@@ -78,25 +72,22 @@ export function ArticleTOC({ className, containerRef }: ArticleTOCProps) {
   if (!headingTree || headingTree.rootIds.length === 0) return null
 
   return (
-    <Stagger
-      delay={0.2}
+    <div
       className={cn(
         'sticky top-24 max-h-[calc(100vh-8rem)] overflow-y-auto',
         'hidden lg:block',
         className
       )}
     >
-      <StaggerItem direction="right">
-        <h3 className="mb-4 text-lg font-bold text-foreground flex items-center gap-2">
-          {t('title')}
-        </h3>
-      </StaggerItem>
+      <h3 className="mb-4 text-lg font-bold text-foreground flex items-center gap-2">
+        {t('title')}
+      </h3>
 
       <nav className="space-y-2">
         {headingTree.rootIds.map((rootId) => {
           const isActive = rootId === activeId
           return (
-            <StaggerItem key={rootId} direction="right">
+            <div key={rootId}>
               <a
                 href={`#${rootId}`}
                 onClick={(event) => handleHeadingClick(event, rootId)}
@@ -110,10 +101,10 @@ export function ArticleTOC({ className, containerRef }: ArticleTOCProps) {
                 {headingTree.nodes[rootId].text}
               </a>
               {renderHeadings(rootId, 1)}
-            </StaggerItem>
+            </div>
           )
         })}
       </nav>
-    </Stagger>
+    </div>
   )
 }

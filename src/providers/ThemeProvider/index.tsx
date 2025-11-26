@@ -9,7 +9,7 @@ interface ThemeProviderProps {
 }
 
 function ThemeProvider({ children }: ThemeProviderProps) {
-  const { isMobile } = useIsMobile()
+  const isMobile = useIsMobile()
 
   return (
     <NextThemesProvider

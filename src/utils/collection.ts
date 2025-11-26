@@ -12,21 +12,17 @@ function matchesNestedFilter(obj: unknown, filter: unknown): boolean {
     return obj === filter
   }
 
-  // If filter is not an object, do direct comparison
   if (typeof filter !== 'object' || Array.isArray(filter)) {
     return obj === filter
   }
 
-  // If obj is not an object, it can't match a nested filter
   if (typeof obj !== 'object' || obj === null || Array.isArray(obj)) {
     return false
   }
 
-  // Check all filter properties
   for (const [key, value] of Object.entries(filter)) {
     const objValue = (obj as Record<string, unknown>)[key]
 
-    // Recursive check for nested objects
     if (typeof value === 'object' && value !== null && !Array.isArray(value)) {
       if (!matchesNestedFilter(objValue, value)) {
         return false
@@ -58,10 +54,8 @@ export function applyFilter<T extends Record<string, unknown>>(
   }
 
   return items.filter((item) => {
-    // Check each filter field
     for (const [key, value] of Object.entries(filter)) {
       if (value !== undefined) {
-        // Support nested objects
         if (
           typeof value === 'object' &&
           value !== null &&
@@ -70,9 +64,7 @@ export function applyFilter<T extends Record<string, unknown>>(
           if (!matchesNestedFilter(item[key], value)) {
             return false
           }
-        }
-        // Direct comparison
-        else {
+        } else {
           if (item[key] !== value) {
             return false
           }
@@ -138,17 +130,14 @@ export function applyCollection<T extends Record<string, unknown>>(
 
   let result = items
 
-  // Apply filter first
   if (options.filter) {
     result = applyFilter(result, options.filter)
   }
 
-  // Then sort
   if (options.sort) {
     result = applySort(result, options.sort)
   }
 
-  // Finally limit
   if (options.limit) {
     result = applyLimit(result, options.limit)
   }

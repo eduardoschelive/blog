@@ -69,8 +69,6 @@ export async function getArticles(
       articles.push(...categoryArticles)
     }
 
-    // Apply filter, sort and limit using collection utilities
-    // categorySlug is handled during loading, other filters use deep path support
     const { categorySlug: _categorySlug, ...otherFilters } = config.filter || {}
     return applyCollection(articles as unknown as Record<string, unknown>[], {
       filter: otherFilters,

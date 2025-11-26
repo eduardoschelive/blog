@@ -23,12 +23,10 @@ interface SearchButtonProps {
 function HighlightMatch({ text, terms }: { text: string; terms: string[] }) {
   if (!terms || terms.length === 0) return <>{text}</>
 
-  // Escape special regex characters and sort by length (longest first)
   const escapedTerms = terms
     .map((term) => term.replace(/[.*+?^${}()|[\]\\]/g, '\\$&'))
     .sort((a, b) => b.length - a.length)
 
-  // Create regex that matches whole words or word parts
   const pattern = new RegExp(`(${escapedTerms.join('|')})`, 'gi')
   const parts = text.split(pattern)
 

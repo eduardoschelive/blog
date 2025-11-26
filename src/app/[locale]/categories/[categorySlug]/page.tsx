@@ -14,7 +14,7 @@ import {
   PageHeaderTitle,
   PageHeaderSubtitle,
 } from '@/components/composables/PageHeader'
-import { AnimatedDivider } from '@/components/animated/AnimatedDivider'
+import { GradientDivider } from '@/components/ui/GradientDivider'
 import { Breadcrumbs } from '@/components/ui/Breadcrumbs'
 import { ScrollReveal } from '@/components/animated/ScrollReveal'
 import { TbCategory } from 'react-icons/tb'
@@ -92,7 +92,7 @@ export default async function CategoryPage({ params }: PageProps) {
           {category.title}
         </PageHeaderTitle>
 
-        <AnimatedDivider />
+        <GradientDivider />
 
         {category.description && (
           <PageHeaderSubtitle>{category.description}</PageHeaderSubtitle>

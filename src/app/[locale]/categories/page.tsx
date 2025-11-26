@@ -8,7 +8,7 @@ import {
   PageHeaderTitle,
   PageHeaderSubtitle,
 } from '@/components/composables/PageHeader'
-import { AnimatedDivider } from '@/components/animated/AnimatedDivider'
+import { GradientDivider } from '@/components/ui/GradientDivider'
 import { TbCategory } from 'react-icons/tb'
 
 export const dynamic = 'force-static'
@@ -41,7 +41,7 @@ export default async function CategoriesPage({ params }: PageProps) {
           {t('title')}
         </PageHeaderTitle>
 
-        <AnimatedDivider />
+        <GradientDivider />
 
         <PageHeaderSubtitle>{t('subtitle')}</PageHeaderSubtitle>
       </PageHeaderRoot>

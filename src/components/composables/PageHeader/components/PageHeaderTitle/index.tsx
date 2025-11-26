@@ -1,9 +1,8 @@
 'use client'
 
-import { BlurText } from '@/components/animated/BlurText'
 import { cn } from '@heroui/react'
 import type { ReactNode, HTMLAttributes, ElementType } from 'react'
-import { RotateIn } from '@/components/animated/RotateIn'
+import { createElement } from 'react'
 
 interface PageHeaderTitleProps extends HTMLAttributes<HTMLDivElement> {
   icon?: ReactNode
@@ -18,18 +17,17 @@ export function PageHeaderTitle({
   as = 'h1',
   ...props
 }: PageHeaderTitleProps) {
+  const Heading = as
+
   return (
     <div className={cn('flex items-center gap-4 mb-6', className)} {...props}>
-      {icon && <RotateIn>{icon}</RotateIn>}
+      {icon && <div>{icon}</div>}
 
-      <BlurText
-        as={as}
-        text={children}
-        className="text-4xl md:text-5xl lg:text-6xl font-bold"
-        direction="bottom"
-        delay={50}
-        animateBy="words"
-      />
+      {createElement(
+        Heading,
+        { className: 'text-4xl md:text-5xl lg:text-6xl font-bold' },
+        children
+      )}
     </div>
   )
 }

@@ -5,7 +5,7 @@ import {
   PageHeaderTitle,
   PageHeaderSubtitle,
 } from '@/components/composables/PageHeader'
-import { AnimatedDivider } from '@/components/animated/AnimatedDivider'
+import { GradientDivider } from '@/components/ui/GradientDivider'
 import { ArticleMetadata } from '../ArticleMetadata'
 import { ArticleReadingTime } from '../ArticleReadingTime'
 import { useArticle } from '../../context'
@@ -34,7 +34,7 @@ export function ArticleHeader() {
         <PageHeaderSubtitle>{article.description}</PageHeaderSubtitle>
       )}
 
-      <AnimatedDivider />
+      <GradientDivider />
     </PageHeaderRoot>
   )
 }

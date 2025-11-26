@@ -7,7 +7,6 @@ import { compileContent } from '../shared/compileContent'
 import { parseFrontmatter } from '../shared/parseFrontmatter'
 import { readFileContent } from '../shared/readFile'
 
-// Cache for category info to avoid repeated file reads
 const categoryCache = new Map<string, CategoryBase & { slug: string }>()
 
 /**

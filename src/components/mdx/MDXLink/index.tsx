@@ -12,7 +12,6 @@ function MDXLink({ href, children, ...props }: ComponentPropsWithoutRef<'a'>) {
   const { scrollToHeading } = useScroll()
   const baseClassName = 'text-primary hover:underline'
 
-  // Hash links - smooth scroll to heading
   if (href?.startsWith('#')) {
     const handleClick = (e: React.MouseEvent<HTMLAnchorElement>) => {
       e.preventDefault()
@@ -34,7 +33,6 @@ function MDXLink({ href, children, ...props }: ComponentPropsWithoutRef<'a'>) {
     )
   }
 
-  // External links
   if (href?.startsWith('http://') || href?.startsWith('https://')) {
     return (
       <Tooltip content={t('clickToOpen')} delay={500} closeDelay={100}>
@@ -52,7 +50,6 @@ function MDXLink({ href, children, ...props }: ComponentPropsWithoutRef<'a'>) {
     )
   }
 
-  // Internal links
   if (href?.startsWith('/')) {
     return (
       <Tooltip content={t('clickToAccess')} delay={500} closeDelay={100}>
@@ -63,7 +60,6 @@ function MDXLink({ href, children, ...props }: ComponentPropsWithoutRef<'a'>) {
     )
   }
 
-  // Fallback for any other links
   return (
     <Tooltip content={t('clickToAccess')} delay={500} closeDelay={100}>
       <a href={href} className={baseClassName} {...props}>

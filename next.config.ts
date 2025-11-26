@@ -12,6 +12,7 @@ const nextConfig: NextConfig = {
         pathname: '/images/**',
       },
     ],
+    qualities: [100], // Use the CDN transformation
   },
 }
 

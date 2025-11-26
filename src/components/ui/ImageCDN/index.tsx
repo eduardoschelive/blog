@@ -31,6 +31,7 @@ export function ImageCDN({
       width={width}
       height={height}
       priority={priority}
+      quality={100} // Use CDN transformations
       {...props}
     />
   )

@@ -1,0 +1,19 @@
+# humanstxt.org
+
+/* TEAM */
+Developer & Designer: Eduardo Schelive
+Site: https://eduardoschelive.com
+Location: Brazil
+
+/* THANKS */
+Next.js Team
+Vercel
+HeroUI
+The Open Source Community
+
+/* SITE */
+Last update: 2024/11/26
+Languages: English, Portuguese
+Doctype: HTML5
+IDE: Zed
+Technologies: Next.js 15, React, TypeScript, Tailwind CSS, MDX

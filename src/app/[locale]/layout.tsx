@@ -5,7 +5,6 @@ import { Footer } from '@/components/layout/Footer'
 import { BackgroundDecorations } from '@/components/ui/BackgroundDecorations'
 import type { Metadata } from 'next'
 import { setRequestLocale } from 'next-intl/server'
-import { Fira_Code } from 'next/font/google'
 import localFont from 'next/font/local'
 import { notFound } from 'next/navigation'
 import { PERSONAL_INFO } from '@/constants/personal'
@@ -20,9 +19,9 @@ const satoshi = localFont({
   preload: true,
 })
 
-const firaCode = Fira_Code({
+const firaCode = localFont({
+  src: '../../../public/fonts/FiraCode-Variable-subset.woff2',
   variable: '--font-mono',
-  subsets: ['latin'],
   display: 'swap',
   preload: false,
 })
@@ -32,6 +31,21 @@ const { name } = PERSONAL_INFO
 export const metadata: Metadata = {
   title: `${name.short} | Blog`,
   description: `A personal blog by ${name.short}`,
+  icons: {
+    icon: [
+      { url: '/icons/favicon-16x16.png', sizes: '16x16', type: 'image/png' },
+      { url: '/icons/favicon-32x32.png', sizes: '32x32', type: 'image/png' },
+      { url: '/icons/favicon.ico', sizes: 'any' },
+    ],
+    apple: [
+      {
+        url: '/icons/apple-touch-icon.png',
+        sizes: '180x180',
+        type: 'image/png',
+      },
+    ],
+  },
+  manifest: '/site.webmanifest',
 }
 
 export function generateStaticParams() {

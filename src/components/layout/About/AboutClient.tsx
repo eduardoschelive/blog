@@ -43,26 +43,19 @@ function AboutClient({ yearsOfExperience }: AboutClientProps) {
 
             <div className="w-full flex justify-center lg:justify-end">
               <TiltCard maxTilt={5}>
-                <div className="relative max-w-md w-full group">
-                  {/* Animated gradient background */}
+                <div className="relative w-80 sm:w-96 md:w-md group">
                   <div className="absolute -inset-1 bg-linear-to-r from-primary via-secondary to-primary rounded-2xl blur-md md:blur-lg opacity-50 group-hover:opacity-75 md:animate-pulse-slow transition-opacity duration-500" />
 
-                  {/* Image container */}
-                  <div className="relative w-full max-w-md">
+                  <div className="relative">
                     <ImageCDN
                       filename="profile"
                       alt={name.full}
-                      transformations={{
-                        w: 500,
-                        c: 'limit',
-                        f: 'webp',
-                        q: 75,
-                      }}
-                      width={500}
-                      height={500}
+                      width={600}
+                      height={650}
                       priority
                       classNames={{
-                        img: 'rounded-2xl shadow-2xl ring-2 ring-primary/20 group-hover:ring-primary/40 transition-all duration-300',
+                        wrapper: 'w-full',
+                        img: 'rounded-2xl shadow-2xl w-full h-auto object-cover ring-2 ring-primary/20 group-hover:ring-primary/40 transition-all duration-300',
                       }}
                     />
                   </div>

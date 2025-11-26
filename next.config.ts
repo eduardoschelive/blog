@@ -14,6 +14,15 @@ const nextConfig: NextConfig = {
     ],
     qualities: [100], // Use the CDN transformation
   },
+  async redirects() {
+    return [
+      {
+        source: '/favicon.ico',
+        destination: '/icons/favicon.ico',
+        permanent: true,
+      },
+    ]
+  },
 }
 
 const withNextIntl = createNextIntlPlugin()

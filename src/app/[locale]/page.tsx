@@ -25,7 +25,7 @@ export default async function HomePage({ params }: HomePageProps) {
   return (
     <>
       <Hero />
-      <div className="w-full px-4 py-20">
+      <div className="w-full px-4 py-8 md:py-12">
         <div className="max-w-7xl mx-auto">
           <div className="grid lg:grid-cols-[3fr_1fr] gap-8 lg:gap-12">
             <div className="w-full">

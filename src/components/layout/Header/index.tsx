@@ -22,6 +22,7 @@ import { TbMenu2, TbX, TbBrandGithub, TbBrandLinkedin } from 'react-icons/tb'
 import { IconButton } from '@/components/ui/IconButton'
 import { Link as HeroUILink } from '@heroui/react'
 import { PERSONAL_INFO } from '@/constants/personal'
+import Image from 'next/image'
 
 function Header() {
   const t = useTranslations('Navbar')
@@ -56,7 +57,14 @@ function Header() {
     >
       <NavbarContent className="sm:hidden flex-1" justify="center">
         <NavbarBrand className="flex justify-center">
-          <Link href="/">
+          <Link href="/" className="flex items-center gap-2">
+            <Image
+              src="/icons/favicon-32x32.png"
+              alt="Logo"
+              width={24}
+              height={24}
+              className="rounded"
+            />
             <p className="font-bold text-inherit">{name.short}</p>
           </Link>
         </NavbarBrand>
@@ -85,7 +93,14 @@ function Header() {
 
       <NavbarContent className="hidden sm:flex" justify="start">
         <NavbarBrand>
-          <Link href="/">
+          <Link href="/" className="flex items-center gap-2">
+            <Image
+              src="/icons/favicon-32x32.png"
+              alt="Logo"
+              width={24}
+              height={24}
+              className="rounded"
+            />
             <p className="font-bold text-inherit">{name.short}</p>
           </Link>
         </NavbarBrand>
@@ -93,29 +108,35 @@ function Header() {
 
       <NavbarContent className="hidden sm:flex gap-4" justify="center">
         <NavbarItem>
-          <Link href="/" className="font-medium text-inherit hover:underline">
+          <Link
+            href="/"
+            className="font-medium text-foreground/80 hover:text-primary transition-colors duration-200 relative group"
+          >
             {t('home')}
+            <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-primary transition-all duration-200 group-hover:w-full" />
           </Link>
         </NavbarItem>
         <NavbarItem>
           <Link
             href="/categories"
-            className="font-medium text-inherit hover:underline"
+            className="font-medium text-foreground/80 hover:text-primary transition-colors duration-200 relative group"
           >
             {t('categories')}
+            <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-primary transition-all duration-200 group-hover:w-full" />
           </Link>
         </NavbarItem>
         <NavbarItem>
           <Link
             href="/about"
-            className="font-medium text-inherit hover:underline"
+            className="font-medium text-foreground/80 hover:text-primary transition-colors duration-200 relative group"
           >
             {t('about')}
+            <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-primary transition-all duration-200 group-hover:w-full" />
           </Link>
         </NavbarItem>
       </NavbarContent>
 
-      <NavbarContent className="hidden sm:flex" justify="end">
+      <NavbarContent className="hidden sm:flex gap-1" justify="end">
         <NavbarItem>
           <SearchButton />
         </NavbarItem>
@@ -130,7 +151,7 @@ function Header() {
         </NavbarItem>
       </NavbarContent>
 
-      <NavbarMenu className="pt-6">
+      <NavbarMenu className="pt-6 pb-safe">
         <div className="flex flex-col h-full">
           <div className="flex-1">
             {menuItems.map((item, index) => (
@@ -146,7 +167,7 @@ function Header() {
             ))}
           </div>
 
-          <div className="border-t border-divider pt-4 pb-6">
+          <div className="border-t border-divider pt-4 pb-6 mb-safe">
             <div className="flex justify-center gap-3">
               {socialLinks.map((link) => {
                 const Icon = link.icon

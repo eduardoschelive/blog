@@ -1,7 +1,21 @@
 {
+  "Metadata": {
+    "home": {
+      "title": "Eduardo Schelive | Software Engineer",
+      "description": "Personal blog by Eduardo Schelive. Articles about web development, cloud infrastructure, software architecture, and modern technologies. Learn from practical insights and tutorials."
+    },
+    "about": {
+      "title": "About me | Eduardo Schelive",
+      "description": "Software engineer since 2013, passionate about web development, cloud infrastructure, and sharing knowledge. Discover my journey, experiences, and the technologies I work with."
+    },
+    "categories": {
+      "title": "Categories | Eduardo Schelive",
+      "description": "Explore all article categories organized by topic. From web development to cloud infrastructure, find comprehensive guides and tutorials on modern technologies."
+    }
+  },
   "Hero": {
     "greeting": "Hello, my name is",
-    "subtitle": "Full-stack developer passionate about creating amazing digital experiences and sharing knowledge about technology.",
+    "subtitle": "Welcome to my blog where I share articles about web development, cloud infrastructure, system architecture, and modern technologies. Tutorials, guides, and hands-on experiences from real projects.",
     "aboutButton": "About me",
     "articlesButton": "View articles",
     "featuredArticle": "Featured article",

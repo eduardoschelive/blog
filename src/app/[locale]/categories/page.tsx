@@ -10,6 +10,7 @@ import {
 } from '@/components/composables/PageHeader'
 import { GradientDivider } from '@/components/ui/GradientDivider'
 import { TbCategory } from 'react-icons/tb'
+import { generatePageMetadata, generateAlternates } from '@/utils/metadata'
 
 export const dynamic = 'force-static'
 export const dynamicParams = false
@@ -59,11 +60,24 @@ export default async function CategoriesPage({ params }: PageProps) {
 export async function generateMetadata({
   params,
 }: PageProps): Promise<Metadata> {
-  await params
-  const t = await getTranslations('Categories')
+  const { locale } = await params
+  const t = await getTranslations('Metadata.categories')
 
-  return {
+  return generatePageMetadata({
+    locale,
     title: t('title'),
-    description: t('subtitle'),
-  }
+    description: t('description'),
+    keywords: [
+      'categories',
+      'topics',
+      'web development',
+      'cloud infrastructure',
+      'tutorials',
+      'guides',
+      'programming',
+      'technology',
+    ],
+    path: `/${locale}/${locale === 'en-US' ? 'categories' : 'categorias'}`,
+    alternates: generateAlternates('/categories', '/categorias'),
+  })
 }

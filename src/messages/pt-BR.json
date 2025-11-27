@@ -1,7 +1,21 @@
 {
+  "Metadata": {
+    "home": {
+      "title": "Eduardo Schelive | Engenheiro de Software",
+      "description": "Blog pessoal de Eduardo Schelive. Artigos sobre desenvolvimento web, infraestrutura em nuvem, arquitetura de software e tecnologias modernas. Aprenda com insights práticos e tutoriais."
+    },
+    "about": {
+      "title": "Sobre mim | Eduardo Schelive",
+      "description": "Engenheiro de software desde 2013, apaixonado por desenvolvimento web, infraestrutura em nuvem e compartilhamento de conhecimento. Conheça minha trajetória, experiências e as tecnologias com as quais trabalho."
+    },
+    "categories": {
+      "title": "Categorias | Eduardo Schelive",
+      "description": "Explore todas as categorias de artigos organizadas por tema. De desenvolvimento web a infraestrutura em nuvem, encontre guias completos e tutoriais sobre tecnologias modernas."
+    }
+  },
   "Hero": {
     "greeting": "Olá, meu nome é",
-    "subtitle": "Desenvolvedor full-stack apaixonado por criar experiências digitais incríveis e compartilhar conhecimento sobre tecnologia.",
+    "subtitle": "Bem-vindo ao meu blog onde compartilho artigos sobre desenvolvimento web, infraestrutura em nuvem, arquitetura de sistemas e tecnologias modernas. Tutoriais, guias e experiências práticas de projetos reais.",
     "aboutButton": "Sobre mim",
     "articlesButton": "Ver artigos",
     "featuredArticle": "Artigo em destaque",

@@ -57,13 +57,7 @@ function Header() {
       <NavbarContent className="sm:hidden flex-1" justify="center">
         <NavbarBrand className="flex justify-center">
           <Link href="/" className="flex items-center gap-2">
-            <Image
-              src="/icons/favicon-32x32.png"
-              alt="Logo"
-              width={24}
-              height={24}
-              className="rounded"
-            />
+            <Image src="/logo.svg" alt="Logo" width={24} height={24} />
             <p className="font-bold text-inherit">{name.short}</p>
           </Link>
         </NavbarBrand>
@@ -95,13 +89,7 @@ function Header() {
       <NavbarContent className="hidden sm:flex" justify="start">
         <NavbarBrand>
           <Link href="/" className="flex items-center gap-2">
-            <Image
-              src="/icons/favicon-32x32.png"
-              alt="Logo"
-              width={24}
-              height={24}
-              className="rounded"
-            />
+            <Image src="/logo.svg" alt="Logo" width={24} height={24} />
             <p className="font-bold text-inherit">{name.short}</p>
           </Link>
         </NavbarBrand>

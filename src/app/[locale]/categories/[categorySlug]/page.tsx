@@ -3,6 +3,7 @@ import type { Locale } from 'next-intl'
 import { getTranslations } from 'next-intl/server'
 import { getCategories } from '@/content/categories'
 import { LOCALES } from '@/constants/locale'
+import { generatePageMetadata, generateAlternates } from '@/utils/metadata'
 import {
   CategoryRoot,
   CategoryCover,
@@ -141,8 +142,30 @@ export async function generateMetadata({
     }
   }
 
-  return {
+  const categoryPath = locale === 'en-US' ? 'categories' : 'categorias'
+
+  // Merge category keywords with default fallbacks
+  const keywords = [
+    ...(category.keywords || []),
+    category.title,
+    'tutorials',
+    'articles',
+    'guides',
+  ]
+
+  return generatePageMetadata({
+    locale,
     title: category.title,
     description: category.description,
-  }
+    keywords,
+    path: `/${locale}/${categoryPath}/${categorySlug}`,
+    alternates: generateAlternates(
+      `/categories/${categorySlug}`,
+      `/categorias/${categorySlug}`
+    ),
+    openGraph: {
+      type: 'website',
+      image: category.coverImage,
+    },
+  })
 }

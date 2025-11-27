@@ -4,6 +4,7 @@ import { LOCALES } from '@/constants/locale'
 import type { Locale } from 'next-intl'
 import { getTranslations } from 'next-intl/server'
 import type { Metadata } from 'next'
+import { generatePageMetadata, generateAlternates } from '@/utils/metadata'
 
 export const dynamic = 'force-static'
 export const dynamicParams = false
@@ -75,8 +76,33 @@ export async function generateMetadata({
     }
   }
 
-  return {
+  const categoryPath = locale === 'en-US' ? 'categories' : 'categorias'
+  const articlesPath = locale === 'en-US' ? 'articles' : 'artigos'
+
+  const publishedDate = article.createdAt
+    ? new Date(article.createdAt).toISOString()
+    : undefined
+  const modifiedDate = article.updatedAt
+    ? new Date(article.updatedAt).toISOString()
+    : publishedDate
+
+  return generatePageMetadata({
+    locale,
     title: article.title,
     description: article.description || article.title,
-  }
+    keywords: article.keywords || [],
+    path: `/${locale}/${categoryPath}/${categorySlug}/${articlesPath}/${articleSlug}`,
+    alternates: generateAlternates(
+      `/categories/${categorySlug}/articles/${articleSlug}`,
+      `/categorias/${categorySlug}/artigos/${articleSlug}`
+    ),
+    openGraph: {
+      type: 'article',
+      image: article.coverImage,
+      imageAlt: article.title,
+      publishedTime: publishedDate,
+      modifiedTime: modifiedDate,
+      tags: article.keywords || [],
+    },
+  })
 }

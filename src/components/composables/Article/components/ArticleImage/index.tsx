@@ -3,6 +3,8 @@
 import { useArticle } from '../../context'
 import { cn, Image } from '@heroui/react'
 import { FallbackImage } from '@/components/ui/FallbackImage'
+import { getCDNImageUrl } from '@/utils/cdn'
+import { IMAGE_DIMENSIONS } from '@/constants/images'
 import type { HTMLAttributes } from 'react'
 
 interface ArticleImageProps extends HTMLAttributes<HTMLDivElement> {
@@ -17,13 +19,15 @@ export function ArticleImage({
   const { article } = useArticle()
 
   if (article.coverImage) {
+    const imageUrl = getCDNImageUrl(article.coverImage, IMAGE_DIMENSIONS.COVER)
+
     return (
       <div
         className={cn('relative overflow-hidden w-full', className)}
         {...props}
       >
         <Image
-          src={article.coverImage}
+          src={imageUrl}
           alt={article.title}
           className="w-full h-full object-cover rounded-none"
           classNames={{

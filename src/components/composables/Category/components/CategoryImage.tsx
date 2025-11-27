@@ -4,6 +4,8 @@ import { useCategory } from '../context'
 import { cn, Image } from '@heroui/react'
 import { FallbackImage } from '@/components/ui/FallbackImage'
 import { TbBook } from 'react-icons/tb'
+import { getCDNImageUrl } from '@/utils/cdn'
+import { IMAGE_DIMENSIONS } from '@/constants/images'
 
 interface CategoryImageProps {
   className?: string
@@ -19,10 +21,12 @@ export function CategoryImage({
   const { category } = useCategory()
 
   if (category.coverImage) {
+    const imageUrl = getCDNImageUrl(category.coverImage, IMAGE_DIMENSIONS.COVER)
+
     return (
       <div className={cn('relative w-full overflow-hidden', height, className)}>
         <Image
-          src={category.coverImage}
+          src={imageUrl}
           alt={category.title}
           className={cn(
             'object-cover w-full h-full rounded-none',

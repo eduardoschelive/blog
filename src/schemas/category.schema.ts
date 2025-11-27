@@ -5,6 +5,7 @@ export const categorySchema = z.object({
   description: z.string(),
   slug: z.string(),
   coverImage: z.string().optional(),
+  keywords: z.array(z.string()).optional(),
 })
 
 export type Category = z.infer<typeof categorySchema>

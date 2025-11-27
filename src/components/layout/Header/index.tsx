@@ -3,6 +3,7 @@
 import { HEADER_ID } from '@/constants/elements'
 import { Link } from '@/i18n/navigation'
 import {
+  Button,
   Navbar,
   NavbarBrand,
   NavbarContent,
@@ -71,24 +72,26 @@ function Header() {
       </NavbarContent>
 
       <NavbarContent className="sm:hidden" justify="end">
-        <NavbarItem>
-          <SearchButton />
-        </NavbarItem>
-        <NavbarItem>
-          <ThemeSwitch />
-        </NavbarItem>
-        <NavbarMenuToggle
-          aria-label={isMenuOpen ? 'Close menu' : 'Open menu'}
-          icon={(isOpen) => (
+        <div className="flex gap-1 items-center">
+          <NavbarItem>
+            <SearchButton />
+          </NavbarItem>
+          <NavbarItem>
+            <ThemeSwitch />
+          </NavbarItem>
+          <IconButton
+            onClick={() => setIsMenuOpen(!isMenuOpen)}
+            aria-label={isMenuOpen ? t('closeMenu') : t('openMenu')}
+          >
             <AnimatePresence mode="wait">
-              {isOpen ? (
-                <TbX key="close" size={24} />
+              {isMenuOpen ? (
+                <TbX key="close" size={22} />
               ) : (
-                <TbMenu2 key="menu" size={24} />
+                <TbMenu2 key="menu" size={22} />
               )}
             </AnimatePresence>
-          )}
-        />
+          </IconButton>
+        </div>
       </NavbarContent>
 
       <NavbarContent className="hidden sm:flex" justify="start">

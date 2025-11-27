@@ -71,7 +71,9 @@
   "Navbar": {
     "home": "Início",
     "categories": "Categorias",
-    "about": "Sobre"
+    "about": "Sobre",
+    "openMenu": "Abrir menu",
+    "closeMenu": "Fechar menu"
   },
   "Navigation": {
     "search": {

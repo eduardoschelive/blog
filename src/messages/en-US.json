@@ -71,7 +71,9 @@
   "Navbar": {
     "home": "Home",
     "categories": "Categories",
-    "about": "About"
+    "about": "About",
+    "openMenu": "Open menu",
+    "closeMenu": "Close menu"
   },
   "Navigation": {
     "search": {

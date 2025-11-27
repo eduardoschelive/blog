@@ -20,9 +20,74 @@ function AboutClient({ yearsOfExperience }: AboutClientProps) {
       {/* Hero Section */}
       <section className="relative min-h-[calc(100vh-64px)] flex items-center justify-center px-4 py-12">
         <div className="max-w-7xl mx-auto w-full relative z-10">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-16 items-center">
-            {/* Left: Text */}
-            <div className="space-y-6 lg:space-y-8">
+          <div className="flex flex-col lg:grid lg:grid-cols-2 gap-8 lg:gap-16 items-center">
+            {/* Image - First on mobile, Second on desktop */}
+            <div className="w-full flex justify-center lg:justify-end order-1 lg:order-2">
+              <div className="lg:hidden w-full px-2">
+                {/* Mobile: No tilt, landscape crop */}
+                <div className="relative w-full group">
+                  <div className="absolute -inset-1 bg-linear-to-r from-primary via-secondary to-primary rounded-2xl blur-md opacity-50 group-hover:opacity-75 transition-opacity duration-500" />
+
+                  <div className="relative">
+                    <ImageCDN
+                      filename="profile"
+                      alt={name.full}
+                      width={600}
+                      height={450}
+                      priority
+                      transformations={{
+                        w: 600,
+                        h: 450,
+                        c: 'fill',
+                        g: 'face',
+                        f: 'auto',
+                        q: 'auto:best',
+                        dpr: 'auto',
+                      }}
+                      classNames={{
+                        wrapper: 'w-full',
+                        img: 'rounded-2xl shadow-2xl w-full h-auto object-cover ring-2 ring-primary/20 group-hover:ring-primary/40 transition-all duration-300',
+                      }}
+                    />
+                  </div>
+                </div>
+              </div>
+
+              <div className="hidden lg:block">
+                {/* Desktop: With tilt */}
+                <TiltCard maxTilt={5}>
+                  <div className="relative w-80 sm:w-96 md:w-md group">
+                    <div className="absolute -inset-1 bg-linear-to-r from-primary via-secondary to-primary rounded-2xl blur-md md:blur-lg opacity-50 group-hover:opacity-75 md:animate-pulse-slow transition-opacity duration-500" />
+
+                    <div className="relative">
+                      <ImageCDN
+                        filename="profile"
+                        alt={name.full}
+                        width={600}
+                        height={650}
+                        priority
+                        transformations={{
+                          w: 600,
+                          h: 650,
+                          c: 'fill',
+                          g: 'center',
+                          f: 'auto',
+                          q: 'auto:best',
+                          dpr: 'auto',
+                        }}
+                        classNames={{
+                          wrapper: 'w-full',
+                          img: 'rounded-2xl shadow-2xl w-full h-auto object-cover ring-2 ring-primary/20 group-hover:ring-primary/40 transition-all duration-300',
+                        }}
+                      />
+                    </div>
+                  </div>
+                </TiltCard>
+              </div>
+            </div>
+
+            {/* Text - Second on mobile, First on desktop */}
+            <div className="space-y-6 lg:space-y-8 order-2 lg:order-1">
               <div className="space-y-3 lg:space-y-4">
                 <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold leading-tight">
                   <span className="block text-foreground/80 text-xl sm:text-2xl lg:text-3xl font-normal mb-2">
@@ -39,28 +104,6 @@ function AboutClient({ yearsOfExperience }: AboutClientProps) {
                   {t('experience')}
                 </p>
               </div>
-            </div>
-
-            <div className="w-full flex justify-center lg:justify-end">
-              <TiltCard maxTilt={5}>
-                <div className="relative w-80 sm:w-96 md:w-md group">
-                  <div className="absolute -inset-1 bg-linear-to-r from-primary via-secondary to-primary rounded-2xl blur-md md:blur-lg opacity-50 group-hover:opacity-75 md:animate-pulse-slow transition-opacity duration-500" />
-
-                  <div className="relative">
-                    <ImageCDN
-                      filename="profile"
-                      alt={name.full}
-                      width={600}
-                      height={650}
-                      priority
-                      classNames={{
-                        wrapper: 'w-full',
-                        img: 'rounded-2xl shadow-2xl w-full h-auto object-cover ring-2 ring-primary/20 group-hover:ring-primary/40 transition-all duration-300',
-                      }}
-                    />
-                  </div>
-                </div>
-              </TiltCard>
             </div>
           </div>
         </div>

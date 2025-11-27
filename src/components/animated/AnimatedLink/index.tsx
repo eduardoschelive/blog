@@ -1,6 +1,6 @@
 'use client'
 
-import { Link, cn } from '@heroui/react'
+import { cn, Link } from '@heroui/react'
 import { m } from 'framer-motion'
 import type { LinkProps } from '@heroui/react'
 import type { ReactNode } from 'react'
@@ -16,6 +16,7 @@ function AnimatedLink({
   children,
   isExternal,
   className,
+  href,
   ...props
 }: AnimatedLinkProps) {
   const [isHovered, setIsHovered] = useState(false)
@@ -24,6 +25,7 @@ function AnimatedLink({
 
   return (
     <Link
+      href={href as string}
       isExternal={isExternal}
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}

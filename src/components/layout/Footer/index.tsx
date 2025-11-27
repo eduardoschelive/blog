@@ -36,7 +36,7 @@ function Footer() {
       name: 'RSS',
       href: '/rss.xml',
       icon: TbRss,
-      tooltip: 'RSS Feed',
+      tooltip: t('social.rss'),
     },
   ]
 
@@ -60,14 +60,13 @@ function Footer() {
               <h3 className="font-bold text-lg">{name.full}</h3>
             </Link>
             <p className="text-sm text-default-500 leading-relaxed">
-              Software Engineer sharing insights about web development, cloud
-              infrastructure, and modern technologies.
+              {t('bio')}
             </p>
           </div>
 
           {/* Column 2: Quick Links */}
           <div>
-            <h4 className="font-semibold mb-3">Quick Links</h4>
+            <h4 className="font-semibold mb-3">{t('quickLinks')}</h4>
             <ul className="space-y-2">
               {navigationLinks.map((link) => (
                 <li key={link.href}>
@@ -84,7 +83,7 @@ function Footer() {
 
           {/* Column 3: Social */}
           <div>
-            <h4 className="font-semibold mb-3">Connect</h4>
+            <h4 className="font-semibold mb-3">{t('connect')}</h4>
             <div className="flex gap-2">
               {socialLinks.map((link) => {
                 const Icon = link.icon
@@ -110,10 +109,7 @@ function Footer() {
             <Link href="/" className="inline-block mb-3">
               <h3 className="font-bold text-lg">{name.full}</h3>
             </Link>
-            <p className="text-sm text-default-500">
-              Software Engineer sharing insights about web development and
-              modern technologies.
-            </p>
+            <p className="text-sm text-default-500">{t('bio')}</p>
           </div>
 
           <div className="flex justify-center flex-wrap gap-2">

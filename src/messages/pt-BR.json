@@ -13,7 +13,11 @@
     "readingTime": "{minutes, plural, =1 {1 min de leitura} other {# min de leitura}}",
     "filedUnder": "Arquivado em",
     "on": "em",
-    "updatedAt": "Atualizado em {date}"
+    "updatedAt": "Atualizado em {date}",
+    "notFound": {
+      "title": "Artigo não encontrado",
+      "description": "O artigo solicitado não pôde ser encontrado"
+    }
   },
   "HomePage": {
     "latest": {
@@ -50,8 +54,12 @@
     "social": {
       "email": "Envie-me um email",
       "github": "Visite meu perfil no GitHub",
-      "linkedin": "Conecte-se comigo no LinkedIn"
+      "linkedin": "Conecte-se comigo no LinkedIn",
+      "rss": "Feed RSS"
     },
+    "bio": "Engenheiro de Software compartilhando insights sobre desenvolvimento web, infraestrutura em nuvem e tecnologias modernas.",
+    "quickLinks": "Links rápidos",
+    "connect": "Conecte-se",
     "copyright": "Todos os direitos reservados."
   },
   "NotFound": {
@@ -118,6 +126,10 @@
       "title": "Conteúdo em Breve!",
       "subtitle": "Estamos preparando conteúdo incrível para você",
       "cta": "Volte em breve!"
+    },
+    "notFound": {
+      "title": "Categoria não encontrada",
+      "description": "A categoria solicitada não pôde ser encontrada"
     }
   },
   "AboutPage": {

@@ -134,9 +134,10 @@ export async function generateMetadata({
   })
 
   if (!category) {
+    const t = await getTranslations('Categories.notFound')
     return {
-      title: 'Category Not Found',
-      description: 'The requested category could not be found',
+      title: t('title'),
+      description: t('description'),
     }
   }
 

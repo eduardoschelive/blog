@@ -13,7 +13,11 @@
     "readingTime": "{minutes, plural, =1 {1 minute read} other {# minutes read}}",
     "filedUnder": "Filed under",
     "on": "on",
-    "updatedAt": "Updated on {date}"
+    "updatedAt": "Updated on {date}",
+    "notFound": {
+      "title": "Article not found",
+      "description": "The requested article could not be found"
+    }
   },
   "HomePage": {
     "latest": {
@@ -50,8 +54,12 @@
     "social": {
       "email": "Send me an email",
       "github": "Visit my GitHub profile",
-      "linkedin": "Connect with me on LinkedIn"
+      "linkedin": "Connect with me on LinkedIn",
+      "rss": "RSS Feed"
     },
+    "bio": "Software Engineer sharing insights about web development, cloud infrastructure, and modern technologies.",
+    "quickLinks": "Quick links",
+    "connect": "Connect",
     "copyright": "All rights reserved."
   },
   "NotFound": {
@@ -118,6 +126,10 @@
       "title": "Content Coming Soon!",
       "subtitle": "We're preparing amazing content for you",
       "cta": "Check back soon!"
+    },
+    "notFound": {
+      "title": "Category not found",
+      "description": "The requested category could not be found"
     }
   },
   "AboutPage": {

@@ -2,6 +2,7 @@ import { ArticlePageClient } from './ArticlePageClient'
 import { getArticles } from '@/content/articles'
 import { LOCALES } from '@/constants/locale'
 import type { Locale } from 'next-intl'
+import { getTranslations } from 'next-intl/server'
 import type { Metadata } from 'next'
 
 export const dynamic = 'force-static'
@@ -67,9 +68,10 @@ export async function generateMetadata({
   const article = articles[0]
 
   if (!article) {
+    const t = await getTranslations('Article.notFound')
     return {
-      title: 'Article Not Found',
-      description: 'The requested article could not be found',
+      title: t('title'),
+      description: t('description'),
     }
   }
 

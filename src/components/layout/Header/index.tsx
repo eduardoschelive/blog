@@ -3,14 +3,12 @@
 import { HEADER_ID } from '@/constants/elements'
 import { Link } from '@/i18n/navigation'
 import {
-  Button,
   Navbar,
   NavbarBrand,
   NavbarContent,
   NavbarItem,
   NavbarMenu,
   NavbarMenuItem,
-  NavbarMenuToggle,
 } from '@heroui/react'
 import { useTranslations } from 'next-intl'
 import { LanguageSelect } from '@/components/ui/LanguageSelect'

@@ -7,6 +7,29 @@ import type { Locale } from 'next-intl'
  *
  * Next-intl context is not available here, so we manually resolve localized pathnames
  */
+/**
+ * Generates a localized URL for a category
+ * Uses the generated pathnames to get the correct translated URL
+ */
+export function getLocalizedCategoryUrl(
+  categorySlug: string,
+  locale: Locale,
+  baseUrl = ''
+): string {
+  const pathnameKey = `/categories/${categorySlug}`
+  const localizedPath = pathnames[pathnameKey as keyof typeof pathnames]
+
+  let categoryPath = pathnameKey
+  if (localizedPath && typeof localizedPath === 'object') {
+    const translated = (localizedPath as Record<string, string>)[locale]
+    if (translated) {
+      categoryPath = translated
+    }
+  }
+
+  return `${baseUrl}/${locale}${categoryPath}`
+}
+
 export function getLocalizedArticleUrl(
   categorySlug: string,
   articleSlug: string,

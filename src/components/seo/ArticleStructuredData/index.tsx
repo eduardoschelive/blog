@@ -16,7 +16,7 @@ export function ArticleStructuredData({
   locale,
 }: ArticleStructuredDataProps) {
   const baseUrl =
-    process.env.NEXT_PUBLIC_SITE_URL || 'https://eduardoschelive.com'
+    process.env.NEXT_PUBLIC_SITE_URL || 'https://www.eduardoschelive.com'
 
   const articleUrl = getLocalizedArticleUrl(
     article.category.slug,

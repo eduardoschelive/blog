@@ -9,7 +9,7 @@ import {
 } from '@/utils/localizedUrl'
 
 const BASE_URL =
-  process.env.NEXT_PUBLIC_SITE_URL || 'https://eduardoschelive.com'
+  process.env.NEXT_PUBLIC_SITE_URL || 'https://www.eduardoschelive.com'
 
 type LocalizedUrls = Record<Locale, string>
 

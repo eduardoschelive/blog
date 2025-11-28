@@ -4,7 +4,7 @@ User-agent: *
 Allow: /
 
 # Sitemaps
-Sitemap: https://eduardoschelive.com/sitemap.xml
+Sitemap: https://www.eduardoschelive.com/sitemap.xml
 
 # Disallow search index files
 Disallow: /search/

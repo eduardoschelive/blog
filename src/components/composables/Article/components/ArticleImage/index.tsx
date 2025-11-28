@@ -34,6 +34,7 @@ export function ArticleImage({
             wrapper: '!max-w-full h-full w-full rounded-none',
             img: 'h-full w-full object-cover rounded-none',
           }}
+          fetchPriority="high"
           removeWrapper
         />
       </div>

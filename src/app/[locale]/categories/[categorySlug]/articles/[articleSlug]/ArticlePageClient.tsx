@@ -31,7 +31,7 @@ export function ArticlePageClient({
   const { scrollToHeading } = useScroll()
 
   const baseUrl =
-    process.env.NEXT_PUBLIC_SITE_URL || 'https://eduardoschelive.com'
+    process.env.NEXT_PUBLIC_SITE_URL || 'https://www.eduardoschelive.com'
   const articleUrl = getLocalizedArticleUrl(
     categorySlug,
     article.slug,

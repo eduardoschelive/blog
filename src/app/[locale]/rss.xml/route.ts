@@ -10,9 +10,9 @@ const MAX_ARTICLES = 50
 
 export async function GET(
   _request: Request,
-  { params }: { params: Promise<{ locale: Locale }> }
+  { params }: { params: Promise<{ locale: string }> }
 ) {
-  const { locale } = await params
+  const { locale } = (await params) as { locale: Locale }
   const t = await getTranslations({ locale, namespace: 'Metadata.home' })
 
   const articles = await getArticles(locale, {

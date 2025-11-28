@@ -4,4 +4,4 @@ export {
   type CategoryFilter,
 } from './getCategories'
 
-export { loadCategory, loadCategoryInfo, clearCategoryCache } from './helpers'
+export { loadCategory, loadCategoryInfo } from './helpers'

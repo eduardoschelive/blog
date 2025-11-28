@@ -31,6 +31,16 @@
     "notFound": {
       "title": "Artigo não encontrado",
       "description": "O artigo solicitado não pôde ser encontrado"
+    },
+    "share": {
+      "title": "Compartilhar artigo",
+      "x": "Compartilhar no X",
+      "linkedin": "Compartilhar no LinkedIn",
+      "whatsapp": "Compartilhar no WhatsApp",
+      "telegram": "Compartilhar no Telegram",
+      "reddit": "Compartilhar no Reddit",
+      "copyLink": "Copiar link",
+      "copied": "Link copiado!"
     }
   },
   "HomePage": {

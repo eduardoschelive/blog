@@ -6,6 +6,7 @@ interface IconButtonProps extends Omit<ButtonProps, 'children'> {
   tooltip?: string
   tooltipDelay?: number
   tooltipCloseDelay?: number
+  [key: string]: unknown
 }
 
 function IconButton({

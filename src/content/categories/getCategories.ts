@@ -26,10 +26,6 @@ const DEFAULT_CATEGORY_OPTIONS: CategoryOptions<false> = {
 }
 
 /**
- * Fetches all categories for a given locale with flexible sorting, filtering and limiting options
- * @param locale - The locale to fetch categories for
- * @param options - Optional configuration for filtering, limiting, sorting and loading articles
- * @returns Promise<Category[]> or Promise<CategoryWithArticles[]> depending on withArticles option
  * @example
  * const categories = await getCategories('en-US', { withArticles: true, filter: { slug: 'javascript' }, limit: 5 })
  */
@@ -42,17 +38,15 @@ export async function getCategories<T extends boolean = false>(
     ...options,
   } as CategoryOptions<T>
 
-  const categories: (Category | CategoryWithArticles)[] = []
+  const categoryFolders = readdirSync(CATEGORIES_DIR).filter((item) => {
+    const itemPath = path.join(CATEGORIES_DIR, item)
+    return statSync(itemPath).isDirectory()
+  })
 
-  try {
-    const categoryFolders = readdirSync(CATEGORIES_DIR).filter((item) => {
-      const itemPath = path.join(CATEGORIES_DIR, item)
-      return statSync(itemPath).isDirectory()
-    })
-
-    for (const categorySlug of categoryFolders) {
+  const categoriesPromises = categoryFolders
+    .filter((categorySlug) => {
       if (config.filter?.slug && categorySlug !== config.filter.slug) {
-        continue
+        return false
       }
 
       const categoryPath = path.join(CATEGORIES_DIR, categorySlug)
@@ -61,10 +55,9 @@ export async function getCategories<T extends boolean = false>(
       )
 
       const localeFile = `${locale}.mdx`
-      if (!files.includes(localeFile)) {
-        continue
-      }
-
+      return files.includes(localeFile)
+    })
+    .map(async (categorySlug) => {
       try {
         const category = await loadCategory(categorySlug, locale)
 
@@ -81,29 +74,32 @@ export async function getCategories<T extends boolean = false>(
             articles,
           }
 
-          categories.push(categoryWithArticles)
+          return categoryWithArticles
         } else {
-          categories.push(category)
+          return category
         }
-      } catch {
-        continue
+      } catch (error) {
+        console.warn(`Failed to load category ${categorySlug}:`, error)
+        return null
       }
+    })
+
+  const categoriesResults = await Promise.all(categoriesPromises)
+  const categories = categoriesResults.filter(
+    (cat): cat is Category | CategoryWithArticles => cat !== null
+  )
+
+  const { slug: _slug, ...otherFilters } = config.filter || {}
+  const result = applyCollection(
+    categories as unknown as Record<string, unknown>[],
+    {
+      filter: otherFilters,
+      sort: config.sort as unknown as SortOptions<Record<string, unknown>>,
+      limit: config.limit,
     }
+  )
 
-    const { slug: _slug, ...otherFilters } = config.filter || {}
-    const result = applyCollection(
-      categories as unknown as Record<string, unknown>[],
-      {
-        filter: otherFilters,
-        sort: config.sort as unknown as SortOptions<Record<string, unknown>>,
-        limit: config.limit,
-      }
-    )
-
-    return result as unknown as T extends true
-      ? CategoryWithArticles[]
-      : Category[]
-  } catch {
-    return [] as unknown as T extends true ? CategoryWithArticles[] : Category[]
-  }
+  return result as unknown as T extends true
+    ? CategoryWithArticles[]
+    : Category[]
 }

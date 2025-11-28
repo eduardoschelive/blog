@@ -1,7 +1,7 @@
 'use client'
 
 import { FOOTER_ID } from '@/constants/elements'
-import { useTranslations } from 'next-intl'
+import { useTranslations, useLocale } from 'next-intl'
 import { TbBrandGithub, TbBrandLinkedin, TbRss, TbMail } from 'react-icons/tb'
 import { IconButton } from '@/components/ui/IconButton'
 import { Link } from '@/i18n/navigation'
@@ -11,6 +11,7 @@ import { PERSONAL_INFO } from '@/constants/personal'
 function Footer() {
   const t = useTranslations('Footer')
   const tNav = useTranslations('Navbar')
+  const locale = useLocale()
   const { name, social } = PERSONAL_INFO
 
   const socialLinks = [
@@ -34,7 +35,7 @@ function Footer() {
     },
     {
       name: 'RSS',
-      href: '/rss.xml',
+      href: `/${locale}/rss.xml`,
       icon: TbRss,
       tooltip: t('social.rss'),
     },
@@ -94,6 +95,7 @@ function Footer() {
                     href={link.href}
                     aria-label={link.name}
                     tooltip={link.tooltip}
+                    isExternal
                   >
                     <Icon size={20} />
                   </IconButton>
@@ -133,6 +135,7 @@ function Footer() {
                   as={HeroUILink}
                   href={link.href}
                   aria-label={link.name}
+                  isExternal
                 >
                   <Icon size={22} />
                 </IconButton>

@@ -26,10 +26,6 @@ const DEFAULT_ARTICLE_OPTIONS: ArticleOptions = {
 }
 
 /**
- * Fetches all articles for a given locale with flexible sorting, filtering and limiting options
- * @param locale - The locale to fetch articles for
- * @param options - Optional configuration for filtering, limiting and sorting
- * @returns Promise<Article[]> - Array of articles matching the criteria
  * @example
  * const articles = await getArticles('en-US', { filter: { categorySlug: 'javascript' }, sort: { field: 'createdAt', direction: 'DESC' }, limit: 5 })
  */
@@ -42,40 +38,30 @@ export async function getArticles(
     ...options,
   }
 
-  const articles: Article[] = []
+  const categoryFolders = readdirSync(ARTICLES_DIR).filter((item) => {
+    const itemPath = path.join(ARTICLES_DIR, item)
+    return statSync(itemPath).isDirectory()
+  })
 
-  try {
-    const categoryFolders = readdirSync(ARTICLES_DIR).filter((item) => {
-      const itemPath = path.join(ARTICLES_DIR, item)
-      return statSync(itemPath).isDirectory()
-    })
-
-    for (const categorySlug of categoryFolders) {
-      if (
-        config.filter?.categorySlug &&
-        categorySlug !== config.filter.categorySlug
-      ) {
-        continue
-      }
-
-      const categoryInfo = await loadCategoryInfo(categorySlug, locale)
-
-      const categoryArticles = await loadArticlesFromCategory(
-        categorySlug,
-        categoryInfo,
-        locale
+  const articlesByCategory = await Promise.all(
+    categoryFolders
+      .filter(
+        (categorySlug) =>
+          !config.filter?.categorySlug ||
+          categorySlug === config.filter.categorySlug
       )
+      .map(async (categorySlug) => {
+        const categoryInfo = await loadCategoryInfo(categorySlug, locale)
+        return loadArticlesFromCategory(categorySlug, categoryInfo, locale)
+      })
+  )
 
-      articles.push(...categoryArticles)
-    }
+  const articles = articlesByCategory.flat()
 
-    const { categorySlug: _categorySlug, ...otherFilters } = config.filter || {}
-    return applyCollection(articles as unknown as Record<string, unknown>[], {
-      filter: otherFilters,
-      sort: config.sort as unknown as SortOptions<Record<string, unknown>>,
-      limit: config.limit,
-    }) as unknown as Article[]
-  } catch {
-    return []
-  }
+  const { categorySlug: _categorySlug, ...otherFilters } = config.filter || {}
+  return applyCollection(articles as unknown as Record<string, unknown>[], {
+    filter: otherFilters,
+    sort: config.sort as unknown as SortOptions<Record<string, unknown>>,
+    limit: config.limit,
+  }) as unknown as Article[]
 }

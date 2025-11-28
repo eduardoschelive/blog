@@ -31,6 +31,16 @@
     "notFound": {
       "title": "Article not found",
       "description": "The requested article could not be found"
+    },
+    "share": {
+      "title": "Share this article",
+      "x": "Share on X",
+      "linkedin": "Share on LinkedIn",
+      "whatsapp": "Share on WhatsApp",
+      "telegram": "Share on Telegram",
+      "reddit": "Share on Reddit",
+      "copyLink": "Copy link",
+      "copied": "Link copied!"
     }
   },
   "HomePage": {

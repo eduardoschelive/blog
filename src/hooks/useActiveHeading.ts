@@ -12,15 +12,22 @@ interface VisibleHeading {
 function useActiveHeading(headingIds: string[]) {
   const [activeId, setActiveId] = useState<string | null>(null)
   const lastVisibleHeadingRef = useRef<string | null>(null)
+  const headingElementsRef = useRef<Map<string, HTMLElement>>(new Map())
+  const headerElementRef = useRef<HTMLElement | null>(null)
+  const footerElementRef = useRef<HTMLElement | null>(null)
 
   const getHeaderHeight = (): number => {
-    const headerElement = document.getElementById(HEADER_ID)
-    return headerElement ? headerElement.offsetHeight : 0
+    if (!headerElementRef.current) {
+      headerElementRef.current = document.getElementById(HEADER_ID) ?? null
+    }
+    return headerElementRef.current ? headerElementRef.current.offsetHeight : 0
   }
 
   const getFooterHeight = (): number => {
-    const footerElement = document.getElementById(FOOTER_ID)
-    return footerElement ? footerElement.offsetHeight : 0
+    if (!footerElementRef.current) {
+      footerElementRef.current = document.getElementById(FOOTER_ID) ?? null
+    }
+    return footerElementRef.current ? footerElementRef.current.offsetHeight : 0
   }
 
   const getVisibleHeadings = (
@@ -31,7 +38,13 @@ function useActiveHeading(headingIds: string[]) {
     const viewportHeight = window.innerHeight
 
     headingIds.forEach((id) => {
-      const element = document.getElementById(id)
+      let element = headingElementsRef.current.get(id)
+      if (!element) {
+        element = document.getElementById(id) ?? undefined
+        if (element) {
+          headingElementsRef.current.set(id, element)
+        }
+      }
       if (!element) return
 
       const rect = element.getBoundingClientRect()
@@ -71,7 +84,7 @@ function useActiveHeading(headingIds: string[]) {
       const TOLERANCE_PX = 10
 
       const headingsBelowHeader = visibleHeadings.filter((heading) => {
-        const element = document.getElementById(heading.id)
+        const element = headingElementsRef.current.get(heading.id)
         const elementRect = element?.getBoundingClientRect()
         const isElementBelowHeader =
           elementRect && elementRect.top > headerHeight - TOLERANCE_PX
@@ -102,6 +115,15 @@ function useActiveHeading(headingIds: string[]) {
   useEffect(() => {
     if (headingIds.length === 0) return
 
+    // Cache heading elements on mount
+    headingElementsRef.current.clear()
+    headingIds.forEach((id) => {
+      const element = document.getElementById(id)
+      if (element) {
+        headingElementsRef.current.set(id, element)
+      }
+    })
+
     const updateActiveHeading = () => {
       const isAtBottomOfPage = (): boolean => {
         const footerHeight = getFooterHeight()
@@ -127,10 +149,10 @@ function useActiveHeading(headingIds: string[]) {
       setActiveId(activeHeading)
     }
 
-    let timeoutId: NodeJS.Timeout
+    let rafId: number
     const debouncedUpdate = () => {
-      clearTimeout(timeoutId)
-      timeoutId = setTimeout(updateActiveHeading, 5)
+      cancelAnimationFrame(rafId)
+      rafId = requestAnimationFrame(updateActiveHeading)
     }
 
     updateActiveHeading()
@@ -139,7 +161,7 @@ function useActiveHeading(headingIds: string[]) {
     window.addEventListener('resize', debouncedUpdate, { passive: true })
 
     return () => {
-      clearTimeout(timeoutId)
+      cancelAnimationFrame(rafId)
       window.removeEventListener('scroll', debouncedUpdate)
       window.removeEventListener('resize', debouncedUpdate)
     }

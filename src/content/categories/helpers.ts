@@ -3,67 +3,48 @@ import { categorySchema } from '@/schemas/category.schema'
 import type { Category, CategoryBase } from '@/types/category.type'
 import type { Locale } from 'next-intl'
 import path from 'node:path'
+import { cache } from 'react'
 import { compileContent } from '../shared/compileContent'
 import { parseFrontmatter } from '../shared/parseFrontmatter'
 import { readFileContent } from '../shared/readFile'
 
-const categoryCache = new Map<string, CategoryBase & { slug: string }>()
-
-/**
- * Loads category information (without content) for a given category slug and locale
- * @param categorySlug - The category slug
- * @param locale - The locale
- * @param useCache - Whether to use cache (default: true)
- * @returns CategoryBase with slug included, or default fallback if category doesn't exist
- */
-export async function loadCategoryInfo(
-  categorySlug: string,
-  locale: Locale,
-  useCache = true
-): Promise<CategoryBase & { slug: string }> {
-  const cacheKey = `${categorySlug}-${locale}`
-
-  if (useCache && categoryCache.has(cacheKey)) {
-    return categoryCache.get(cacheKey)!
-  }
-
-  const defaultCategory: CategoryBase & { slug: string } = {
-    slug: categorySlug,
-    title: categorySlug.replace(/-/g, ' '),
-    description: '',
-  }
-
-  try {
-    const categoryFile = path.join(
-      CATEGORIES_DIR,
-      categorySlug,
-      `${locale}.mdx`
-    )
-    const categoryContent = readFileContent(categoryFile)
-    const { frontmatter } = await compileContent(categoryContent, categoryFile)
-    const categoryData = parseFrontmatter(
-      frontmatter,
-      categorySchema,
-      categoryFile
-    )
-
-    const result = {
-      ...categoryData,
+export const loadCategoryInfo = cache(
+  async (
+    categorySlug: string,
+    locale: Locale
+  ): Promise<CategoryBase & { slug: string }> => {
+    const defaultCategory: CategoryBase & { slug: string } = {
       slug: categorySlug,
+      title: categorySlug.replace(/-/g, ' '),
+      description: '',
     }
 
-    if (useCache) {
-      categoryCache.set(cacheKey, result)
-    }
+    try {
+      const categoryFile = path.join(
+        CATEGORIES_DIR,
+        categorySlug,
+        `${locale}.mdx`
+      )
+      const categoryContent = readFileContent(categoryFile)
+      const { frontmatter } = await compileContent(
+        categoryContent,
+        categoryFile
+      )
+      const categoryData = parseFrontmatter(
+        frontmatter,
+        categorySchema,
+        categoryFile
+      )
 
-    return result
-  } catch {
-    if (useCache) {
-      categoryCache.set(cacheKey, defaultCategory)
+      return {
+        ...categoryData,
+        slug: categorySlug,
+      }
+    } catch {
+      return defaultCategory
     }
-    return defaultCategory
   }
-}
+)
 
 /**
  * Loads full category data including compiled MDX content
@@ -89,11 +70,4 @@ export async function loadCategory(
   }
 
   return category
-}
-
-/**
- * Clears the category cache (useful for tests or when data changes)
- */
-export function clearCategoryCache(): void {
-  categoryCache.clear()
 }

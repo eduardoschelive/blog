@@ -1,6 +1,6 @@
 'use client'
 
-import { useTranslations } from 'next-intl'
+import { useTranslations, useLocale } from 'next-intl'
 import { IconButton } from '../../ui/IconButton'
 import { Link } from '@heroui/react'
 
@@ -10,14 +10,16 @@ interface RSSButtonProps {
 
 function RSSButton({ className = '' }: RSSButtonProps) {
   const t = useTranslations('Navigation')
+  const locale = useLocale()
 
   return (
     <IconButton
       as={Link}
-      href="/rss.xml"
+      href={`/${locale}/rss.xml`}
       className={className}
       aria-label={t('rss.button')}
       tooltip={t('rss.tooltip')}
+      isExternal
     >
       <svg
         width="20"

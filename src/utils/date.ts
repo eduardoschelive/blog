@@ -1,19 +1,9 @@
-/**
- * Default date format options
- */
 export const DEFAULT_DATE_FORMAT: Intl.DateTimeFormatOptions = {
   year: 'numeric',
   month: 'long',
   day: 'numeric',
 }
 
-/**
- * Formats a date to a localized string
- * @param date - Date object or ISO string
- * @param locale - Locale string (e.g., 'en-US', 'pt-BR')
- * @param options - Intl.DateTimeFormatOptions
- * @returns Formatted date string or null if invalid
- */
 export function formatDate(
   date: Date | string | null | undefined,
   locale: string,
@@ -34,4 +24,21 @@ export function formatDate(
   } catch {
     return null
   }
+}
+
+export function calculateAge(birthdate: string): number {
+  const birth = new Date(birthdate)
+  const today = new Date()
+  let age = today.getFullYear() - birth.getFullYear()
+  const monthDiff = today.getMonth() - birth.getMonth()
+
+  if (monthDiff < 0 || (monthDiff === 0 && today.getDate() < birth.getDate())) {
+    age--
+  }
+
+  return age
+}
+
+export function calculateYearsSince(year: number): number {
+  return new Date().getFullYear() - year
 }

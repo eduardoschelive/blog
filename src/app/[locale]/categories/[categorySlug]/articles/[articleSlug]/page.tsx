@@ -1,4 +1,5 @@
 import { ArticlePageClient } from './ArticlePageClient'
+import { ArticleStructuredData } from '@/components/seo/ArticleStructuredData'
 import { getArticles } from '@/content/articles'
 import { LOCALES } from '@/constants/locale'
 import type { Locale } from 'next-intl'
@@ -53,7 +54,12 @@ export default async function ArticlePage({ params }: PageProps) {
     )
   }
 
-  return <ArticlePageClient article={article} categorySlug={categorySlug} />
+  return (
+    <>
+      <ArticleStructuredData article={article} locale={locale} />
+      <ArticlePageClient article={article} categorySlug={categorySlug} />
+    </>
+  )
 }
 
 export async function generateMetadata({

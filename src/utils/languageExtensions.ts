@@ -1,10 +1,7 @@
-const languageExtensions: Record<string, string> = {
-  typescript: 'ts',
-  javascript: 'js',
+export function getFileExtension(lang?: string): string {
+  const extensions: Record<string, string> = {
+    typescript: 'ts',
+    javascript: 'js',
+  }
+  return extensions[lang?.toLowerCase() || ''] || 'txt'
 }
-
-function getFileExtension(lang?: string): string {
-  return languageExtensions[lang?.toLowerCase() || ''] || 'txt'
-}
-
-export { languageExtensions, getFileExtension }

@@ -40,8 +40,8 @@ function HeroClient({ article }: HeroClientProps) {
       <div className="max-w-7xl mx-auto w-full relative z-10">
         <div className="flex flex-col lg:grid lg:grid-cols-2 gap-8 lg:gap-16 items-center">
           {/* Image - Mobile only, above text */}
-          <div className="lg:hidden w-full flex justify-center">
-            <div className="relative w-48 sm:w-56 group">
+          <div className="lg:hidden w-full flex justify-center -mx-4 sm:mx-0">
+            <div className="relative w-full sm:w-56 group">
               <div className="absolute -inset-1 bg-linear-to-r from-primary via-secondary to-primary rounded-2xl blur-md opacity-50 group-hover:opacity-75 transition-opacity duration-500" />
 
               <div className="relative">

@@ -45,8 +45,10 @@ export function ShareButtons({ title, url }: ShareButtonsProps) {
 
   return (
     <div className="flex flex-col gap-3">
-      <p className="text-sm font-semibold text-foreground">{t('title')}</p>
-      <div className="flex flex-wrap gap-2">
+      <p className="text-sm font-semibold text-foreground text-center md:text-left">
+        {t('title')}
+      </p>
+      <div className="flex flex-wrap gap-2 justify-center md:justify-start">
         <IconButton
           as={Link}
           href={shareLinks.x}

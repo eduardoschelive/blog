@@ -1,9 +1,9 @@
 import { routing } from '@/i18n/routing'
 import { Providers } from '@/providers/Providers'
+import { GoogleAnalyticsProvider } from '@/providers/GoogleAnalyticsProvider'
 import { Header } from '@/components/layout/Header'
 import { Footer } from '@/components/layout/Footer'
 import { BackgroundDecorations } from '@/components/ui/BackgroundDecorations'
-import { GoogleAnalytics } from '@/components/analytics/GoogleAnalytics'
 import type { Metadata } from 'next'
 import { setRequestLocale } from 'next-intl/server'
 import localFont from 'next/font/local'
@@ -93,11 +93,7 @@ export default async function RootLayout({
       <body
         className={`${satoshi.variable} ${firaCode.variable} antialiased font-sans`}
       >
-        {process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID && (
-          <GoogleAnalytics
-            measurementId={process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID}
-          />
-        )}
+        <GoogleAnalyticsProvider />
         <Providers>
           <BackgroundDecorations />
           <Header />

@@ -136,6 +136,22 @@
     "clickToScroll": "Clique aqui para ir até a seção",
     "clickToOpen": "Clique aqui para abrir em nova aba"
   },
+  "MDX": {
+    "Callout": {
+      "info": "Informação",
+      "warning": "Aviso",
+      "success": "Sucesso",
+      "danger": "Perigo",
+      "note": "Nota"
+    },
+    "Terminal": {
+      "copy": "Copiar comando",
+      "copied": "Copiado!"
+    },
+    "Steps": {
+      "step": "Passo"
+    }
+  },
   "Categories": {
     "title": "Categorias",
     "subtitle": "Todos os meus artigos organizados por tema. A maioria segue uma ordem sequencial, então você pode ler como um guia de aprendizado.",

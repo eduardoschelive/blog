@@ -3,6 +3,7 @@
 import { ContentParsingError } from '@/error/ContentParsingError'
 import { compileMDX } from 'next-mdx-remote/rsc'
 import { getMDXComponents } from './getMDXComponents'
+import remarkGfm from 'remark-gfm'
 
 async function compileContent(source: string, filePath: string) {
   try {
@@ -10,6 +11,9 @@ async function compileContent(source: string, filePath: string) {
       source,
       options: {
         parseFrontmatter: true,
+        mdxOptions: {
+          remarkPlugins: [remarkGfm],
+        },
       },
       components: getMDXComponents(),
     })

@@ -141,6 +141,18 @@ Anchor links scroll smoothly to the target section:
 >
 > Blockquotes can span multiple paragraphs and maintain their distinctive styling throughout.
 
+## Tables
+
+Tables are great for displaying structured data with Tokyo Night styling:
+
+| Feature        | Next.js      | React        | Vue          |
+| -------------- | ------------ | ------------ | ------------ |
+| SSR            | ✅ Yes       | ❌ No        | ✅ Yes       |
+| Routing        | ✅ Built-in  | ❌ External  | ✅ Built-in  |
+| TypeScript     | ✅ Native    | ✅ Native    | ✅ Native    |
+| Performance    | ⚡ Excellent | ⚡ Excellent | ⚡ Excellent |
+| Learning Curve | 📈 Medium    | 📉 Easy      | 📈 Medium    |
+
 ## Horizontal Rule
 
 Use horizontal rules to separate sections:
@@ -200,10 +212,58 @@ You can mix different elements together:
 
 > **Note:** This blockquote contains **bold text** and `inline code` to demonstrate mixed formatting.
 
+## Callouts & Alerts
+
+Callouts are perfect for highlighting important information with visual emphasis:
+
+<Callout type="info" title="Information">
+  This is an informational callout. Use it to provide helpful context or
+  additional details that support the main content.
+</Callout>
+
+<Callout type="warning" title="Warning">
+  This is a warning callout. Use it to alert readers about potential issues,
+  deprecated features, or important considerations.
+</Callout>
+
+<Callout type="success" title="Success">
+  This is a success callout. Perfect for confirming completed actions,
+  highlighting best practices, or showing positive outcomes.
+</Callout>
+
+<Callout type="danger" title="Danger">
+  This is a danger callout. Use it for critical warnings, breaking changes, or
+  actions that cannot be undone.
+</Callout>
+
+<Callout type="note">
+  This is a note callout without a title. Great for tips, tricks, or interesting
+  side notes that enhance understanding.
+</Callout>
+
+## Terminal Commands
+
+Display terminal commands with syntax highlighting and copy functionality:
+
+<Terminal>npm install next react react-dom</Terminal>
+
+<Terminal prompt="~/projects/blog $">pnpm dev</Terminal>
+
+<Terminal
+  prompt="user@server:~$"
+  output="Server started successfully on http://localhost:3000"
+>
+  npm run build && npm start
+</Terminal>
+
+<Terminal prompt=">" output="Build completed in 12.5s">
+  yarn build
+</Terminal>
+
 ## Conclusion
 
 This article demonstrates all the major MDX components available in the blog system. Use it as a reference for component behavior and styling. The optimized Shiki highlighter with dynamic language loading ensures fast performance while maintaining beautiful syntax highlighting.
 
 ---
 
-**Last updated:** 2025-11-17
+**Last updated:** 2025-12-02

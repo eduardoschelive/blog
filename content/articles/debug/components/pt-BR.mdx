@@ -141,6 +141,18 @@ Links de âncora fazem scroll suave até a seção de destino:
 >
 > Citações em bloco podem se estender por vários parágrafos e manter sua estilização distintiva por todo o conteúdo.
 
+## Tabelas
+
+Tabelas são ótimas para exibir dados estruturados com estilo Tokyo Night:
+
+| Recurso              | Next.js      | React        | Vue          |
+| -------------------- | ------------ | ------------ | ------------ |
+| SSR                  | ✅ Sim       | ❌ Não       | ✅ Sim       |
+| Roteamento           | ✅ Integrado | ❌ Externo   | ✅ Integrado |
+| TypeScript           | ✅ Nativo    | ✅ Nativo    | ✅ Nativo    |
+| Performance          | ⚡ Excelente | ⚡ Excelente | ⚡ Excelente |
+| Curva de Aprendizado | 📈 Média     | 📉 Fácil     | 📈 Média     |
+
 ## Linha Horizontal
 
 Use linhas horizontais para separar seções:
@@ -200,10 +212,60 @@ Você pode misturar diferentes elementos juntos:
 
 > **Nota:** Esta citação em bloco contém **texto em negrito** e `código inline` para demonstrar formatação mista.
 
+## Callouts e Alertas
+
+Callouts são perfeitos para destacar informações importantes com ênfase visual:
+
+<Callout type="info" title="Informação">
+  Este é um callout informativo. Use-o para fornecer contexto útil ou detalhes
+  adicionais que complementam o conteúdo principal.
+</Callout>
+
+<Callout type="warning" title="Aviso">
+  Este é um callout de aviso. Use-o para alertar os leitores sobre problemas
+  potenciais, recursos obsoletos ou considerações importantes.
+</Callout>
+
+<Callout type="success" title="Sucesso">
+  Este é um callout de sucesso. Perfeito para confirmar ações concluídas,
+  destacar melhores práticas ou mostrar resultados positivos.
+</Callout>
+
+<Callout type="danger" title="Perigo">
+  Este é um callout de perigo. Use-o para avisos críticos, mudanças que quebram
+  compatibilidade ou ações que não podem ser desfeitas.
+</Callout>
+
+<Callout type="note">
+  Este é um callout de nota sem título. Ótimo para dicas, truques ou observações
+  interessantes que melhoram o entendimento.
+</Callout>
+
+## Comandos de Terminal
+
+Exiba comandos de terminal com syntax highlighting e funcionalidade de copiar:
+
+<Terminal>npm install next react react-dom</Terminal>
+
+<Terminal prompt="~/projetos/blog $">
+  pnpm dev aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+</Terminal>
+
+<Terminal
+  prompt="usuario@servidor:~$"
+  output="Servidor iniciado com sucesso em http://localhost:3000"
+>
+  npm run build && npm start
+</Terminal>
+
+<Terminal prompt=">" output="Build concluído em 12.5s">
+  yarn build
+</Terminal>
+
 ## Conclusão
 
 Este artigo demonstra todos os principais componentes MDX disponíveis no sistema do blog. Use-o como referência para comportamento e estilização de componentes. O highlighter Shiki otimizado com carregamento dinâmico de linguagens garante performance rápida enquanto mantém um belo syntax highlighting.
 
 ---
 
-**Última atualização:** 2025-11-17
+**Última atualização:** 2025-12-02

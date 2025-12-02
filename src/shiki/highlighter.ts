@@ -4,10 +4,14 @@ import type { HighlighterCore, LanguageInput } from 'shiki/core'
 import { createHighlighterCore } from 'shiki/core'
 import { createJavaScriptRegexEngine } from 'shiki/engine/javascript'
 
-const getTheme = async (theme: BundledTheme) => {
+import { tokyoNightLight } from '@/shiki/themes/tokyo-night-light'
+
+const getTheme = async (theme: BundledTheme | 'tokyo-night-light') => {
   switch (theme) {
     case 'tokyo-night':
       return import('shiki/themes/tokyo-night.mjs')
+    case 'tokyo-night-light':
+      return { default: tokyoNightLight }
     default:
       return import('shiki/themes/tokyo-night.mjs')
   }
@@ -21,6 +25,10 @@ const getLanguage = async (lang: BundledLanguage) => {
     case 'javascript':
     case 'js':
       return import('shiki/langs/javascript.mjs')
+    case 'bash':
+    case 'sh':
+    case 'shell':
+      return import('shiki/langs/bash.mjs')
     default:
       return import('shiki/langs/typescript.mjs')
   }
@@ -28,6 +36,13 @@ const getLanguage = async (lang: BundledLanguage) => {
 
 let highlighterInstance: HighlighterCore | null = null
 let initializationPromise: Promise<HighlighterCore> | null = null
+
+// Common languages to preload for better performance
+const PRELOAD_LANGUAGES: BundledLanguage[] = [
+  'typescript',
+  'javascript',
+  'bash',
+]
 
 async function getHighlighter(): Promise<HighlighterCore> {
   if (highlighterInstance) {
@@ -42,8 +57,18 @@ async function getHighlighter(): Promise<HighlighterCore> {
     engine: createJavaScriptRegexEngine(),
     themes: [],
     langs: [],
-  }).then((instance) => {
+  }).then(async (instance) => {
     highlighterInstance = instance
+
+    // Preload common languages and themes in the background
+    Promise.all([
+      ...PRELOAD_LANGUAGES.map((lang) => ensureLanguageLoaded(instance, lang)),
+      ensureThemeLoaded(instance, 'tokyo-night'),
+      ensureThemeLoaded(instance, 'tokyo-night-light'),
+    ]).catch((error) => {
+      console.warn('Failed to preload some languages/themes', error)
+    })
+
     return instance
   })
 
@@ -68,7 +93,7 @@ async function ensureLanguageLoaded(
 
 async function ensureThemeLoaded(
   highlighter: HighlighterCore,
-  theme: BundledTheme
+  theme: BundledTheme | 'tokyo-night-light'
 ) {
   const loadedThemes = highlighter.getLoadedThemes()
 
@@ -85,7 +110,7 @@ async function ensureThemeLoaded(
 async function highlightCode(
   code: string,
   lang: BundledLanguage = 'typescript',
-  theme: BundledTheme = 'tokyo-night'
+  theme: BundledTheme | 'tokyo-night-light' = 'tokyo-night'
 ): Promise<string> {
   const highlighter = await getHighlighter()
 

@@ -7,7 +7,7 @@ import {
   ArticleHeader,
   ArticleCover,
 } from '@/components/composables/Article'
-import { ShareButtons } from '@/components/article/ShareButtons'
+import { ShareButtons } from '@/components/layout/ShareButtons'
 import { Breadcrumbs } from '@/components/ui/Breadcrumbs'
 import { getLocalizedArticleUrl } from '@/utils/localizedUrl'
 import { useTranslations, useLocale } from 'next-intl'

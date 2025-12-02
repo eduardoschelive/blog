@@ -142,6 +142,8 @@ export async function generateMetadata({
     }
   }
 
+  // Use localized slug from content, not URL params
+  const categorySlugLocalized = category.slug
   const categoryPath = locale === 'en-US' ? 'categories' : 'categorias'
 
   // Merge category keywords with default fallbacks
@@ -158,7 +160,7 @@ export async function generateMetadata({
     title: category.title,
     description: category.description,
     keywords,
-    path: `/${locale}/${categoryPath}/${categorySlug}`,
+    path: `/${locale}/${categoryPath}/${categorySlugLocalized}`,
     alternates: generateAlternates(
       `/categories/${categorySlug}`,
       `/categorias/${categorySlug}`

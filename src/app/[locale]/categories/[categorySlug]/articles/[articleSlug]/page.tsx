@@ -1,5 +1,5 @@
 import { ArticlePageClient } from './ArticlePageClient'
-import { ArticleStructuredData } from '@/components/seo/ArticleStructuredData'
+import { ArticleStructuredData } from '@/components/layout/ArticleStructuredData'
 import { getArticles } from '@/content/articles'
 import { LOCALES } from '@/constants/locale'
 import type { Locale } from 'next-intl'
@@ -82,9 +82,6 @@ export async function generateMetadata({
     }
   }
 
-  const categoryPath = locale === 'en-US' ? 'categories' : 'categorias'
-  const articlesPath = locale === 'en-US' ? 'articles' : 'artigos'
-
   const publishedDate = article.createdAt
     ? new Date(article.createdAt).toISOString()
     : undefined
@@ -92,12 +89,17 @@ export async function generateMetadata({
     ? new Date(article.updatedAt).toISOString()
     : publishedDate
 
+  const categorySlugLocalized = article.category.slug
+  const articleSlugLocalized = article.slug
+  const categoryPath = locale === 'en-US' ? 'categories' : 'categorias'
+  const articlesPath = locale === 'en-US' ? 'articles' : 'artigos'
+
   return generatePageMetadata({
     locale,
     title: article.title,
     description: article.description || article.title,
     keywords: article.keywords || [],
-    path: `/${locale}/${categoryPath}/${categorySlug}/${articlesPath}/${articleSlug}`,
+    path: `/${locale}/${categoryPath}/${categorySlugLocalized}/${articlesPath}/${articleSlugLocalized}`,
     alternates: generateAlternates(
       `/categories/${categorySlug}/articles/${articleSlug}`,
       `/categorias/${categorySlug}/artigos/${articleSlug}`

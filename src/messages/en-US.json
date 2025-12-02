@@ -136,6 +136,22 @@
     "clickToScroll": "Click here to scroll to section",
     "clickToOpen": "Click here to open in new tab"
   },
+  "MDX": {
+    "Callout": {
+      "info": "Info",
+      "warning": "Warning",
+      "success": "Success",
+      "danger": "Danger",
+      "note": "Note"
+    },
+    "Terminal": {
+      "copy": "Copy command",
+      "copied": "Copied!"
+    },
+    "Steps": {
+      "step": "Step"
+    }
+  },
   "Categories": {
     "title": "Categories",
     "subtitle": "All my articles organized by topic. Most follow a sequential order, so you can read them like a guided learning path.",

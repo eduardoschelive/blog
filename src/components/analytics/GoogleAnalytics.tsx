@@ -4,7 +4,7 @@ interface GoogleAnalyticsProps {
   measurementId: string
 }
 
-export function GoogleAnalytics({ measurementId }: GoogleAnalyticsProps) {
+function GoogleAnalytics({ measurementId }: GoogleAnalyticsProps) {
   return (
     <>
       <Script
@@ -22,3 +22,5 @@ export function GoogleAnalytics({ measurementId }: GoogleAnalyticsProps) {
     </>
   )
 }
+
+export { GoogleAnalytics }

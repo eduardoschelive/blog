@@ -24,7 +24,9 @@ import {
 import { TbArrowDown } from 'react-icons/tb'
 import { useScroll } from '@/hooks/useScroll'
 import { useTranslations } from 'next-intl'
-import { ImageCDN } from '@/components/ui/ImageCDN'
+import NextImage from 'next/image'
+import { getCloudinaryUrl } from '@/utils/getCloudinaryUrl'
+import { getBlurDataURL } from '@/utils/getBlurDataURL'
 
 interface HeroClientProps {
   article: Article
@@ -44,25 +46,21 @@ function HeroClient({ article }: HeroClientProps) {
               <div className="absolute -inset-1 bg-linear-to-r from-primary via-secondary to-primary rounded-2xl blur-md opacity-50 group-hover:opacity-75 transition-opacity duration-500" />
 
               <div className="relative">
-                <ImageCDN
-                  filename="profile"
-                  alt={name.full}
-                  width={600}
-                  height={450}
-                  priority
-                  transformations={{
+                <NextImage
+                  src={getCloudinaryUrl('profile', {
                     w: 600,
                     h: 450,
                     c: 'fill',
                     g: 'face',
-                    f: 'auto',
-                    q: 'auto:best',
-                    dpr: 'auto',
-                  }}
-                  classNames={{
-                    wrapper: 'w-full',
-                    img: 'rounded-2xl shadow-2xl w-full h-auto object-cover ring-2 ring-primary/20 group-hover:ring-primary/40 transition-all duration-300',
-                  }}
+                  })}
+                  alt={name.full}
+                  width={600}
+                  height={450}
+                  priority
+                  placeholder="blur"
+                  blurDataURL={getBlurDataURL(600, 450)}
+                  sizes="(max-width: 640px) 100vw, 224px"
+                  className="rounded-2xl shadow-2xl w-full h-auto object-cover ring-2 ring-primary/20 group-hover:ring-primary/40 transition-all duration-300"
                 />
               </div>
             </div>

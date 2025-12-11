@@ -12,7 +12,10 @@ const nextConfig: NextConfig = {
         pathname: '/images/**',
       },
     ],
-    qualities: [100], // Use the CDN transformation
+    deviceSizes: [640, 828, 1024, 1280, 1920],
+    imageSizes: [16, 32, 48, 64, 96, 128, 256, 384],
+    loader: 'custom',
+    loaderFile: './src/utils/imageLoader.ts',
   },
 }
 

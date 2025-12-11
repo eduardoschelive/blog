@@ -5,7 +5,8 @@ import { MDXCallout } from './MDXCallout'
 import { MDXTerminal } from './MDXTerminal'
 import { MDXBlockquote } from './MDXBlockquote'
 import { MDXTable, MDXThead, MDXTbody, MDXTr, MDXTh, MDXTd } from './MDXTable'
-import { ImageCDN } from '@/components/ui/ImageCDN'
+import NextImage from 'next/image'
+import { getCloudinaryUrl } from '@/utils/getCloudinaryUrl'
 
 export const components: MDXComponents = {
   h1: (props) => <h1 className="text-4xl font-bold my-4" {...props} />,
@@ -24,13 +25,17 @@ export const components: MDXComponents = {
     )
   },
   img: (props) => (
-    <ImageCDN
-      filename={props.src?.replace(/^\/images\//, '') || ''}
+    <NextImage
+      src={getCloudinaryUrl(props.src?.replace(/^\/images\//, '') || '', {
+        w: 800,
+        h: 600,
+        c: 'limit',
+      })}
       alt={props.alt || ''}
-      transformations={{ f: 'auto', q: 'auto', dpr: 'auto' }}
-      className="rounded-lg my-4"
       width={800}
       height={600}
+      sizes="(max-width: 768px) 100vw, 800px"
+      className="rounded-lg my-4"
     />
   ),
   blockquote: MDXBlockquote,

@@ -78,13 +78,13 @@ export default async function RootLayout({
       <body
         className={`${satoshi.variable} ${firaCode.variable} antialiased font-sans`}
       >
-        <GoogleAnalyticsProvider />
         <Providers>
           <BackgroundDecorations />
           <Header />
           <main>{children}</main>
           <Footer />
         </Providers>
+        <GoogleAnalyticsProvider />
       </body>
     </html>
   )

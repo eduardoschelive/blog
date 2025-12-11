@@ -39,7 +39,6 @@ function HeroClient({ article }: HeroClientProps) {
     <section className="relative min-h-[calc(100vh-64px)] flex items-center justify-center px-4 py-12 overflow-hidden">
       <div className="max-w-7xl mx-auto w-full relative z-10">
         <div className="flex flex-col lg:grid lg:grid-cols-2 gap-8 lg:gap-16 items-center">
-          {/* Image - Mobile only, above text */}
           <div className="lg:hidden w-full flex justify-center -mx-4 sm:mx-0">
             <div className="relative w-full sm:w-56 group">
               <div className="absolute -inset-1 bg-linear-to-r from-primary via-secondary to-primary rounded-2xl blur-md opacity-50 group-hover:opacity-75 transition-opacity duration-500" />
@@ -69,7 +68,6 @@ function HeroClient({ article }: HeroClientProps) {
             </div>
           </div>
 
-          {/* Text */}
           <div className="space-y-6 lg:space-y-8">
             <div className="space-y-3 lg:space-y-4">
               <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold leading-tight">

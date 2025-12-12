@@ -1,5 +1,6 @@
 import { ImageResponse } from '@vercel/og'
 import type { NextRequest } from 'next/server'
+import { OG_COLORS, OG_DIMENSIONS, OG_GRADIENTS } from './og-styles'
 
 export const runtime = 'edge'
 
@@ -10,15 +11,6 @@ export async function GET(request: NextRequest) {
     const title = searchParams.get('title') || 'Eduardo Schelive'
     const subtitle = searchParams.get('subtitle') || 'Software Engineer'
     const theme = searchParams.get('theme') || 'gradient'
-
-    const colors = {
-      background: '#1a1b26',
-      foreground: '#c0caf5',
-      primary: '#7aa2f7',
-      secondary: '#bb9af7',
-      accent: '#7dcfff',
-      muted: '#565f89',
-    }
 
     return new ImageResponse(
       (
@@ -32,8 +24,8 @@ export async function GET(request: NextRequest) {
             justifyContent: 'center',
             background:
               theme === 'gradient'
-                ? `linear-gradient(135deg, ${colors.background} 0%, #24283b 50%, #1f2335 100%)`
-                : colors.background,
+                ? OG_GRADIENTS.background(OG_COLORS)
+                : OG_COLORS.background,
             position: 'relative',
           }}
         >
@@ -44,8 +36,7 @@ export async function GET(request: NextRequest) {
               left: 0,
               right: 0,
               bottom: 0,
-              background: `radial-gradient(circle at 25% 25%, ${colors.primary}15 0%, transparent 50%),
-                           radial-gradient(circle at 75% 75%, ${colors.secondary}15 0%, transparent 50%)`,
+              background: OG_GRADIENTS.radial(OG_COLORS),
             }}
           />
 
@@ -96,7 +87,7 @@ export async function GET(request: NextRequest) {
                 style={{
                   fontSize: '72px',
                   fontWeight: 700,
-                  color: colors.foreground,
+                  color: OG_COLORS.foreground,
                   margin: 0,
                   textAlign: 'center',
                   letterSpacing: '-0.02em',
@@ -108,7 +99,7 @@ export async function GET(request: NextRequest) {
                 style={{
                   fontSize: '32px',
                   fontWeight: 400,
-                  color: colors.primary,
+                  color: OG_COLORS.primary,
                   margin: 0,
                   textAlign: 'center',
                 }}
@@ -125,14 +116,14 @@ export async function GET(request: NextRequest) {
               left: 0,
               right: 0,
               height: 8,
-              background: `linear-gradient(90deg, ${colors.primary} 0%, ${colors.accent} 50%, ${colors.secondary} 100%)`,
+              background: `linear-gradient(90deg, ${OG_COLORS.primary} 0%, ${OG_COLORS.accent} 50%, ${OG_COLORS.secondary} 100%)`,
             }}
           />
         </div>
       ),
       {
-        width: 1200,
-        height: 630,
+        width: OG_DIMENSIONS.width,
+        height: OG_DIMENSIONS.height,
       }
     )
   } catch (e) {

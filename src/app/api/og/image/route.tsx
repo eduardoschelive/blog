@@ -1,5 +1,6 @@
 import { ImageResponse } from '@vercel/og'
 import type { NextRequest } from 'next/server'
+import { OG_DIMENSIONS, OG_GRADIENTS } from '../og-styles'
 
 export const runtime = 'edge'
 
@@ -44,8 +45,7 @@ export async function GET(request: NextRequest) {
               position: 'absolute',
               width: '100%',
               height: '100%',
-              background:
-                'linear-gradient(to bottom, rgba(0,0,0,0.3) 0%, rgba(0,0,0,0.7) 100%)',
+              background: OG_GRADIENTS.darkOverlay,
             }}
           />
 
@@ -132,8 +132,8 @@ export async function GET(request: NextRequest) {
         </div>
       ),
       {
-        width: 1200,
-        height: 630,
+        width: OG_DIMENSIONS.width,
+        height: OG_DIMENSIONS.height,
       }
     )
   } catch (e) {

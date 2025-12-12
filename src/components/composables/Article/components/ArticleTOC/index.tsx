@@ -23,7 +23,16 @@ export function ArticleTOC({ className, containerRef }: ArticleTOCProps) {
   const handleHeadingClick = useCallback(
     (event: React.MouseEvent<HTMLAnchorElement>, headingId: string) => {
       event.preventDefault()
+
+      // Scroll to the heading
       scrollToHeading(headingId)
+
+      // Set focus on the heading for accessibility
+      const target = document.getElementById(headingId)
+      if (target) {
+        target.setAttribute('tabindex', '-1')
+        target.focus({ preventScroll: true })
+      }
     },
     [scrollToHeading]
   )

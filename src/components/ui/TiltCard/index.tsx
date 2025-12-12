@@ -1,7 +1,7 @@
 'use client'
 
 import { cn } from '@heroui/react'
-import { type ReactNode, useRef, useState } from 'react'
+import { type ReactNode, useCallback, useRef, useState } from 'react'
 
 interface TiltCardProps {
   children: ReactNode
@@ -9,25 +9,36 @@ interface TiltCardProps {
   maxTilt?: number
 }
 
+const ROTATION_THRESHOLD = 0.5
+
 export function TiltCard({ children, className, maxTilt = 10 }: TiltCardProps) {
   const ref = useRef<HTMLDivElement>(null)
   const [rotation, setRotation] = useState({ x: 0, y: 0 })
 
-  const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
-    if (!ref.current) return
+  const handleMouseMove = useCallback(
+    (e: React.MouseEvent<HTMLDivElement>) => {
+      if (!ref.current) return
 
-    const rect = ref.current.getBoundingClientRect()
-    const x = e.clientX - rect.left
-    const y = e.clientY - rect.top
+      const rect = ref.current.getBoundingClientRect()
+      const x = e.clientX - rect.left
+      const y = e.clientY - rect.top
 
-    const centerX = rect.width / 2
-    const centerY = rect.height / 2
+      const centerX = rect.width / 2
+      const centerY = rect.height / 2
 
-    const rotateX = ((y - centerY) / centerY) * -maxTilt
-    const rotateY = ((x - centerX) / centerX) * maxTilt
+      const rotateX = ((y - centerY) / centerY) * -maxTilt
+      const rotateY = ((x - centerX) / centerX) * maxTilt
 
-    setRotation({ x: rotateX, y: rotateY })
-  }
+      // Only update if change is significant
+      if (
+        Math.abs(rotateX - rotation.x) > ROTATION_THRESHOLD ||
+        Math.abs(rotateY - rotation.y) > ROTATION_THRESHOLD
+      ) {
+        setRotation({ x: rotateX, y: rotateY })
+      }
+    },
+    [maxTilt, rotation.x, rotation.y]
+  )
 
   const handleMouseLeave = () => {
     setRotation({ x: 0, y: 0 })

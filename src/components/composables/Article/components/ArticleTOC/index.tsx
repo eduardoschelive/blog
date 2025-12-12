@@ -5,6 +5,7 @@ import { useHeadings } from '@/hooks/useHeadingTree'
 import { useScroll } from '@/hooks/useScroll'
 import { cn } from '@heroui/react'
 import { useTranslations } from 'next-intl'
+import { useCallback } from 'react'
 import type { HTMLAttributes, RefObject } from 'react'
 
 interface ArticleTOCProps extends HTMLAttributes<HTMLDivElement> {
@@ -19,13 +20,13 @@ export function ArticleTOC({ className, containerRef }: ArticleTOCProps) {
   const headingIds = headingTree ? Object.keys(headingTree.nodes) : []
   const activeId = useActiveHeading(headingIds)
 
-  const handleHeadingClick = (
-    event: React.MouseEvent<HTMLAnchorElement>,
-    headingId: string
-  ) => {
-    event.preventDefault()
-    scrollToHeading(headingId)
-  }
+  const handleHeadingClick = useCallback(
+    (event: React.MouseEvent<HTMLAnchorElement>, headingId: string) => {
+      event.preventDefault()
+      scrollToHeading(headingId)
+    },
+    [scrollToHeading]
+  )
 
   const getIndentClass = (level: number) => {
     const indents: Record<number, string> = {

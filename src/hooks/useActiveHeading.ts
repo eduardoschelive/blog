@@ -15,19 +15,27 @@ function useActiveHeading(headingIds: string[]) {
   const headingElementsRef = useRef<Map<string, HTMLElement>>(new Map())
   const headerElementRef = useRef<HTMLElement | null>(null)
   const footerElementRef = useRef<HTMLElement | null>(null)
+  const headerHeightRef = useRef<number>(0)
+  const footerHeightRef = useRef<number>(0)
 
   const getHeaderHeight = (): number => {
     if (!headerElementRef.current) {
       headerElementRef.current = document.getElementById(HEADER_ID) ?? null
+      if (headerElementRef.current) {
+        headerHeightRef.current = headerElementRef.current.offsetHeight
+      }
     }
-    return headerElementRef.current ? headerElementRef.current.offsetHeight : 0
+    return headerHeightRef.current
   }
 
   const getFooterHeight = (): number => {
     if (!footerElementRef.current) {
       footerElementRef.current = document.getElementById(FOOTER_ID) ?? null
+      if (footerElementRef.current) {
+        footerHeightRef.current = footerElementRef.current.offsetHeight
+      }
     }
-    return footerElementRef.current ? footerElementRef.current.offsetHeight : 0
+    return footerHeightRef.current
   }
 
   const getVisibleHeadings = (

@@ -44,7 +44,12 @@ function MDXLink({ href, children, ...props }: ComponentPropsWithoutRef<'a'>) {
           {...props}
         >
           {children}
-          <TbExternalLink size={14} className="inline-block" />
+          <TbExternalLink
+            size={14}
+            className="inline-block"
+            aria-hidden="true"
+          />
+          <span className="sr-only"> (opens in new window)</span>
         </a>
       </Tooltip>
     )

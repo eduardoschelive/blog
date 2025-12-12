@@ -5,7 +5,7 @@ import { Header } from '@/components/layout/Header'
 import { Footer } from '@/components/layout/Footer'
 import { BackgroundDecorations } from '@/components/ui/BackgroundDecorations'
 import type { Metadata } from 'next'
-import { setRequestLocale } from 'next-intl/server'
+import { getTranslations, setRequestLocale } from 'next-intl/server'
 import localFont from 'next/font/local'
 import { notFound } from 'next/navigation'
 import { PERSONAL_INFO } from '@/constants/personal'
@@ -72,17 +72,24 @@ export default async function RootLayout({
   }
 
   setRequestLocale(locale as Locale)
+  const t = await getTranslations('Navigation')
 
   return (
     <html lang={locale} suppressHydrationWarning>
       <body
         className={`${satoshi.variable} ${firaCode.variable} antialiased font-sans`}
       >
+        <a
+          href="#main-content"
+          className="sr-only focus:not-sr-only focus:absolute focus:top-0 focus:left-0 focus:z-50 focus:p-4 focus:bg-primary focus:text-white focus:outline-none"
+        >
+          {t('skipToContent')}
+        </a>
         <GoogleAnalyticsProvider />
         <Providers>
           <BackgroundDecorations />
           <Header />
-          <main>{children}</main>
+          <main id="main-content">{children}</main>
           <Footer />
         </Providers>
       </body>

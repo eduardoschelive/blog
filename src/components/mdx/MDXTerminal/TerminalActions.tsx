@@ -19,6 +19,9 @@ function TerminalActions({ command }: TerminalActionsProps) {
 
   return (
     <div className="flex items-center">
+      <div role="status" aria-live="polite" className="sr-only">
+        {copied && t('copied')}
+      </div>
       <IconButton
         onPress={handleCopy}
         tooltip={copied ? t('copied') : t('copy')}

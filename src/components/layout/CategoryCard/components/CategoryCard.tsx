@@ -10,13 +10,17 @@ import { HoverCard } from '@/components/ui/HoverCard'
 import { Link } from '@heroui/react'
 import { useTranslations } from 'next-intl'
 import { TbFileText } from 'react-icons/tb'
+import { memo } from 'react'
 
 interface CategoryCardProps {
   category: CategoryWithArticles
   limit?: number
 }
 
-export function CategoryCard({ category, limit = 3 }: CategoryCardProps) {
+export const CategoryCard = memo(function CategoryCard({
+  category,
+  limit = 3,
+}: CategoryCardProps) {
   const t = useTranslations('Categories')
   const previewArticles = category.articles.slice(0, limit)
   const hasArticles = previewArticles.length > 0
@@ -94,4 +98,4 @@ export function CategoryCard({ category, limit = 3 }: CategoryCardProps) {
       </CategoryRoot>
     </HoverCard>
   )
-}
+})

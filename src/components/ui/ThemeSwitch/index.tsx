@@ -37,6 +37,7 @@ export function ThemeSwitch() {
       ref={ref}
       onClick={toggleWithAnimation}
       aria-label={tooltipText}
+      aria-pressed={isDarkTheme}
       tooltip={tooltipText}
     >
       {isDarkTheme ? <TbMoon size={22} /> : <TbSun size={22} />}

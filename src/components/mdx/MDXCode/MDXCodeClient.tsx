@@ -2,6 +2,7 @@
 
 import { useTheme } from 'next-themes'
 import { CodeActions } from './CodeActions'
+import { useMemo } from 'react'
 import type { ComponentPropsWithoutRef } from 'react'
 
 interface MDXCodeClientProps extends ComponentPropsWithoutRef<'code'> {
@@ -19,7 +20,10 @@ export function MDXCodeClient({
   ...props
 }: MDXCodeClientProps) {
   const { theme } = useTheme()
-  const code = theme === 'light' ? lightCode : darkCode
+  const code = useMemo(
+    () => (theme === 'light' ? lightCode : darkCode),
+    [theme, lightCode, darkCode]
+  )
 
   return (
     <div className="bg-content1 rounded-lg shadow-lg overflow-hidden not-prose my-6 code-block border border-divider">
@@ -32,7 +36,11 @@ export function MDXCodeClient({
         <CodeActions code={rawCode} lang={lang} />
       </div>
       <div className="p-4">
-        <code {...props} dangerouslySetInnerHTML={{ __html: code }} />
+        <code
+          {...props}
+          aria-label={`Code block in ${lang || 'plain text'}`}
+          dangerouslySetInnerHTML={{ __html: code }}
+        />
       </div>
     </div>
   )

@@ -2,6 +2,7 @@
 
 import { useTheme } from 'next-themes'
 import { TerminalActions } from './TerminalActions'
+import { useMemo } from 'react'
 
 interface MDXTerminalClientProps {
   darkCommand: string
@@ -19,7 +20,10 @@ export function MDXTerminalClient({
   output,
 }: MDXTerminalClientProps) {
   const { theme } = useTheme()
-  const command = theme === 'light' ? lightCommand : darkCommand
+  const command = useMemo(
+    () => (theme === 'light' ? lightCommand : darkCommand),
+    [theme, lightCommand, darkCommand]
+  )
 
   return (
     <div className="bg-content1 rounded-lg shadow-lg overflow-hidden not-prose my-6 border border-divider">
@@ -33,9 +37,15 @@ export function MDXTerminalClient({
       </div>
       <div className="p-4 font-mono text-sm terminal-content">
         <div className="flex items-start gap-2">
-          <span className="text-success select-none shrink-0">{prompt}</span>
+          <span
+            className="text-success select-none shrink-0"
+            aria-hidden="true"
+          >
+            {prompt}
+          </span>
           <code
             className="grow min-w-0"
+            aria-label="Terminal command"
             dangerouslySetInnerHTML={{ __html: command }}
           />
         </div>

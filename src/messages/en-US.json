@@ -123,7 +123,11 @@
     "rss": {
       "button": "RSS Feed",
       "tooltip": "Subscribe to RSS Feed"
-    }
+    },
+    "breadcrumb": {
+      "label": "Breadcrumb"
+    },
+    "skipToContent": "Skip to main content"
   },
 
   "Code": {

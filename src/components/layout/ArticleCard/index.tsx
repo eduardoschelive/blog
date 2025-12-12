@@ -14,6 +14,7 @@ import {
 import { ScrollReveal } from '@/components/animated/ScrollReveal'
 import { HoverCard } from '@/components/ui/HoverCard'
 import { cn } from '@heroui/react'
+import { memo } from 'react'
 
 interface ArticleCardProps {
   article: Article
@@ -23,7 +24,7 @@ interface ArticleCardProps {
   className?: string
 }
 
-export function ArticleCard({
+export const ArticleCard = memo(function ArticleCard({
   article,
   showCategoryChip = false,
   showDateIcon = false,
@@ -71,4 +72,4 @@ export function ArticleCard({
       </HoverCard>
     </ScrollReveal>
   )
-}
+})

@@ -74,6 +74,8 @@ function Header() {
           <IconButton
             onClick={() => setIsMenuOpen(!isMenuOpen)}
             aria-label={isMenuOpen ? t('closeMenu') : t('openMenu')}
+            aria-expanded={isMenuOpen}
+            aria-controls="mobile-menu"
           >
             <AnimatePresence mode="wait">
               {isMenuOpen ? (
@@ -140,7 +142,7 @@ function Header() {
         </NavbarItem>
       </NavbarContent>
 
-      <NavbarMenu className="pt-6 pb-safe">
+      <NavbarMenu id="mobile-menu" className="pt-6 pb-safe">
         <div className="flex flex-col h-full">
           <div className="flex-1">
             {menuItems.map((item, index) => (

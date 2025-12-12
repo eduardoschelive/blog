@@ -11,7 +11,7 @@ import {
   TbBrandReddit,
   TbLink,
 } from 'react-icons/tb'
-import { useState } from 'react'
+import { useClipboard } from '@/hooks/useClipboard'
 
 interface ShareButtonsProps {
   title: string
@@ -20,7 +20,7 @@ interface ShareButtonsProps {
 
 export function ShareButtons({ title, url }: ShareButtonsProps) {
   const t = useTranslations('Article.share')
-  const [copied, setCopied] = useState(false)
+  const { copied, copy } = useClipboard({ timeout: 2000 })
 
   const shareText = encodeURIComponent(title)
   const shareUrl = encodeURIComponent(url)
@@ -33,14 +33,8 @@ export function ShareButtons({ title, url }: ShareButtonsProps) {
     reddit: `https://reddit.com/submit?url=${shareUrl}&title=${shareText}`,
   }
 
-  const handleCopyLink = async () => {
-    try {
-      await navigator.clipboard.writeText(url)
-      setCopied(true)
-      setTimeout(() => setCopied(false), 2000)
-    } catch (error) {
-      console.warn('Failed to copy link:', error)
-    }
+  const handleCopyLink = () => {
+    copy(url)
   }
 
   return (
@@ -48,6 +42,9 @@ export function ShareButtons({ title, url }: ShareButtonsProps) {
       <p className="text-sm font-semibold text-foreground text-center md:text-left">
         {t('title')}
       </p>
+      <div role="status" aria-live="polite" className="sr-only">
+        {copied && t('copied')}
+      </div>
       <div className="flex flex-wrap gap-2 justify-center md:justify-start">
         <IconButton
           as={Link}

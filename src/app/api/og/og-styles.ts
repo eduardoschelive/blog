@@ -17,7 +17,8 @@ export const OG_GRADIENTS = {
   radial: (colors: typeof OG_COLORS) =>
     `radial-gradient(circle at 25% 25%, ${colors.primary}15 0%, transparent 50%),
      radial-gradient(circle at 75% 75%, ${colors.secondary}15 0%, transparent 50%)`,
-  darkOverlay: 'linear-gradient(to bottom, rgba(0,0,0,0.3) 0%, rgba(0,0,0,0.7) 100%)',
+  darkOverlay:
+    'linear-gradient(to bottom, rgba(0,0,0,0.3) 0%, rgba(0,0,0,0.7) 100%)',
 } as const
 
 export const OG_DIMENSIONS = {

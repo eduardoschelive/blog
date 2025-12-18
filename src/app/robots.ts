@@ -8,7 +8,16 @@ export default function robots(): MetadataRoute.Robots {
     rules: [
       {
         userAgent: '*',
-        allow: ['/en-US/', '/pt-BR/'],
+        allow: [
+          '/en-US/',
+          '/pt-BR/',
+          '/favicon.ico',
+          '/icon.png',
+          '/icon-192.png',
+          '/icon-512.png',
+          '/apple-icon.png',
+          '/manifest.json',
+        ],
         disallow: ['/', '/api/', '/_next/', '/search/'],
       },
     ],

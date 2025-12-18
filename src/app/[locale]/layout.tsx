@@ -32,11 +32,21 @@ const { name } = PERSONAL_INFO
 export const metadata: Metadata = {
   title: `${name.short} | Blog`,
   description: `A personal blog by ${name.short}`,
+  icons: {
+    icon: [
+      { url: '/icon.png', sizes: '32x32', type: 'image/png' },
+      { url: '/icon-192.png', sizes: '192x192', type: 'image/png' },
+      { url: '/icon-512.png', sizes: '512x512', type: 'image/png' },
+    ],
+    shortcut: '/favicon.ico',
+    apple: '/apple-icon.png',
+  },
   appleWebApp: {
     capable: true,
     statusBarStyle: 'black-translucent',
     title: `${name.short} | Blog`,
   },
+  manifest: '/manifest.json',
 }
 
 export function generateViewport() {

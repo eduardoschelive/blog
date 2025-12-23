@@ -41,8 +41,8 @@ function HeroClient({ article }: HeroClientProps) {
     <section className="relative min-h-[calc(100vh-64px)] flex items-center justify-center px-4 py-12 overflow-hidden">
       <div className="max-w-7xl mx-auto w-full relative z-10">
         <div className="flex flex-col lg:grid lg:grid-cols-2 gap-8 lg:gap-16 items-center">
-          <div className="lg:hidden w-full flex justify-center -mx-4 sm:mx-0">
-            <div className="relative w-full sm:w-56 group">
+          <div className="hidden lg:flex w-full justify-center">
+            <div className="relative w-full max-w-sm sm:max-w-md md:max-w-lg group">
               <div className="absolute -inset-1 bg-linear-to-r from-primary via-secondary to-primary rounded-2xl blur-md opacity-50 group-hover:opacity-75 transition-opacity duration-500" />
 
               <div className="relative">
@@ -59,7 +59,7 @@ function HeroClient({ article }: HeroClientProps) {
                   priority
                   placeholder="blur"
                   blurDataURL={getBlurDataURL(600, 450)}
-                  sizes="(max-width: 640px) 100vw, 224px"
+                  sizes="(max-width: 640px) 100vw, (max-width: 768px) 448px, 512px"
                   className="rounded-2xl shadow-2xl w-full h-auto object-cover ring-2 ring-primary/20 group-hover:ring-primary/40 transition-all duration-300"
                 />
               </div>

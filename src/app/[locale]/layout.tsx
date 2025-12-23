@@ -4,6 +4,7 @@ import { GoogleAnalyticsProvider } from '@/providers/GoogleAnalyticsProvider'
 import { Header } from '@/components/layout/Header'
 import { Footer } from '@/components/layout/Footer'
 import { BackgroundDecorations } from '@/components/ui/BackgroundDecorations'
+import { ConsoleEasterEgg } from '@/components/easter-egg/ConsoleEasterEgg'
 import type { Metadata } from 'next'
 import { getTranslations, setRequestLocale } from 'next-intl/server'
 import localFont from 'next/font/local'
@@ -17,7 +18,7 @@ const satoshi = localFont({
   src: '../../../public/fonts/Satoshi-Variable-subset.woff2',
   variable: '--font-sans',
   display: 'swap',
-  preload: true,
+  preload: false,
 })
 
 const firaCode = localFont({
@@ -96,6 +97,7 @@ export default async function RootLayout({
           {t('skipToContent')}
         </a>
         <GoogleAnalyticsProvider />
+        <ConsoleEasterEgg />
         <Providers>
           <BackgroundDecorations />
           <Header />

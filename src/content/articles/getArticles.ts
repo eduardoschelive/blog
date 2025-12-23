@@ -1,20 +1,16 @@
 import { ARTICLES_DIR } from '@/constants/content'
 import type { Article } from '@/types/article.type'
-import type { SortOptions } from '@/types/sort.type'
-import { applyCollection } from '@/utils/collection'
 import type { Locale } from 'next-intl'
 import { readdirSync, statSync } from 'node:fs'
 import path from 'node:path'
-import { loadCategoryInfo } from '../categories/helpers'
-import { loadArticlesFromCategory } from './helpers'
+import { articleLoader, categoryLoader } from '../loaders'
+import type { ContentQueryOptions } from '../core/types'
 
 export type ArticleFilter = Partial<Article> & {
   categorySlug?: string
 }
 
-export type ArticleOptions = {
-  limit?: number
-  sort?: SortOptions<Article>
+export type ArticleOptions = ContentQueryOptions<Article> & {
   filter?: ArticleFilter
 }
 
@@ -25,10 +21,6 @@ const DEFAULT_ARTICLE_OPTIONS: ArticleOptions = {
   },
 }
 
-/**
- * @example
- * const articles = await getArticles('en-US', { filter: { categorySlug: 'javascript' }, sort: { field: 'createdAt', direction: 'DESC' }, limit: 5 })
- */
 export async function getArticles(
   locale: Locale,
   options?: ArticleOptions
@@ -43,25 +35,28 @@ export async function getArticles(
     return statSync(itemPath).isDirectory()
   })
 
-  const articlesByCategory = await Promise.all(
-    categoryFolders
-      .filter(
-        (categorySlug) =>
-          !config.filter?.categorySlug ||
-          categorySlug === config.filter.categorySlug
+  const filteredCategories = config.filter?.categorySlug
+    ? categoryFolders.filter(
+        (categorySlug) => categorySlug === config.filter?.categorySlug
       )
-      .map(async (categorySlug) => {
-        const categoryInfo = await loadCategoryInfo(categorySlug, locale)
-        return loadArticlesFromCategory(categorySlug, categoryInfo, locale)
-      })
+    : categoryFolders
+
+  const categoriesWithInfo = await Promise.all(
+    filteredCategories.map(async (categorySlug) => {
+      const info = await categoryLoader.loadInfo(categorySlug, locale)
+      return { slug: categorySlug, info }
+    })
   )
 
-  const articles = articlesByCategory.flat()
+  const result = await articleLoader.loadFromCategories(
+    categoriesWithInfo,
+    locale
+  )
 
-  const { categorySlug: _categorySlug, ...otherFilters } = config.filter || {}
-  return applyCollection(articles as unknown as Record<string, unknown>[], {
-    filter: otherFilters,
-    sort: config.sort as unknown as SortOptions<Record<string, unknown>>,
-    limit: config.limit,
-  }) as unknown as Article[]
+  const { categorySlug: _categorySlug, ...restFilter } = config.filter || {}
+
+  return articleLoader['applyOptions'](result.data, {
+    ...config,
+    filter: restFilter,
+  })
 }

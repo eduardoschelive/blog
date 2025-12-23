@@ -1,73 +1,46 @@
-import { CATEGORIES_DIR } from '@/constants/content'
-import { categorySchema } from '@/schemas/category.schema'
 import type { Category, CategoryBase } from '@/types/category.type'
 import type { Locale } from 'next-intl'
-import path from 'node:path'
-import { cache } from 'react'
-import { compileContent } from '../shared/compileContent'
-import { parseFrontmatter } from '../shared/parseFrontmatter'
-import { readFileContent } from '../shared/readFile'
+import { categoryLoader } from '../loaders'
 
-export const loadCategoryInfo = cache(
-  async (
-    categorySlug: string,
-    locale: Locale
-  ): Promise<CategoryBase & { slug: string }> => {
-    const defaultCategory: CategoryBase & { slug: string } = {
-      slug: categorySlug,
-      title: categorySlug.replace(/-/g, ' '),
-      description: '',
-    }
-
-    try {
-      const categoryFile = path.join(
-        CATEGORIES_DIR,
-        categorySlug,
-        `${locale}.mdx`
-      )
-      const categoryContent = readFileContent(categoryFile)
-      const { frontmatter } = await compileContent(
-        categoryContent,
-        categoryFile
-      )
-      const categoryData = parseFrontmatter(
-        frontmatter,
-        categorySchema,
-        categoryFile
-      )
-
-      return {
-        ...categoryData,
-        slug: categorySlug,
-      }
-    } catch {
-      return defaultCategory
-    }
-  }
-)
+/**
+ * Loads minimal category info (without compiled MDX content)
+ * Useful for loading category references in articles
+ * Results are cached via React's cache()
+ *
+ * @example
+ * const categoryInfo = await loadCategoryInfo('javascript', 'en-US')
+ * console.log(categoryInfo.title) // "JavaScript"
+ */
+export async function loadCategoryInfo(
+  categorySlug: string,
+  locale: Locale
+): Promise<CategoryBase & { slug: string }> {
+  return categoryLoader.loadInfo(categorySlug, locale)
+}
 
 /**
  * Loads full category data including compiled MDX content
+ * Use this when you need to render the category page
+ *
  * @param categorySlug - The category slug
  * @param locale - The locale
  * @returns Category with full content
+ *
+ * @example
+ * const category = await loadCategory('javascript', 'en-US')
+ * console.log(category.content) // React element
  */
 export async function loadCategory(
   categorySlug: string,
   locale: Locale
 ): Promise<Category> {
-  const filePath = path.join(CATEGORIES_DIR, categorySlug, `${locale}.mdx`)
+  const result = await categoryLoader.loadOne(categorySlug, locale)
 
-  const fileContent = readFileContent(filePath)
-  const { content, frontmatter } = await compileContent(fileContent, filePath)
-  const parsedData = parseFrontmatter(frontmatter, categorySchema, filePath)
-
-  const category: Category = {
-    ...parsedData,
-    content,
-    locale,
-    slug: categorySlug,
+  if (!result) {
+    throw new Error(
+      `Category "${categorySlug}" not found for locale "${locale}"`
+    )
   }
 
-  return category
+  return result
 }

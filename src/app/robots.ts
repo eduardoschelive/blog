@@ -9,6 +9,7 @@ export default function robots(): MetadataRoute.Robots {
       {
         userAgent: '*',
         allow: [
+          '/',
           '/en-US/',
           '/pt-BR/',
           '/favicon.ico',
@@ -18,7 +19,7 @@ export default function robots(): MetadataRoute.Robots {
           '/apple-icon.png',
           '/manifest.json',
         ],
-        disallow: ['/', '/api/', '/_next/', '/search/'],
+        disallow: ['/api/', '/_next/', '/search/'],
       },
     ],
     sitemap: `${BASE_URL}/sitemap.xml`,

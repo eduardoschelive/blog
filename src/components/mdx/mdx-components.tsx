@@ -6,13 +6,23 @@ import { MDXTerminal } from './MDXTerminal'
 import { MDXBlockquote } from './MDXBlockquote'
 import { MDXTable, MDXThead, MDXTbody, MDXTr, MDXTh, MDXTd } from './MDXTable'
 import { MDXMemoryVisualization } from './MDXMemoryVisualization'
+import { MDXAccordion } from './MDXAccordion'
+import { MDXDefinition } from './MDXDefinition'
+import { MDXExample } from './MDXExample'
 import NextImage from 'next/image'
 import { getCloudinaryUrl } from '@/utils/getCloudinaryUrl'
 
 export const components: MDXComponents = {
   h1: (props) => <h1 className="text-4xl font-bold my-4" {...props} />,
-  h2: (props) => <h2 className="text-3xl font-bold my-4" {...props} />,
-  h3: (props) => <h3 className="text-2xl font-bold my-4" {...props} />,
+  h2: (props) => (
+    <h2
+      className="text-3xl font-bold my-6 border-l-4 border-primary pl-4"
+      {...props}
+    />
+  ),
+  h3: (props) => (
+    <h3 className="text-xl font-bold my-4 text-primary" {...props} />
+  ),
   p: (props) => <p className="my-4" {...props} />,
   a: (props) => <MDXLink {...props} />,
   pre: ({ children }) => <>{children}</>,
@@ -62,4 +72,7 @@ export const components: MDXComponents = {
   Callout: MDXCallout,
   Terminal: MDXTerminal,
   MemoryVisualization: MDXMemoryVisualization,
+  Accordion: MDXAccordion,
+  Definition: MDXDefinition,
+  Example: MDXExample,
 }

@@ -5,6 +5,7 @@ import { MDXCallout } from './MDXCallout'
 import { MDXTerminal } from './MDXTerminal'
 import { MDXBlockquote } from './MDXBlockquote'
 import { MDXTable, MDXThead, MDXTbody, MDXTr, MDXTh, MDXTd } from './MDXTable'
+import { MDXMemoryVisualization } from './MDXMemoryVisualization'
 import NextImage from 'next/image'
 import { getCloudinaryUrl } from '@/utils/getCloudinaryUrl'
 
@@ -60,4 +61,5 @@ export const components: MDXComponents = {
   td: MDXTd,
   Callout: MDXCallout,
   Terminal: MDXTerminal,
+  MemoryVisualization: MDXMemoryVisualization,
 }

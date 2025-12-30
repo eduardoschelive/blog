@@ -6,6 +6,7 @@ import { MultiProvider } from './MultiProvider'
 import { ThemeProvider } from './ThemeProvider'
 import { UIProvider } from './UIProvider'
 import { HashScrollProvider } from './HashScrollProvider'
+import { SearchProvider } from '@/contexts/SearchContext'
 
 interface ProvidersProps {
   children: ReactNode
@@ -21,6 +22,7 @@ function Providers({ children }: ProvidersProps) {
         UIProvider,
         ClickSparkProvider,
         HashScrollProvider,
+        SearchProvider,
       ]}
     >
       {children}

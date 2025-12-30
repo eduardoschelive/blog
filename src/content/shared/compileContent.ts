@@ -1,6 +1,6 @@
 'use server'
 
-import { ContentParsingError } from '@/error/ContentParsingError'
+import { ContentParsingError } from '@/errors/ContentParsingError'
 import { compileMDX } from 'next-mdx-remote/rsc'
 import { getMDXComponents } from './getMDXComponents'
 import remarkGfm from 'remark-gfm'

@@ -1,4 +1,4 @@
-import { ContentParsingError } from '@/error/ContentParsingError'
+import { ContentParsingError } from '@/errors/ContentParsingError'
 import { readFileSync } from 'fs'
 
 function readFileContent(filePath: string): string {

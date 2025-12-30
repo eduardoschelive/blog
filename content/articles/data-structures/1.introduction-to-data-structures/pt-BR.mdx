@@ -21,7 +21,7 @@ keywords:
 
 É importante entender dois conceitos fundamentais que muitas vezes se confundem:
 
-### Tipos abstratos de dados (TADs)
+### Tipos abstratos de dados (<Tooltip title="Sigla em inglês" content="Abstract Data Types - Tipos Abstratos de Dados">TADs</Tooltip>)
 
 Definem **o quê** você pode fazer - quais operações existem e seu comportamento esperado. É o contrato da interface, a especificação abstrata. Um TAD diz "você pode empilhar e desempilhar", mas não diz como isso funciona por baixo dos panos.
 
@@ -31,27 +31,27 @@ Definem **como** fazer - a implementação concreta na memória. É a realizaç�
 
 <Example title="Exemplo prático">
 
-Uma "stack" (pilha) é um TAD que define comportamento LIFO (Last In, First Out). Você pode implementá-la usando arrays ou linked lists - estruturas de dados diferentes, mesmo comportamento abstrato. A escolha da estrutura afeta performance, mas o TAD permanece o mesmo.
+Uma "stack" (pilha) é um TAD que define comportamento <Tooltip title="Padrão de acesso" content="Last In, First Out - o último que entra é o primeiro que sai">LIFO</Tooltip>. Você pode implementá-la usando arrays ou linked lists - estruturas de dados diferentes, mesmo comportamento abstrato. A escolha da estrutura afeta performance, mas o TAD permanece o mesmo.
 
 </Example>
 
 ## Organização lógica dos dados
 
-A forma como os elementos se relacionam entre si define a natureza fundamental da estrutura:
+A forma como os elementos se relacionam entre si define o tipo da estrutura:
 
 ### Estruturas lineares
 
-Estabelecem uma ordem sequencial clara - existe um primeiro elemento, um último, e todos os intermediários possuem exatamente um predecessor e um sucessor. É como uma fila de pessoas: você sabe quem está à sua frente e quem está atrás.
+Estabelecem uma ordem sequencial clara - existe um primeiro elemento, um último, e todos os intermediários possuem exatamente um elemento anterior e um próximo. É como uma fila de pessoas: você sabe quem está à sua frente e quem está atrás.
 
 <Example title="Exemplos de estruturas lineares">
 
-**Arrays, linked lists, stacks e queues** são exemplos clássicos. Em uma stack (pilha), você empilha pratos um sobre o outro - só acessa o do topo. Em uma queue (fila), é como uma fila de banco - quem chega primeiro é atendido primeiro. A linearidade está na relação entre elementos, não necessariamente na disposição física.
+**Arrays, linked lists, stacks e queues** são exemplos clássicos. Em uma stack (pilha), você empilha pratos um sobre o outro - só acessa o do topo. Em uma queue (fila), é como uma fila de banco - quem chega primeiro é atendido primeiro. O que importa é a ordem entre elementos, não como estão organizados na memória.
 
 </Example>
 
 ### Estruturas não-lineares
 
-Quebram essa sequencialidade única. Aqui, um elemento pode se conectar a vários outros simultaneamente, formando hierarquias ou redes complexas. Como uma árvore genealógica ou rede social.
+Quebram essa ordem única. Aqui, um elemento pode se conectar a vários outros simultaneamente, formando hierarquias ou redes complexas. Como uma árvore genealógica ou rede social.
 
 <Example title="Exemplos de estruturas não-lineares">
 
@@ -65,7 +65,7 @@ Além da organização lógica, existe a questão física: como os bytes são di
 
 ### Memória contígua
 
-Elementos armazenados em posições adjacentes e sequenciais na memória. Como uma rua com casas numeradas sequencialmente.
+Elementos armazenados um do lado do outro na memória. Como uma rua com casas numeradas sequencialmente.
 
 <MemoryVisualization
   title="Memória RAM:"
@@ -83,7 +83,7 @@ Elementos armazenados em posições adjacentes e sequenciais na memória. Como u
   <span className="text-warning">]</span>
 </MemoryVisualization>
 
-Arrays funcionam assim. Cada elemento ocupa 4 bytes, então o elemento `array[2]` está matematicamente em `endereço_base + (2 × 4)`. Acesso instantâneo O(1)! Mas inserir no meio? Precisa deslocar todos os elementos seguintes - imagine reorganizar uma estante de livros inteira porque você quer inserir um no meio.
+Arrays funcionam assim. Cada elemento ocupa 4 bytes, então o elemento `array[2]` está matematicamente em `endereço_base + (2 × 4)`. Acesso instantâneo <Tooltip title="Notação Big O" content="Complexidade de tempo constante - sempre demora o mesmo tempo">O(1)</Tooltip>! Mas inserir no meio? Precisa deslocar todos os elementos seguintes - imagine reorganizar uma estante de livros inteira porque você quer inserir um no meio.
 
 ### Memória não-contígua
 
@@ -106,15 +106,15 @@ Elementos espalhados em diferentes regiões da memória, conectados por ponteiro
   <span className="text-success">30</span>
 </MemoryVisualization>
 
-Linked lists funcionam assim. Cada nó carrega seu dado e um ponteiro para o próximo. Inserir no meio? Fácil - apenas redirecione dois ponteiros. Mas acessar o elemento 100? Precisa seguir 100 pistas sequencialmente - O(n).
+Linked lists funcionam assim. Cada nó carrega seu dado e um ponteiro para o próximo. Inserir no meio? Fácil - apenas redirecione dois ponteiros. Mas acessar o elemento 100? Precisa seguir 100 pistas sequencialmente - <Tooltip title="Notação Big O" content="Complexidade linear - o tempo cresce proporcionalmente ao número de elementos">O(n)</Tooltip>.
 
 ## O que as torna diferentes
 
 Cada estrutura de dados faz tradeoffs:
 
-- **Layout de memória** - Contígua (arrays) vs espalhada (linked lists)
-- **Padrões de acesso** - Acesso aleatório vs travessia sequencial
-- **Custos de operação** - Inserções rápidas mas buscas lentas, ou vice-versa
-- **Overhead de espaço** - Metadados mínimos vs estruturas pesadas em ponteiros
+- **Organização na memória** - Contígua (arrays) vs espalhada (linked lists)
+- **Como você acessa** - Acesso direto vs percorrer um por um
+- **Velocidade das operações** - Inserções rápidas mas buscas lentas, ou vice-versa
+- **Espaço extra usado** - Pouca informação adicional vs muitos ponteiros
 
 A escolha certa depende do seu caso de uso específico. Precisa de buscas rápidas? Hash tables. Manter ordem? Binary search trees. Comportamento LIFO? Stacks.

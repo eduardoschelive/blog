@@ -9,6 +9,7 @@ import { MDXMemoryVisualization } from './MDXMemoryVisualization'
 import { MDXAccordion } from './MDXAccordion'
 import { MDXDefinition } from './MDXDefinition'
 import { MDXExample } from './MDXExample'
+import { MDXTooltip } from './MDXTooltip'
 import NextImage from 'next/image'
 import { getCloudinaryUrl } from '@/utils/getCloudinaryUrl'
 
@@ -75,4 +76,5 @@ export const components: MDXComponents = {
   Accordion: MDXAccordion,
   Definition: MDXDefinition,
   Example: MDXExample,
+  Tooltip: MDXTooltip,
 }

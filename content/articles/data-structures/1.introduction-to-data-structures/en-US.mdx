@@ -31,7 +31,7 @@ Define **how** to do it - the concrete implementation in memory. It's the practi
 
 <Example title="Practical example">
 
-A "stack" is an ADT that defines LIFO (Last In, First Out) behavior. You can implement it using arrays or linked lists - different data structures, same abstract behavior. The structure choice affects performance, but the ADT remains the same.
+A "stack" is an ADT that defines <Tooltip title="Access pattern" content="Last In, First Out - the last element added is the first one removed">LIFO</Tooltip> behavior. You can implement it using arrays or linked lists - different data structures, same abstract behavior. The structure choice affects performance, but the ADT remains the same.
 
 </Example>
 
@@ -83,7 +83,7 @@ Elements stored in adjacent and sequential positions in memory. Like a street wi
   <span className="text-warning">]</span>
 </MemoryVisualization>
 
-Arrays work this way. Each element takes 4 bytes, so element `array[2]` is mathematically at `base_address + (2 × 4)`. Instant O(1) access! But insert in the middle? You need to shift all following elements - imagine reorganizing an entire bookshelf because you want to insert one in the middle.
+Arrays work this way. Each element takes 4 bytes, so element `array[2]` is mathematically at `base_address + (2 × 4)`. Instant <Tooltip title="Big O notation" content="Constant time complexity - always takes the same time regardless of array size">O(1)</Tooltip> access! But insert in the middle? You need to shift all following elements - imagine reorganizing an entire bookshelf because you want to insert one in the middle.
 
 ### Non-contiguous memory
 
@@ -106,7 +106,7 @@ Elements scattered in different memory regions, connected by pointers. Like a tr
   <span className="text-success">30</span>
 </MemoryVisualization>
 
-Linked lists work this way. Each node carries its data and a pointer to the next. Insert in the middle? Easy - just redirect two pointers. But access element 100? You need to follow 100 clues sequentially - O(n).
+Linked lists work this way. Each node carries its data and a pointer to the next. Insert in the middle? Easy - just redirect two pointers. But access element 100? You need to follow 100 clues sequentially - <Tooltip title="Big O notation" content="Linear time complexity - time grows proportionally with the number of elements">O(n)</Tooltip>.
 
 ## What makes them different
 

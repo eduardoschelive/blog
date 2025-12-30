@@ -35,7 +35,7 @@ function IconButton({
         content={
           <div className="flex gap-2 items-start">
             <TbInfoCircle
-              className="text-secondary flex-shrink-0 mt-0.5"
+              className="text-secondary shrink-0 mt-0.5"
               size={16}
             />
             <span className="text-foreground/90">{tooltip}</span>

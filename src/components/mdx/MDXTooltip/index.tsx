@@ -15,10 +15,7 @@ export function MDXTooltip({ children, content, title }: MDXTooltipProps) {
     <Tooltip
       content={
         <div className="flex gap-2">
-          <TbInfoCircle
-            className="text-secondary flex-shrink-0 mt-0.5"
-            size={16}
-          />
+          <TbInfoCircle className="text-secondary shrink-0 mt-0.5" size={16} />
           <div className="flex flex-col gap-1.5">
             {title && (
               <div className="font-semibold text-secondary text-sm">

@@ -16,7 +16,7 @@ export const components: MDXComponents = {
   h1: (props) => <h1 className="text-4xl font-bold my-4" {...props} />,
   h2: (props) => (
     <h2
-      className="text-3xl font-bold my-6 border-l-4 border-primary pl-4"
+      className="text-3xl font-bold my-6 relative before:content-[''] before:absolute before:-left-4 before:top-0 before:bottom-0 before:w-1 before:bg-primary"
       {...props}
     />
   ),

@@ -1,10 +1,12 @@
 import { routing } from '@/i18n/routing'
-import { Providers } from '@/providers/Providers'
-import { GoogleAnalyticsProvider } from '@/providers/GoogleAnalyticsProvider'
+import { Providers } from '@/contexts/Providers'
+import { GoogleAnalyticsProvider } from '@/contexts/GoogleAnalyticsProvider'
 import { Header } from '@/components/layout/Header'
 import { Footer } from '@/components/layout/Footer'
 import { BackgroundDecorations } from '@/components/ui/BackgroundDecorations'
 import { ConsoleEasterEgg } from '@/components/easter-egg/ConsoleEasterEgg'
+import { SearchModal } from '@/components/ui/SearchModal'
+import { GlobalKeyboardShortcut } from '@/components/ui/SearchButton/GlobalKeyboardShortcut'
 import type { Metadata } from 'next'
 import { getTranslations, setRequestLocale } from 'next-intl/server'
 import localFont from 'next/font/local'
@@ -99,6 +101,8 @@ export default async function RootLayout({
         <GoogleAnalyticsProvider />
         <ConsoleEasterEgg />
         <Providers>
+          <GlobalKeyboardShortcut />
+          <SearchModal />
           <BackgroundDecorations />
           <Header />
           <main id="main-content">{children}</main>

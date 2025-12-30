@@ -71,7 +71,7 @@ export const CategoryCard = memo(function CategoryCard({
                     key={article.slug}
                     href={`/categories/${category.slug}/articles/${article.slug}`}
                     className="flex items-center gap-4 p-3 rounded-lg hover:bg-content2 transition-colors group"
-                    aria-label={`Read article: ${article.title}`}
+                    aria-label={`${t('readArticle')}: ${article.title}`}
                   >
                     <div className="shrink-0 w-10 h-10 rounded-full bg-primary/10 flex items-center justify-center group-hover:bg-primary/20 transition-colors">
                       {article.sequence ? (

@@ -7,11 +7,7 @@ export async function CategoriesList() {
   const categories = await getCategories(locale, { withArticles: true })
   const t = await getTranslations('Categories')
 
-  const hasAnyArticles = categories.some(
-    (category) => category.articles.length > 0
-  )
-
-  if (categories.length === 0 || !hasAnyArticles) {
+  if (categories.length === 0) {
     return (
       <div className="min-h-[50vh] flex items-center justify-center">
         <div className="text-center max-w-md mx-auto px-6">

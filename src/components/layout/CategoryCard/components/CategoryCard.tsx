@@ -32,7 +32,11 @@ export const CategoryCard = memo(function CategoryCard({
         className="bg-content2 border border-divider/20 rounded-xl overflow-hidden
                    shadow-lg grid grid-cols-1 lg:grid-cols-[300px_1fr] gap-0"
       >
-        <CategoryImage height="h-48 lg:h-full" iconSize="md" />
+        <CategoryImage
+          variant="thumbnail"
+          height="h-48 lg:h-full"
+          iconSize="md"
+        />
 
         <div className="p-4 lg:p-8 flex flex-col">
           <div className="mb-3 lg:mb-4">

@@ -8,5 +8,9 @@ interface CategoryCoverProps {
 }
 
 export function CategoryCover({ className }: CategoryCoverProps) {
-  return <CategoryImage className={cn('h-[200px] md:h-[280px]', className)} />
+  return (
+    <CategoryImage
+      className={cn('h-[250px] md:h-[350px] lg:h-[400px]', className)}
+    />
+  )
 }

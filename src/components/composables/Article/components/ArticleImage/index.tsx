@@ -7,19 +7,28 @@ import type { HTMLAttributes } from 'react'
 import NextImage from 'next/image'
 import { getBlurDataURL } from '@/utils/getBlurDataURL'
 import { getCloudinaryUrl } from '@/utils/getCloudinaryUrl'
+import { IMAGE_DIMENSIONS } from '@/constants/images'
 
 interface ArticleImageProps extends HTMLAttributes<HTMLDivElement> {
+  variant?: 'cover' | 'thumbnail'
   fallbackIcon?: string
 }
 
 export function ArticleImage({
+  variant = 'cover',
   className,
   fallbackIcon = '📰',
   ...props
 }: ArticleImageProps) {
   const { article } = useArticle()
 
-  if (!article.coverImage) {
+  // Image selection logic with fallback chain
+  const imageSource =
+    variant === 'thumbnail'
+      ? article.thumbnail || article.coverImage
+      : article.coverImage
+
+  if (!imageSource) {
     return (
       <FallbackImage
         icon={fallbackIcon}
@@ -31,11 +40,13 @@ export function ArticleImage({
     )
   }
 
-  const imageUrl = getCloudinaryUrl(article.coverImage, {
-    w: 1280,
-    h: 720,
-    c: 'fill',
-  })
+  // Dimension selection based on variant
+  const dimensions =
+    variant === 'thumbnail'
+      ? IMAGE_DIMENSIONS.THUMBNAIL
+      : IMAGE_DIMENSIONS.COVER
+
+  const imageUrl = getCloudinaryUrl(imageSource, dimensions)
 
   return (
     <div
@@ -45,11 +56,11 @@ export function ArticleImage({
       <NextImage
         src={imageUrl}
         alt={article.title}
-        width={1280}
-        height={720}
+        width={dimensions.w}
+        height={dimensions.h}
         priority
         placeholder="blur"
-        blurDataURL={getBlurDataURL(1280, 720)}
+        blurDataURL={getBlurDataURL(dimensions.w, dimensions.h)}
         sizes="(max-width: 640px) 640px, (max-width: 1024px) 1024px, 1280px"
         className="w-full h-full object-cover rounded-none transition-opacity duration-300"
       />

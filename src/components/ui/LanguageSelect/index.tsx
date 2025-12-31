@@ -11,7 +11,7 @@ import {
 } from '@heroui/react'
 import type { Locale } from 'next-intl'
 import { useTranslations } from 'next-intl'
-import { TbWorldCog } from 'react-icons/tb'
+import { TbWorldCog, TbInfoCircle } from 'react-icons/tb'
 import { IconButton } from '../../ui/IconButton'
 import { useState, useEffect } from 'react'
 
@@ -38,7 +38,27 @@ function LanguageSelect() {
 
   return (
     <Dropdown>
-      <Tooltip content={t('tooltip.description')} delay={1000} closeDelay={200}>
+      <Tooltip
+        content={
+          <div className="flex gap-2 items-start">
+            <TbInfoCircle
+              className="text-secondary flex-shrink-0 mt-0.5"
+              size={16}
+            />
+            <span className="text-foreground/90">
+              {t('tooltip.description')}
+            </span>
+          </div>
+        }
+        delay={1000}
+        closeDelay={200}
+        showArrow={true}
+        classNames={{
+          content:
+            'bg-content2/95 backdrop-blur-sm border border-secondary/30 shadow-xl px-3 py-2 text-sm rounded-lg',
+          arrow: 'bg-content2/95',
+        }}
+      >
         <div suppressHydrationWarning>
           <DropdownTrigger>
             <IconButton aria-label={t('tooltip.description')}>

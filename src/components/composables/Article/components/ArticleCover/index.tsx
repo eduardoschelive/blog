@@ -10,7 +10,7 @@ export function ArticleCover() {
 
   return (
     <div className="w-full max-w-7xl mx-auto mb-8">
-      <ArticleImage className="h-[250px] md:h-[300px] lg:h-[350px]" />
+      <ArticleImage variant="cover" className="lg:h-[400px]" />
     </div>
   )
 }

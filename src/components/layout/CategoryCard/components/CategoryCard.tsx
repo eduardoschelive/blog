@@ -33,7 +33,7 @@ export const CategoryCard = memo(function CategoryCard({
                    shadow-lg grid grid-cols-1 lg:grid-cols-[300px_1fr] gap-0"
       >
         <CategoryImage
-          variant="thumbnail"
+          responsive={{ mobile: 'cover', desktop: 'thumbnail' }}
           height="h-48 lg:h-full"
           iconSize="md"
         />

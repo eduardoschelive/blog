@@ -37,5 +37,10 @@ export default function cloudinaryLoader({
 
   newParts.unshift(`w_${width}`, `h_${height}`)
 
+  const extensionMatch = filename.match(/\.([^.]+)$/)
+  const format = extensionMatch ? extensionMatch[1] : 'webp'
+
+  newParts.push(`f_${format}`)
+
   return `https://cdn.eduardoschelive.com/images/${newParts.join(',')}/${filename}`
 }

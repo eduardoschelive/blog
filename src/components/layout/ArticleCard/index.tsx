@@ -43,7 +43,7 @@ export const ArticleCard = memo(function ArticleCard({
         >
           <div className="grid md:grid-cols-[300px_1fr] gap-0">
             <ArticleImage
-              variant="thumbnail"
+              responsive={{ mobile: 'cover', desktop: 'thumbnail' }}
               className="h-48 md:h-full group-hover:brightness-110 group-hover:scale-105 transition-all duration-300"
             />
             <div className="p-6 md:p-8 flex flex-col justify-between">

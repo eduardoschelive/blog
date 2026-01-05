@@ -7,26 +7,99 @@ import type { HTMLAttributes } from 'react'
 import NextImage from 'next/image'
 import { getBlurDataURL } from '@/utils/getBlurDataURL'
 import { getCloudinaryUrl } from '@/utils/getCloudinaryUrl'
-import { IMAGE_DIMENSIONS } from '@/constants/images'
+import { getImageSource, getDimensions, type ImageVariant } from '@/utils/image'
 
 interface ArticleImageProps extends HTMLAttributes<HTMLDivElement> {
-  variant?: 'cover' | 'thumbnail'
+  variant?: ImageVariant
   fallbackIcon?: string
+  responsive?: {
+    mobile: ImageVariant
+    desktop: ImageVariant
+  }
 }
 
 export function ArticleImage({
   variant = 'cover',
   className,
   fallbackIcon = '📰',
+  responsive,
   ...props
 }: ArticleImageProps) {
   const { article } = useArticle()
 
-  // Image selection logic with fallback chain
-  const imageSource =
-    variant === 'thumbnail'
-      ? article.thumbnail || article.coverImage
-      : article.coverImage
+  if (responsive) {
+    const mobileImageSource = getImageSource(article, responsive.mobile)
+    const desktopImageSource = getImageSource(article, responsive.desktop)
+
+    if (!mobileImageSource && !desktopImageSource) {
+      return (
+        <FallbackImage
+          icon={fallbackIcon}
+          title={article.category.title}
+          gradient="medium"
+          iconSize="md"
+          className={className}
+        />
+      )
+    }
+
+    const mobileDimensions = getDimensions(responsive.mobile)
+    const desktopDimensions = getDimensions(responsive.desktop)
+
+    const mobileImageUrl = getCloudinaryUrl(
+      mobileImageSource!,
+      mobileDimensions
+    )
+    const desktopImageUrl = getCloudinaryUrl(
+      desktopImageSource!,
+      desktopDimensions
+    )
+
+    return (
+      <>
+        <div
+          className={cn('relative overflow-hidden w-full md:hidden', className)}
+          {...props}
+        >
+          <NextImage
+            src={mobileImageUrl}
+            alt={article.title}
+            width={mobileDimensions.w}
+            height={mobileDimensions.h}
+            priority
+            placeholder="blur"
+            blurDataURL={getBlurDataURL(mobileDimensions.w, mobileDimensions.h)}
+            sizes="(max-width: 768px) 100vw, 0px"
+            className="w-full h-full object-cover rounded-none transition-opacity duration-300"
+          />
+        </div>
+        <div
+          className={cn(
+            'relative overflow-hidden w-full hidden md:block',
+            className
+          )}
+          {...props}
+        >
+          <NextImage
+            src={desktopImageUrl}
+            alt={article.title}
+            width={desktopDimensions.w}
+            height={desktopDimensions.h}
+            priority
+            placeholder="blur"
+            blurDataURL={getBlurDataURL(
+              desktopDimensions.w,
+              desktopDimensions.h
+            )}
+            sizes="(min-width: 768px) 300px, 0px"
+            className="w-full h-full object-cover rounded-none transition-opacity duration-300"
+          />
+        </div>
+      </>
+    )
+  }
+
+  const imageSource = getImageSource(article, variant)
 
   if (!imageSource) {
     return (
@@ -40,12 +113,7 @@ export function ArticleImage({
     )
   }
 
-  // Dimension selection based on variant
-  const dimensions =
-    variant === 'thumbnail'
-      ? IMAGE_DIMENSIONS.THUMBNAIL
-      : IMAGE_DIMENSIONS.COVER
-
+  const dimensions = getDimensions(variant)
   const imageUrl = getCloudinaryUrl(imageSource, dimensions)
 
   return (

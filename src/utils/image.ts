@@ -1,15 +1,17 @@
 import { IMAGE_DIMENSIONS } from '@/constants/images'
 import type { Category } from '@/schemas/category.schema'
+import type { Article } from '@/schemas/article.schema'
 
 export type ImageVariant = 'cover' | 'thumbnail'
+export type ImageEntity = Category | Article
 
 export function getImageSource(
-  category: Category,
+  entity: ImageEntity,
   variant: ImageVariant
 ): string | undefined {
   return variant === 'thumbnail'
-    ? category.thumbnail || category.coverImage
-    : category.coverImage
+    ? entity.thumbnail || entity.coverImage
+    : entity.coverImage
 }
 
 export function getDimensions(variant: ImageVariant) {

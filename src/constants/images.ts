@@ -10,8 +10,8 @@ export const IMAGE_DIMENSIONS = {
    * Used in full-width hero sections
    */
   COVER: {
-    w: 1600,
-    h: 900,
+    w: 1280,
+    h: 400,
     c: 'fill',
     f: 'auto',
     q: 'auto',
@@ -22,8 +22,8 @@ export const IMAGE_DIMENSIONS = {
    * Used in article/category cards
    */
   THUMBNAIL: {
-    w: 800,
-    h: 450,
+    w: 300,
+    h: 364,
     c: 'fill',
     f: 'auto',
     q: 'auto',

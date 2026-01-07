@@ -68,7 +68,7 @@ function getFrontmatter(filePath) {
     const [key, ...valueParts] = line.split(':')
     if (key && valueParts.length > 0) {
       const value = valueParts.join(':').trim()
-      frontmatter[key.trim()] = value.replace(/^['"]|['"]$/g, '')
+      frontmatter[key.trim()] = value.replace(/^['"]|['"]$/g, '').trim()
     }
   }
 

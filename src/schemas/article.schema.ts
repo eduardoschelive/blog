@@ -6,6 +6,7 @@ export const articleSchema = z.object({
   keywords: z.array(z.string()).optional(),
   slug: z.string(),
   coverImage: z.string().optional(),
+  thumbnail: z.string().optional(),
 })
 
 export type Article = z.infer<typeof articleSchema>

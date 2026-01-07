@@ -26,7 +26,7 @@ import { useScroll } from '@/hooks/useScroll'
 import { useTranslations } from 'next-intl'
 
 interface HeroClientProps {
-  article: Article
+  article?: Article
 }
 
 function HeroClient({ article }: HeroClientProps) {
@@ -73,38 +73,40 @@ function HeroClient({ article }: HeroClientProps) {
             </div>
           </div>
 
-          <ArticleRoot article={article}>
-            <div className="w-full mt-8 lg:mt-0">
-              <p className="mb-4 text-xs sm:text-sm font-bold text-primary uppercase tracking-widest">
-                {t('featuredArticle')}
-              </p>
+          {article && (
+            <ArticleRoot article={article}>
+              <div className="w-full mt-8 lg:mt-0">
+                <p className="mb-4 text-xs sm:text-sm font-bold text-primary uppercase tracking-widest">
+                  {t('featuredArticle')}
+                </p>
 
-              <div className="relative">
-                <HoverCard>
-                  <Card className="relative w-full shadow-lg drop-shadow">
-                    <ArticleImage />
+                <div className="relative">
+                  <HoverCard>
+                    <Card className="relative w-full shadow-lg drop-shadow">
+                      <ArticleImage />
 
-                    <Divider />
+                      <Divider />
 
-                    <CardHeader className="pb-0 pt-4 sm:pt-6 px-4 sm:px-6 flex-col items-start gap-2 sm:gap-3">
-                      <ArticleCategory asChip asLink />
-                      <ArticleTitle className="text-xl sm:text-2xl font-bold leading-tight line-clamp-2" />
-                    </CardHeader>
+                      <CardHeader className="pb-0 pt-4 sm:pt-6 px-4 sm:px-6 flex-col items-start gap-2 sm:gap-3">
+                        <ArticleCategory asChip asLink />
+                        <ArticleTitle className="text-xl sm:text-2xl font-bold leading-tight line-clamp-2" />
+                      </CardHeader>
 
-                    <CardBody className="px-4 sm:px-6 py-3 sm:py-4">
-                      <ArticleDescription className="text-sm sm:text-base text-foreground/70 line-clamp-3 leading-relaxed" />
-                    </CardBody>
+                      <CardBody className="px-4 sm:px-6 py-3 sm:py-4">
+                        <ArticleDescription className="text-sm sm:text-base text-foreground/70 line-clamp-3 leading-relaxed" />
+                      </CardBody>
 
-                    <CardFooter className="px-4 sm:px-6 pb-4 sm:pb-6">
-                      <ArticleLink className="text-sm sm:text-base text-primary font-bold">
-                        {t('readMore')}
-                      </ArticleLink>
-                    </CardFooter>
-                  </Card>
-                </HoverCard>
+                      <CardFooter className="px-4 sm:px-6 pb-4 sm:pb-6">
+                        <ArticleLink className="text-sm sm:text-base text-primary font-bold">
+                          {t('readMore')}
+                        </ArticleLink>
+                      </CardFooter>
+                    </Card>
+                  </HoverCard>
+                </div>
               </div>
-            </div>
-          </ArticleRoot>
+            </ArticleRoot>
+          )}
         </div>
       </div>
 

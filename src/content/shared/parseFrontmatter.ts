@@ -1,4 +1,4 @@
-import { ContentParsingError } from '@/error/ContentParsingError'
+import { ContentParsingError } from '@/errors/ContentParsingError'
 import type z from 'zod'
 
 function parseFrontmatter<T>(

@@ -98,10 +98,8 @@ export function generatePageMetadata({
   const canonicalUrl = `${SITE_URL}${path}`
   const ogType = openGraph?.type || 'website'
 
-  // Generate dynamic OG image based on page type
   let ogImage: string
 
-  // Priority 1: Use custom image if provided (generate procedural overlay)
   const processedCoverImage = processCoverImage(
     openGraph?.image,
     title,
@@ -109,22 +107,16 @@ export function generatePageMetadata({
   )
   if (processedCoverImage) {
     ogImage = processedCoverImage
-  }
-  // Priority 2: Generate based on page type
-  else if (openGraph?.type === 'article') {
-    // Article without custom image - generate with article title
+  } else if (openGraph?.type === 'article') {
     ogImage = generateOgImageUrl(title, 'Article')
   } else if (path.includes('categories') || path.includes('categorias')) {
-    // Category page without custom image
     ogImage = generateOgImageUrl(title, 'Category')
   } else if (path.includes('about') || path.includes('sobre')) {
-    // About page
     ogImage = generateOgImageUrl(
       'Eduardo Guiraldelli Schelive',
       'Software Engineer'
     )
   } else {
-    // Home and other pages
     ogImage = generateOgImageUrl('Eduardo Schelive', 'Software Engineer')
   }
 

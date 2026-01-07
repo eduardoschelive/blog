@@ -32,7 +32,11 @@ export const CategoryCard = memo(function CategoryCard({
         className="bg-content2 border border-divider/20 rounded-xl overflow-hidden
                    shadow-lg grid grid-cols-1 lg:grid-cols-[300px_1fr] gap-0"
       >
-        <CategoryImage height="h-48 lg:h-full" iconSize="md" />
+        <CategoryImage
+          responsive={{ mobile: 'cover', desktop: 'thumbnail' }}
+          height="h-48 lg:h-full"
+          iconSize="md"
+        />
 
         <div className="p-4 lg:p-8 flex flex-col">
           <div className="mb-3 lg:mb-4">
@@ -71,7 +75,7 @@ export const CategoryCard = memo(function CategoryCard({
                     key={article.slug}
                     href={`/categories/${category.slug}/articles/${article.slug}`}
                     className="flex items-center gap-4 p-3 rounded-lg hover:bg-content2 transition-colors group"
-                    aria-label={`Read article: ${article.title}`}
+                    aria-label={`${t('readArticle')}: ${article.title}`}
                   >
                     <div className="shrink-0 w-10 h-10 rounded-full bg-primary/10 flex items-center justify-center group-hover:bg-primary/20 transition-colors">
                       {article.sequence ? (

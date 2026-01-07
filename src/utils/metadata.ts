@@ -34,10 +34,6 @@ interface MetadataParams extends BaseMetadataParams {
   noIndex?: boolean
 }
 
-/**
- * Processes cover image for OG - generates procedural overlay image
- * Takes coverImage filename and creates OG image with text overlay
- */
 function processCoverImage(
   coverImage?: string,
   title?: string,
@@ -51,7 +47,6 @@ function processCoverImage(
       ? coverImage
       : getCDNImageUrl(coverImage, IMAGE_DIMENSIONS.OG)
 
-  // Generate procedural OG image with overlay
   const params = new URLSearchParams({
     image: cdnImageUrl,
     title: title || '',
@@ -61,9 +56,6 @@ function processCoverImage(
   return `${SITE_URL}/api/og/image?${params.toString()}`
 }
 
-/**
- * Generates OG image URL with dynamic parameters
- */
 function generateOgImageUrl(
   title: string,
   subtitle?: string,
@@ -81,10 +73,6 @@ function generateOgImageUrl(
 
   return `${SITE_URL}/api/og?${params.toString()}`
 }
-
-/**
- * Generates comprehensive SEO metadata for pages
- */
 export function generatePageMetadata({
   locale,
   title,
@@ -193,9 +181,6 @@ export function generatePageMetadata({
   return metadata
 }
 
-/**
- * Helper to build localized paths
- */
 export function buildLocalizedPath(
   locale: Locale,
   segments: Array<{ en: string; pt: string }>
@@ -206,9 +191,6 @@ export function buildLocalizedPath(
   return `/${locale}/${localizedSegments.join('/')}`
 }
 
-/**
- * Helper to generate alternate language paths
- */
 export function generateAlternates(
   enPath: string,
   ptPath: string

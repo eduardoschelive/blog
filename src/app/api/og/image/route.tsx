@@ -34,6 +34,7 @@ export async function GET(request: NextRequest) {
             width: '100%',
             display: 'flex',
             position: 'relative',
+            backgroundColor: '#1a1b26',
             backgroundImage: `url(${imageSrc})`,
             backgroundSize: 'cover',
             backgroundPosition: 'center',

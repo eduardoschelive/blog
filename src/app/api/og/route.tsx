@@ -22,6 +22,7 @@ export async function GET(request: NextRequest) {
             flexDirection: 'column',
             alignItems: 'center',
             justifyContent: 'center',
+            backgroundColor: OG_COLORS.background,
             background:
               theme === 'gradient'
                 ? OG_GRADIENTS.background(OG_COLORS)

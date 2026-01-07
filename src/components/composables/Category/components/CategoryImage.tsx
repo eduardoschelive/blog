@@ -57,49 +57,24 @@ export function CategoryImage({
     )
 
     return (
-      <>
-        {/* Mobile version */}
-        <div
-          className={cn(
-            'relative w-full overflow-hidden lg:hidden',
-            height,
-            className
-          )}
-        >
-          <NextImage
+      <div className={cn('relative w-full overflow-hidden', height, className)}>
+        <picture>
+          <source
+            media="(min-width: 1024px)"
+            srcSet={desktopImageUrl}
+            width={desktopDimensions.w}
+            height={desktopDimensions.h}
+          />
+          <img
             src={mobileImageUrl}
             alt={category.title}
             width={mobileDimensions.w}
             height={mobileDimensions.h}
-            placeholder="blur"
-            blurDataURL={getBlurDataURL(mobileDimensions.w, mobileDimensions.h)}
-            sizes="(max-width: 1024px) 100vw, 0px"
+            loading="eager"
             className="object-contain w-full h-full rounded-none transition-all duration-500 ease-out group-hover:scale-105"
           />
-        </div>
-        {/* Desktop version */}
-        <div
-          className={cn(
-            'relative w-full overflow-hidden hidden lg:block',
-            height,
-            className
-          )}
-        >
-          <NextImage
-            src={desktopImageUrl}
-            alt={category.title}
-            width={desktopDimensions.w}
-            height={desktopDimensions.h}
-            placeholder="blur"
-            blurDataURL={getBlurDataURL(
-              desktopDimensions.w,
-              desktopDimensions.h
-            )}
-            sizes="(min-width: 1024px) 300px, 0px"
-            className="object-contain w-full h-full rounded-none transition-all duration-500 ease-out group-hover:scale-105"
-          />
-        </div>
-      </>
+        </picture>
+      </div>
     )
   }
 

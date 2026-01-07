@@ -56,46 +56,27 @@ export function ArticleImage({
     )
 
     return (
-      <>
-        <div
-          className={cn('relative overflow-hidden w-full md:hidden', className)}
-          {...props}
-        >
-          <NextImage
+      <div
+        className={cn('relative overflow-hidden w-full', className)}
+        {...props}
+      >
+        <picture>
+          <source
+            media="(min-width: 768px)"
+            srcSet={desktopImageUrl}
+            width={desktopDimensions.w}
+            height={desktopDimensions.h}
+          />
+          <img
             src={mobileImageUrl}
             alt={article.title}
             width={mobileDimensions.w}
             height={mobileDimensions.h}
-            priority
-            placeholder="blur"
-            blurDataURL={getBlurDataURL(mobileDimensions.w, mobileDimensions.h)}
-            sizes="(max-width: 768px) 100vw, 0px"
+            loading="eager"
             className="w-full h-full object-cover rounded-none transition-opacity duration-300"
           />
-        </div>
-        <div
-          className={cn(
-            'relative overflow-hidden w-full hidden md:block',
-            className
-          )}
-          {...props}
-        >
-          <NextImage
-            src={desktopImageUrl}
-            alt={article.title}
-            width={desktopDimensions.w}
-            height={desktopDimensions.h}
-            priority
-            placeholder="blur"
-            blurDataURL={getBlurDataURL(
-              desktopDimensions.w,
-              desktopDimensions.h
-            )}
-            sizes="(min-width: 768px) 300px, 0px"
-            className="w-full h-full object-cover rounded-none transition-opacity duration-300"
-          />
-        </div>
-      </>
+        </picture>
+      </div>
     )
   }
 

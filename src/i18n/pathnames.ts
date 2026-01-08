@@ -1,9 +1,9 @@
 import { generatedPathnames } from '@generated/pathnames'
 
 const pathnames = {
-  '/': { 'pt-BR': '/' },
-  '/categories': { 'pt-BR': '/categorias' },
-  '/about': { 'pt-BR': '/sobre' },
+  '/': '/',
+  '/categories': { 'en-US': '/categories', 'pt-BR': '/categorias' },
+  '/about': { 'en-US': '/about', 'pt-BR': '/sobre' },
   ...generatedPathnames,
 }
 

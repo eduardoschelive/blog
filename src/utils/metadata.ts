@@ -83,7 +83,9 @@ export function generatePageMetadata({
   openGraph,
   noIndex = false,
 }: MetadataParams): Metadata {
-  const canonicalUrl = `${SITE_URL}${path}`
+  // Remove locale from path for canonical URL (e.g., /en-US/ becomes /)
+  const pathWithoutLocale = path.replace(/^\/(en-US|pt-BR)/, '') || '/'
+  const canonicalUrl = `${SITE_URL}${pathWithoutLocale}`
   const ogType = openGraph?.type || 'website'
 
   let ogImage: string

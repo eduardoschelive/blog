@@ -16,6 +16,7 @@ import { RSSButton } from '@/components/ui/RSSButton'
 import { SearchButton } from '@/components/ui/SearchButton'
 import { ThemeSwitch } from '@/components/ui/ThemeSwitch'
 import { useState } from 'react'
+import { useVisualViewport } from '@/hooks/useVisualViewport'
 import { AnimatePresence } from 'framer-motion'
 import { TbMenu2, TbX, TbBrandGithub, TbBrandLinkedin } from 'react-icons/tb'
 import { IconButton } from '@/components/ui/IconButton'
@@ -26,6 +27,7 @@ import Image from 'next/image'
 function Header() {
   const t = useTranslations('Navbar')
   const [isMenuOpen, setIsMenuOpen] = useState(false)
+  const menuHeight = useVisualViewport()
   const { name, social } = PERSONAL_INFO
 
   const menuItems = [
@@ -142,7 +144,7 @@ function Header() {
         </NavbarItem>
       </NavbarContent>
 
-      <NavbarMenu id="mobile-menu" className="pt-6 pb-safe !h-dvh">
+      <NavbarMenu id="mobile-menu" className="pt-6 pb-safe" style={{ height: menuHeight }}>
         <div className="flex flex-col h-full">
           <div className="flex-1">
             {menuItems.map((item, index) => (

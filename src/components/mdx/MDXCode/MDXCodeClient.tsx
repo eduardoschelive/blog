@@ -26,8 +26,8 @@ export function MDXCodeClient({
   )
 
   return (
-    <div className="bg-content1 rounded-lg shadow-lg overflow-hidden not-prose my-6 code-block border border-divider">
-      <div className="flex items-center justify-between px-4 py-3 bg-content2">
+    <div className="bg-content1 rounded-lg shadow-lg not-prose my-6 code-block border border-divider">
+      <div className="flex items-center justify-between px-4 py-3 bg-content2 rounded-t-lg">
         <span className="flex space-x-2">
           <span className="w-3 h-3 rounded-full bg-danger block shrink-0"></span>
           <span className="w-3 h-3 rounded-full bg-warning block shrink-0"></span>
@@ -35,7 +35,7 @@ export function MDXCodeClient({
         </span>
         <CodeActions code={rawCode} lang={lang} />
       </div>
-      <div className="p-4">
+      <div className="overflow-x-auto p-4">
         <code
           {...props}
           aria-label={`Code block in ${lang || 'plain text'}`}

@@ -16,7 +16,6 @@ import { RSSButton } from '@/components/ui/RSSButton'
 import { SearchButton } from '@/components/ui/SearchButton'
 import { ThemeSwitch } from '@/components/ui/ThemeSwitch'
 import { useState } from 'react'
-import { useVisualViewport } from '@/hooks/useVisualViewport'
 import { AnimatePresence } from 'framer-motion'
 import { TbMenu2, TbX, TbBrandGithub, TbBrandLinkedin } from 'react-icons/tb'
 import { IconButton } from '@/components/ui/IconButton'
@@ -27,7 +26,6 @@ import Image from 'next/image'
 function Header() {
   const t = useTranslations('Navbar')
   const [isMenuOpen, setIsMenuOpen] = useState(false)
-  const menuHeight = useVisualViewport()
   const { name, social } = PERSONAL_INFO
 
   const menuItems = [
@@ -69,9 +67,6 @@ function Header() {
         <div className="flex gap-1 items-center">
           <NavbarItem>
             <SearchButton />
-          </NavbarItem>
-          <NavbarItem>
-            <ThemeSwitch />
           </NavbarItem>
           <IconButton
             onClick={() => setIsMenuOpen(!isMenuOpen)}
@@ -144,28 +139,10 @@ function Header() {
         </NavbarItem>
       </NavbarContent>
 
-      <NavbarMenu
-        id="mobile-menu"
-        className="pt-6 pb-safe"
-        style={{ height: menuHeight }}
-      >
-        <div className="flex flex-col h-full">
-          <div className="flex-1">
-            {menuItems.map((item, index) => (
-              <NavbarMenuItem key={`${item.label}-${index}`}>
-                <Link
-                  href={item.href}
-                  className="w-full text-lg py-3 block"
-                  onClick={() => setIsMenuOpen(false)}
-                >
-                  {item.label}
-                </Link>
-              </NavbarMenuItem>
-            ))}
-          </div>
-
-          <div className="border-t border-divider pt-4 pb-safe">
-            <div className="flex justify-center gap-3">
+      <NavbarMenu id="mobile-menu" className="pt-4">
+        <div className="border-b border-divider pb-4 mb-2">
+          <div className="flex w-full justify-between">
+            <div className="flex gap-1">
               {socialLinks.map((link) => {
                 const Icon = link.icon
                 return (
@@ -180,9 +157,26 @@ function Header() {
                 )
               })}
               <RSSButton />
+            </div>
+            <div className="flex gap-1">
+              <ThemeSwitch />
               <LanguageSelect />
             </div>
           </div>
+        </div>
+
+        <div>
+          {menuItems.map((item, index) => (
+            <NavbarMenuItem key={`${item.label}-${index}`}>
+              <Link
+                href={item.href}
+                className="w-full text-lg py-3 block"
+                onClick={() => setIsMenuOpen(false)}
+              >
+                {item.label}
+              </Link>
+            </NavbarMenuItem>
+          ))}
         </div>
       </NavbarMenu>
     </Navbar>

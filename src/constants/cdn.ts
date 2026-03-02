@@ -1,1 +1,1 @@
-export const CDN_BASE_URL = 'https://cdn.eduardoschelive.com' as const
+export const CDN_BASE_URL = 'https://res.cloudinary.com/dzttinf61/image/upload' as const

@@ -155,14 +155,14 @@ export function getCDNImageUrl(
   transformations?: ImageTransformations
 ): string {
   if (!transformations || Object.keys(transformations).length === 0) {
-    return `${CDN_BASE_URL}/images/${filename}`
+    return `${CDN_BASE_URL}/${filename}`
   }
 
   const transformString = buildCloudinaryTransformations(transformations)
 
   if (!transformString) {
-    return `${CDN_BASE_URL}/images/${filename}`
+    return `${CDN_BASE_URL}/${filename}`
   }
 
-  return `${CDN_BASE_URL}/images/${transformString}/${filename}`
+  return `${CDN_BASE_URL}/${transformString}/${filename}`
 }

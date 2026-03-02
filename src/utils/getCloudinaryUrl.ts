@@ -4,15 +4,19 @@ export function getCloudinaryUrl(
   filename: string,
   transformations?: ImageTransformations
 ): string {
-  // SVGs don't need Cloudinary transformations, return direct CDN URL
+  // SVGs are vector and don't support raster transformations like c_fill.
+  // Serve directly with explicit format so Cloudinary can locate the file.
   if (filename.endsWith('.svg')) {
-    return `https://cdn.eduardoschelive.com/images/${filename}`
+    return `https://res.cloudinary.com/dzttinf61/image/upload/f_svg/${filename}`
   }
+
+  const extensionMatch = filename.match(/\.([^.]+)$/)
+  const format = (extensionMatch?.[1] ?? 'auto') as ImageTransformations['f']
 
   const params = {
     q: 90,
-    f: 'auto',
     ...transformations,
+    f: format,
   }
 
   const transformParts = Object.entries(params)

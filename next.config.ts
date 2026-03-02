@@ -8,8 +8,8 @@ const nextConfig: NextConfig = {
     remotePatterns: [
       {
         protocol: 'https',
-        hostname: 'cdn.eduardoschelive.com',
-        pathname: '/images/**',
+        hostname: 'res.cloudinary.com',
+        pathname: '/dzttinf61/image/upload/**',
       },
     ],
     deviceSizes: [640, 828, 1024, 1280, 1920],

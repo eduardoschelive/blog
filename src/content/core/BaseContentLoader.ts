@@ -85,10 +85,9 @@ export abstract class BaseContentLoader<TBase, TEnriched> extends ContentLoader<
     }
 
     const filter = options.filter || {}
-    const { slug: _slug, ...restFilter } = filter as Record<string, unknown>
 
     return applyCollection(items as unknown as Record<string, unknown>[], {
-      filter: restFilter,
+      filter: filter as Record<string, unknown>,
       sort: options.sort as {
         field: string
         direction: 'ASC' | 'DESC'

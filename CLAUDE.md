@@ -227,4 +227,36 @@ To update page titles and descriptions for SEO:
 - **Theme customization:** Custom Tokyo Night theme colors in `hero.ts` for both light/dark modes
 - **Font loading:** Custom Satoshi font + Fira Code for monospace, configured in layout
 - **HTTP/2:** Automatically enabled on Vercel deployment
-- **Image CDN:** Images are served from `cdn.eduardoschelive.com` with custom loader in `src/utils/imageLoader.ts`
+- **Image CDN:** Images are served from Cloudinary (`res.cloudinary.com/dzttinf61`) with custom loader in `src/utils/imageLoader.ts`
+
+## Creating Article Images (SVG)
+
+Article images are SVG files saved locally in `public/` and uploaded to Cloudinary. The frontmatter fields are just filenames (e.g., `arrays-cover.svg`), which resolve to `https://res.cloudinary.com/dzttinf61/image/upload/f_svg/<filename>`.
+
+### Design Rules
+
+- **Palette:** Tokyo Night only — `#7aa2f7` (blue), `#bb9af7` (purple), `#9ece6a` (green), `#e0af68` (orange), `#7dcfff` (cyan), `#f7768e` (pink), `#1a1b26` (dark bg), `#24283b` (mid bg), `#565f89` (muted)
+- **Background:** Always transparent — no `<rect>` background fill
+- **Glow:** Use `<radialGradient>` per color with `stop-opacity:0.45–0.5` fading to 0
+- **Depth:** Layer elements: glow shape → outer colored shape → dark inner (`#1a1b26`) → content
+- **Font:** `font-family="monospace"` for all text
+
+### Cover (`[name]-cover.svg`)
+
+- **ViewBox:** `1280x400`
+- **Content:** Wide horizontal composition representing the article's core concept
+- **Example:** Arrays → 8 cells in a row with glow, index labels, bracket label, connector lines between cells
+- **Corner dots:** 4 small circles (`r=3`) at corners with Tokyo Night colors, `opacity=0.4`
+
+### Thumbnail (`[name]-thumbnail.svg`)
+
+- **ViewBox:** `300x364`
+- **Content:** Portrait-optimized subset of the cover concept (e.g., 4 cells instead of 8)
+- **No corner dots**
+- **Same glow/depth style**, scaled down proportionally
+
+### After creating
+
+1. Save both files to `public/` (e.g., `public/arrays-cover.svg`, `public/arrays-thumbnail.svg`)
+2. Upload both to Cloudinary
+3. Reference in MDX frontmatter: `coverImage: arrays-cover.svg` and `thumbnail: arrays-thumbnail.svg`

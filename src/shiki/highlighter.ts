@@ -29,6 +29,11 @@ const getLanguage = async (lang: BundledLanguage) => {
     case 'sh':
     case 'shell':
       return import('shiki/langs/bash.mjs')
+    case 'c':
+      return import('shiki/langs/c.mjs')
+    case 'cpp':
+    case 'c++':
+      return import('shiki/langs/cpp.mjs')
     default:
       return import('shiki/langs/typescript.mjs')
   }

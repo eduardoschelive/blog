@@ -42,5 +42,5 @@ export default function cloudinaryLoader({
 
   newParts.push(`f_${format}`)
 
-  return `https://cdn.eduardoschelive.com/images/${newParts.join(',')}/${filename}`
+  return `https://res.cloudinary.com/dzttinf61/image/upload/${newParts.join(',')}/${filename}`
 }

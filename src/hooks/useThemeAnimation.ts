@@ -16,7 +16,8 @@ export const useThemeAnimation = ({
     if (
       !ref.current ||
       !document.startViewTransition ||
-      window.matchMedia('(prefers-reduced-motion: reduce)').matches
+      window.matchMedia('(prefers-reduced-motion: reduce)').matches ||
+      window.matchMedia('(hover: none) and (pointer: coarse)').matches
     ) {
       onToggle()
       return

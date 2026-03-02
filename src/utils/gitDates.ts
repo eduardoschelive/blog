@@ -69,10 +69,10 @@ export async function getBatchGitFileDates(
         `git log --format="%ai %H" --name-only --diff-filter=A --reverse -- ${pathsArg}`,
         { cwd, maxBuffer: 1024 * 1024 * 10 }
       ),
-      execAsync(
-        `git log --format="%ai %H" --name-only -1 -- ${pathsArg}`,
-        { cwd, maxBuffer: 1024 * 1024 * 10 }
-      ),
+      execAsync(`git log --format="%ai %H" --name-only -1 -- ${pathsArg}`, {
+        cwd,
+        maxBuffer: 1024 * 1024 * 10,
+      }),
     ])
 
     const creationDates = parseGitLogOutput(

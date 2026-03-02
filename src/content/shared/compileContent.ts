@@ -11,10 +11,11 @@ async function compileContent(source: string, filePath: string) {
       source,
       options: {
         parseFrontmatter: true,
+        // Content is author-controlled, not user-submitted, so JS expressions are safe
+        blockJS: false,
+        blockDangerousJS: false,
         mdxOptions: {
           remarkPlugins: [remarkGfm],
-          blockJS: false,
-          blockDangerousJS: false,
         },
       },
       components: getMDXComponents(),

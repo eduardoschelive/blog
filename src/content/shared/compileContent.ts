@@ -13,6 +13,8 @@ async function compileContent(source: string, filePath: string) {
         parseFrontmatter: true,
         mdxOptions: {
           remarkPlugins: [remarkGfm],
+          blockJS: false,
+          blockDangerousJS: false,
         },
       },
       components: getMDXComponents(),

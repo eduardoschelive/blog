@@ -217,6 +217,16 @@ To update page titles and descriptions for SEO:
 3. Follow SEO best practices: titles 50-60 chars, descriptions 120-160 chars
 4. Changes apply to `<title>`, meta description, and Open Graph tags
 
+## Content writing conventions
+
+- **Heading case:** Use sentence case — only the first letter of the first word is capitalized. Proper nouns (Linux, JavaScript), acronyms (RAM, CPU), and technical names being used as proper names (Linked List, Linked Lists) stay capitalized.
+  - ✓ `## What is a Linked List`
+  - ✓ `## Linked Lists in the real world`
+  - ✗ `## What Is A Linked List`
+  - ✗ `## Linked Lists In The Real World`
+
+- **Portuguese articles — keep technical terms in English:** Do not translate data structure names, operations, or programming concepts. The article prose is in Portuguese, but terms like `array`, `node`, `pointer`, `head`, `tail`, `next`, `prev`, `traversal`, `insertion`, `deletion`, `stack`, `queue`, `cache`, `overhead`, `memory leak`, `linked list` stay in English.
+
 ## Important Notes
 
 - **Generated files:** Never edit `generated/pathnames.ts` or `public/search/*.json` manually - they're auto-generated

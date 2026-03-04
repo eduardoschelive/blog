@@ -227,6 +227,8 @@ To update page titles and descriptions for SEO:
 
 - **Portuguese articles — keep technical terms in English:** Do not translate data structure names, operations, or programming concepts. The article prose is in Portuguese, but terms like `array`, `node`, `pointer`, `head`, `tail`, `next`, `prev`, `traversal`, `insertion`, `deletion`, `stack`, `queue`, `cache`, `overhead`, `memory leak`, `linked list` stay in English.
 
+- **ADT vs data structure distinction:** When introducing a topic that is an abstract data type (stack, queue, deque, priority queue, etc.), explicitly distinguish it from concrete data structures. An ADT defines *what* operations are available and their behavioral contract (e.g. LIFO). A concrete data structure defines *how* data is stored in memory (e.g. array, linked list). Articles about ADTs should make clear that the ADT can be implemented using different underlying data structures.
+
 ## Important Notes
 
 - **Generated files:** Never edit `generated/pathnames.ts` or `public/search/*.json` manually - they're auto-generated

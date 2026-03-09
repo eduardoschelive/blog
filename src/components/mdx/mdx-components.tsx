@@ -11,6 +11,7 @@ import { MDXDefinition } from './MDXDefinition'
 import { MDXExample } from './MDXExample'
 import { MDXTooltip } from './MDXTooltip'
 import { MDXStackVisualization } from './MDXStackVisualization'
+import { MDXQueueVisualization } from './MDXQueueVisualization'
 import NextImage from 'next/image'
 import { getCloudinaryUrl } from '@/utils/getCloudinaryUrl'
 
@@ -79,4 +80,5 @@ export const components: MDXComponents = {
   Example: MDXExample,
   Tooltip: MDXTooltip,
   StackVisualization: MDXStackVisualization,
+  QueueVisualization: MDXQueueVisualization,
 }
